@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Navigation bar -->
+    <string name="bottom_home_item">Accueil</string>
+    <string name="bottom_list_item">Liste produits</string>
+    <string name="bottom_settings_item">Paramètres</string>
+</resources>
