@@ -4,8 +4,15 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="green">#40FF8B</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
     <color name="grey">#666666</color>
     <color name="darkGreen">#006400</color>
+
+    <!-- Colors for the application : from the original maquette -->
+    <color name="light_green">#67d28d</color>
+    <color name="beige">#f4f4f4</color>
+    <color name="cyan_blue">#5376c1</color>
+    <color name="dark_green">#008037</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
 </resources>

@@ -11,7 +11,7 @@
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/green"
+        android:background="@color/light_green"
         android:theme="@style/BottomNavigationStyle"
         app:itemIconTint="@drawable/bottom_nav_color"
         app:itemTextColor="@drawable/bottom_nav_color"
@@ -25,7 +25,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"
+        android:background="@color/light_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +51,23 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="350dp"
+        android:layout_height="65dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:text="@string/home_first_button"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/home_page_button"
+        android:textAllCaps="false"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
