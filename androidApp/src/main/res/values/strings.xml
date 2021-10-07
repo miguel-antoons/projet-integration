@@ -12,4 +12,6 @@
     <string name="second_name_component_title">Armoire</string>
     <string name="temperature">Température</string>
     <string name="hygrometry">Hygrométrie</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
