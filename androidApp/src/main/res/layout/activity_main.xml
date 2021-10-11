@@ -40,14 +40,15 @@
 
     <ImageView
         android:id="@+id/circle_imageView"
-        android:layout_width="61dp"
-        android:layout_height="57dp"
+        android:layout_width="60dp"
+        android:layout_height="51dp"
         android:padding="8dp"
         android:src="@drawable/logo_smartfridge"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -59,23 +60,11 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="350dp"
-        android:layout_height="65dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="110dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        android:text="@string/home_first_button"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:background="@drawable/home_page_button"
-        android:textAllCaps="false"/>
-
+    <FrameLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigation_view"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
