@@ -3,14 +3,12 @@ package com.example.smartfridge.android
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.smartfridge.Greeting
-import android.widget.TextView
 
 import androidx.fragment.app.Fragment
 import com.example.smartfridge.android.fragments.FragmentHome
 import com.example.smartfridge.android.fragments.FragmentProduct
 import com.example.smartfridge.android.fragments.FragmentSettings
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.smartfridge.android.fragments.Home_Fragment
 
 fun greet(): String {
     return Greeting().greeting()
