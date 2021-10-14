@@ -1,9 +1,11 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import com.example.smartfridge.android.fragments.FragmentProduct
 import java.util.*
 
 class FormsAddAliments : AppCompatActivity() {
@@ -24,6 +26,17 @@ class FormsAddAliments : AppCompatActivity() {
         // Spinner Categorie and Place for Aliment
         val alimentCategorie = findViewById<Spinner>(R.id.categorie_spinner)
         val alimentStore = findViewById<Spinner>(R.id.place_spinner)
+
+        //Button event
+
+        val button_return_product = findViewById<Button>(R.id.button_return_list_product)
+        button_return_product.setOnClickListener {
+            Toast.makeText(this ,"Event Work", Toast.LENGTH_LONG).show();
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, FragmentProduct()).commit()
+
+        }
 
         val button_add_aliment = findViewById<Button>(R.id.button_add_aliment)
         button_add_aliment.setOnClickListener {
