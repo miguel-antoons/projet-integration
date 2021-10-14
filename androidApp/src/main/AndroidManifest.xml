@@ -7,6 +7,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FormsAddAliments"
+            android:exported="false" />
+        <activity
             android:name=".HowToConnect"
             android:exported="true" />
         <activity

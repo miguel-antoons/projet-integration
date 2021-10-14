@@ -17,4 +17,27 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--  Spinner forms add aliment  -->
+
+    <!--  Categorie Spinner  -->
+
+    <string-array name="categorie_array">
+        <item>Céréales, féculents</item>
+        <item>Fruits, légumes</item>
+        <item>Lait, produits laitiers</item>
+        <item>Viandes, poissons, œufs</item>
+        <item>Matières grasses</item>
+        <item>Produits sucrés</item>
+        <item>Boissons</item>
+    </string-array>
+
+    <!-- Place  Spinner -->
+
+    <string-array name="place_array">
+        <item>Frigo</item>
+        <item>Armoire</item>
+    </string-array>
+
 </resources>
