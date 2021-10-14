@@ -7,7 +7,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.R
 
-class FridgesAdapter  : RecyclerView.Adapter<FridgesAdapter.ViewHolder>(){
+class FridgesAdapter(private val layoutId: Int) : RecyclerView.Adapter<FridgesAdapter.ViewHolder>(){
 
     // Boite pour ranger tous les composants à controler
     class ViewHolder(view : View)  : RecyclerView.ViewHolder(view) {
@@ -17,7 +17,7 @@ class FridgesAdapter  : RecyclerView.Adapter<FridgesAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
          val view = LayoutInflater
              .from(parent.context)
-             .inflate(R.layout.item_vertical_fridges, parent, false)
+             .inflate(layoutId, parent, false)
 
          return ViewHolder(view)
     }
