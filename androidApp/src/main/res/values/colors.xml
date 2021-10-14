@@ -6,6 +6,8 @@
     <color name="green">#40FF8B</color>
     <color name="grey">#666666</color>
     <color name="darkGreen">#006400</color>
+    <color name="orange">#FFC300</color>
+    <color name="red">#FF1F1F</color>
 
     <!-- Colors for the application : from the original maquette -->
     <color name="light_green">#67d28d</color>
@@ -14,5 +16,6 @@
     <color name="dark_green">#008037</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
 
 </resources>
