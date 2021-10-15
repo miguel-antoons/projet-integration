@@ -19,7 +19,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <!--  Spinner forms add aliment  -->
+    <!-- Forms Add Aliment Page -->
+
+    <!--  Button  -->
+    <string name="btn_return_product">Ajouter Aliment</string>
+    <string name="btn_date">Choisir Date : </string>
+    <string name="btn_add">Ajouter </string>
+
+
+    <!--  TextView  -->
+
+    <string name="title_forms_add">Ajouter un Produits</string>
+    <string name="text_name">Nom du Produit : </string>
+    <string name="text_quantite">Quantité du produit (GR) : </string>
+    <string name="text_date">Date de Péremption                          JJ/MM/AAAA </string>
+    <string name="text_categorie">Catégorie</string>
+    <string name="text_storage">Lieu de Stockage</string>
+
+
+
 
     <!--  Categorie Spinner  -->
 
