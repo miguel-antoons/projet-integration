@@ -19,6 +19,7 @@ class FridgesAdapter(private val layoutId: Int) : RecyclerView.Adapter<FridgesAd
             .from(parent.context)
             .inflate(layoutId, parent, false)
 
+
         return ViewHolder(view)
     }
 
@@ -26,7 +27,5 @@ class FridgesAdapter(private val layoutId: Int) : RecyclerView.Adapter<FridgesAd
 
     }
 
-    override fun getItemCount(): Int {
-        return 3
-    }
+    override fun getItemCount(): Int = 3
 }
