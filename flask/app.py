@@ -4,63 +4,15 @@ from bson import json_util
 import json
 app=Flask(__name__)
 
-
-#Connection with local DataBase
-client = MongoClient("mongodb://localhost:27017")
-#Name of my database
-db = client.get_database('aliments')
+client = MongoClient("mongodb+srv://alexis:sixela@clusteralexis.7q0fj.mongodb.net/test")
+db = client.get_database('SmartFridge')
 
 
-#First API TEST
 @app.route('/')
 def hello_world():
     return 'Hello world!'
 
-@app.route('/aliments', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def aliments():
 
-    #Collection of my database
-    records = db.noms
-
-    #Method request
-    if request.method == 'GET':
-
-        result = list(records.find())
-
-        for client in result:
-            client.pop('_id')
-        
-        return json.dumps(result)
-
-     
-    elif request.method == 'POST':
-
-        parameters = request.json
-        print(parameters)
-        new_aliment = {
-
-        'noms': "Pomme", 
-        'quantitéé': "30",
-        'date de peeremtion': "07/12/2022",
-        'categorie': "Fruits et légumes",
-        'store': "Frigo",
-
-    }
-        db.insert_one(parameters)
-        return "client ajouté"
-
-
-        
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-"""
 @app.route('/client', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def client():
     records = db.Client
@@ -139,4 +91,3 @@ def client():
             
         records.insert_one(new_client)
         return "client ajouté"
-"""

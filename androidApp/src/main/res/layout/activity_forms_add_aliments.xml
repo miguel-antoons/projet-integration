@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormsAddAliments"
-    tools:ignore="LabelFor">
-
-    <Button
-        android:id="@+id/button_return_list_product"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_arrow_left"
-        android:drawableLeft="@drawable/ic_arrow_left"
-        android:text="@string/btn_return_product"
-        android:textColor="@color/light_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/form_add_aliment_layout" />
+    tools:ignore="LabelFor"
+    tools:context=".FormsAddAliments">
 
 
     <LinearLayout
         android:id="@+id/form_add_aliment_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
+
+        <Button
+            android:id="@+id/button_return_list_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_return_product"
+            android:textColor="@color/light_green"
+            android:drawableLeft="@drawable/ic_arrow_left"
+            android:drawableStart="@drawable/ic_arrow_left"/>
 
         <LinearLayout
-
-            android:layout_width="376dp"
-            android:layout_height="644dp"
+            android:layout_width="wrap_content"
+            android:layout_height="672dp"
             android:orientation="vertical">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -45,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/light_green"
-
+                android:elevation="1dp"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/title_forms_add"
@@ -54,11 +44,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/text_name"
                 android:layout_width="363dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
 
                 android:lineSpacingExtra="8sp"
@@ -69,17 +59,17 @@
 
             <EditText
                 android:id="@+id/AlimentName"
-                android:layout_width="match_parent"
+                android:maxLength="30"
 
+                android:autofillHints="aliment name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
-                android:autofillHints="aliment name"
                 android:background="@drawable/shape_background"
                 android:inputType="textPersonName"
-                android:maxLength="30"
                 android:padding="15dp"
                 android:textColor="@color/light_green"
                 android:textSize="18sp"
@@ -94,21 +84,22 @@
                 android:text="@string/text_quantite"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:typeface="normal" />
+                android:typeface="normal"
+            />
 
             <EditText
                 android:id="@+id/AlimentQuantite"
-                android:layout_width="match_parent"
+                android:maxLength="4"
 
+                android:autofillHints="aliment quantite"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
-                android:autofillHints="aliment quantite"
                 android:background="@drawable/shape_background"
                 android:inputType="number"
-                android:maxLength="4"
                 android:padding="15dp"
                 android:textColor="@color/light_green"
                 android:textSize="18sp"
@@ -117,10 +108,10 @@
             <TextView
                 android:id="@+id/text_date"
                 android:layout_width="363dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
                 android:layout_marginBottom="10dp"
+
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_date"
@@ -130,7 +121,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <Button
 
@@ -171,10 +163,10 @@
                 -->
             <TextView
                 android:id="@+id/text_categorie"
-                android:layout_width="345dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_categorie"
@@ -214,10 +206,10 @@
 
             <TextView
                 android:id="@+id/text_storage"
-                android:layout_width="345dp"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_storage"
@@ -229,12 +221,12 @@
             <Spinner
                 android:id="@+id/place_spinner"
                 android:layout_width="325dp"
-                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:spinnerMode="dialog"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
 
                 />
 
