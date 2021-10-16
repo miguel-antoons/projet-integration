@@ -1,7 +1,6 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -29,17 +28,17 @@ class FormsAddAliments : AppCompatActivity() {
 
         //Button event
 
-        val button_return_product = findViewById<Button>(R.id.button_return_list_product)
-        button_return_product.setOnClickListener {
-            Toast.makeText(this ,"Event Work", Toast.LENGTH_LONG).show();
+        val buttonReturnProduct = findViewById<Button>(R.id.button_return_list_product)
+        buttonReturnProduct.setOnClickListener {
+            //Toast.makeText(this ,"Event Work", Toast.LENGTH_LONG).show();
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragment_container, FragmentProduct()).commit()
 
         }
 
-        val button_add_aliment = findViewById<Button>(R.id.button_add_aliment)
-        button_add_aliment.setOnClickListener {
+        val buttonAddAliment = findViewById<Button>(R.id.button_add_aliment)
+        buttonAddAliment.setOnClickListener {
 
             val names = alimentName.text.toString()
             val quantite = alimentQuantite.text.toString()
@@ -47,7 +46,7 @@ class FormsAddAliments : AppCompatActivity() {
             val categorie = alimentCategorie.getSelectedItem().toString()
             val store = alimentStore.getSelectedItem().toString()
 
-            Toast.makeText(this ,"Ajout de l'aliment effectué :)" + names + " " + date+ "" + quantite+ " " +categorie + " " +store, Toast.LENGTH_LONG).show();
+            Toast.makeText(this ,"Ajout de l'aliment effectué : )" + names + " " + date+ "" + quantite+ " " +categorie + " " +store, Toast.LENGTH_LONG).show();
 
 
         }
@@ -94,7 +93,7 @@ class FormsAddAliments : AppCompatActivity() {
 
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 // Display Selected date in TextView
-                textView.setText("" + dayOfMonth + " / " + month + " / " + year)
+                textView.setText(" $dayOfMonth/$monthOfYear/$year")
             }, year, month, day)
             dpd.show()
 
