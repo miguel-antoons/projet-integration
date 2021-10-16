@@ -6,16 +6,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- custom navigation bar -->
+    <!-- Custom navigation bar -->
     <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
         <item name="android:textColor">@color/darkGreen</item>
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/arial</item>
     </style>
 
+    <!-- Add of a style for the content of the home card view -->
+    <!-- For the percentage and degree -->
+    <style name="PoliceHomeCardView">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">40sp</item>
+    </style>
 
+    <!-- For the main title of each card view -->
+    <style name="MainTitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
 
-
-
+    <!-- For the subtitles of each card view -> degree and temperature -->
+    <style name="Subtitles">
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>
