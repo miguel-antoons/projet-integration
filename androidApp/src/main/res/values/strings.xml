@@ -36,8 +36,9 @@
     <string name="text_categorie">Catégorie</string>
     <string name="text_storage">Lieu de Stockage</string>
 
-    <!-- Date -->
-    <string name="date_messages">"" + dayOfMonth + " / " + month + " / " + year</string>
+
+
+
     <!--  Categorie Spinner  -->
 
     <string-array name="categorie_array">
