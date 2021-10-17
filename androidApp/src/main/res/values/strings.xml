@@ -13,6 +13,16 @@
     <string name="temperature">Température</string>
     <string name="hygrometry">Hygrométrie</string>
 
+    <!-- Prduct list page -->
+    <string name="product_page_title">Liste de Produits</string>
+    <string name="product_name">Nom du Produit</string>
+    <string name="product_emplacement">Emplacement</string>
+    <string name="product_expiration_date">1 day</string>
+    <string name="search_hint">Rechercher . . .</string>
+    <string name="sort_product_name_description">Triez selon le nom du produit</string>
+    <string name="sort_location_description">Triez selon l\'emplacement du produit</string>
+    <string name="sort_expiration_period_description">Triez selon la date de péremeption du produit</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
