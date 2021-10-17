@@ -12,6 +12,8 @@
     <string name="second_name_component_title">Armoire</string>
     <string name="temperature">Température</string>
     <string name="hygrometry">Hygrométrie</string>
+    <string name="degree">00°</string>
+    <string name="percentage">00%</string>
 
     <!-- Prduct list page -->
     <string name="product_page_title">Liste de Produits</string>
@@ -25,4 +27,45 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Forms Add Aliment Page -->
+
+    <!--  Button  -->
+    <string name="btn_return_product">Ajouter Aliment</string>
+    <string name="btn_date">Choisir Date : </string>
+    <string name="btn_add">Ajouter </string>
+
+
+    <!--  TextView  -->
+
+    <string name="title_forms_add">Ajouter un Produits</string>
+    <string name="text_name">Nom du Produit : </string>
+    <string name="text_quantite">Quantité du produit (GR) : </string>
+    <string name="text_date">Date de Péremption                          JJ/MM/AAAA </string>
+    <string name="text_categorie">Catégorie</string>
+    <string name="text_storage">Lieu de Stockage</string>
+
+
+
+
+    <!--  Categorie Spinner  -->
+
+    <string-array name="categorie_array">
+        <item>Céréales, féculents</item>
+        <item>Fruits, légumes</item>
+        <item>Lait, produits laitiers</item>
+        <item>Viandes, poissons, œufs</item>
+        <item>Matières grasses</item>
+        <item>Produits sucrés</item>
+        <item>Boissons</item>
+    </string-array>
+
+    <!-- Place  Spinner -->
+
+    <string-array name="place_array">
+        <item>Frigo</item>
+        <item>Armoire</item>
+    </string-array>
+
 </resources>

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    app:cardCornerRadius="6dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/card_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/first_name_component_title"
-            />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/beige">
 
         <ImageView
             android:id="@+id/thermometer"
@@ -30,7 +24,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/temperature" />
+            android:src="@drawable/temperature"/>
 
         <ImageView
             android:id="@+id/water_droplet"
@@ -46,12 +40,100 @@
             android:scaleType="centerCrop"
             android:src="@drawable/water_droplet" />
 
-        <View
-            android:id="@+id/line_separator_images"
+        <TextView
+            android:id="@+id/title_card"
+            style="style/MainTitle"
             android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="@color/cyan_blue" />
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/first_name_component_title" />
 
+        <TextView
+            android:id="@+id/temperature_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/line_separator_images_v1"
+            android:layout_alignLeft="@+id/thermometer"
+            android:layout_marginLeft="80dp"
+            android:text="@string/temperature"
+            android:layout_alignStart="@+id/thermometer"
+            android:layout_marginStart="80dp"
+            style="@style/Subtitles"/>
+
+        <TextView
+            android:id="@+id/hygrometry_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/line_separator_images_v2"
+            android:layout_alignLeft="@+id/water_droplet"
+            android:layout_marginLeft="80dp"
+            android:text="@string/hygrometry"
+            android:layout_alignStart="@+id/water_droplet"
+            android:layout_marginStart="80dp"
+            style="@style/Subtitles"/>
+
+        <TextView
+            android:id="@+id/temperature_number"
+            style="@style/PoliceHomeCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/line_separator_images_v3"
+            android:layout_alignStart="@+id/water_droplet"
+            android:layout_alignLeft="@+id/temperature_text"
+            android:layout_marginStart="250dp"
+            android:layout_marginLeft="250dp"
+            android:text="@string/degree" />
+
+        <TextView
+            android:id="@+id/hygrometry_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/line_separator_images_v4"
+            android:layout_alignStart="@+id/water_droplet"
+            android:layout_alignLeft="@+id/temperature_text"
+            android:layout_marginLeft="250dp"
+            android:text="@string/percentage"
+            android:layout_marginStart="250dp"
+            style="@style/PoliceHomeCardView"/>
+
+
+        <!-- All views of the card -->
+        <View
+            android:id="@+id/line_separator_images_v1"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@+id/thermometer"
+            android:layout_marginBottom="53dp"
+            android:background="@color/cyan_blue"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/line_separator_images_v2"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@+id/water_droplet"
+            android:layout_marginBottom="53dp"
+            android:background="@color/light_green"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/line_separator_images_v3"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@+id/water_droplet"
+            android:layout_marginBottom="127dp"
+            android:background="@color/orange"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/line_separator_images_v4"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@+id/water_droplet"
+            android:layout_marginBottom="19dp"
+            android:background="@color/red"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 
