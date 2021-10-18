@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, json
-from database import db
+from .database import db
 
 
 app_hw = Blueprint('app_hw', __name__)
