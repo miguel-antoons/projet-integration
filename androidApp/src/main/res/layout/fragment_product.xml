@@ -48,7 +48,7 @@
         android:background="@color/dark_green"
         android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintTop_toBottomOf="@+id/search_products"
-         />
+        />
 
     <!-- sort by product name button -->
     <View

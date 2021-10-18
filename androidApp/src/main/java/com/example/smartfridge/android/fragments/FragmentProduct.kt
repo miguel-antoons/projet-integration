@@ -39,3 +39,4 @@ class FragmentProduct : Fragment() {
         }
         return view
     }
+}
