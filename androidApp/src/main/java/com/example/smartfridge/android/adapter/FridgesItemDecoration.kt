@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+// This class gives some decoration / design to the recyclerview
 class FridgesItemDecoration : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -12,5 +13,5 @@ class FridgesItemDecoration : RecyclerView.ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        outRect.bottom = 70 }
+        outRect.bottom = 80 }
 }

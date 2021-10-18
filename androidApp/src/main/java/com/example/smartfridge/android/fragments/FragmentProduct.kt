@@ -16,26 +16,27 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FragmentProduct : Fragment() {
 
-    // function shows the fragemnt 'FragmentProduct' on screen
+    // Function that displays the fragment 'FragmentProduct' on the screen
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_product, container, false)
+        val view = inflater.inflate(R.layout.fragment_product, container, false)
 
         val productPageList = view.findViewById<RecyclerView>(R.id.product_page_list)
         productPageList.adapter = ProductAdapter()
-        
-        // add fragment here
+
+        // Add fragment here
         val bt = view.findViewById<FloatingActionButton>(R.id.addingBtn)
 
         bt.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, FormsAddAliments::class.java)
+            activity?.let {
+                val intent = Intent(it, FormsAddAliments::class.java)
                 it.startActivity(intent)
             }
 
         }
         return view
     }
+}
