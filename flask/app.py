@@ -1,7 +1,6 @@
 from flask import Flask, request
 from pymongo import MongoClient
 from api import blueprints, database
-import json
 
 
 def create_app():
