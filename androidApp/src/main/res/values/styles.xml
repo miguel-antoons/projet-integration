@@ -22,6 +22,12 @@
 
     <!--  Forms Page add -->
 
+    <!--Spinner Background-->
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/spinner_background</item>
+    </style>
+
+
 
 
     <!-- product list font -->
