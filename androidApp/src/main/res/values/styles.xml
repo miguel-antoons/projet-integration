@@ -20,6 +20,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--  Forms Page add -->
+
+
+
     <!-- product list font -->
     <style name="product_list">
         <item name="android:textColor">#373636</item>

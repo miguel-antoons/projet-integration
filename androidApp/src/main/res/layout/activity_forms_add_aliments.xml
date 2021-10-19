@@ -18,58 +18,45 @@
         <Button
             android:id="@+id/button_return_list_product"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_return_product"
-            android:textColor="@color/light_green"
+            android:layout_height="68dp"
+            android:drawableStart="@drawable/ic_arrow_left"
             android:drawableLeft="@drawable/ic_arrow_left"
-            android:drawableStart="@drawable/ic_arrow_left"/>
+            android:text="@string/btn_return_product"
+            android:textColor="@color/light_green" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="672dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/light_green"
-                android:elevation="1dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/title_forms_add"
-                android:textColor="@color/white"
-                android:textSize="19sp"
-                android:textStyle="bold" />
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:id="@+id/text_name"
                 android:layout_width="363dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
 
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_name"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
 
             <EditText
                 android:id="@+id/AlimentName"
-                android:maxLength="30"
-
-                android:autofillHints="aliment name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
+                android:autofillHints="aliment name"
                 android:background="@drawable/shape_background"
                 android:inputType="textPersonName"
+                android:maxLength="30"
                 android:padding="15dp"
                 android:textColor="@color/light_green"
                 android:textSize="18sp"
@@ -82,24 +69,24 @@
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_quantite"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:typeface="normal"
-                />
+                android:typeface="normal" />
 
             <EditText
                 android:id="@+id/AlimentQuantite"
-                android:maxLength="4"
-
-                android:autofillHints="aliment quantite"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
+                android:autofillHints="aliment quantite"
                 android:background="@drawable/shape_background"
                 android:inputType="number"
+                android:maxLength="4"
                 android:padding="15dp"
                 android:textColor="@color/light_green"
                 android:textSize="18sp"
@@ -108,21 +95,21 @@
             <TextView
                 android:id="@+id/text_date"
                 android:layout_width="363dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_date"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <Button
 
@@ -161,13 +148,14 @@
                 -->
             <TextView
                 android:id="@+id/text_categorie"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="345dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_categorie"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
@@ -176,12 +164,17 @@
             <Spinner
                 android:id="@+id/categorie_spinner"
                 android:layout_width="325dp"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_spinner"
                 android:padding="15dp"
-                android:spinnerMode="dialog" />
+                android:spinnerMode="dialog"
+
+
+                />
 
 
             <!--
@@ -204,13 +197,14 @@
 
             <TextView
                 android:id="@+id/text_storage"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="345dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_storage"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
@@ -219,12 +213,13 @@
             <Spinner
                 android:id="@+id/place_spinner"
                 android:layout_width="325dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:spinnerMode="dialog"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_spinner"
+                android:padding="15dp"
+                android:spinnerMode="dialog"
 
                 />
 
