@@ -44,15 +44,16 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:id="@+id/text_name"
                 android:layout_width="363dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
 
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_name"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
@@ -82,10 +83,10 @@
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_quantite"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:typeface="normal"
-                />
+                android:typeface="normal" />
 
             <EditText
                 android:id="@+id/AlimentQuantite"
@@ -108,13 +109,14 @@
             <TextView
                 android:id="@+id/text_date"
                 android:layout_width="363dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_date"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
@@ -161,13 +163,14 @@
                 -->
             <TextView
                 android:id="@+id/text_categorie"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="345dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_categorie"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
@@ -205,13 +208,14 @@
 
             <TextView
                 android:id="@+id/text_storage"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="345dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/arial"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/text_storage"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
