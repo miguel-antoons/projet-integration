@@ -16,11 +16,14 @@ collection = db["Utilisateurs"]
 # Shortcut for blueprint and route
 app.register_blueprint(signIn, url_prefix='/api/signIn')
 app.register_blueprint(addFood, url_prefix='/api/addFood')
+=======
+from api import blueprints, database
 
+def create_app():
+    app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello world!'
+    for blueprint in blueprints:
+        app.register_blueprint(blueprint)
 
 # TODO : Need refractor and move to users file
 @app.route('/client', methods=['GET', 'POST', 'PUT', 'DELETE'])
@@ -105,3 +108,7 @@ def client():
 # Run debug mode
 if __name__ == '__main__':
     app.run(debug=True)
+=======
+    return app
+
+app = create_app()

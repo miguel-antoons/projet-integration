@@ -15,9 +15,12 @@ import com.example.smartfridge.android.adapter.FridgesItemDecoration
 
 class FragmentHome : Fragment() {
 
+    // Function that displays the fragment 'fragment_button' on the screen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val buttonHowTo: Button = view.findViewById(R.id.fragment_button)
+
+        // This little lines of code set an action to the button (onClickListener)
         buttonHowTo.setOnClickListener{
             val intent = Intent(context, HowToConnect::class.java);
             startActivity(intent);
@@ -28,9 +31,11 @@ class FragmentHome : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container : ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_home, container, false)
 
-        // Get recyclerview vertical
+        // Get the vertical recyclerview and set the adapter on it
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
         verticalRecyclerView.adapter = FridgesAdapter(R.layout.item_vertical_fridges)
+
+        // Add decoration to the section item_vertical_fridges -> we can find this configuration of design in the FridgesItemDecoration file/class
         verticalRecyclerView.addItemDecoration(FridgesItemDecoration())
 
         return view

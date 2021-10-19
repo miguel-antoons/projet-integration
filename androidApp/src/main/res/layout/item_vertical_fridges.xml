@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Home page CardView-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_gravity="center"
-    app:cardCornerRadius="6dp">
+    app:cardCornerRadius="30dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/beige">
+        android:background="@color/beige"
+        android:clipToPadding="false">
 
+        <!-- Thermometer ImageView -->
         <ImageView
             android:id="@+id/thermometer"
             android:layout_width="80dp"
@@ -26,6 +29,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/temperature"/>
 
+        <!-- Water droplet ImageView -->
         <ImageView
             android:id="@+id/water_droplet"
             android:layout_width="80dp"
@@ -40,15 +44,17 @@
             android:scaleType="centerCrop"
             android:src="@drawable/water_droplet" />
 
+        <!-- Main text of the card view -->
         <TextView
             android:id="@+id/title_card"
-            style="style/MainTitle"
+            style="@style/MainTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="@string/first_name_component_title" />
 
+        <!-- Thermometer TextView -->
         <TextView
             android:id="@+id/temperature_text"
             android:layout_width="wrap_content"
@@ -61,6 +67,7 @@
             android:layout_marginStart="80dp"
             style="@style/Subtitles"/>
 
+        <!-- Hygrometry TextView -->
         <TextView
             android:id="@+id/hygrometry_text"
             android:layout_width="wrap_content"
@@ -73,6 +80,7 @@
             android:layout_marginStart="80dp"
             style="@style/Subtitles"/>
 
+        <!-- Number / degree TextView -->
         <TextView
             android:id="@+id/temperature_number"
             style="@style/PoliceHomeCardView"
@@ -85,6 +93,7 @@
             android:layout_marginLeft="250dp"
             android:text="@string/degree" />
 
+        <!-- Number / percentage TextView -->
         <TextView
             android:id="@+id/hygrometry_number"
             android:layout_width="wrap_content"
@@ -98,7 +107,7 @@
             style="@style/PoliceHomeCardView"/>
 
 
-        <!-- All views of the card -->
+        <!-- All views of the card, it allows to place the different ImageView and TextView wherever we want -->
         <View
             android:id="@+id/line_separator_images_v1"
             android:layout_width="wrap_content"

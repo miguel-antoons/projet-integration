@@ -85,7 +85,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-            />
+                />
 
             <EditText
                 android:id="@+id/AlimentQuantite"
@@ -143,7 +143,6 @@
 
 
             <!--
-
             <EditText
                 android:id="@+id/AlimentDate"
                 android:layout_width="wrap_content"
@@ -159,7 +158,6 @@
                 android:textColor="@color/light_green"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
                 -->
             <TextView
                 android:id="@+id/text_categorie"
