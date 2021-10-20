@@ -1,10 +1,8 @@
 package com.example.smartfridge.android
 
-import android.os.BaseBundle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.smartfridge.Greeting
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
@@ -14,11 +12,7 @@ import com.example.smartfridge.android.fragments.FragmentHome
 import com.example.smartfridge.android.fragments.FragmentProduct
 import com.example.smartfridge.android.fragments.FragmentSettings
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.Arrays.toString
 
-fun greet(): String {
-    return Greeting().greeting()
-}
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavBar:BottomNavigationView
