@@ -8,6 +8,9 @@
     <color name="darkGreen">#006400</color>
     <color name="orange">#FFC300</color>
     <color name="red">#FF1F1F</color>
+    <color name="light_grey">#EDDEDE</color>
+    <color name="dark_grey">#534F4F</color>
+
 
     <!-- Colors for the application : from the original maquette -->
     <color name="light_green">#67d28d</color>
