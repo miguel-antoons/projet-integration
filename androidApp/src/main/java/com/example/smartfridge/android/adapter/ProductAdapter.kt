@@ -3,14 +3,20 @@ package com.example.smartfridge.android.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartfridge.android.ProductModel
 import com.example.smartfridge.android.R
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(
+    private val productList: ArrayList<ProductModel>
+) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    // not used yet, will be used later on
+    // contains the different values of each row
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-        val productItem = view.findViewById<RecyclerView>(R.id.product_page_list)
+        val productName = view.findViewById<TextView>(R.id.product_name)
+        val productLoacation = view.findViewById<TextView>(R.id.product_location)
+        val productExpirationPeriod = view.findViewById<TextView>(R.id.expiration_period)
     }
 
     // insert the rows into the recyclerview
@@ -22,13 +28,17 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    // not used yet, will be used later on
+    // function assignes the correct values to the correct recyclerview items
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentProduct = productList[position]
 
+        holder.productName.text = currentProduct.name
+        holder.productLoacation.text = currentProduct.location
+        holder.productExpirationPeriod.text = currentProduct.expirationDate
     }
 
-    // shows 5 items on the screen
+    // shows the correct number of items in the recyclerview
     override fun getItemCount(): Int {
-        return 5
+        return productList.size
     }
 }
