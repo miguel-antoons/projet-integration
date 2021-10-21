@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="LabelFor"
+    tools:context=".FormsAddAliments">
+
+
+    <LinearLayout
+        android:id="@+id/form_add_aliment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/button_return_list_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_return_product"
+            android:textColor="@color/light_green"
+            android:drawableLeft="@drawable/ic_arrow_left"
+            android:drawableStart="@drawable/ic_arrow_left"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="672dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/light_green"
+                android:elevation="1dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/title_forms_add"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/text_name"
+                android:layout_width="363dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial"
+
+                android:lineSpacingExtra="8sp"
+                android:text="@string/text_name"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+            <EditText
+                android:id="@+id/AlimentName"
+                android:maxLength="30"
+
+                android:autofillHints="aliment name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_background"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textColor="@color/light_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_quantite"
+                android:layout_width="363dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/text_quantite"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                />
+
+            <EditText
+                android:id="@+id/AlimentQuantite"
+                android:maxLength="4"
+
+                android:autofillHints="aliment quantite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_background"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textColor="@color/light_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="363dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/text_date"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+
+                    android:id="@+id/button_date_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/btn_date" />
+
+                <TextView
+                    android:id="@+id/dateTv"
+                    android:layout_width="196dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+            <!--
+            <EditText
+                android:id="@+id/AlimentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/shape_background"
+                android:hint="Date limite de consommation "
+                android:inputType="date"
+                android:padding="15dp"
+                android:textColor="@color/light_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+                -->
+            <TextView
+                android:id="@+id/text_categorie"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/text_categorie"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+
+            <Spinner
+                android:id="@+id/categorie_spinner"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="15dp"
+                android:spinnerMode="dialog" />
+
+
+            <!--
+            <EditText
+                android:id="@+id/AlimentCategorie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/shape_background"
+                android:hint="Catégorie du produit "
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textColor="@color/light_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+                -->
+
+            <TextView
+                android:id="@+id/text_storage"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/text_storage"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+
+            <Spinner
+                android:id="@+id/place_spinner"
+                android:layout_width="325dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:spinnerMode="dialog"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+
+                />
+
+            <Button
+                android:id="@+id/button_add_aliment"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/btn_add" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
