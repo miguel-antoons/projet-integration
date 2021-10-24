@@ -1,5 +1,5 @@
 from flask import Blueprint
-from .database import db, collection
+from .database import db
 
 
 getUsers = Blueprint('getUsers', __name__)

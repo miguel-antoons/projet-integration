@@ -5,4 +5,5 @@ from pymongo import MongoClient
 # this is a temporar configuration and will change over time
 client = MongoClient("mongodb://localhost:27017/")
 db = client['SmartFridge']
-collection = db["Users"]
+users = db["Users"]
+food = db["Food"]
