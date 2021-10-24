@@ -1,5 +1,6 @@
-from flask import Flask
-from api import blueprints
+from flask import Flask, request
+from pymongo import MongoClient
+from api import blueprints, database
 
 
 def create_app():
@@ -10,8 +11,4 @@ def create_app():
 
     return app
 
-
-# Run debug mode
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True)
+app = create_app()
