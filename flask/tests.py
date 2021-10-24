@@ -18,6 +18,8 @@ class PlaylistsTests(TestCase):
     def test_idex(self):
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
+        page_content = result.get_data(as_text=True)
+        self.assertIn('Hello world!', page_content)
 
 if __name__ == '__main__':
     unittest_main()
