@@ -1,28 +1,24 @@
-# Tests File
+from unittest import TestCase, main as unittest_main
+from app import app
 
-import unittest
-from flask import Flask
-from pymongo import MongoClient
+class PlaylistsTests(TestCase):
+    """Flask tests.
+    https://makeschool.org/mediabook/oa/tutorials/playlistr-video-playlists-with-flask-and-mongodb-1c/adding-tests/
+    """
 
-app = Flask(__name__)
+    def setUp(self):
+        """Stuff to do before every test."""
 
-# Connection to a new mongo DB only to test
-client = MongoClient("mongodb://localhost:27017/")
-# Create this db to correctly link
-db = client['SmartFridgeTests']
-# Create this collection to correctly link
-collection = db["Utilisateurs"]
+        # Get the Flask test client
+        self.client = app.test_client()
 
-# Test Class
-class IntegrationTests(unittest.TestCase):
-    # Initialisation of the db
-    def init(self):
-        with app.app_context():
-            db.drop_all()
-            db.create_all()
+        # Show Flask errors that happen during tests
+        app.config['TESTING'] = True
 
-    # Test to get all users in the db (name, firstname and mail)
-    def test_get_users(self):
-        with app.app_context():
-            pass
+    def test_idex(self):
+        result = self.client.get('/')
+        self.assertEqual(result.status, '200 OK')
+
+if __name__ == '__main__':
+    unittest_main()
 
