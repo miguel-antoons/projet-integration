@@ -40,14 +40,9 @@
     <!--  TextView  -->
 
     <string name="title_forms_add">Ajouter un Produits</string>
-    <string name="text_name">Nom du Produit </string>
-    <string name="text_asterisk">*</string>
-
-    <string name="text_quantite">Quantité du produit</string>
-    <string name="text_g">g</string>
-
-    <string name="text_date">Date de Péremption</string>
-    <string name="text_date_format">JJ/MM/AAAA </string>
+    <string name="text_name">Nom du Produit : </string>
+    <string name="text_quantite">Quantité du produit (GR) : </string>
+    <string name="text_date">Date de Péremption                          JJ/MM/AAAA </string>
     <string name="text_categorie">Catégorie</string>
     <string name="text_storage">Lieu de Stockage</string>
 

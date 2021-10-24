@@ -1,13 +1,17 @@
 from flask import Flask
 from api import blueprints
 
-# app need to be outside the function for testing
-app = Flask(__name__)
 
-for blueprint in blueprints:
-    app.register_blueprint(blueprint)
+def create_app():
+    app = Flask(__name__)
+
+    for blueprint in blueprints:
+        app.register_blueprint(blueprint)
+
+    return app
 
 
 # Run debug mode
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)
