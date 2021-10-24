@@ -23,11 +23,10 @@ def client():
         print(parameters)
 
         new_client = {
-        "name" : "test",
-        "firstName" : "test",
-        "email" : "test@gmail.com",
-        "pseudo" : "Miki",
+        "username" : "cody",
+        "email" : "cody@gmail.com",
         "password" : "Miki1234",
+        "qrcode" : "TODO",
         "furniture" : {
                         "Frigo" : {
                             "temperature" : "4.3",
