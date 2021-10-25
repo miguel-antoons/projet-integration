@@ -1,13 +1,14 @@
 from flask import Blueprint, request
-from .database import db, collection
+from .database import food
 
 addFood = Blueprint('addFood', __name__)
-
 
 @addFood.route('/api/addFood', methods=['POST'])
 def add_food():
     if request.method == 'POST':
         # TODO : add a food in db + tests
-        pass
+
+        food.insert_one()
+        return "food added"
 
 
