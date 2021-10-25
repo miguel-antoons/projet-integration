@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import com.example.smartfridge.android.ProductRepository.Singleton.productList
 import java.util.*
 
 class FormsAddAliments(
@@ -46,15 +45,16 @@ class FormsAddAliments(
 
 
             // adding the new product to the product array in the 'ProductRepository' class
-            productList.add(ProductModel(
+            ProductRepository.addProductFromForm(
                 names,
                 Integer.parseInt(quantite),
                 date,
                 categorie,
                 store
-            ))
+            )
 
             Toast.makeText(this ,"Ajout de l'aliment effectué :)" + names + " " + date+ " " + quantite+ " " +categorie + " " +store, Toast.LENGTH_LONG).show();
+            finish()
 
 
         }
@@ -99,9 +99,9 @@ class FormsAddAliments(
 
         mPickTimeBtn.setOnClickListener {
 
-            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 // Display Selected date in TextView
-                textView.setText("" + dayOfMonth + " / " + month + " / " + year)
+                textView.text = "$dayOfMonth / ${monthOfYear + 1} / $year"
             }, year, month, day)
             dpd.show()
 

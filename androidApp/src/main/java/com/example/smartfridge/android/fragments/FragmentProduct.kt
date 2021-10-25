@@ -11,10 +11,9 @@ import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartfridge.android.*
-import com.example.smartfridge.android.ProductRepository.Singleton.productList
 
 
-class FragmentProduct() : Fragment() {
+class FragmentProduct(private val context: MainActivity) : Fragment() {
     // initiate adapter to be able to use after 'onCreateView' function
     private lateinit var adapter: ProductAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -32,7 +31,7 @@ class FragmentProduct() : Fragment() {
         productPageList.layoutManager = linearLayoutManager
 
         // give the adapter to the fragment
-        adapter =  ProductAdapter(productList)
+        adapter =  ProductAdapter(ProductRepository.productList, context)
         productPageList.adapter = adapter
 
         // Add fragment here
@@ -52,7 +51,7 @@ class FragmentProduct() : Fragment() {
     // when the fragment resumes, the adapter is notified of potential changes to the data
     // this is done to update the list when new data is added
     override fun onResume() {
-        adapter.notifyItemInserted(productList.size - 1)
+        adapter.notifyDataSetChanged()
         super.onResume()
     }
 }
