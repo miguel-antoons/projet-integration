@@ -15,15 +15,30 @@
     <string name="degree">00°</string>
     <string name="percentage">00%</string>
 
-    <!-- Prduct list page -->
+    <!-- Product list page -->
     <string name="product_page_title">Liste de Produits</string>
     <string name="product_name">Nom du Produit</string>
     <string name="product_emplacement">Emplacement</string>
-    <string name="product_expiration_date">1 day</string>
+    <string name="product_expiration_date">1 jour</string>
     <string name="search_hint">Rechercher . . .</string>
     <string name="sort_product_name_description">Triez selon le nom du produit</string>
     <string name="sort_location_description">Triez selon l\'emplacement du produit</string>
     <string name="sort_expiration_period_description">Triez selon la date de péremeption du produit</string>
+
+    <!-- Product list pop-up -->
+    <string name="ic_close_description">Fermer la pop-up</string>
+    <string name="popup_title">Nom du Produit</string>
+    <string name="ic_status_description">Statut du produit</string>
+    <string name="expiration_date_title">Date de Péremption</string>
+    <string name="def_expiration_date">00/00/0000</string>
+    <string name="quantity_title">Quantité</string>
+    <string name="def_quantity">00</string>
+    <string name="category_title">Catégorie</string>
+    <string name="def_category">None</string>
+    <string name="product_location_title">Emplacement</string>
+    <string name="def_product_location">None</string>
+
+    <string name="delete_button">Supprimer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

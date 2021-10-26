@@ -10,6 +10,7 @@
     <color name="red">#FF0000</color>
     <color name="light_grey">#d9d9d9</color>
     <color name="dark_grey">#534F4F</color>
+    <color name="delete_red">#FF6B6B</color>
 
 
     <!-- Colors for the application : from the original maquette -->
