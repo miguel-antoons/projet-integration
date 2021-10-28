@@ -69,9 +69,7 @@
     <string name="text_storage">Lieu de Stockage</string>
 
 
-
-
-    <!--  Categorie Spinner  -->
+    <!--  Categories Spinner  -->
 
     <string-array name="categorie_array">
         <item>Céréales, féculents</item>
@@ -89,5 +87,14 @@
         <item>Frigo</item>
         <item>Armoire</item>
     </string-array>
+
+    <!-- Sign up texts / sign up page -->
+    <string name="main_title">Créer un compte</string>
+    <string name="password_title">Mot de passe</string>
+    <string name="confirm_password">Confirmation du mot de passe</string>
+    <string name="inscription">Inscription</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
 
 </resources>
