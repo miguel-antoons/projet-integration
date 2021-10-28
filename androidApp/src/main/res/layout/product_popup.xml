@@ -155,18 +155,34 @@
 
 
     <!-- Bottom part of the pop-up -->
+    <!-- Delete button -->
     <Button
         android:id="@+id/delete_button"
-        android:layout_width="110dp"
-        android:layout_height="35dp"
-
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
         android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/button_side_margin"
+        android:layout_marginStart="@dimen/button_side_margin"
         android:background="@color/delete_red"
-        android:textAllCaps="false"
         android:gravity="center"
+        android:textAllCaps="false"
         android:text="@string/delete_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Modify button -->
+    <Button
+        android:id="@+id/modify_button"
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginRight="@dimen/button_side_margin"
+        android:layout_marginEnd="@dimen/button_side_margin"
+        android:background="@color/light_grey"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:text="@string/modify_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

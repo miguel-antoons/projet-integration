@@ -31,7 +31,7 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         productPageList.layoutManager = linearLayoutManager
 
         // give the adapter to the fragment
-        adapter =  ProductAdapter(ProductRepository.productList, context)
+        adapter =  ProductAdapter(ProductRepository.productList, context, this)
         productPageList.adapter = adapter
 
         // Add fragment here
@@ -53,5 +53,22 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
     override fun onResume() {
         adapter.notifyDataSetChanged()
         super.onResume()
+    }
+
+
+    /**
+     * Function starts the 'FormsAddAliments' activity and gives the product index as extra
+     * to the activity.
+     * This function was specifically designed to work with the product pop-up (cf. ./ProductPopup)
+     * and to modify a product.
+     */
+    fun modifyProductForm(productIndex: Int) {
+        activity?.let {
+            val intent = Intent(it, FormsAddAliments::class.java)
+                // pass the product index to the new activity
+                .putExtra("productIndex", productIndex)
+            // start the activity
+            it.startActivity(intent)
+        }
     }
 }

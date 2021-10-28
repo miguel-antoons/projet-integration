@@ -43,6 +43,41 @@ object ProductRepository {
         ))
     }
 
+    /**
+     * Function performs all the necessary actions to update a product from the product list.
+     * It was written specifically to work with a form to add a product
+     * (cf. './FormsAddAliments.kt') but could be used for other purposes.
+     */
+    fun modifyProduct(
+        productIndex: Int,
+        productName: String,
+        productQuantity: Int,
+        productExpirationDate: String,
+        productCategory: String,
+        productLocation: String
+    ) {
+        // get 'Date' object from string date
+        val expirationDate = convertToDate(productExpirationDate)
+        // get the difference between today and expiration date in Long format
+        val dateDifference = getDateDifference(expirationDate)
+        // get the expiration period (i.e. '3 days')
+        val expirationPeriod = convertDifferenceToString(dateDifference)
+        // get the product color
+        val productColor = getProductColor(dateDifference)
+
+        // update the product with a method from the 'ProductModel' class
+        productList[productIndex].updateProduct(
+            productName,
+            productQuantity,
+            expirationDate,
+            expirationPeriod,
+            productCategory,
+            productLocation,
+            productColor
+        )
+    }
+
+    // deletes an element from productList at a given index (productPosition)
     fun deleteProduct(productPosition: Int) {
         productList.removeAt(productPosition)
     }
@@ -72,7 +107,7 @@ object ProductRepository {
 
     /**
      * Function calculates the difference between a 'Date' object and the current date.
-     * It then returns the difference long format and is precise to the millisecond.
+     * It then returns the difference in days and is precise to the millisecond.
      */
     private fun getDateDifference(expirationDate: Date): Long {
         // get current date date in 'Long' format
@@ -111,7 +146,7 @@ object ProductRepository {
                 return "$monthDifference month"
             }
             // check eventually if the period is greater than a day
-            dateDifference >= 1 -> {
+            dateDifference > 0 -> {
                 return (
                         // return the phrase in singular/plural form
                         if (dateDifference <= 1) {

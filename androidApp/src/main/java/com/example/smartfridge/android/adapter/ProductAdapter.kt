@@ -11,11 +11,13 @@ import com.example.smartfridge.android.MainActivity
 import com.example.smartfridge.android.ProductModel
 import com.example.smartfridge.android.ProductPopup
 import com.example.smartfridge.android.R
+import com.example.smartfridge.android.fragments.FragmentProduct
 import kotlin.collections.ArrayList
 
 class ProductAdapter(
     private val productList: ArrayList<ProductModel>,
-    val context: MainActivity
+    val context: MainActivity,
+    val productFragment: FragmentProduct
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     // contains the different values of each row
@@ -48,7 +50,7 @@ class ProductAdapter(
         // create an interaction on product row click
         holder.productItem.setOnClickListener{
             // show product pop-up on click (cf. '../ProductPopup.kt')
-            ProductPopup(this, currentProduct, position).show()
+            ProductPopup(this, currentProduct, position, productFragment).show()
         }
 
         // set product icon color

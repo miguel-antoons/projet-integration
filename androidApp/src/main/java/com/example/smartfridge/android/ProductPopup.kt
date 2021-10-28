@@ -1,20 +1,24 @@
 package com.example.smartfridge.android
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.smartfridge.android.adapter.ProductAdapter
+import com.example.smartfridge.android.fragments.FragmentProduct
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ProductPopup(
     private val adapter: ProductAdapter,
     private val selectedProduct: ProductModel,
-    private val productPosition: Int
+    private val productPosition: Int,
+    private val productFragment: FragmentProduct
 ): Dialog(adapter.context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,7 @@ class ProductPopup(
         setupComponents()
         setupCloseButton()
         setupDeleteButton()
+        setupModifyButton(productPosition)
     }
 
     // fill the pop-up textfield with correct values
@@ -62,6 +67,16 @@ class ProductPopup(
             ProductRepository.deleteProduct(productPosition)
             // notify the adapter that an item has been removed from the list
             adapter.notifyItemRemoved(productPosition)
+            // close the pop-up
+            dismiss()
+        }
+    }
+
+    // add action on button 'modify_button'
+    private fun setupModifyButton(productPosition: Int) {
+        findViewById<Button>(R.id.modify_button).setOnClickListener {
+            // open the form to modify the product
+            productFragment.modifyProductForm(productPosition)
             // close the pop-up
             dismiss()
         }

@@ -39,6 +39,7 @@
     <string name="def_product_location">None</string>
 
     <string name="delete_button">Supprimer</string>
+    <string name="modify_button">Modifier</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -50,6 +51,7 @@
     <string name="btn_return_product">Ajouter un produit</string>
     <string name="btn_date">Choisir Date : </string>
     <string name="btn_add">Ajouter </string>
+    <string name="btn_update">Modifier</string>
 
 
     <!--  TextView  -->
