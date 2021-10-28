@@ -11,7 +11,7 @@ from .database import db,users
 
 
 
-getUsers = Blueprint('getUsers', __name__)
+getUsers = Blueprint('getUsers', name)
 
 
 @getUsers.route('/api/users', methods=['GET'])
@@ -24,7 +24,7 @@ def get_all_users():
 
     for user in result:
         user.pop('_id')
-    
+
     return json.dumps(result)
 
 
@@ -43,7 +43,7 @@ def get_user_email(email):
         import uuid
         stringId  = uuid.uuid4()
         print("Secure unique string id", stringId)
-        
+
         result.insert_one(
             {
             "code" : stringId
@@ -53,7 +53,7 @@ def get_user_email(email):
 
         for user in result:
             user.pop('_id')
-        
+
         return json.dumps(result)
 
     elif request.method == 'PUT':
@@ -64,22 +64,21 @@ def get_user_email(email):
 
 
 
-            
+
 
             import uuid
             stringId  = uuid.uuid4()
             print("Secure unique string id", stringId)
-            
+
             result.update(
                 {
                 "code" : stringId
                 }
             )
-            
-        
+
+
 
             for user in result:
                 user.pop('_id')
-            
-            return json.dumps(result)
 
+            return json.dumps(result)

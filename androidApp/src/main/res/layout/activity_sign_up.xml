@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/main_title"
+        style="@style/main_title_sign_up_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/main_title"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="110dp" />
+
+    <TextView
+        android:id="@+id/password_title"
+        style="@style/subtitles_sign_up_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/username"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="265dp"
+        tools:layout_editor_absoluteY="213dp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:inputType="textPersonName"
+        android:maxLength="30"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="235dp"
+        android:drawableLeft="@drawable/ic_user_icon"
+        android:drawableStart="@drawable/ic_user_icon"
+        android:drawablePadding="15dp"/>
+
+    <TextView
+        android:id="@+id/subtitle_password"
+        style="@style/subtitles_sign_up_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/password_title"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="323dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:inputType="textPassword"
+        android:maxLength="30"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="345dp"
+        android:drawableLeft="@drawable/ic_password_icon"
+        android:drawableStart="@drawable/ic_password_icon"
+        android:drawablePadding="15dp"/>
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="aliment name"
+        android:background="@drawable/rounded_edittext"
+        android:drawableStart="@drawable/ic_password_icon"
+        android:drawableLeft="@drawable/ic_password_icon"
+        android:inputType="textPassword"
+        android:maxLength="30"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="455dp"
+        android:drawablePadding="15dp"/>
+
+    <TextView
+        android:id="@+id/subtitle_confirm_password"
+        style="@style/subtitles_sign_up_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/confirm_password"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="433dp" />
+
+    <TextView
+        android:id="@+id/email_title"
+        style="@style/subtitles_sign_up_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/email"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="298dp"
+        tools:layout_editor_absoluteY="543dp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:drawableStart="@drawable/ic_mail_icon"
+        android:drawableLeft="@drawable/ic_mail_icon"
+        android:inputType="textEmailAddress"
+        android:maxLength="30"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints,TextFields"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="565dp"
+        android:drawablePadding="15dp"/>
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up_inscription_button"
+        android:text="@string/inscription"
+        android:textColor="@color/white"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="694dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
