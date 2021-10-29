@@ -1,5 +1,5 @@
 from flask import Blueprint, request, json
-from .database import db, collection
+from .database import db
 
 login = Blueprint('login', __name__)
 
