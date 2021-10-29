@@ -4,6 +4,7 @@ from .hello_world import app_hw
 # from .login import
 from .signIn import signIn
 from .users import getUsers
+from .login import login
 
 
 # each time a new blue print is registerd, it MUST be added too this file the same way the others are !!!
@@ -12,5 +13,6 @@ blueprints = [
     addFood,
     app_hw,
     signIn,
-    getUsers
+    getUsers,
+    login
 ]
