@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
-            Response.Listener { response ->
+            { response ->
                 val str = response.toString()
                 Log.d("MainActivity", "response: $str")
-            },Response.ErrorListener {
+            }, {
                     error ->
                 Log.d("TAGTest", "error: ${error.message}")
                 Log.d("MainActivity", "Api call failed")
