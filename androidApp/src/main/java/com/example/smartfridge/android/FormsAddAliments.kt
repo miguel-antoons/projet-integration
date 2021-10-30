@@ -1,13 +1,25 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.annotation.RequiresApi
+import com.android.volley.*
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import java.util.*
+
+import com.android.volley.toolbox.JsonObjectRequest
+import com.example.smartfridge.android.api.NutritionValues
+
+import org.json.JSONException
+
 
 class FormsAddAliments(
 ) : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forms_add_aliments)
@@ -43,7 +55,8 @@ class FormsAddAliments(
             val categorie = alimentCategorie.getSelectedItem().toString()
             val store = alimentStore.getSelectedItem().toString()
 
-
+            // POST REQUEST
+            sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo")
             // adding the new product to the product array in the 'ProductRepository' class
             ProductRepository.addProductFromForm(
                 names,
@@ -106,11 +119,42 @@ class FormsAddAliments(
             dpd.show()
 
         }
+    }
+    private fun sendFoodToServer(
+        Utilisateur: String,
+        Nom: String,
+        Marque: String,
+        Quantite: String,
+        Ingredients: Array<String>,
+        Date: String,
+        Valeurs: NutritionValues,
+        Poids: String,
+        Lieu: String) {
+        val postUrl = "http://10.0.2.2:5000/api/addFood"
+        val requestQueue = Volley.newRequestQueue(this)
 
+        val postData = JSONObject()
+        try {
+            postData.put("Utilisateur",Utilisateur)
+            postData.put("Nom",Nom)
+            postData.put("Marque",Marque)
+            postData.put("Quantite",Quantite)
+            postData.put("Ingredients",Arrays.toString(Ingredients))
+            postData.put("Date",Date)
+            postData.put("Valeurs", Valeurs.toString())
+            postData.put("Poids",Poids)
+            postData.put("Lieu",Lieu)
 
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
 
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, postUrl, postData,
+            { response -> println(response) }
+        ) { error -> error.printStackTrace() }
 
-
+        requestQueue.add(jsonObjectRequest)
 
     }
 }
