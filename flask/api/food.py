@@ -7,8 +7,8 @@ addFood = Blueprint('addFood', __name__)
 def add_food():
     if request.method == 'POST':
         # TODO : add a food in db + tests
-
-        food.insert_one()
+        req = request.get_json(force=True)
+        print(req)
         return "food added"
-
+1
 
