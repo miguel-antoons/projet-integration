@@ -11,7 +11,7 @@ from .database import db,users
 
 
 
-getUsers = Blueprint('getUsers', name)
+getUsers = Blueprint('getUsers', __name__)
 
 
 @getUsers.route('/api/users', methods=['GET'])
