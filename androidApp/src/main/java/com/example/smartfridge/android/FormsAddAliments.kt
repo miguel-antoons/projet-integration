@@ -1,15 +1,26 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import java.text.SimpleDateFormat
+import androidx.annotation.RequiresApi
+import com.android.volley.*
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import java.util.*
+import com.android.volley.toolbox.JsonObjectRequest
+import com.example.smartfridge.android.api.NutritionValues
+import org.json.JSONException
+
 
 class FormsAddAliments(
 ) : AppCompatActivity() {
     private var productIndex: Int = -1
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         productIndex = intent.getIntExtra("productIndex", -1)
@@ -43,8 +54,10 @@ class FormsAddAliments(
             val categorie = alimentCategorie.selectedItem.toString()
             val store = alimentStore.selectedItem.toString()
 
+
             if (productIndex == -1) {
                 addProduct(names, Integer.parseInt(quantite), date, categorie, store)
+                sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo")
             }
             else {
                 modifyProduct(productIndex, names, Integer.parseInt(quantite), date, categorie, store)
@@ -193,5 +206,41 @@ class FormsAddAliments(
 
         // alter the submit button text
         updateButton.text = resources.getText(R.string.btn_update)
+    }
+
+
+    private fun sendFoodToServer(
+        Utilisateur: String,
+        Nom: String,
+        Marque: String,
+        Quantite: String,
+        Ingredients: Array<String>,
+        Date: String,
+        Valeurs: NutritionValues,
+        Poids: String,
+        Lieu: String) {
+        val postUrl = "http://10.0.2.2:5000/api/addFood"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val postData = JSONObject()
+        try {
+            postData.put("Utilisateur", Utilisateur)
+            postData.put("Nom", Nom)
+            postData.put("Marque", Marque)
+            postData.put("Quantite", Quantite)
+            postData.put("Ingredients", Arrays.toString(Ingredients))
+            postData.put("Date", Date)
+            postData.put("Valeurs", Valeurs.toString())
+            postData.put("Poids", Poids)
+            postData.put("Lieu", Lieu)
+
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, postUrl, postData,
+            { response -> println(response) }
+        ) { error -> error.printStackTrace() }
     }
 }
