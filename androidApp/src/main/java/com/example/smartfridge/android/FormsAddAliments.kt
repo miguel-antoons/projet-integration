@@ -62,8 +62,8 @@ class FormsAddAliments(
             else {
                 modifyProduct(productIndex, names, Integer.parseInt(quantite), date, categorie, store)
             }
-
             finish()
+
         }
 
         // Spinner Categorie change catégorie
@@ -242,5 +242,7 @@ class FormsAddAliments(
             Request.Method.POST, postUrl, postData,
             { response -> println(response) }
         ) { error -> error.printStackTrace() }
+        requestQueue.add(jsonObjectRequest)
     }
+
 }
