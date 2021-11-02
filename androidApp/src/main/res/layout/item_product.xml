@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <!-- product name -->
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="@dimen/product_name_width"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/table_cell_padding"
+        android:paddingLeft="@dimen/table_cell_padding"
+        android:paddingEnd="@dimen/table_cell_padding"
+        android:paddingRight="@dimen/table_cell_padding"
+        android:text="@string/product_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/product_list" />
+
+    <!-- product location -->
+    <TextView
+        android:id="@+id/product_location"
+        android:layout_width="@dimen/location_name_width"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/table_cell_padding"
+        android:paddingLeft="@dimen/table_cell_padding"
+        android:paddingEnd="@dimen/table_cell_padding"
+        android:paddingRight="@dimen/table_cell_padding"
+        android:gravity="center"
+        android:text="@string/product_emplacement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/product_name"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/product_list" />
+
+    <!-- product expiration period -->
+    <TextView
+        android:id="@+id/expiration_period"
+        android:layout_width="@dimen/expiration_date_width"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/table_cell_padding"
+        android:paddingLeft="@dimen/table_cell_padding"
+        android:paddingEnd="@dimen/table_cell_padding"
+        android:paddingRight="@dimen/table_cell_padding"
+        android:gravity="center"
+        android:text="@string/product_expiration_date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/product_location"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/product_list" />
+
+    <!-- product color -->
+    <ImageView
+        android:id="@+id/product_status"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
+        android:src="@drawable/ic_product_state"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

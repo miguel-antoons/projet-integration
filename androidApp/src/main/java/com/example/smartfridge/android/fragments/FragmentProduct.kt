@@ -6,72 +6,69 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.smartfridge.android.FormsAddAliments
-import com.example.smartfridge.android.R
+import androidx.recyclerview.widget.RecyclerView
+import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.smartfridge.android.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentProduct.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FragmentProduct : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class FragmentProduct(private val context: MainActivity) : Fragment() {
+    // initiate adapter to be able to use after 'onCreateView' function
+    private lateinit var adapter: ProductAdapter
+    private lateinit var linearLayoutManager: LinearLayoutManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    // Function that displays the fragment 'FragmentProduct' on the screen
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_product, container, false)
+        val productPageList = view.findViewById<RecyclerView>(R.id.product_page_list)
 
-        // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_product, container, false)
+        linearLayoutManager = LinearLayoutManager(context)
+        productPageList.layoutManager = linearLayoutManager
 
-        // add fragment here
-        val bt = v.findViewById<FloatingActionButton>(R.id.addingBtn)
+        // give the adapter to the fragment
+        adapter =  ProductAdapter(ProductRepository.productList, context, this)
+        productPageList.adapter = adapter
 
+        // Add fragment here
+        val bt = view.findViewById<FloatingActionButton>(R.id.addingBtn)
+
+        // this button will open an new activity with a form to add a new product
         bt.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, FormsAddAliments::class.java)
+            activity?.let {
+                val intent = Intent(it, FormsAddAliments::class.java)
                 it.startActivity(intent)
             }
-
         }
-        return v
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentProduct.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentProduct().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    // when the fragment resumes, the adapter is notified of potential changes to the data
+    // this is done to update the list when new data is added
+    override fun onResume() {
+        adapter.notifyDataSetChanged()
+        super.onResume()
+    }
+
+
+    /**
+     * Function starts the 'FormsAddAliments' activity and gives the product index as extra
+     * to the activity.
+     * This function was specifically designed to work with the product pop-up (cf. ./ProductPopup)
+     * and to modify a product.
+     */
+    fun modifyProductForm(productIndex: Int) {
+        activity?.let {
+            val intent = Intent(it, FormsAddAliments::class.java)
+                // pass the product index to the new activity
+                .putExtra("productIndex", productIndex)
+            // start the activity
+            it.startActivity(intent)
+        }
     }
 }

@@ -1,93 +1,16 @@
 from flask import Flask, request
 from pymongo import MongoClient
-from bson import json_util
-import json
-app=Flask(__name__)
+from api import blueprints, database
 
-client = MongoClient("mongodb+srv://alexis:sixela@clusteralexis.7q0fj.mongodb.net/test")
-db = client.get_database('SmartFridge')
+# app need to be outside the function for testing
+app = Flask(__name__)
 
-
-@app.route('/')
-def hello_world():
-    return 'Hello world!'
+for blueprint in blueprints:
+    app.register_blueprint(blueprint)
 
 
-@app.route('/client', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def client():
-    records = db.Client
 
-    if request.method == 'GET':
-        result = list(records.find())
+# Run debug mode
+if __name__ == '__main__':
+    app.run(debug=True)
 
-        for client in result:
-            client.pop('_id')
-        
-        return json.dumps(result)
-
-    elif request.method == 'POST':
-
-        parameters = request.json
-        print(parameters)
-
-        new_client = {
-        "name" : "test",
-        "firstName" : "test",
-        "email" : "test@gmail.com",
-        "pseudo" : "Miki",
-        "password" : "Miki1234",
-        "furniture" : {
-                        "Frigo" : {
-                            "temperature" : "4.3",
-                            "Hygrometry" : "68",
-                            "Products" : {
-                                    "Cordon bleu" : {
-                                        "ingredients" : ["jambon","fromage","chapelure"],
-                                        "expiration_date" : "20/12/21",
-                                        "weigth" : "300", 
-                                        "energy" : "250",
-                                        "fat" : "35",
-                                        "carbohydrates" : "10",
-                                        "proteins" : "29",
-                                        "minerals" : "2"                                         
-                                    },
-                                    "Pomme" : {
-                                        "ingredients" : [],
-                                        "expiration_date" : "25/12/21",
-                                        "weigth" : "300", 
-                                        "energy" : "250",
-                                        "fat" : "35",
-                                        "carbohydrates" : "10",
-                                        "proteins" : "29",
-                                        "minerals" : "2"                                         
-                                    }
-                            }
-                        }, 
-
-                        "Cabinet" : {
-                            "temperature" : "20",
-                            "Hygrometry" : "68",
-                            "Products" : {
-                                    "Cordon bleu" : {
-                                        "ingredients" : ["jambon","fromage","chapelure"],
-                                        "expiration_date" : "20/12/21",
-                                        "weigth" : "300", 
-                                        "energy" : "250",
-                                        "fat" : "35",
-                                        "carbohydrates" : "10",
-                                        "proteins" : "29",
-                                        "minerals" : "2"                                         
-                                    },
-                                    "Pomme" : {
-                                        "ingredients" : [],
-                                        "expiration_date" : "25/12/21",
-                                        "weigth" : "300", 
-                                        "energy" : "250",
-                                        "fat" : "35",
-                                        "carbohydrates" : "10",
-                                        "proteins" : "29",
-                                        "minerals" : "2"                                         
-            }}}}}
-            
-        records.insert_one(new_client)
-        return "client ajouté"

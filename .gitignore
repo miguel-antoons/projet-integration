@@ -11,3 +11,6 @@
 local.properties
 /flask/venv
 flask/__pycache__
+__pycache__
+venv
+env
