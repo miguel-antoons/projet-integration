@@ -54,6 +54,7 @@ class FormsAddAliments(
             val categorie = alimentCategorie.selectedItem.toString()
             val store = alimentStore.selectedItem.toString()
 
+
             if (productIndex == -1) {
                 addProduct(names, Integer.parseInt(quantite), date, categorie, store)
                 sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo")
@@ -223,15 +224,15 @@ class FormsAddAliments(
 
         val postData = JSONObject()
         try {
-            postData.put("Utilisateur",Utilisateur)
-            postData.put("Nom",Nom)
-            postData.put("Marque",Marque)
-            postData.put("Quantite",Quantite)
-            postData.put("Ingredients",Arrays.toString(Ingredients))
-            postData.put("Date",Date)
+            postData.put("Utilisateur", Utilisateur)
+            postData.put("Nom", Nom)
+            postData.put("Marque", Marque)
+            postData.put("Quantite", Quantite)
+            postData.put("Ingredients", Arrays.toString(Ingredients))
+            postData.put("Date", Date)
             postData.put("Valeurs", Valeurs.toString())
-            postData.put("Poids",Poids)
-            postData.put("Lieu",Lieu)
+            postData.put("Poids", Poids)
+            postData.put("Lieu", Lieu)
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -241,7 +242,5 @@ class FormsAddAliments(
             Request.Method.POST, postUrl, postData,
             { response -> println(response) }
         ) { error -> error.printStackTrace() }
-
-        requestQueue.add(jsonObjectRequest)
     }
 }
