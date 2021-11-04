@@ -91,7 +91,7 @@ object ProductRepository {
         // convert expiration date to 'LocalDate' type
         val expirationLocalDate = LocalDate.parse(
             stringDate,
-            DateTimeFormatter.ofPattern("dd / M / yyyy")
+            DateTimeFormatter.ofPattern("d / M / yyyy")
         )
 
         // converting expiration date to 'Date' type and returning it
