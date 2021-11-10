@@ -47,7 +47,7 @@ jobs:
           flask run &
           
       - name: Python Unit Test
-        uses: onichandame/python-test-action@6a1d618300de7ea0b753e50819e093a7e5a5f60b
+        uses: onichandame/python-test-action@0.0.0
         with:
           test_dir: flask
           pattern: tests.py
