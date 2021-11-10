@@ -47,4 +47,6 @@ jobs:
           flask run &
           
       - name: Python Unit Test
-        run: python -m unittest discover tests
+        run: |
+          cd flask
+          python -m unittest discover tests
