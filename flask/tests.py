@@ -1,14 +1,16 @@
 from unittest import TestCase, main as unittest_main, mock
 from bson.objectid import ObjectId
 from app import app
+import json
 
 
 sample_user = {
-    'Id': ObjectId('5d55cffc4a3d4031f42827a3'),
-    'Username': 'LeTest',
-    'Mail': 'sendme@gmail.com',
-    'password': 'test123',
-    'Qrcode': 'TODO'
+      "Name":"Test",
+      "FirstName":"Test",
+      "Username":"LeTest",
+      "Email":"sendme@gmail.com",
+      "Password":"test123",
+      "Qrcode":"TODO"
 }
 
 
@@ -63,8 +65,13 @@ class PlaylistsTests(TestCase):
         page_content = result.get_data(as_text=True)
         self.assertIn('Hello world!', page_content)
 
-
-
+    def test_login(self):
+        result = self.client.get(f'/api/login/{sample_user["Email"]}/{sample_user["Password"]}')
+        self.assertEqual(result.status, '200 OK')
+        page_content = result.get_data(as_text=True)
+        page_content = json.loads(page_content)[0]
+        self.assertIn(sample_user['Username'], page_content['Username'])
+        self.assertIn(sample_user['Password'], page_content['Password'])
 
 
 if __name__ == '__main__':
