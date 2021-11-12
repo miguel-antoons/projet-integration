@@ -1,7 +1,6 @@
 package com.example.smartfridge.android
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,9 +9,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.smartfridge.android.VerifyEmailPassword.validateForm
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +36,6 @@ class Login : AppCompatActivity() {
             }
         }
 
-    }
-
-    private fun validateForm(email: String?, password: String?): Boolean {
-        val isValidEmail = email != null && email.isNotBlank() && email.contains("@")
-        val isValidPassword = password != null && password.isNotBlank() && password.length >=6
-
-        return isValidEmail && isValidPassword
     }
 
     // checks if the email and password are correct in the database
