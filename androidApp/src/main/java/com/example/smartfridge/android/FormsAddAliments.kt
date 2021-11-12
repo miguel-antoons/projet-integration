@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.widget.*
 import java.text.SimpleDateFormat
 import androidx.annotation.RequiresApi
@@ -32,7 +33,7 @@ class FormsAddAliments(
 
         // Date peeremption Textview and Button
         val mPickTimeBtn = findViewById<Button>(R.id.button_date_select)
-        val textView     = findViewById<TextView>(R.id.dateTv)
+        val textView = findViewById<TextView>(R.id.dateTv)
 
         // Spinner Categorie and Place for Aliment
         val alimentCategorie = findViewById<Spinner>(R.id.categorie_spinner)
@@ -54,17 +55,53 @@ class FormsAddAliments(
             val categorie = alimentCategorie.selectedItem.toString()
             val store = alimentStore.selectedItem.toString()
 
+            //check if the EditText have values or not
+            if (names.isEmpty()) {
 
-            if (productIndex == -1) {
-                addProduct(names, Integer.parseInt(quantite), date, categorie, store)
-                sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo")
+                Toast.makeText(applicationContext, " Name Required ", Toast.LENGTH_SHORT).show()
+            } else if (quantite.isEmpty()) {
+
+                Toast.makeText(applicationContext, "Quantite Required ", Toast.LENGTH_SHORT).show()
             }
+            else if (date.isEmpty()) {
+
+                Toast.makeText(applicationContext, "Date Required ", Toast.LENGTH_SHORT).show()
+            }
+
             else {
-                modifyProduct(productIndex, names, Integer.parseInt(quantite), date, categorie, store)
+
+                Toast.makeText(applicationContext, "Aliment Ajouté ", Toast.LENGTH_SHORT).show()
+
+                if (productIndex == -1) {
+                    addProduct(names, Integer.parseInt(quantite), date, categorie, store)
+                    sendFoodToServer(
+                        "999",
+                        names,
+                        "TODO",
+                        quantite,
+                        arrayOf<String>("ingredient1", "ingredient2", "ingredient3"),
+                        "04/10/2022",
+                        NutritionValues(),
+                        "500g",
+                        "Frigo"
+                    )
+                } else {
+                    modifyProduct(
+                        productIndex,
+                        names,
+                        Integer.parseInt(quantite),
+                        date,
+                        categorie,
+                        store
+                    )
+                }
+                finish()
+
+
             }
-            finish()
 
         }
+
 
         // Spinner Categorie change catégorie
 
@@ -107,6 +144,7 @@ class FormsAddAliments(
             )
         }
 
+
         // Configuration Date Button
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -144,8 +182,10 @@ class FormsAddAliments(
             productLocation
         )
 
-        Toast.makeText(this ,
-            "Produit ajouté", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+            this,
+            "Produit ajouté", Toast.LENGTH_LONG
+        ).show();
     }
 
     /**
@@ -171,8 +211,10 @@ class FormsAddAliments(
             productLocation
         )
 
-        Toast.makeText(this ,
-            "Produit modifié", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+            this,
+            "Produit modifié", Toast.LENGTH_LONG
+        ).show();
     }
 
     /**
@@ -218,7 +260,8 @@ class FormsAddAliments(
         Date: String,
         Valeurs: NutritionValues,
         Poids: String,
-        Lieu: String) {
+        Lieu: String
+    ) {
         val postUrl = "http://10.0.2.2:5000/api/addFood"
         val requestQueue = Volley.newRequestQueue(this)
 

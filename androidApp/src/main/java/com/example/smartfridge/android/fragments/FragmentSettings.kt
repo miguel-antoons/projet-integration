@@ -7,10 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.example.smartfridge.android.ForgotPassword
-import com.example.smartfridge.android.FormsAddAliments
+import com.example.smartfridge.android.CheckAndSendEmail
 import com.example.smartfridge.android.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.smartfridge.android.CheckCodeMail
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,12 +46,22 @@ class FragmentSettings : Fragment() {
         // this button will open an new activity with a form to add a new product
         bt_go_reset.setOnClickListener {
             activity?.let {
-                val intent = Intent(it, ForgotPassword::class.java)
+                val intent = Intent(it, CheckAndSendEmail::class.java)
                 it.startActivity(intent)
             }
 
 
-    }
+        }
+
+        // add event button receive code
+        val bt_go_code = view.findViewById<Button>(R.id.button_send_code)
+        bt_go_code.setOnClickListener {
+            activity?.let {
+                val intent = Intent(it, CheckCodeMail::class.java)
+                it.startActivity(intent)
+            }
+
+        }
 
         // Inflate the layout for this fragment
         return view
