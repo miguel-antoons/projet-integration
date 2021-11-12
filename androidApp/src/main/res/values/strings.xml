@@ -58,7 +58,7 @@
 
     <string name="title_forms_add">Ajouter un Produits</string>
     <string name="text_name">Nom du Produit  </string>
-    <string name="text_asterisk" ><font fgcolor='#FF0000'>*</font></string>
+    <string name="text_asterisk"><font fgcolor='#FF0000'>*</font></string>
     <string name="text_max_name">max 30 car.</string>
 
 

@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        apiCall()
+        //apiCall()
 
         // Navigation Bar
         bottomNavBar = findViewById(R.id.bottomNavBar)
@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
+    /*
 
     private fun apiCall() {
         val url = "http://10.0.2.2:5000/client"
@@ -58,6 +60,9 @@ class MainActivity : AppCompatActivity() {
 
         queue.add(jsonObjectRequest)
     }
+
+
+     */
 
     fun setCurrentFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {
