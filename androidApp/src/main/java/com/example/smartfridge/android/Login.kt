@@ -1,6 +1,7 @@
 package com.example.smartfridge.android
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -50,8 +51,12 @@ class Login : AppCompatActivity() {
                     Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
                 }
                 else {
+                    // save email and password locally
                     saveData(email, password)
-                    setContentView(R.layout.activity_main)
+                    // creation de notre intent
+                    val monIntent : Intent =  Intent(this,MainActivity::class.java)
+                    // start MainActivity
+                    startActivity(monIntent)
                 }
 
                 Log.d("MainActivity", "response: $response")
