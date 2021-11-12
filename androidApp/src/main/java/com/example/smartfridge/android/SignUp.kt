@@ -1,5 +1,6 @@
 package com.example.smartfridge.android
 
+import android.app.DownloadManager
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Patterns
@@ -7,6 +8,14 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONException
+import org.json.JSONObject
+import java.util.*
+import android.widget.*
+import com.android.volley.*
+
 
 class SignUp : AppCompatActivity() {
 
@@ -20,15 +29,16 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        viewInitializations()
+        val button_return_user = findViewById<Button>(R.id.button)
+        button_return_user.setOnClickListener {
+            etUsername = findViewById(R.id.username)
+            etPassword = findViewById(R.id.password)
+            etConfirmPassword = findViewById(R.id.confirm_password)
+            etEmail = findViewById(R.id.email)
 
-    }
+            performSignUp()
 
-    fun viewInitializations() {
-        etUsername = findViewById(R.id.username)
-        etPassword = findViewById(R.id.password)
-        etConfirmPassword = findViewById(R.id.confirm_password)
-        etEmail = findViewById(R.id.email)
+        }
 
     }
 
@@ -74,8 +84,9 @@ class SignUp : AppCompatActivity() {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
+
     // Hook click event
-    fun performSignUp (view: View) {
+    private fun performSignUp () {
         if (validateInput()) {
 
             // Input is valid, here send data to your server
@@ -84,8 +95,28 @@ class SignUp : AppCompatActivity() {
             val confirmPassword = etConfirmPassword.text.toString()
             val email = etEmail.text.toString()
 
-            Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
             // Here you can call your API
+            val postUrl = "http://10.0.2.2:5000/api/addUser"
+            val requestQueue = Volley.newRequestQueue(this)
+
+            val postData = JSONObject()
+            try {
+                postData.put("Utilisateur", username)
+                postData.put("Mot de passe", password)
+                postData.put("Confirmation", confirmPassword)
+                postData.put("Email", email)
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+
+            println(postData)
+
+            val jsonObjectRequest = JsonObjectRequest(
+                Request.Method.POST, postUrl, postData,
+                { response -> println(response)}
+            ) {error -> error.printStackTrace()}
+            requestQueue.add(jsonObjectRequest)
         }
     }
 

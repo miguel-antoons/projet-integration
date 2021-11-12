@@ -7,3 +7,4 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client['SmartFridge']
 users = db["Users"]
 food = db["Food"]
+new_user = db["NewUser"]
