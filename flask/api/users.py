@@ -79,7 +79,7 @@ def check_email(email):
         #print(email_param)
 
         #Checks in the database if the email exists
-        email_exist = list(users.find({"email" : email}))
+        email_exist = list(users.find({"Email" : email}))
         print(email_exist)
 
         if email_exist:
@@ -91,9 +91,9 @@ def check_email(email):
 
             #Update the code via email
             users.find_one_and_update(
-            {"email" : email},
+            {"Email" : email},
             {"$set":
-                {"code": number_str}
+                {"Code": number_str}
             },upsert=True
             
              )
@@ -140,7 +140,7 @@ def check_code_email(email,code):
     if request.method == 'GET':
 
         #Find code key by email
-        check_good_code = list(users.find({"email" : email},{"code":1}))
+        check_good_code = list(users.find({"Email" : email},{"Code":1}))
       
         #loop element
         #delete ID
@@ -149,7 +149,7 @@ def check_code_email(email,code):
             print(codevalue)
 
         #get ggood code from email   
-        good_code = codevalue['code']
+        good_code = codevalue['Code']
      
         if code == good_code:
 
