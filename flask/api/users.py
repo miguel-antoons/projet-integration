@@ -6,6 +6,7 @@ from flask import Blueprint,request, jsonify, json
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
+<<<<<<< HEAD
 from flask_mail import Mail,Message
 #Infos Database
 from .database import db,users
@@ -16,6 +17,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+=======
+from flask_mail import Mail
+
+from .database import db, users
+>>>>>>> 140b74b (ADD : Backend of sign up form)
 
 
 app = Flask(__name__) 
