@@ -10,12 +10,10 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-<<<<<<< HEAD
     implementation("junit:junit:4.12")
-=======
+
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
->>>>>>> 140b74b (ADD : Backend of sign up form)
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // android voley => API

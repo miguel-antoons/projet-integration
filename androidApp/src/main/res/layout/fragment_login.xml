@@ -72,7 +72,7 @@
             android:drawablePadding="15dp"/>
 
         <TextView
-
+            android:id="@+id/forgotPassword"
             android:textSize="16sp"
             android:autoLink="web"
             android:clickable="true"
