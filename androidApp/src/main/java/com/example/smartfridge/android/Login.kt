@@ -1,12 +1,10 @@
 package com.example.smartfridge.android
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
@@ -21,6 +19,8 @@ class Login : AppCompatActivity() {
         val emailLayout = findViewById<EditText>(R.id.editTextUser)
         val passwordLayout = findViewById<EditText>(R.id.editTextPassword)
         val signInButton = findViewById<Button>(R.id.buttonLogin)
+        val signUpButton = findViewById<Button>(R.id.buttonRegister)
+        val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val rememberMe = findViewById<CheckBox>(R.id.rememberMe)
 
         // pre-load email and password if the rememberMe check box is checked
@@ -34,6 +34,24 @@ class Login : AppCompatActivity() {
             else {
                 verifyClient(emailLayout.text.toString(), passwordLayout.text.toString())
             }
+        }
+
+        // onclick signup button
+        signUpButton.setOnClickListener{
+            // creation de notre intent
+            val monIntent : Intent =  Intent(this,SignUp::class.java)
+            // start MainActivity
+            startActivity(monIntent)
+            Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+        }
+
+        // onclick forgot password button
+        forgotPassword.setOnClickListener{
+            // creation de notre intent
+            val monIntent : Intent =  Intent(this,CheckAndSendEmail::class.java)
+            // start MainActivity
+            startActivity(monIntent)
+            Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -50,8 +68,12 @@ class Login : AppCompatActivity() {
                     Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
                 }
                 else {
+                    // save email and password locally
                     saveData(email, password)
-                    setContentView(R.layout.activity_main)
+                    // creation de notre intent
+                    val monIntent : Intent =  Intent(this,MainActivity::class.java)
+                    // start MainActivity
+                    startActivity(monIntent)
                 }
 
                 Log.d("MainActivity", "response: $response")
