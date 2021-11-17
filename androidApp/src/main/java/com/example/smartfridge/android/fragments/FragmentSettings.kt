@@ -53,15 +53,7 @@ class FragmentSettings : Fragment() {
 
         }
 
-        // add event button receive code
-        val bt_go_code = view.findViewById<Button>(R.id.button_send_code)
-        bt_go_code.setOnClickListener {
-            activity?.let {
-                val intent = Intent(it, CheckCodeMail::class.java)
-                it.startActivity(intent)
-            }
 
-        }
 
         // Inflate the layout for this fragment
         return view
