@@ -1,7 +1,6 @@
 package com.example.smartfridge.android
 
 import com.example.smartfridge.android.api.NutritionValues
-import java.time.LocalDateTime
 import java.util.*
 
 // all the items that defines a product along with some default values

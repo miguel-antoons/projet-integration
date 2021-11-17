@@ -14,10 +14,8 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 import java.util.*
 
 // classes purpose is to keep all the products in it
@@ -39,7 +37,7 @@ object ProductRepository {
         productQuantity: String,
         productExpirationDate: String,
         productCategory: String,
-        productLocation: String) {
+        productLocation: String): Int {
         // get 'Date' object from string date
         val expirationDate = convertToDate(productExpirationDate)
         // get the difference between today and expiration date in Long format
@@ -63,6 +61,8 @@ object ProductRepository {
         // notify that a new product was added
         // this will update the FragmentProduct page
         productAdapter.notifyItemInserted(productList.lastIndex)
+
+        return productList.lastIndex
     }
 
     /**
@@ -212,15 +212,14 @@ object ProductRepository {
      * to a Kotlin Date object.
      * For this function to work correctly, the string date format MUST be respected.
      */
-    private fun convertToDate(stringDate: String): LocalDateTime {
+    private fun convertToDate(stringDate: String): Date {
         // convert expiration date to 'LocalDate' type
-        val expirationLocalDate = LocalDateTime.parse(
+        val expirationLocalDate = LocalDate.parse(
             stringDate,
             DateTimeFormatter.ofPattern("d/M/yyyy")
         )
 
-        return expirationLocalDate
-        /*// converting expiration date to 'Date' type and returning it
+        // converting expiration date to 'Date' type and returning it
         return Date
             .from(expirationLocalDate
                 .atStartOfDay()
@@ -228,22 +227,23 @@ object ProductRepository {
                     ZoneId
                         .systemDefault()
                 )
-                .toInstant())*/
+                .toInstant())
     }
 
     /**
      * Function calculates the difference between a 'Date' object and the current date.
      * It then returns the difference in days and is precise to the millisecond.
      */
-    private fun getDateDifference(expirationDate: LocalDateTime): Long {
+    private fun getDateDifference(expirationDate: Date): Long {
         // get current date date in 'Long' format
-        val currentDate: LocalDateTime = LocalDateTime.now()
-        // val longExpirationDate: Long = expirationDate.time
+        // val currentDate: LocalDateTime = LocalDateTime.now()
+        val currentDate: Long = Date().time
+        val longExpirationDate: Long = expirationDate.time
 
         // get difference in days between the current date and the expiration date
         // return the result
-        //return ((longExpirationDate - currentDate) / (24 * 3600 * 1000))
-        return ChronoUnit.DAYS.between(expirationDate, currentDate)
+        return ((longExpirationDate - currentDate) / (24 * 3600 * 1000))
+        //return ChronoUnit.DAYS.between(expirationDate, currentDate)
     }
 
     /**
