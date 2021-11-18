@@ -293,7 +293,13 @@ class FormsAddAliments(
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, postUrl, postData,
-            { response -> println(response) }
+            { response ->
+                println(response)
+
+                // call the get api here in order to make sure it is called after the new
+                // product was added
+                ProductRepository.getFoodFromMongo(this)
+            }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
         Toast.makeText(this ,

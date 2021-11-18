@@ -12,7 +12,7 @@ def add_food():
         # TODO : tests
         req = request.get_json(force=True)
         food.insert_one(req)
-        return "food added"
+        return jsonify({'Response': "Food was added"})
 
 
 @getFood.route('/api/getFood', methods=['GET'])

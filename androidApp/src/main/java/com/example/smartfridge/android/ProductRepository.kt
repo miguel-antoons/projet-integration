@@ -5,6 +5,7 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.api.NutritionValues
 import org.json.JSONArray
 import org.json.JSONTokener
@@ -18,6 +19,9 @@ import java.util.*
 object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
+
+    // only purpose of this is notify that the dataset has changed
+    private lateinit var productAdapter: ProductAdapter
 
     /**
      * Function performs all the necessary actions to add a product to the product list.
@@ -49,6 +53,10 @@ object ProductRepository {
             productLocation,
             productColor
         ))
+
+        // notify that a new product was added
+        // this will update the FragmentProduct page
+        productAdapter.notifyItemInserted(productList.lastIndex)
     }
 
     /**
@@ -83,11 +91,27 @@ object ProductRepository {
             productLocation,
             productColor
         )
+
+        // notify that an item was changed inside the list
+        // this will update the FragmentProduct page
+        productAdapter.notifyItemChanged(productIndex)
     }
 
     // deletes an element from productList at a given index (productPosition)
     fun deleteProduct(productPosition: Int) {
         productList.removeAt(productPosition)
+
+        // notify that an item was removed
+        // this will update the FragmentProduct page
+        productAdapter.notifyItemRemoved(productPosition)
+    }
+
+
+    fun addProductAdapter(adapter: ProductAdapter) {
+        // add an adapter
+        // WARNING : for the app to work correctly AN ADAPTER MUST ALWAYS BE ADDED
+        // without the adapter, the Fragment won't update its contents
+        productAdapter = adapter
     }
 
 
@@ -187,7 +211,11 @@ object ProductRepository {
     }
 
     fun getFoodFromMongo(context: Context){
+        val productListLength = productList.size
         productList.clear()
+
+        // notify the adapter that everything was removed
+        productAdapter.notifyItemRangeRemoved(0, productListLength)
         val queue = Volley.newRequestQueue(context)
         val url = "http://10.0.2.2:5000/api/getFood"
         val stringRequest = StringRequest(
@@ -216,6 +244,9 @@ object ProductRepository {
                             nutritiveValues = NutritionValues(jsonArray.getJSONObject(i).getString("Valeurs"))
                         )
                     )
+
+                    // notify the adapter that new elements were added to the list
+                    productAdapter.notifyItemRangeInserted(0, jsonArray.length())
                 }
                 Log.d("GetFood", "SUCCESS")
             },
