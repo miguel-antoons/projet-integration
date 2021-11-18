@@ -71,7 +71,7 @@ class Login : AppCompatActivity() {
                     Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    // save email and password locally
+                    // save email and password, username locally
                     val username = response.getJSONObject(0).getString("Username")
                     saveData(email, password, username)
 
