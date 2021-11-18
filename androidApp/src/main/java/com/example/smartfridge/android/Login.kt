@@ -10,6 +10,9 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.VerifyEmailPassword.validateForm
+import org.json.JSONArray
+import org.json.JSONObject
+import org.json.JSONTokener
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +72,9 @@ class Login : AppCompatActivity() {
                 }
                 else {
                     // save email and password locally
-                    saveData(email, password)
+                    val username = response.getJSONObject(0).getString("Username")
+                    saveData(email, password, username)
+
                     // creation de notre intent
                     val monIntent : Intent =  Intent(this,MainActivity::class.java)
                     // start MainActivity
@@ -88,7 +93,7 @@ class Login : AppCompatActivity() {
     }
 
     // save email and password locally
-    private fun saveData(email: String?, password: String?) {
+    private fun saveData(email: String?, password: String?, username: String?) {
         val rememberMe = findViewById<CheckBox>(R.id.rememberMe)
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         if(rememberMe.isChecked){
@@ -96,6 +101,7 @@ class Login : AppCompatActivity() {
             editor.apply {
                 putString("EMAIL", email)
                 putString("PASSWORD", password)
+                putString("USERNAME", username)
                 putBoolean("check", rememberMe.isChecked)
             }.apply()
         }
@@ -104,6 +110,7 @@ class Login : AppCompatActivity() {
             editor.apply {
                 putString("EMAIL", "email")
                 putString("PASSWORD", "password")
+                putString("USERNAME", username)
                 putBoolean("check", false)
             }.apply()
         }
