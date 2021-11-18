@@ -40,20 +40,6 @@ class FragmentSettings : Fragment() {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
 
-        // Add fragment here
-        val bt_go_reset = view.findViewById<Button>(R.id.button_go_reset_password)
-
-        // this button will open an new activity with a form to add a new product
-        bt_go_reset.setOnClickListener {
-            activity?.let {
-                val intent = Intent(it, CheckAndSendEmail::class.java)
-                it.startActivity(intent)
-            }
-
-
-        }
-
-
 
         // Inflate the layout for this fragment
         return view

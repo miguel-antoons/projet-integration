@@ -16,12 +16,19 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
-    // android voley => API
+    // Hashing password
+    implementation ("at.favre.lib:bcrypt:0.9.0")
+
+    // QR code new user
+    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.google.zxing:core:3.4.1")
+
+    // android volley => API
     implementation("com.android.volley:volley:1.2.1")
 
     // Required -- JUnit 4 framework
-    testImplementation("junit:junit:4.12")
-    androidTestImplementation("androidx.test.ext:junit:1.1.1")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
 
 }
 
