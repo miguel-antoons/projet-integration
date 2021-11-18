@@ -17,10 +17,10 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Hashing password
-    implementation(group = "at.favre.lib", name = "bcrypt", version = "0.9.0")
+    implementation ("at.favre.lib:bcrypt:0.9.0")
 
     // QR code new user
-    implementation("com.google.zxing:core:3.3.0")
+    implementation("com.google.zxing:core:3.4.1")
     implementation("com.google.zxing:core:3.4.1")
 
     // android volley => API
