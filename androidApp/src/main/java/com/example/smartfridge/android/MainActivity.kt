@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.fragments.FragmentHome
@@ -39,11 +38,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     *  /!\ This function is still needed ?
+     */
     private fun apiCall() {
         val url = "http://10.0.2.2:5000/client"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
-        val jsonObjectRequest = JsonArrayRequest(
+        val jsonObjectRequest  = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response ->
                 val str = response.toString()

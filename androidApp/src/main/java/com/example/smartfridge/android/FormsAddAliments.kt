@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.widget.*
 import java.text.SimpleDateFormat
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.FragmentTransaction
 import com.android.volley.*
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import java.util.*
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.api.NutritionValues
+import com.example.smartfridge.android.fragments.FragmentProduct
 import org.json.JSONException
 
 
@@ -56,8 +59,9 @@ class FormsAddAliments(
 
 
             if (productIndex == -1) {
-                addProduct(names, Integer.parseInt(quantite), date, categorie, store)
-                sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo")
+                sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo", categorie)
+                ProductRepository.getFoodFromMongo(this)
+
             }
             else {
                 modifyProduct(productIndex, names, Integer.parseInt(quantite), date, categorie, store)
@@ -127,6 +131,8 @@ class FormsAddAliments(
      * Function adds a new product to the system trough the ProductRepository.addProductFromForm
      * method (cf./ProductRepository.kt). It then show a confirmation message on screen when the
      * product was added.
+     *
+     * function unsupported replacing by post function see sendFoodToServer()
      */
     private fun addProduct(
         productName: String,
@@ -208,7 +214,10 @@ class FormsAddAliments(
         updateButton.text = resources.getText(R.string.btn_update)
     }
 
-
+    /**
+     * Function create API POST request and is called with some parameters
+     * @param Valeurs more info check ./api/NutritionValues
+     */
     private fun sendFoodToServer(
         Utilisateur: String,
         Nom: String,
@@ -218,7 +227,8 @@ class FormsAddAliments(
         Date: String,
         Valeurs: NutritionValues,
         Poids: String,
-        Lieu: String) {
+        Lieu: String,
+        Category: String) {
         val postUrl = "http://10.0.2.2:5000/api/addFood"
         val requestQueue = Volley.newRequestQueue(this)
 
@@ -230,9 +240,10 @@ class FormsAddAliments(
             postData.put("Quantite", Quantite)
             postData.put("Ingredients", Arrays.toString(Ingredients))
             postData.put("Date", Date)
-            postData.put("Valeurs", Valeurs.toString())
+            postData.put("Valeurs", Valeurs)
             postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
+            postData.put("Category", Category)
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -243,6 +254,8 @@ class FormsAddAliments(
             { response -> println(response) }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
+        Toast.makeText(this ,
+            "Produit ajouté", Toast.LENGTH_LONG).show();
     }
 
 }

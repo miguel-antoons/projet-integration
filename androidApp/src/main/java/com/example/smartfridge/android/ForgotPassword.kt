@@ -35,7 +35,7 @@ class ForgotPassword : AppCompatActivity() {
 
                 Toast.makeText(
                     this@ForgotPassword,
-                    "Champ vide : Veuillez insérer un adresse émail.",
+                    "Champ vide : Veuillez insérer une adresse email.",
                     Toast.LENGTH_SHORT
 
                 ).show()
@@ -43,7 +43,6 @@ class ForgotPassword : AppCompatActivity() {
             } else {
 
                 check_email(email_text)
-
 
             }
         }
