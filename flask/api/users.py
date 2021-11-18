@@ -74,14 +74,14 @@ def check_email(email):
 
         #Checks in the database if the email exists
         email_exist = list(users.find({"Email" : email}))
-        print(email_exist)
+        #print(email_exist)
 
         if email_exist:
 
             #generate a random code with 6 number
             numbers = random.sample(range(10), 6)
             number_str = ''.join(map(str, numbers))
-            print(number_str)
+            #print(number_str)
 
             #Update the code via email
             users.find_one_and_update(
@@ -140,7 +140,7 @@ def check_code_email(email,code):
         #delete ID
         for codevalue in check_good_code:
             codevalue.pop('_id')
-            print(codevalue)
+            #print(codevalue)
 
         #get ggood code from email   
         good_code = codevalue['Code']
