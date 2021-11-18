@@ -7,6 +7,44 @@
     tools:context=".fragments.FragmentSettings">
 
     <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:id="@+id/main_title_page_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_main_title"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <TextView
+        android:id="@+id/title_qr_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/full_qr_code"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
+
+    <ImageView
+        android:id="@+id/ivQRcode"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="230dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!--
     <TextView
         android:id="@+id/settings"
         android:layout_width="wrap_content"
@@ -36,6 +74,6 @@
         android:layout_marginTop="26dp"
         android:text="Test Send Code"
         app:layout_constraintStart_toStartOf="@+id/button_go_reset_password"
-        app:layout_constraintTop_toBottomOf="@+id/button_go_reset_password" />
+        app:layout_constraintTop_toBottomOf="@+id/button_go_reset_password" /> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,13 @@
 from flask import Blueprint, request
-from .database import new_user
+from .database import users
 
 addUser = Blueprint('addUser', __name__)
 
 
 @addUser.route('/api/addUser', methods=['POST'])
-def add_food():
+def add_user():
     if request.method == 'POST':
-        # TODO : tests
+        
         req = request.get_json(force=True)
-        new_user.insert_one(req)
+        users.insert_one(req)
         return "user added"
