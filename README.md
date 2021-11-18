@@ -1,5 +1,5 @@
 # Projet d'intégration : SmartFridge
-Projet d'intégration à l'Ephec
+Projet d'intégration à l'Ephec.
 
 SmartFridge est un projet qui consiste à veiller sur ses aliments dans son frigo et de vérifier l'état de son frigo. Ce projet devra remplir certaines fonctionelitées différentes telles que : 
 
