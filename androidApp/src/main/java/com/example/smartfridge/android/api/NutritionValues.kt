@@ -1,5 +1,7 @@
 package com.example.smartfridge.android.api
 
+import com.google.gson.Gson
+
 data class NutritionValues(
     val energy : String = "test",
     val fat : String = "test",
@@ -8,7 +10,8 @@ data class NutritionValues(
     val salt : String = "test"
 ){
     override fun toString(): String {
-        return "[Energie: ${this.energy}, Graisses: ${this.fat}, Sucres: ${this.carbohydrate}, Proteines: ${this.protein}, Sel: ${this.salt}]"
+        var gson = Gson()
+        return gson.toJson(NutritionValues())
     }
 }
 

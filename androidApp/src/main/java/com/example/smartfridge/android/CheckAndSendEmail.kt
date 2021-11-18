@@ -44,7 +44,6 @@ class CheckAndSendEmail : AppCompatActivity() {
 
                 check_email(email_text)
 
-
             }
         }
 
