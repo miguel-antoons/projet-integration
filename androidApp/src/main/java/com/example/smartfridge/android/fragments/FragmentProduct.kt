@@ -38,8 +38,8 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         val productPageList = view.findViewById<RecyclerView>(R.id.product_page_list)
         linearLayoutManager = LinearLayoutManager(context)
         productPageList.layoutManager = linearLayoutManager
+
         // give the adapter to the fragment
-        ProductRepository.getFoodFromMongo(context)
         adapter =  ProductAdapter(ProductRepository.productList, context, this)
         productPageList.adapter = adapter
         // Add fragment here
@@ -52,17 +52,15 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
                 it.startActivity(intent)
             }
         }
+
+        // give the adapter element to the ProductRepository object
+        ProductRepository.addProductAdapter(adapter)
+
+        // get all the products from a remote database
+        ProductRepository.getFoodFromMongo(context)
+
         return view
     }
-
-    // when the fragment resumes, the adapter is notified of potential changes to the data
-    // this is done to update the list when new data is added
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onResume() {
-        adapter.notifyDataSetChanged()
-        super.onResume()
-    }
-
 
     /**
      * Function starts the 'FormsAddAliments' activity and gives the product index as extra

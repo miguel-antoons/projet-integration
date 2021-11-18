@@ -60,7 +60,6 @@ class FormsAddAliments(
 
             if (productIndex == -1) {
                 sendFoodToServer("999",names,"TODO", quantite, arrayOf<String>("ingredient1","ingredient2","ingredient3"), "04/10/2022", NutritionValues(),"500g", "Frigo", categorie)
-                ProductRepository.getFoodFromMongo(this)
 
             }
             else {
@@ -251,7 +250,13 @@ class FormsAddAliments(
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, postUrl, postData,
-            { response -> println(response) }
+            { response ->
+                println(response)
+
+                // call the get api here in order to make sure it is called after the new
+                // product was added
+                ProductRepository.getFoodFromMongo(this)
+            }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
         Toast.makeText(this ,
