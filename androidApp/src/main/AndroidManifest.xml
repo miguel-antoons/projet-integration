@@ -10,6 +10,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SignUp"
+            android:exported="true" />
+        <activity
             android:name=".CheckCodeMail"
             android:exported="false" />
         <activity
@@ -23,9 +26,6 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignUp"
             android:exported="true" />
         <activity
             android:name=".Login"
