@@ -1,5 +1,14 @@
 package com.example.smartfridge.android
 
+import android.content.Context
+import android.util.Log
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.smartfridge.android.adapter.ProductAdapter
+import com.example.smartfridge.android.api.NutritionValues
+import org.json.JSONArray
+import org.json.JSONTokener
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -10,6 +19,9 @@ import java.util.*
 object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
+
+    // only purpose of this is notify that the dataset has changed
+    private lateinit var productAdapter: ProductAdapter
 
     /**
      * Function performs all the necessary actions to add a product to the product list.
@@ -35,12 +47,16 @@ object ProductRepository {
         productList.add(ProductModel(
             productName,
             productQuantity,
-            expirationDate,
+            expirationDate.toString(),
             expirationPeriod,
             productCategory,
             productLocation,
             productColor
         ))
+
+        // notify that a new product was added
+        // this will update the FragmentProduct page
+        productAdapter.notifyItemInserted(productList.lastIndex)
     }
 
     /**
@@ -75,23 +91,40 @@ object ProductRepository {
             productLocation,
             productColor
         )
+
+        // notify that an item was changed inside the list
+        // this will update the FragmentProduct page
+        productAdapter.notifyItemChanged(productIndex)
     }
 
     // deletes an element from productList at a given index (productPosition)
     fun deleteProduct(productPosition: Int) {
         productList.removeAt(productPosition)
+
+        // notify that an item was removed
+        // this will update the FragmentProduct page
+        productAdapter.notifyItemRemoved(productPosition)
     }
+
+
+    fun addProductAdapter(adapter: ProductAdapter) {
+        // add an adapter
+        // WARNING : for the app to work correctly AN ADAPTER MUST ALWAYS BE ADDED
+        // without the adapter, the Fragment won't update its contents
+        productAdapter = adapter
+    }
+
 
     /**
      * Function converts a string date with the following format : 'dd / M / yyyy'
      * to a Kotlin Date object.
      * For this function to work correctly, the string date format MUST be respected.
      */
-    private fun convertToDate(stringDate: String): Date {
+    fun convertToDate(stringDate: String): Date {
         // convert expiration date to 'LocalDate' type
         val expirationLocalDate = LocalDate.parse(
             stringDate,
-            DateTimeFormatter.ofPattern("d / M / yyyy")
+            DateTimeFormatter.ofPattern("dd/MM/yyyy")
         )
 
         // converting expiration date to 'Date' type and returning it
@@ -109,7 +142,7 @@ object ProductRepository {
      * Function calculates the difference between a 'Date' object and the current date.
      * It then returns the difference in days and is precise to the millisecond.
      */
-    private fun getDateDifference(expirationDate: Date): Long {
+    fun getDateDifference(expirationDate: Date): Long {
         // get current date date in 'Long' format
         val currentDate: Long = Date().time
         val longExpirationDate: Long = expirationDate.time
@@ -124,7 +157,7 @@ object ProductRepository {
      * represents.
      * return examples : '2 ans', '9 mois', '1 jour', ...
      */
-    private fun convertDifferenceToString(dateDifference: Long): String {
+    fun convertDifferenceToString(dateDifference: Long): String {
         when {
             // check if the period is greater than a year
             dateDifference >= 365 -> {
@@ -175,5 +208,55 @@ object ProductRepository {
             dateDifference <= 2 -> "#FF9700"
             else -> "#00A00F"
         }
+    }
+
+    /**
+     * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
+     * We use adapter in order to notify the product list changed.
+     */
+
+    fun getFoodFromMongo(context: Context){
+        val productListLength = productList.size
+        productList.clear()
+
+        // notify the adapter that everything was removed
+        productAdapter.notifyItemRangeRemoved(0, productListLength)
+        val queue = Volley.newRequestQueue(context)
+        val url = "http://10.0.2.2:5000/api/getFood"
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                /*
+                https://johncodeos.com/how-to-parse-json-in-android-using-kotlin/
+                */
+                val jsonArray = JSONTokener(response).nextValue() as JSONArray
+                for (i in 0 until jsonArray.length()) {
+                    val expirationDate = convertToDate(jsonArray.getJSONObject(i).getString("Date"))
+                    val dateDifference = getDateDifference(expirationDate)
+                    val expirationPeriod = convertDifferenceToString(dateDifference)
+                    productList.add(
+                        ProductModel(
+                            name = jsonArray.getJSONObject(i).getString("Nom"),
+                            quantity = jsonArray.getJSONObject(i).getString("Quantite").toInt(),
+                            expirationDate = jsonArray.getJSONObject(i).getString("Date"),
+                            expirationPeriod = expirationPeriod,
+                            category = jsonArray.getJSONObject(i).getString("Category"),
+                            brand = jsonArray.getJSONObject(i).getString("Marque"),
+                            user = jsonArray.getJSONObject(i).getString("Utilisateur"),
+                            location = jsonArray.getJSONObject(i).getString("Lieu"),
+                            weight = jsonArray.getJSONObject(i).getString("Poids"),
+                            ingredients = arrayOf(jsonArray.getJSONObject(i).getString("Ingredients")),
+                            nutritiveValues = NutritionValues(jsonArray.getJSONObject(i).getString("Valeurs"))
+                        )
+                    )
+
+                    // notify the adapter that new elements were added to the list
+                    productAdapter.notifyItemRangeInserted(0, jsonArray.length())
+                }
+                Log.d("GetFood", "SUCCESS")
+            },
+            { Log.d("GetFood","That didn't work!") }
+        )
+        queue.add(stringRequest)
     }
 }
