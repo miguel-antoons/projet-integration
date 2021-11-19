@@ -15,6 +15,7 @@ import org.json.JSONObject
 import android.widget.*
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.android.volley.*
+import com.example.smartfridge.android.Hashing.passwordHash
 
 /**
  * Class gets all the data from the sign up form and POST them into the MongoDB database.
@@ -106,18 +107,7 @@ class SignUp : AppCompatActivity() {
             val username = etUsername.text.toString()
             val email = etEmail.text.toString()
 
-            // Function that executes the function to hash to password of the user
-            fun onClickHash(): String {
-                val hashPassword = etPassword.text.toString()
-                val bcryptHashString =
-                    BCrypt.withDefaults().hashToString(12, hashPassword.toCharArray())
-                val result = BCrypt.verifyer().verify(hashPassword.toCharArray(), bcryptHashString)
 
-                if (result.verified) {
-                    return bcryptHashString.toString()
-                }
-                return "1"
-            }
 
             /**
              * This example of code check that indeed, when we compare a wrong password with the effective hash code
@@ -146,8 +136,8 @@ class SignUp : AppCompatActivity() {
 
             val postData = JSONObject()
             try {
-                postData.put("Utilisateur", username)
-                postData.put("Mot de passe", onClickHash())
+                postData.put("Username", username)
+                postData.put("Password", passwordHash(etPassword.text.toString()))
                 postData.put("Email", email)
 
             } catch (e: JSONException) {
