@@ -17,7 +17,7 @@ import kotlin.collections.ArrayList
 class ProductAdapter(
     private val productList: ArrayList<ProductModel>,
     val context: MainActivity,
-    val productFragment: FragmentProduct
+    private val productFragment: FragmentProduct
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     // contains the different values of each row
