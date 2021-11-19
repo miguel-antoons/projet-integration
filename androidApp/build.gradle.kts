@@ -26,10 +26,14 @@ dependencies {
     // android volley => API
     implementation("com.android.volley:volley:1.2.1")
 
+
     // Required -- JUnit 4 framework
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
 
+
+    //Gson
+    implementation("com.google.code.gson:gson:2.8.9")
 
     //Gson
     implementation("com.google.code.gson:gson:2.8.9")
