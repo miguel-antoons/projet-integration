@@ -210,6 +210,11 @@ object ProductRepository {
         }
     }
 
+    /**
+     * Function called in order to get all the products of the test user 999 in the database (cf: food.py).
+     * We use adapter in order to notify the product list changed.
+     */
+
     fun getFoodFromMongo(context: Context){
         val productListLength = productList.size
         productList.clear()
