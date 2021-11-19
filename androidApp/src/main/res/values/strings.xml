@@ -15,15 +15,32 @@
     <string name="degree">00°</string>
     <string name="percentage">00%</string>
 
-    <!-- Prduct list page -->
+    <!-- Product list page -->
     <string name="product_page_title">Liste de Produits</string>
     <string name="product_name">Nom du Produit</string>
     <string name="product_emplacement">Emplacement</string>
-    <string name="product_expiration_date">1 day</string>
+    <string name="product_expiration_date">1 jour</string>
     <string name="search_hint">Rechercher . . .</string>
     <string name="sort_product_name_description">Triez selon le nom du produit</string>
     <string name="sort_location_description">Triez selon l\'emplacement du produit</string>
     <string name="sort_expiration_period_description">Triez selon la date de péremeption du produit</string>
+    <string name="add_product_description">Add new product</string>
+
+    <!-- Product list pop-up -->
+    <string name="ic_close_description">Fermer la pop-up</string>
+    <string name="popup_title">Nom du Produit</string>
+    <string name="ic_status_description">Statut du produit</string>
+    <string name="expiration_date_title">Date de Péremption</string>
+    <string name="def_expiration_date">00/00/0000</string>
+    <string name="quantity_title">Quantité</string>
+    <string name="def_quantity">00</string>
+    <string name="category_title">Catégorie</string>
+    <string name="def_category">None</string>
+    <string name="product_location_title">Emplacement</string>
+    <string name="def_product_location">None</string>
+
+    <string name="delete_button">Supprimer</string>
+    <string name="modify_button">Modifier</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -32,24 +49,30 @@
     <!-- Forms Add Aliment Page -->
 
     <!--  Button  -->
-    <string name="btn_return_product">Ajouter Aliment</string>
+    <string name="btn_return_product">Ajouter un produit</string>
     <string name="btn_date">Choisir Date : </string>
     <string name="btn_add">Ajouter </string>
+    <string name="btn_update">Modifier</string>
 
 
     <!--  TextView  -->
 
     <string name="title_forms_add">Ajouter un Produits</string>
-    <string name="text_name">Nom du Produit : </string>
-    <string name="text_quantite">Quantité du produit (GR) : </string>
-    <string name="text_date">Date de Péremption                          JJ/MM/AAAA </string>
+    <string name="text_name">Nom du Produit  </string>
+    <string name="text_asterisk"><font fgcolor='#FF0000'>*</font></string>
+    <string name="text_max_name">max 30 car.</string>
+
+
+    <string name="text_quantite">Quantité du produit</string>
+    <string name="text_g">g</string>
+
+    <string name="text_date">Date de Péremption</string>
+    <string name="text_date_format">JJ/MM/AAAA </string>
     <string name="text_categorie">Catégorie</string>
     <string name="text_storage">Lieu de Stockage</string>
 
 
-
-
-    <!--  Categorie Spinner  -->
+    <!--  Categories Spinner  -->
 
     <string-array name="categorie_array">
         <item>Céréales, féculents</item>
@@ -67,5 +90,28 @@
         <item>Frigo</item>
         <item>Armoire</item>
     </string-array>
+
+    <!-- Sign up texts / sign up page -->
+    <string name="main_title">Créer un compte</string>
+    <string name="password_title">Mot de passe</string>
+    <string name="confirm_password">Confirmation du mot de passe</string>
+    <string name="inscription">Inscription</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Strings for setting page -->
+    <string name="settings_main_title">Settings</string>
+    <string name="empty_qr_code">Vous n\'avez pas encore de QR code, veuillez vous inscrire</string>
+    <string name="full_qr_code">Votre QR code</string>
 
 </resources>

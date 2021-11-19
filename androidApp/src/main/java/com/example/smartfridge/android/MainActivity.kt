@@ -20,24 +20,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        apiCall()
+        //apiCall()
 
         // Navigation Bar
         bottomNavBar = findViewById(R.id.bottomNavBar)
         val homeFragment = FragmentHome()
-        val productFragment = FragmentProduct()
-        val profileFragment = FragmentSettings()
+        val productFragment = FragmentProduct(this)
+        val settingsFragment = FragmentSettings(this)
         setCurrentFragment(homeFragment)
 
         bottomNavBar.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home_page-> setCurrentFragment(homeFragment)
                 R.id.product_page -> setCurrentFragment(productFragment)
-                R.id.settings_page -> setCurrentFragment(profileFragment)
+                R.id.settings_page -> setCurrentFragment(settingsFragment)
             }
             true
         }
     }
+
+    /*
 
     private fun apiCall() {
         val url = "http://10.0.2.2:5000/client"
@@ -45,10 +47,10 @@ class MainActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
-            Response.Listener { response ->
+            { response ->
                 val str = response.toString()
                 Log.d("MainActivity", "response: $str")
-            },Response.ErrorListener {
+            }, {
                     error ->
                 Log.d("TAGTest", "error: ${error.message}")
                 Log.d("MainActivity", "Api call failed")
@@ -58,6 +60,9 @@ class MainActivity : AppCompatActivity() {
 
         queue.add(jsonObjectRequest)
     }
+
+
+     */
 
     fun setCurrentFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {

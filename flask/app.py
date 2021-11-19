@@ -1,17 +1,19 @@
-from flask import Flask
-from api import blueprints
+from flask import Flask, request
+from pymongo import MongoClient
+from api import blueprints, database
 
 
-def create_app():
-    app = Flask(__name__)
+# app need to be outside the function for testing
+app = Flask(__name__)
 
-    for blueprint in blueprints:
-        app.register_blueprint(blueprint)
 
-    return app
+
+
+for blueprint in blueprints:
+    app.register_blueprint(blueprint)
+
 
 
 # Run debug mode
 if __name__ == '__main__':
-    app = create_app()
     app.run(debug=True)
