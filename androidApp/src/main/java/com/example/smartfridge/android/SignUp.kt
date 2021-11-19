@@ -30,7 +30,6 @@ class SignUp : AppCompatActivity() {
     lateinit var etPassword : EditText
     lateinit var etConfirmPassword : EditText
     lateinit var etEmail : EditText
-    lateinit var etHashed : EditText
     private val MIN_PASSWORD_LENGTH = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,10 +108,13 @@ class SignUp : AppCompatActivity() {
             // Function that executes the function to hash to password of the user
             fun onClickHash(): String {
                 val hashPassword = etPassword.text.toString()
+                // With Bcrypt
                 val bcryptHashString =
                     BCrypt.withDefaults().hashToString(12, hashPassword.toCharArray())
+                // Check if the password is equal to his hash code -> result Boolean
                 val result = BCrypt.verifyer().verify(hashPassword.toCharArray(), bcryptHashString)
 
+                // If password = hash code then true and return the entire hash code
                 if (result.verified) {
                     return bcryptHashString.toString()
                 }
