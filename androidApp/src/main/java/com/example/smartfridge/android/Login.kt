@@ -13,6 +13,7 @@ import com.example.smartfridge.android.VerifyEmailPassword.validateForm
 import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
+import com.example.smartfridge.android.Hashing.verifyPasswordHash
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,25 +61,35 @@ class Login : AppCompatActivity() {
     }
 
     // checks if the email and password are correct in the database
-    private fun verifyClient(email : String?, password : String?) {
-        val url = "http://10.0.2.2:5000/api/login/$email/$password"
+    private fun verifyClient(email : String?, password : String) {
+        val url = "http://10.0.2.2:5000/api/login/$email"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
         val jsonObjectRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response ->
-                if(response.length() === 0) {
-                    Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
-                }
-                else {
-                    // save email and password locally
-                    val username = response.getJSONObject(0).getString("Username")
-                    saveData(email, password, username)
 
-                    // creation de notre intent
-                    val monIntent : Intent =  Intent(this,MainActivity::class.java)
-                    // start MainActivity
-                    startActivity(monIntent)
+                // Email verification
+                if(response.length() === 0) {
+                    Toast.makeText(this, "Email incorrect !", Toast.LENGTH_SHORT).show()
+                }
+
+                // Password verification
+                else {
+                    if(verifyPasswordHash(password, response.getJSONObject(0).getString("Password"))) {
+
+                        // save email and password, username locally
+                        val username = response.getJSONObject(0).getString("Username")
+                        saveData(email, password, username)
+
+                        // creation de notre intent
+                        val monIntent : Intent =  Intent(this,MainActivity::class.java)
+                        // start MainActivity
+                        startActivity(monIntent)
+                    }
+                    else {
+                        Toast.makeText(this, "Mot de passe incorrect !", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 Log.d("MainActivity", "response: $response")

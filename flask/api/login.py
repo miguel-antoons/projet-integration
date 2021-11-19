@@ -3,12 +3,12 @@ from .database import db
 
 login = Blueprint('login', __name__)
 
-@login.route('/api/login/<email>/<password>', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def client_login(email, password):
+@login.route('/api/login/<email>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def client_login(email):
     records = db.Users
 
     if request.method == 'GET':
-        result = list(records.find({"Email" : email, "Password" : password}))
+        result = list(records.find({"Email" : email}))
 
         for client in result:
             client.pop('_id')

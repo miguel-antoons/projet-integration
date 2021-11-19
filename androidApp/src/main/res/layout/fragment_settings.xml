@@ -22,6 +22,19 @@
         app:layout_constraintVertical_bias="0.033" />
 
     <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        style="@style/main_title_sign_up_page"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.158" />
+
+    <TextView
         android:id="@+id/title_qr_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,10 +50,11 @@
         android:id="@+id/ivQRcode"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="150dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.603"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,7 @@
     <string name="sort_product_name_description">Triez selon le nom du produit</string>
     <string name="sort_location_description">Triez selon l\'emplacement du produit</string>
     <string name="sort_expiration_period_description">Triez selon la date de péremeption du produit</string>
+    <string name="add_product_description">Add new product</string>
 
     <!-- Product list pop-up -->
     <string name="ic_close_description">Fermer la pop-up</string>

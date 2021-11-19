@@ -157,10 +157,20 @@ def check_code_email(email,code):
 
 
            
-
+"""
+Verification if the username already exist
+"""
             
-  
-        
+@getUsers.route('/api/users/<username>', methods=['GET'])
+def username_exist(username):
+    records = db.Users
+    result = list(records.find({"Username" : username}))
+
+    for client in result:
+         client.pop('_id')
+    
+    print(result)
+    return json.dumps(result)
 
 
 
