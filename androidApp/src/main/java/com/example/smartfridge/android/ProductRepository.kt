@@ -211,7 +211,7 @@ object ProductRepository {
     }
 
     /**
-     * Function called in order to get all the products of the test user 999 in the database (cf: food.py).
+     * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
      * We use adapter in order to notify the product list changed.
      */
 
