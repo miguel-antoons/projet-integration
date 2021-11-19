@@ -16,7 +16,10 @@
     <!-- Product pop-up -->
     <dimen name="icon_dimensions">40dp</dimen>
     <dimen name="product_characteristics">160dp</dimen>
+
     <dimen name="popup_button_height">35dp</dimen>
     <dimen name="popup_button_width">110dp</dimen>
     <dimen name="button_side_margin">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
 </resources>

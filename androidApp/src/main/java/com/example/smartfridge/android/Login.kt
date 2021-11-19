@@ -1,18 +1,18 @@
 package com.example.smartfridge.android
 
 import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.smartfridge.android.VerifyEmailPassword.validateForm
+import org.json.JSONArray
+import org.json.JSONObject
+import org.json.JSONTokener
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +22,8 @@ class Login : AppCompatActivity() {
         val emailLayout = findViewById<EditText>(R.id.editTextUser)
         val passwordLayout = findViewById<EditText>(R.id.editTextPassword)
         val signInButton = findViewById<Button>(R.id.buttonLogin)
+        val signUpButton = findViewById<Button>(R.id.buttonRegister)
+        val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val rememberMe = findViewById<CheckBox>(R.id.rememberMe)
 
         // pre-load email and password if the rememberMe check box is checked
@@ -37,13 +39,24 @@ class Login : AppCompatActivity() {
             }
         }
 
-    }
+        // onclick signup button
+        signUpButton.setOnClickListener{
+            // creation de notre intent
+            val monIntent : Intent =  Intent(this,SignUp::class.java)
+            // start MainActivity
+            startActivity(monIntent)
+            Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+        }
 
-    private fun validateForm(email: String?, password: String?): Boolean {
-        val isValidEmail = email != null && email.isNotBlank() && email.contains("@")
-        val isValidPassword = password != null && password.isNotBlank() && password.length >=6
+        // onclick forgot password button
+        forgotPassword.setOnClickListener{
+            // creation de notre intent
+            val monIntent : Intent =  Intent(this,CheckAndSendEmail::class.java)
+            // start MainActivity
+            startActivity(monIntent)
+            Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+        }
 
-        return isValidEmail && isValidPassword
     }
 
     // checks if the email and password are correct in the database
@@ -58,8 +71,14 @@ class Login : AppCompatActivity() {
                     Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    saveData(email, password)
-                    setContentView(R.layout.activity_main)
+                    // save email and password, username locally
+                    val username = response.getJSONObject(0).getString("Username")
+                    saveData(email, password, username)
+
+                    // creation de notre intent
+                    val monIntent : Intent =  Intent(this,MainActivity::class.java)
+                    // start MainActivity
+                    startActivity(monIntent)
                 }
 
                 Log.d("MainActivity", "response: $response")
@@ -74,7 +93,7 @@ class Login : AppCompatActivity() {
     }
 
     // save email and password locally
-    private fun saveData(email: String?, password: String?) {
+    private fun saveData(email: String?, password: String?, username: String?) {
         val rememberMe = findViewById<CheckBox>(R.id.rememberMe)
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         if(rememberMe.isChecked){
@@ -82,6 +101,7 @@ class Login : AppCompatActivity() {
             editor.apply {
                 putString("EMAIL", email)
                 putString("PASSWORD", password)
+                putString("USERNAME", username)
                 putBoolean("check", rememberMe.isChecked)
             }.apply()
         }
@@ -90,6 +110,7 @@ class Login : AppCompatActivity() {
             editor.apply {
                 putString("EMAIL", "email")
                 putString("PASSWORD", "password")
+                putString("USERNAME", username)
                 putBoolean("check", false)
             }.apply()
         }

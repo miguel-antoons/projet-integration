@@ -59,7 +59,7 @@
 
     <string name="title_forms_add">Ajouter un Produits</string>
     <string name="text_name">Nom du Produit  </string>
-    <string name="text_asterisk" ><font fgcolor='#FF0000'>*</font></string>
+    <string name="text_asterisk"><font fgcolor='#FF0000'>*</font></string>
     <string name="text_max_name">max 30 car.</string>
 
 
@@ -99,5 +99,19 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Strings for setting page -->
+    <string name="settings_main_title">Settings</string>
+    <string name="empty_qr_code">Vous n\'avez pas encore de QR code, veuillez vous inscrire</string>
+    <string name="full_qr_code">Votre QR code</string>
 
 </resources>

@@ -1,14 +1,16 @@
 from unittest import TestCase, main as unittest_main, mock
 from bson.objectid import ObjectId
 from app import app
+import json
 
 
 sample_user = {
-    'Id': ObjectId('5d55cffc4a3d4031f42827a3'),
-    'Username': 'LeTest',
-    'Mail': 'sendme@gmail.com',
-    'password': 'test123',
-    'Qrcode': 'TODO'
+      "Name":"Test",
+      "FirstName":"Test",
+      "Username":"LeTest",
+      "Email":"sendme@gmail.com",
+      "Password":"test123",
+      "Qrcode":"TODO"
 }
 
 
@@ -63,6 +65,89 @@ class PlaylistsTests(TestCase):
         page_content = result.get_data(as_text=True)
         self.assertIn('Hello world!', page_content)
 
+    def test_login(self):
+        result = self.client.get(f'/api/login/{sample_user["Email"]}/{sample_user["Password"]}')
+        self.assertEqual(result.status, '200 OK')
+        page_content = result.get_data(as_text=True)
+        page_content = json.loads(page_content)[0]
+        self.assertIn(sample_user['Username'], page_content['Username'])
+        self.assertIn(sample_user['Password'], page_content['Password'])
+
+    #TEST API USER /reset-password/checkemail/<email>'
+
+    #check if Response is 200
+    def test_check_email_status(self):
+
+        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com' )
+        status_code = result.status_code
+        self.assertEqual(status_code,200)
+
+    #check if content return is text
+    def test_check_email_content(self):
+         result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com' )
+         self.assertEqual(result.content_type,"text/html; charset=utf-8")
+    
+    #check for data returned
+    def test_check_email_data(self):
+
+        #Test with email in database
+        result = self.client.get('/api/users/reset-password/checkemail/Michael@Scofield.be' )
+        self.assertEqual( result.data,  b'["message: this email exist"]')
+        self.assertTrue( result.data,  b'["message: this email exist"]')
+
+        # Email Not exist
+        #Test with email is not in  database
+        false_result = self.client.get('/api/users/reset-password/checkemail/Lafranceaufrancais@Scofield.be' )
+        self.assertEqual( false_result.data,b'["message: this email does not exist"]')
+        self.assertTrue( false_result.data,  b'["message: this email exist"]')
+
+
+    
+    #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
+    #A False USER in Database with false data
+    
+    #check if Response is 200
+    def test_check_code_codestatus(self):
+
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476' )
+        status_code = result.status_code
+        self.assertEqual(status_code,200)
+
+    #check if content return is text
+    def test_check_code_content(self):
+         result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476' )
+         self.assertEqual(result.content_type,"text/html; charset=utf-8")
+    
+    #check for data returned
+    def test_check_code_data(self):
+
+        #Test with email and true code in database
+        #Good code
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/629478' )
+        self.assertEqual(result.data, b'["The code is good"]')
+        self.assertTrue(result.data, b'["The code is good"]')
+
+        # Email exist but fasle code
+        #False Code
+        #Test with email and false code  database
+        false_result = self.client.get('/api/users/reset-password/checkcode/test@api.be/11111' )
+        self.assertEqual( false_result.data,b'["code is false"]')
+        self.assertTrue( false_result.data,b'["code is false"]')
+
+
+    
+
+
+
+
+        
+
+
+    
+
+    
+
+      
 
 
 

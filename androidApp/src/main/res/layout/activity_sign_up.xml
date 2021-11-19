@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/main_title"
@@ -11,9 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/main_title"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="110dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="54dp" />
 
     <TextView
         android:id="@+id/password_title"
@@ -22,9 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/username"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="265dp"
-        tools:layout_editor_absoluteY="213dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="265dp"
+        android:layout_marginTop="203dp"
+        android:layout_marginStart="265dp" />
 
     <EditText
         android:id="@+id/username"
@@ -36,12 +41,14 @@
         android:padding="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="235dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="225dp"
         android:drawableLeft="@drawable/ic_user_icon"
         android:drawableStart="@drawable/ic_user_icon"
-        android:drawablePadding="15dp"/>
+        android:drawablePadding="15dp"
+        android:layout_marginStart="30dp" />
 
     <TextView
         android:id="@+id/subtitle_password"
@@ -50,9 +57,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/password_title"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="241dp"
-        tools:layout_editor_absoluteY="323dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="241dp"
+        android:layout_marginTop="313dp"
+        android:layout_marginStart="241dp" />
 
     <EditText
         android:id="@+id/password"
@@ -64,12 +73,14 @@
         android:padding="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="345dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="335dp"
         android:drawableLeft="@drawable/ic_password_icon"
         android:drawableStart="@drawable/ic_password_icon"
-        android:drawablePadding="15dp"/>
+        android:drawablePadding="15dp"
+        android:layout_marginStart="30dp" />
 
     <EditText
         android:id="@+id/confirm_password"
@@ -84,10 +95,12 @@
         android:padding="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="455dp"
-        android:drawablePadding="15dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="445dp"
+        android:drawablePadding="15dp"
+        android:layout_marginStart="30dp" />
 
     <TextView
         android:id="@+id/subtitle_confirm_password"
@@ -96,9 +109,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/confirm_password"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="433dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="123dp"
+        android:layout_marginTop="423dp"
+        android:layout_marginStart="123dp" />
 
     <TextView
         android:id="@+id/email_title"
@@ -107,9 +122,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/email"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="543dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="298dp"
+        android:layout_marginTop="533dp"
+        android:layout_marginStart="298dp" />
 
     <EditText
         android:id="@+id/email"
@@ -123,22 +140,25 @@
         android:padding="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints,TextFields"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="565dp"
-        android:drawablePadding="15dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="555dp"
+        android:drawablePadding="15dp"
+        android:layout_marginStart="30dp" />
 
 
     <Button
         android:id="@+id/button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="632dp"
         android:background="@drawable/sign_up_inscription_button"
         android:text="@string/inscription"
         android:textColor="@color/white"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="694dp" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
