@@ -173,3 +173,22 @@ def username_exist(username):
     return json.dumps(result)
 
 
+"""
+Verification if the email already exist
+"""
+            
+@getUsers.route('/api/users/email/<email>', methods=['GET'])
+def email_exist(email):
+    records = db.Users
+    print(email)
+    result = list(records.find({"Email" : email}))
+
+    for client in result:
+         client.pop('_id')
+    
+    print(result)
+    return json.dumps(result)
+
+
+
+
