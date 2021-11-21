@@ -109,6 +109,16 @@ class CheckCodeMail : AppCompatActivity() {
                 } else if (response[0] == "The code is good") {
 
                     Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
+                    //Chang textview through email
+                    val tvt_email_text = findViewById<TextView>(R.id.textView_email).text
+
+                    Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
+                    val i = Intent(this, UpdatePassword::class.java).apply {
+                        putExtra("Email",tvt_email_text)
+                    }
+
+                    startActivity(i)
+
 
                 } else {
 

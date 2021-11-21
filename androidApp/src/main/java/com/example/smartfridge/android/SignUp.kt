@@ -13,7 +13,7 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import org.json.JSONObject
 import android.widget.*
-import at.favre.lib.crypto.bcrypt.BCrypt
+
 import com.android.volley.*
 import com.example.smartfridge.android.Hashing.passwordHash
 

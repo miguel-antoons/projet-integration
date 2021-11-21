@@ -123,7 +123,7 @@ class PlaylistsTests(TestCase):
 
         #Test with email and true code in database
         #Good code
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/629478' )
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/897456' )
         self.assertEqual(result.data, b'["The code is good"]')
         self.assertTrue(result.data, b'["The code is good"]')
 
@@ -133,6 +133,43 @@ class PlaylistsTests(TestCase):
         false_result = self.client.get('/api/users/reset-password/checkcode/test@api.be/11111' )
         self.assertEqual( false_result.data,b'["code is false"]')
         self.assertTrue( false_result.data,b'["code is false"]')
+
+
+    #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
+   
+
+    #PUT METHODE
+
+    def test_update_password_put(self):
+        result = self.client.put('/users/reset-password/checkcode/Test@api.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+    #The email not existing
+
+    #GET METHODE
+
+    def test_email_not_exist(self):
+        result = self.client.get('/users/reset-password/checkcode/Banane@api.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+  
+        result = self.client.get('/users/reset-password/checkcode/Michael@Scofield.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+
+        result = self.client.get('/users/reset-password/checkcode//Test@gmail.com/jnjkfnkd21232' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+    #PUT METHODE
+
+    def test_update_password_put_not_email(self):
+        result = self.client.put('/users/reset-password/checkcode/BlaBlaest@api.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
 
 
 
