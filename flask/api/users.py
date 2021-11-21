@@ -173,4 +173,3 @@ def username_exist(username):
     return json.dumps(result)
 
 
-

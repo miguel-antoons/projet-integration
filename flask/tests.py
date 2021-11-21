@@ -5,12 +5,12 @@ import json
 
 
 sample_user = {
-      "Name":"Test",
-      "FirstName":"Test",
-      "Username":"LeTest",
-      "Email":"sendme@gmail.com",
-      "Password":"test123",
-      "Qrcode":"TODO"
+    "Name":"Test",
+    "FirstName":"Test",
+    "Username":"LeTest",
+    "Email":"sendme@gmail.com",
+    "Password":"test123",
+    "Qrcode":"TODO"
 }
 
 
@@ -84,9 +84,9 @@ class PlaylistsTests(TestCase):
 
     #check if content return is text
     def test_check_email_content(self):
-         result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com' )
-         self.assertEqual(result.content_type,"text/html; charset=utf-8")
-    
+        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com' )
+        self.assertEqual(result.content_type,"text/html; charset=utf-8")
+
     #check for data returned
     def test_check_email_data(self):
 
@@ -102,10 +102,10 @@ class PlaylistsTests(TestCase):
         self.assertTrue( false_result.data,  b'["message: this email exist"]')
 
 
-    
+
     #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
     #A False USER in Database with false data
-    
+
     #check if Response is 200
     def test_check_code_codestatus(self):
 
@@ -115,9 +115,9 @@ class PlaylistsTests(TestCase):
 
     #check if content return is text
     def test_check_code_content(self):
-         result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476' )
-         self.assertEqual(result.content_type,"text/html; charset=utf-8")
-    
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476' )
+        self.assertEqual(result.content_type,"text/html; charset=utf-8")
+
     #check for data returned
     def test_check_code_data(self):
 
@@ -135,23 +135,22 @@ class PlaylistsTests(TestCase):
         self.assertTrue( false_result.data,b'["code is false"]')
 
 
-    
 
 
 
 
-        
 
 
-    
 
-    
 
-      
+
+
+
+
+
 
 
 
 
 if __name__ == '__main__':
     unittest_main()
-
