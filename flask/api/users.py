@@ -156,6 +156,55 @@ def check_code_email(email,code):
             return json.dumps(message)
 
 
+
+"""
+*** API ROUTE FOR UPDATE PASSWORD  ***
+
+ --- This route is the API to UPDATE PASSWORD with his email address -- 
+
+           
+"""
+
+@getUsers.route('/api/users/reset-password/update-password/<email>/<password>', methods=['GET','PUT'])
+def update_password(email,password):
+
+    if request.method == 'GET':
+        #Check email address
+        email_exist = list(users.find({"Email" : email}))
+        print(email_exist)
+
+        if email_exist:
+            return json.dumps("Bonsoir Paris")
+
+        else:
+            return "Email does not exist "
+
+    elif request.method == 'PUT':
+
+        #Check email address
+        email_exist = list(users.find({"Email" : email}))
+        print(email_exist)
+
+        if email_exist:
+
+            #Update the code via email
+            users.find_one_and_update(
+            {"Email" : email},
+            {"$set":
+                {"Password": password}
+            },upsert=True
+
+             )
+
+
+            return json.dumps(["Password Update IS ok"])
+        else:
+            return json.dumps(["Email does not exist "])
+
+
+
+
+
            
 """
 Verification if the username already exist
