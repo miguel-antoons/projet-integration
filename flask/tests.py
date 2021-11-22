@@ -149,6 +149,17 @@ class PlaylistsTests(TestCase):
                 # Check if food.find() was called
                 MockFood.find.assert_called()
 
+    def test_post_food(self):
+        # Mock the food value in ./api.food.py
+        with unittest.mock.patch('api.food.food') as MockFood:
+            # Force the return value of food.insert_one(json) to sample_food
+            MockFood.insert_one.return_value = sample_food
+            with self.client.post("/api/addFood", json=sample_food[0]) as res:
+                # Check if food.insert_one(json) was called
+                MockFood.insert_one.assert_called()
+                self.assertEqual(res.status_code, 200)
+                self.assertEqual(res.data, b'{"Response":"Food was added"}\n')
+
 
     #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
    
