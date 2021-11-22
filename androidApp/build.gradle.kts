@@ -41,6 +41,7 @@ dependencies {
     testImplementation("androidx.test.espresso:espresso-core:3.4.0")
     testImplementation("androidx.test.espresso:espresso-intents:3.4.0")
     testImplementation("org.apache.httpcomponents:httpclient:4.5.6")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.6.0")
 }
 
 
