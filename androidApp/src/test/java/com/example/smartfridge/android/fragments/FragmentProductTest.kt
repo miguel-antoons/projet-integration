@@ -13,7 +13,6 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.smartfridge.android.*
-
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,15 +26,16 @@ class FragmentProductTest {
     @Before
     fun setUp() {
         val scenario = launchActivity<MainActivity>()
-        ProductRepository.addProductFromForm(
-                productTestName,
-                3,
-                "3 / 5 / 2026",
-                "testCat",
-                productTestLocation
-        )
 
         scenario.onActivity { it.setCurrentFragment(FragmentProduct(it)) }
+
+        ProductRepository.addProductFromForm(
+            productTestName,
+            3,
+            "03/05/2026",
+            "testCat",
+            productTestLocation
+        )
     }
 
     @Test

@@ -1,26 +1,16 @@
 package com.example.smartfridge.android.fragments
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.*
-import com.example.smartfridge.android.api.NutritionValues
-import org.json.JSONArray
-import org.json.JSONTokener
 
 
 class FragmentProduct(private val context: MainActivity) : Fragment() {

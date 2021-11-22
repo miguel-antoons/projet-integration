@@ -52,10 +52,6 @@ class ProductRepositoryTest {
                 testDates[index]
             )
 
-            // then convert it back to a 'Date' object
-            // (this has been done in order to get midnight time)
-            val currentDate = dateFormatter.parse(stringDate)
-
             // test the add function of the 'ProductRepository' object
             val productIndex = ProductRepository.addProductFromForm(
                 testNames[index],
@@ -96,10 +92,6 @@ class ProductRepositoryTest {
             val stringDate = localeDateFormatter.format(
                 testDates[index]
             )
-
-            // then convert it back to a 'Date' object
-            // (this has been done in order to get midnight time)
-            val currentDate = dateFormatter.parse(stringDate)
 
             // test the add function of the 'ProductRepository' object
             ProductRepository.modifyProduct(
