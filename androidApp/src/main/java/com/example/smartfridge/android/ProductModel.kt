@@ -1,7 +1,6 @@
 package com.example.smartfridge.android
 
 import com.example.smartfridge.android.api.NutritionValues
-import java.util.*
 
 // all the items that defines a product along with some default values
 class ProductModel(
@@ -35,7 +34,7 @@ class ProductModel(
     ) {
         this.name = productName
         this.quantity = productQuantity
-        this.expirationDate = productExpirationDate.toString()
+        this.expirationDate = productExpirationDate
         this.expirationPeriod = productExpirationPeriod
         this.category = productCategory
         this.location = productLocation

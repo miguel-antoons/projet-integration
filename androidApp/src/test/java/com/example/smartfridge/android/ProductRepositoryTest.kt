@@ -1,9 +1,14 @@
 package com.example.smartfridge.android
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.common.truth.Truth.assertThat
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mockito.anyInt
+import org.mockito.kotlin.doNothing
+import org.mockito.kotlin.mock
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -25,10 +30,18 @@ class ProductRepositoryTest {
     private val testColors = arrayOf("#000000", "#FF0000", "#00A00F")
 
     // variable converts string dates to a 'Date' object
-    private val dateFormatter = SimpleDateFormat("d / M / yyyy", Locale.getDefault())
+    private val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
     // variable converts 'LocalDate' object to string date with given format
-    private val localeDateFormatter = DateTimeFormatter.ofPattern("d / M / yyyy")
+    private val localeDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+    @Before
+    fun setUp() {
+        val adapter = mock<ProductAdapter>()
+
+        doNothing().`when`(adapter).notifyItemInserted(anyInt())
+        ProductRepository.addProductAdapter(adapter)
+    }
 
     @Test
     fun `Adding products to productList`() {
@@ -58,7 +71,7 @@ class ProductRepositoryTest {
             // verify all of the inserted values
             assertThat(testElement.name).isEqualTo(testNames[index])
             assertThat(testElement.quantity).isEqualTo(testQuantities[index])
-            assertThat(testElement.expirationDate).isEqualTo(currentDate)
+            assertThat(testElement.expirationDate).isEqualTo(stringDate)
             assertThat(testElement.expirationPeriod).isEqualTo(testPeriods[index])
             assertThat(testElement.category).isEqualTo(testCategories[index])
             assertThat(testElement.location).isEqualTo(testLocations[index])
@@ -104,7 +117,7 @@ class ProductRepositoryTest {
             // verify all of the inserted values
             assertThat(testElement.name).isEqualTo(testNames[index])
             assertThat(testElement.quantity).isEqualTo(testQuantities[index])
-            assertThat(testElement.expirationDate).isEqualTo(currentDate)
+            assertThat(testElement.expirationDate).isEqualTo(stringDate)
             assertThat(testElement.expirationPeriod).isEqualTo(testPeriods[index])
             assertThat(testElement.category).isEqualTo(testCategories[index])
             assertThat(testElement.location).isEqualTo(testLocations[index])

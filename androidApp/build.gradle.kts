@@ -12,7 +12,6 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
-    implementation("androidx.test.espresso:espresso-contrib:3.4.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Hashing password
@@ -32,7 +31,7 @@ dependencies {
     //Gson
     implementation("com.google.code.gson:gson:2.8.9")
 
-
+    testImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
     testImplementation("com.google.truth:truth:1.1")
     testImplementation("androidx.test:core-ktx:1.4.0")
     testImplementation("androidx.test.ext:junit-ktx:1.1.3")
@@ -42,6 +41,8 @@ dependencies {
     testImplementation("androidx.test.espresso:espresso-intents:3.4.0")
     testImplementation("org.apache.httpcomponents:httpclient:4.5.6")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.6.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.mockito:mockito-inline:2.13.0")
 }
 
 

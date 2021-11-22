@@ -51,7 +51,7 @@ object ProductRepository {
         productList.add(ProductModel(
             productName,
             productQuantity,
-            expirationDate.toString(),
+            productExpirationDate,
             expirationPeriod,
             productCategory,
             productLocation,
@@ -251,7 +251,7 @@ object ProductRepository {
      * represents.
      * return examples : '2 ans', '9 mois', '1 jour', ...
      */
-    fun convertDifferenceToString(dateDifference: Long): String {
+    private fun convertDifferenceToString(dateDifference: Long): String {
         when {
             // check if the period is greater than a year
             dateDifference >= 365 -> {
