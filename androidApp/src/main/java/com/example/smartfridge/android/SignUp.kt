@@ -4,6 +4,9 @@ import android.content.ContentValues.TAG
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
+import android.renderscript.ScriptGroup
+import android.text.InputType
+import android.text.Selection.setSelection
 import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
@@ -29,15 +32,41 @@ class SignUp : AppCompatActivity() {
     // Initialisation of the data for the form
     lateinit var etUsername : EditText
     lateinit var etPassword : EditText
+    lateinit var etCheckBox1: CheckBox
+    lateinit var etCheckBox2: CheckBox
     lateinit var etConfirmPassword : EditText
     lateinit var etEmail : EditText
-    lateinit var etHashed : EditText
     private val MIN_PASSWORD_LENGTH = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        etPassword = findViewById(R.id.password)
+        etConfirmPassword = findViewById(R.id.confirm_password)
+        etCheckBox1 = findViewById(R.id.checkBox1)
+        etCheckBox2 = findViewById(R.id.checkBox2)
+
+
+        etCheckBox1.setOnCheckedChangeListener { _, isChecked1 ->
+            if (isChecked1) {
+                etPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            }
+            else {
+                etPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                etPassword.setSelection(etPassword.getText().length)
+            }
+        }
+
+        etCheckBox2.setOnCheckedChangeListener { _, isChecked2 ->
+            if (isChecked2) {
+                etConfirmPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            }
+            else {
+                etConfirmPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                etConfirmPassword.setSelection(etConfirmPassword.getText().length)
+            }
+        }
 
         // Button of validation / execute the validation of all the fields and call the function performSignUp()
         val buttonReturnUser = findViewById<Button>(R.id.button)
