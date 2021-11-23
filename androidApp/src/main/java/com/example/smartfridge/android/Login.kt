@@ -3,6 +3,7 @@ package com.example.smartfridge.android
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,8 @@ class Login : AppCompatActivity() {
         val signInButton = findViewById<Button>(R.id.buttonLogin)
         val signUpButton = findViewById<Button>(R.id.buttonRegister)
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
-        val rememberMe = findViewById<CheckBox>(R.id.rememberMe)
+        val showPassword = findViewById<CheckBox>(R.id.showPassword)
+
 
         // pre-load email and password if the rememberMe check box is checked
         loadData()
@@ -56,6 +58,17 @@ class Login : AppCompatActivity() {
             // start MainActivity
             startActivity(monIntent)
             Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+        }
+
+        // show or hide password
+        showPassword.setOnCheckedChangeListener { _, isChecked1 ->
+            if (isChecked1) {
+                passwordLayout.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            }
+            else {
+                passwordLayout.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                passwordLayout.setSelection(passwordLayout.getText().length)
+            }
         }
 
     }
