@@ -33,7 +33,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         qrCode(view)
 
-        val username = view.findViewById<TextView>(R.id.username)
+        val username = view.findViewById<TextView>(R.id.usernameSettings)
         username.setText(loadUsername())
 
         return view
