@@ -10,6 +10,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UpdatePassword"
+            android:exported="false" />
+        <activity
             android:name=".SignUp"
             android:exported="true" />
         <activity

@@ -1,8 +1,8 @@
-from unittest import TestCase, main as unittest_main, mock
-from bson.objectid import ObjectId
+import unittest.mock
+from unittest import TestCase, main as unittest_main
 from app import app
 import json
-
+from unittest.mock import patch
 
 sample_user = {
     "Name":"Test",
@@ -15,11 +15,12 @@ sample_user = {
 
 
 
-sample_food = {
-    'Utilisateur' : sample_user,
+sample_food = [{
+    '_id' : "Don't matter",
+    'Utilisateur' : "999",
     'Nom': 'Danette Vanille',
     'Marque': 'Danone',
-    'Quantité': 4,
+    'Quantite': 4,
     'ingredients': [
         'lait entier',
         'lait écrémé reconstitué à base de lait en poudre',
@@ -32,8 +33,8 @@ sample_food = {
         'arôme (lait)',
         'colorant (bêta-carotène)'
     ],
-    'Date de péremption': '20/12/2021',
-    'Valeurs nutrionelles pour 100g': {
+    'Date': '20/12/2021',
+    'Valeurs': {
         'Energie': '107 kcal',
         'Matières grasses': '3,0g',
         'Glucides': '17,1g',
@@ -41,9 +42,10 @@ sample_food = {
         'Sel': '0,14g'
     },
     'Poids': '125g',
-    'Lieu': 'Frigo'
+    'Lieu': 'Frigo',
+    'Category': "Produit laitiers"
 
-}
+}]
 
 class PlaylistsTests(TestCase):
     """Flask tests.
@@ -123,7 +125,7 @@ class PlaylistsTests(TestCase):
 
         #Test with email and true code in database
         #Good code
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/629478' )
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/897456' )
         self.assertEqual(result.data, b'["The code is good"]')
         self.assertTrue(result.data, b'["The code is good"]')
 
@@ -133,6 +135,67 @@ class PlaylistsTests(TestCase):
         false_result = self.client.get('/api/users/reset-password/checkcode/test@api.be/11111' )
         self.assertEqual( false_result.data,b'["code is false"]')
         self.assertTrue( false_result.data,b'["code is false"]')
+
+    def test_get_food(self):
+        # Mock the food value in ./api.food.py
+        with unittest.mock.patch('api.food.food') as MockFood:
+            # Force the return value of food.find() to sample_food
+            MockFood.find.return_value = sample_food
+            with self.client.get("/api/getFood") as res:
+                resultat = res.data
+                final = resultat.decode('unicode-escape')
+                self.assertEqual(res.status_code, 200)
+                self.assertEqual(final, '[{"Category":"Produit laitiers","Date":"20/12/2021","Lieu":"Frigo","Marque":"Danone","Nom":"Danette Vanille","Poids":"125g","Quantite":4,"Utilisateur":"999","Valeurs":{"Energie":"107 kcal","Glucides":"17,1g","Matières grasses":"3,0g","Proteines":"3g","Sel":"0,14g"},"ingredients":["lait entier","lait écrémé reconstitué à base de lait en poudre","sucre","crème","lait écrémé concentré ou en poudre","épaississants (amidon modifié, carraghénanes)","perméat de petit lait (lactosérum) en poudre","amidon","arôme (lait)","colorant (bêta-carotène)"]}]\n')
+                # Check if food.find() was called
+                MockFood.find.assert_called()
+
+    def test_post_food(self):
+        # Mock the food value in ./api.food.py
+        with unittest.mock.patch('api.food.food') as MockFood:
+            # Force the return value of food.insert_one(json) to sample_food
+            MockFood.insert_one.return_value = sample_food
+            with self.client.post("/api/addFood", json=sample_food[0]) as res:
+                # Check if food.insert_one(json) was called
+                MockFood.insert_one.assert_called()
+                self.assertEqual(res.status_code, 200)
+                self.assertEqual(res.data, b'{"Response":"Food was added"}\n')
+
+
+    #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
+   
+
+    #PUT METHODE
+
+    def test_update_password_put(self):
+        result = self.client.put('/users/reset-password/checkcode/Test@api.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+    #The email not existing
+
+    #GET METHODE
+
+    def test_email_not_exist(self):
+        result = self.client.get('/users/reset-password/checkcode/Banane@api.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+  
+        result = self.client.get('/users/reset-password/checkcode/Michael@Scofield.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+
+        result = self.client.get('/users/reset-password/checkcode//Test@gmail.com/jnjkfnkd21232' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
+
+    #PUT METHODE
+
+    def test_update_password_put_not_email(self):
+        result = self.client.put('/users/reset-password/checkcode/BlaBlaest@api.be/JesuisBanane12234TEST' )
+        status_code = result.status_code
+        self.assertEqual(status_code,404)
 
 
 
