@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.example.smartfridge.android.Hashing.passwordHash
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.*
+import java.util.regex.Pattern
 import kotlin.system.*
 
 /**
@@ -40,22 +41,27 @@ class SignUp : AppCompatActivity() {
     lateinit var etPassword: EditText
     lateinit var etConfirmPassword: EditText
     lateinit var etEmail: EditText
-    lateinit var etHashed: EditText
     lateinit var etCheckBox1: CheckBox
     lateinit var etCheckBox2: CheckBox
 
-    private val MIN_PASSWORD_LENGTH = 6
+    private val MIN_PASSWORD_LENGTH = 8
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        // Get all the data from the form fields with the method findViewById
         etPassword = findViewById(R.id.password)
         etConfirmPassword = findViewById(R.id.confirm_password)
         etCheckBox1 = findViewById(R.id.checkBox1)
         etCheckBox2 = findViewById(R.id.checkBox2)
 
-
+        /**
+         * etCheckBox1 and etCheckBox2 allows the user the show his password or instead hide it.
+         * To do that, a little checkbox is put juste on the right of the field form.
+         * If it is checked, the password is in clear, if not it is hide.
+         */
         etCheckBox1.setOnCheckedChangeListener { _, isChecked1 ->
             if (isChecked1) {
                 etPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -84,40 +90,75 @@ class SignUp : AppCompatActivity() {
             etConfirmPassword = findViewById(R.id.confirm_password)
             etEmail = findViewById(R.id.email)
 
+            // If the validation of all the fields form returns true :
             if (validateInput()) {
                 isUsernameExist(etUsername.text.toString())
             }
         }
     }
 
-    // Checking if the input in form is valid
+
+    /**
+     * This function is tested just before the API request (POST).
+     * It checks all the fields of the sign up form and return, after checking all of them, a boolean.
+     * True if all the fields are correct, and false if it isn't.
+     *
+     * Checked :
+     * - Username : not empty
+     * - Password : minimum of 8 characters, contains at least one uppercase - lowercase - digit
+     * - Confirm password : is equal to password
+     * - Email : the right format
+     */
     private fun validateInput(): Boolean {
+
+        val uppercase = Pattern.compile("[A-Z]")
+        val lowercase = Pattern.compile("[a-z]")
+        val digit = Pattern.compile("[0-9]")
+
         if (etUsername.text.toString() == "") {
-            etUsername.setError("Please enter a username !")
+            etUsername.setError("Veuillez entrer un username !")
             return false
         }
         // Password
         if (etPassword.text.toString() == "") {
-            etPassword.setError("Please enter a password !")
+            etPassword.setError("Veuillez entrer un mot de passe !")
         }
         // Same password / verification
         if (etConfirmPassword.text.toString() == "") {
-            etConfirmPassword.setError("Please enter a password !")
+            etConfirmPassword.setError("Veuillez entrer un mot de passe !")
         }
         // Email checking
         if (etEmail.text.toString() == "") {
-            etEmail.setError("Please enter an email !")
+            etEmail.setError("Veuillez entrer un email !")
         }
 
-        // Checking minimum password length
+        // Checking if the password contains or not at least one lowercase
+        if (!lowercase.matcher(etPassword.text.toString()).find()) {
+            etPassword.setError("Doit contenir au moins une majuscule !")
+            return false
+        }
+
+        // Checking if the password contains or not at least one uppercase
+        if (!uppercase.matcher(etPassword.text.toString()).find()) {
+            etPassword.setError("Doit contenir au moins une minuscule !")
+            return false
+        }
+
+        // Checking if the password contains or not at least one lowercase
+        if (!digit.matcher(etPassword.text.toString()).find()) {
+            etPassword.setError("Doit contenir au moins un chiffre !")
+            return false
+        }
+
+        // Checking minimum password length, in this case minimum of 8 characters
         if (etPassword.text.length < MIN_PASSWORD_LENGTH) {
-            etPassword.setError("Password length must be more than " + MIN_PASSWORD_LENGTH + "characters")
+            etPassword.setError("La longueur du mot de passe doit contenir au moins " + MIN_PASSWORD_LENGTH + " charactères")
             return false
         }
 
         // Checking if repeat password is same
         if (!etPassword.text.toString().equals(etConfirmPassword.text.toString())) {
-            etConfirmPassword.setError("Password does not match !")
+            etConfirmPassword.setError("La mot de passe ne correspond pas !")
             return false
         }
 
@@ -126,10 +167,13 @@ class SignUp : AppCompatActivity() {
             etEmail.setError("Please enter a valid email !")
             return false
         }
-
         return true
     }
 
+    /**
+     * This function with the help of a GET API, will check if the password that the user put in the field is the
+     * same as one in the database MongoDB. If it is the case, an error is generated.
+     */
     private fun isUsernameExist(username: String) {
 
         val url = "http://10.0.2.2:5000/api/users/$username"
@@ -157,6 +201,9 @@ class SignUp : AppCompatActivity() {
         queue.add(jsonObjectRequest)
     }
 
+    /**
+     * Same for the Email ...
+     */
     private fun isEmailExist(email: String){
 
         val url = "http://10.0.2.2:5000/api/users/email/$email"
@@ -183,7 +230,6 @@ class SignUp : AppCompatActivity() {
         )
         queue.add(jsonObjectRequest)
     }
-
 
     // Determine if the email is valid or not -> return a boolean : true or false
     private fun isEmailValid(email: String): Boolean {
