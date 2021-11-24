@@ -10,4 +10,4 @@ def add_user():
         
         req = request.get_json(force=True)
         users.insert_one(req)
-        return "user added"
+        return "{state : 200}"

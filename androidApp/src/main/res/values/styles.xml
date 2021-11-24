@@ -72,7 +72,7 @@
 
     <!-- Main title of the page sign up -->
     <style name="main_title_sign_up_page">
-        <item name="android:textSize">38sp</item>
+        <item name="android:textSize">30dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/darkGreen</item>
 

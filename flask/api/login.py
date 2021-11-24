@@ -13,4 +13,5 @@ def client_login(email):
         for client in result:
             client.pop('_id')
         
+        print(json.dumps(result))
         return json.dumps(result)

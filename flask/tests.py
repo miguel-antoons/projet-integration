@@ -8,15 +8,19 @@ import json
 from unittest.mock import patch
 
 sample_user = {
-    "Name":"Test",
-    "FirstName":"Test",
-    "Username":"LeTest",
-    "Email":"sendme@gmail.com",
-    "Password":"test123",
-    "Qrcode":"TODO"
+    "Name": "Test",
+    "FirstName": "Test",
+    "Username": "LeTest",
+    "Email": "sendme@gmail.com",
+    "Password": "test123",
+    "Qrcode": "TODO"
 }
 
-
+sample_user_sign_up = {
+    "Username": "LeTest",
+    "Password": "Test1234",
+    "Email": "sendme@gmail.com"
+}
 
 sample_food = [{
     "_id": {
@@ -52,6 +56,7 @@ sample_food = [{
 
 }]
 
+
 class PlaylistsTests(TestCase):
     """Flask tests.
     https://makeschool.org/mediabook/oa/tutorials/playlistr-video-playlists-with-flask-and-mongodb-1c/adding-tests/
@@ -80,66 +85,61 @@ class PlaylistsTests(TestCase):
         self.assertIn(sample_user['Username'], page_content['Username'])
         self.assertIn(sample_user['Password'], page_content['Password'])
 
-    #TEST API USER /reset-password/checkemail/<email>'
+    # TEST API USER /reset-password/checkemail/<email>'
 
-    #check if Response is 200
+    # check if Response is 200
     def test_check_email_status(self):
-
-        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com' )
+        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com')
         status_code = result.status_code
-        self.assertEqual(status_code,200)
+        self.assertEqual(status_code, 200)
 
-    #check if content return is text
+    # check if content return is text
     def test_check_email_content(self):
-        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com' )
-        self.assertEqual(result.content_type,"text/html; charset=utf-8")
+        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com')
+        self.assertEqual(result.content_type, "text/html; charset=utf-8")
 
-    #check for data returned
+    # check for data returned
     def test_check_email_data(self):
-
-        #Test with email in database
-        result = self.client.get('/api/users/reset-password/checkemail/Michael@Scofield.be' )
-        self.assertEqual( result.data,  b'["message: this email exist"]')
-        self.assertTrue( result.data,  b'["message: this email exist"]')
+        # Test with email in database
+        result = self.client.get('/api/users/reset-password/checkemail/Michael@Scofield.be')
+        self.assertEqual(result.data, b'["message: this email exist"]')
+        self.assertTrue(result.data, b'["message: this email exist"]')
 
         # Email Not exist
-        #Test with email is not in  database
-        false_result = self.client.get('/api/users/reset-password/checkemail/Lafranceaufrancais@Scofield.be' )
-        self.assertEqual( false_result.data,b'["message: this email does not exist"]')
-        self.assertTrue( false_result.data,  b'["message: this email exist"]')
+        # Test with email is not in  database
+        false_result = self.client.get(
+            '/api/users/reset-password/checkemail/Lafranceaufrancais@Scofield.be')
+        self.assertEqual(false_result.data, b'["message: this email does not exist"]')
+        self.assertTrue(false_result.data, b'["message: this email exist"]')
 
+    # TEST API USER /api/users/reset-password/checkcode/<email>/<code>
+    # A False USER in Database with false data
 
-
-    #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
-    #A False USER in Database with false data
-
-    #check if Response is 200
+    # check if Response is 200
     def test_check_code_codestatus(self):
-
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476' )
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476')
         status_code = result.status_code
-        self.assertEqual(status_code,200)
+        self.assertEqual(status_code, 200)
 
-    #check if content return is text
+    # check if content return is text
     def test_check_code_content(self):
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476' )
-        self.assertEqual(result.content_type,"text/html; charset=utf-8")
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476')
+        self.assertEqual(result.content_type, "text/html; charset=utf-8")
 
-    #check for data returned
+    # check for data returned
     def test_check_code_data(self):
-
-        #Test with email and true code in database
-        #Good code
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/897456' )
+        # Test with email and true code in database
+        # Good code
+        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/897456')
         self.assertEqual(result.data, b'["The code is good"]')
         self.assertTrue(result.data, b'["The code is good"]')
 
         # Email exist but fasle code
-        #False Code
-        #Test with email and false code  database
-        false_result = self.client.get('/api/users/reset-password/checkcode/test@api.be/11111' )
-        self.assertEqual( false_result.data,b'["code is false"]')
-        self.assertTrue( false_result.data,b'["code is false"]')
+        # False Code
+        # Test with email and false code  database
+        false_result = self.client.get('/api/users/reset-password/checkcode/test@api.be/11111')
+        self.assertEqual(false_result.data, b'["code is false"]')
+        self.assertTrue(false_result.data, b'["code is false"]')
 
     def test_get_food(self):
         # Mock the food value in ./api.food.py
@@ -150,7 +150,8 @@ class PlaylistsTests(TestCase):
                 resultat = res.data
                 final = resultat.decode('unicode-escape')
                 self.assertEqual(res.status_code, 200)
-                self.assertEqual(final, '[{"Category":"Produit laitiers","Date":"20/12/2021","Lieu":"Frigo","Marque":"Danone","Nom":"Danette Vanille","Poids":"125g","Quantite":4,"Utilisateur":"999","Valeurs":{"Energie":"107 kcal","Glucides":"17,1g","Matières grasses":"3,0g","Proteines":"3g","Sel":"0,14g"},"ingredients":["lait entier","lait écrémé reconstitué à base de lait en poudre","sucre","crème","lait écrémé concentré ou en poudre","épaississants (amidon modifié, carraghénanes)","perméat de petit lait (lactosérum) en poudre","amidon","arôme (lait)","colorant (bêta-carotène)"]}]\n')
+                self.assertEqual(final,
+                                 '[{"Category":"Produit laitiers","Date":"20/12/2021","Lieu":"Frigo","Marque":"Danone","Nom":"Danette Vanille","Poids":"125g","Quantite":4,"Utilisateur":"999","Valeurs":{"Energie":"107 kcal","Glucides":"17,1g","Matières grasses":"3,0g","Proteines":"3g","Sel":"0,14g"},"ingredients":["lait entier","lait écrémé reconstitué à base de lait en poudre","sucre","crème","lait écrémé concentré ou en poudre","épaississants (amidon modifié, carraghénanes)","perméat de petit lait (lactosérum) en poudre","amidon","arôme (lait)","colorant (bêta-carotène)"]}]\n')
                 # Check if food.find() was called
                 MockFood.find.assert_called()
 
@@ -165,40 +166,54 @@ class PlaylistsTests(TestCase):
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{"Response":"Food was added"}\n')
 
+    # Testing of Mock on the POST SignUp User
+    def test_post_user(self):
+        # Mock the user values in ./api.users.py
+        with unittest.mock.patch('api.users.users') as MockUser:
+            # Force the return value of users.insert_one(req) to sample_user
+            MockUser.insert_one.return_value = sample_user_sign_up
+            with self.client.post("/api/addUser", json=sample_user_sign_up) as res:
+                # Check if users.insert_one(json) was called
+                MockUser.insert_one.assert_called()
+                self.assertEqual(res.status_code, 200)
+                self.assertEqual(res.data, b'{"Response":"User is added"}\n')
 
-    #TEST API USER /api/users/reset-password/checkcode/<email>/<code>
-   
 
-    #PUT METHODE
+
+    # TEST API USER /api/users/reset-password/checkcode/<email>/<code>
+
+    # PUT METHODE
 
     def test_update_password_put(self):
-        result = self.client.put('/users/reset-password/checkcode/Test@api.be/JesuisBanane12234TEST' )
+        result = self.client.put(
+            '/users/reset-password/checkcode/Test@api.be/JesuisBanane12234TEST')
         status_code = result.status_code
-        self.assertEqual(status_code,404)
+        self.assertEqual(status_code, 404)
 
-    #The email not existing
+    # The email not existing
 
-    #GET METHODE
+    # GET METHODE
 
     def test_email_not_exist(self):
-        result = self.client.get('/users/reset-password/checkcode/Banane@api.be/JesuisBanane12234TEST' )
+        result = self.client.get(
+            '/users/reset-password/checkcode/Banane@api.be/JesuisBanane12234TEST')
         status_code = result.status_code
-        self.assertEqual(status_code,404)
+        self.assertEqual(status_code, 404)
 
-  
-        result = self.client.get('/users/reset-password/checkcode/Michael@Scofield.be/JesuisBanane12234TEST' )
+        result = self.client.get(
+            '/users/reset-password/checkcode/Michael@Scofield.be/JesuisBanane12234TEST')
         status_code = result.status_code
-        self.assertEqual(status_code,404)
+        self.assertEqual(status_code, 404)
 
-
-        result = self.client.get('/users/reset-password/checkcode//Test@gmail.com/jnjkfnkd21232' )
+        result = self.client.get('/users/reset-password/checkcode//Test@gmail.com/jnjkfnkd21232')
         status_code = result.status_code
-        self.assertEqual(status_code,404)
+        self.assertEqual(status_code, 404)
 
-    #PUT METHODE
+    # PUT METHODE
 
     def test_update_password_put_not_email(self):
-        result = self.client.put('/users/reset-password/checkcode/BlaBlaest@api.be/JesuisBanane12234TEST' )
+        result = self.client.put(
+            '/users/reset-password/checkcode/BlaBlaest@api.be/JesuisBanane12234TEST')
         status_code = result.status_code
         self.assertEqual(status_code,404)
 
@@ -221,18 +236,6 @@ class PlaylistsTests(TestCase):
                 MockFood.insert_one.assert_called()
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{"Response":"Food was updated"}\n')
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

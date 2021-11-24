@@ -31,10 +31,20 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        val disconnect: Button = view.findViewById(R.id.disconnect)
+
+        // create qrCode
         qrCode(view)
 
-        val username = view.findViewById<TextView>(R.id.username)
+        val username = view.findViewById<TextView>(R.id.usernameSettings)
         username.setText(loadUsername())
+
+        // This little lines of code set an action to the button (onClickListener)
+        disconnect.setOnClickListener{
+            deleteData();
+            val intent = Intent(context, Login::class.java);
+            startActivity(intent);
+        }
 
         return view
 
@@ -70,5 +80,16 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         } catch (e : WriterException) {
             e.printStackTrace()
         }
+    }
+
+    // save email and password locally
+    private fun deleteData() {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putString("EMAIL", "Email")
+            putString("PASSWORD", "Password")
+            putString("USERNAME", "Username")
+        }.apply()
     }
 }
