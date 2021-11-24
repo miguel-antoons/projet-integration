@@ -2,12 +2,16 @@ package com.example.smartfridge.android
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.api.NutritionValues
 import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import org.json.JSONTokener
 import java.time.LocalDate
 import java.time.ZoneId
@@ -30,7 +34,7 @@ object ProductRepository {
      */
     fun addProductFromForm(
         productName: String,
-        productQuantity: Int,
+        productQuantity: String,
         productExpirationDate: String,
         productCategory: String,
         productLocation: String) {
@@ -60,50 +64,136 @@ object ProductRepository {
     }
 
     /**
-     * Function performs all the necessary actions to update a product from the product list.
-     * It was written specifically to work with a form to add a product
-     * (cf. './FormsAddAliments.kt') but could be used for other purposes.
+     * Function performs all the necessary actions to update a product in the database
+     * First step post request with new data in form and send product id in url
+     * Second step delete product in db that match with id
+     * Final step add new product with data
      */
     fun modifyProduct(
-        productIndex: Int,
-        productName: String,
-        productQuantity: Int,
-        productExpirationDate: String,
-        productCategory: String,
-        productLocation: String
+        context: Context,
+        productPosition: Int,
+        Utilisateur: String,
+        Nom: String,
+        Marque: String,
+        Quantite: String,
+        Ingredients: List<String>,
+        Date: String,
+        Valeurs: NutritionValues,
+        Poids: String,
+        Lieu: String,
+        Category: String,
+        productId: String
     ) {
-        // get 'Date' object from string date
-        val expirationDate = convertToDate(productExpirationDate)
-        // get the difference between today and expiration date in Long format
-        val dateDifference = getDateDifference(expirationDate)
-        // get the expiration period (i.e. '3 days')
-        val expirationPeriod = convertDifferenceToString(dateDifference)
-        // get the product color
-        val productColor = getProductColor(dateDifference)
+        val url = "http://10.0.2.2:5000/api/modifyFood/$productId"
+        val requestQueue = Volley.newRequestQueue(context)
+        val postData = JSONObject()
+        try {
+            postData.put("Utilisateur", Utilisateur)
+            postData.put("Nom", Nom)
+            postData.put("Marque", Marque)
+            postData.put("Quantite", Quantite)
+            postData.put("Ingredients", Ingredients.joinToString())
+            postData.put("Date", Date)
+            postData.put("Valeurs", Valeurs)
+            postData.put("Poids", Poids)
+            postData.put("Lieu", Lieu)
+            postData.put("Categorie", Category)
 
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url, postData,
+            { response ->
+                println(response)
+
+                // call the get api here in order to make sure it is called after the new
+                // product was added
+                getFoodFromMongo(context)
+            }
+        ) { error -> error.printStackTrace() }
+        requestQueue.add(jsonObjectRequest)
+        Toast.makeText(context ,
+            "Produit modifié", Toast.LENGTH_LONG).show();
+
+
+       /**
         // update the product with a method from the 'ProductModel' class
-        productList[productIndex].updateProduct(
-            productName,
-            productQuantity,
+        productList[productPosition].updateProduct(
+            Nom,
+            Quantite,
             expirationDate,
             expirationPeriod,
-            productCategory,
-            productLocation,
-            productColor
+            Category,
+            Lieu,
+            productColor,
+            Ingredients,
+            Valeurs,
+            Poids,
+            Marque,
+            Utilisateur
         )
+        */
 
         // notify that an item was changed inside the list
         // this will update the FragmentProduct page
-        productAdapter.notifyItemChanged(productIndex)
+        productAdapter.notifyItemChanged(productPosition)
     }
 
     // deletes an element from productList at a given index (productPosition)
-    fun deleteProduct(productPosition: Int) {
+    fun deleteProduct(
+        productPosition: Int,
+        context: Context,
+        Utilisateur: String,
+        Nom: String,
+        Marque: String,
+        Quantite: String,
+        Ingredients: List<String>,
+        Date: String,
+        Valeurs: NutritionValues,
+        Poids: String,
+        Lieu: String,
+        Category: String) {
         productList.removeAt(productPosition)
+        // API DELETE
+        val postUrl = "http://10.0.2.2:5000/api/removeFood"
+        val requestQueue = Volley.newRequestQueue(context)
+
+        val deleteData = JSONObject()
+        try {
+            deleteData.put("Utilisateur", Utilisateur)
+            deleteData.put("Nom", Nom)
+            deleteData.put("Marque", Marque)
+            deleteData.put("Quantite", Quantite)
+            deleteData.put("Ingredients", Ingredients.joinToString())
+            deleteData.put("Date", Date)
+            deleteData.put("Valeurs", Valeurs)
+            deleteData.put("Poids", Poids)
+            deleteData.put("Lieu", Lieu)
+            deleteData.put("Categorie", Category)
+
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, postUrl, deleteData,
+            { response ->
+                println(response)
+            }
+        ) { error -> error.printStackTrace() }
+        requestQueue.add(jsonObjectRequest)
+        Toast.makeText(context ,
+            "Produit supprimé", Toast.LENGTH_LONG).show();
 
         // notify that an item was removed
         // this will update the FragmentProduct page
         productAdapter.notifyItemRemoved(productPosition)
+
+        // call the get api here in order to make sure it is called after the new
+        // product was added
+         getFoodFromMongo(context)
     }
 
 
@@ -124,7 +214,7 @@ object ProductRepository {
         // convert expiration date to 'LocalDate' type
         val expirationLocalDate = LocalDate.parse(
             stringDate,
-            DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            DateTimeFormatter.ofPattern("d/M/yyyy")
         )
 
         // converting expiration date to 'Date' type and returning it
@@ -176,7 +266,7 @@ object ProductRepository {
             dateDifference >= 30 -> {
                 // calculate the number of months
                 val monthDifference: Int = (dateDifference / 30).toInt()
-                return "$monthDifference month"
+                return "$monthDifference mois"
             }
             // check eventually if the period is greater than a day
             dateDifference > 0 -> {
@@ -236,22 +326,25 @@ object ProductRepository {
                     val expirationPeriod = convertDifferenceToString(dateDifference)
                     productList.add(
                         ProductModel(
+                            id = jsonArray.getJSONObject(i).getString("_id"),
                             name = jsonArray.getJSONObject(i).getString("Nom"),
-                            quantity = jsonArray.getJSONObject(i).getString("Quantite").toInt(),
+                            quantity = jsonArray.getJSONObject(i).getString("Quantite"),
                             expirationDate = jsonArray.getJSONObject(i).getString("Date"),
                             expirationPeriod = expirationPeriod,
-                            category = jsonArray.getJSONObject(i).getString("Category"),
+                            category = jsonArray.getJSONObject(i).getString("Categorie"),
                             brand = jsonArray.getJSONObject(i).getString("Marque"),
                             user = jsonArray.getJSONObject(i).getString("Utilisateur"),
                             location = jsonArray.getJSONObject(i).getString("Lieu"),
                             weight = jsonArray.getJSONObject(i).getString("Poids"),
-                            ingredients = arrayOf(jsonArray.getJSONObject(i).getString("Ingredients")),
-                            nutritiveValues = NutritionValues(jsonArray.getJSONObject(i).getString("Valeurs"))
+                            ingredients = listOf(jsonArray.getJSONObject(i).getString("Ingredients")),
+                            nutritiveValues = NutritionValues(jsonArray.getJSONObject(i).getString("Valeurs")),
+                            productColor = getProductColor(dateDifference)
                         )
                     )
 
                     // notify the adapter that new elements were added to the list
-                    productAdapter.notifyItemRangeInserted(0, jsonArray.length())
+                     productAdapter.notifyItemRangeInserted(0, jsonArray.length())
+                    // productAdapter.notifyDataSetChanged()
                 }
                 Log.d("GetFood", "SUCCESS")
             },

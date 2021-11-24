@@ -1,6 +1,7 @@
 package com.example.smartfridge.android.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,6 @@ class ProductAdapter(
     // function assigns the correct values to the correct recyclerview items
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentProduct = productList[position]
-
         // sets item color to light green if the position is uneven
         if ((position % 2) == 1) {
             holder.productItem.setBackgroundColor(Color.parseColor("#CBF4DA"))

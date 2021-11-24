@@ -1,5 +1,8 @@
 import unittest.mock
 from unittest import TestCase, main as unittest_main
+
+from bson import ObjectId
+
 from app import app
 import json
 from unittest.mock import patch
@@ -20,7 +23,9 @@ sample_user_sign_up = {
 }
 
 sample_food = [{
-    '_id': "Don't matter",
+    "_id": {
+        "$oid": "619e8f45ee462d6d876bbdbc"
+    },
     'Utilisateur': "999",
     'Nom': 'Danette Vanille',
     'Marque': 'Danone',
@@ -210,7 +215,27 @@ class PlaylistsTests(TestCase):
         result = self.client.put(
             '/users/reset-password/checkcode/BlaBlaest@api.be/JesuisBanane12234TEST')
         status_code = result.status_code
-        self.assertEqual(status_code, 404)
+        self.assertEqual(status_code,404)
+
+
+    def test_remove_food(self):
+        # Mock the food value in ./api.food.py
+        with unittest.mock.patch('api.food.food') as MockFood:
+            MockFood.delete_one.return_value = sample_food
+            with self.client.post('/api/removeFood', json=sample_food) as res:
+                MockFood.delete_one.assert_called()
+                self.assertEqual(res.status_code, 200)
+                self.assertEqual(res.data, b'{"Response":"Food was removed"}\n')
+
+
+    def test_modify_food(self):
+        with unittest.mock.patch('api.food.food') as MockFood:
+            MockFood.delete_one.return_value = sample_food
+            with self.client.post('/api/modifyFood/"{$oid": 619e8f45ee462d6d876bbdbc"}', json=sample_food) as res:
+                MockFood.delete_one.assert_called()
+                MockFood.insert_one.assert_called()
+                self.assertEqual(res.status_code, 200)
+                self.assertEqual(res.data, b'{"Response":"Food was updated"}\n')
 
 
 if __name__ == '__main__':
