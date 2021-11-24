@@ -134,13 +134,13 @@ class SignUp : AppCompatActivity() {
 
         // Checking if the password contains or not at least one lowercase
         if (!lowercase.matcher(etPassword.text.toString()).find()) {
-            etPassword.setError("Doit contenir au moins une majuscule !")
+            etPassword.setError("Doit contenir au moins une minuscule !")
             return false
         }
 
         // Checking if the password contains or not at least one uppercase
         if (!uppercase.matcher(etPassword.text.toString()).find()) {
-            etPassword.setError("Doit contenir au moins une minuscule !")
+            etPassword.setError("Doit contenir au moins une majuscule !")
             return false
         }
 
