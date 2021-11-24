@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.*
 import java.text.SimpleDateFormat
 import androidx.annotation.RequiresApi
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.FragmentTransaction
 import com.android.volley.*
 import com.android.volley.toolbox.Volley
@@ -34,6 +35,9 @@ class FormsAddAliments(
         val alimentName = findViewById<EditText>(R.id.AlimentName)
         val alimentQuantite = findViewById<EditText>(R.id.AlimentQuantite)
 
+        val returnImage = findViewById<ImageView>(R.id.return_icon)
+        ViewCompat.setTranslationZ(returnImage, 10F)
+
         // Date peeremption Textview and Button
         val mPickTimeBtn = findViewById<Button>(R.id.button_date_select)
         val textView = findViewById<TextView>(R.id.dateTv)
@@ -43,7 +47,8 @@ class FormsAddAliments(
         val alimentStore = findViewById<Spinner>(R.id.place_spinner)
 
         //Button event
-        val button_return_product = findViewById<Button>(R.id.button_return_list_product)
+        val button_return_product = findViewById<TextView>(R.id.button_return_list_product)
+        ViewCompat.setElevation(button_return_product, 1F)
         button_return_product.setOnClickListener {
             // end the activity and return to the previous fragment
             finish()
@@ -76,7 +81,8 @@ class FormsAddAliments(
                 Toast.makeText(applicationContext, "Aliment Ajouté ", Toast.LENGTH_SHORT).show()
 
                 if (productIndex == -1) {
-                    sendFoodToServer(
+                    val confirmationMessage = ProductRepository.sendFoodToServer(
+                        this,
                         "999",
                         names,
                         "TODO",
@@ -88,7 +94,11 @@ class FormsAddAliments(
                         store,
                         categorie
                     )
-                    // ProductRepository.getFoodFromMongo(this)
+
+                    Toast.makeText(
+                        this,
+                        confirmationMessage, Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     ProductRepository.modifyProduct(
                         this,
@@ -203,55 +213,4 @@ class FormsAddAliments(
         // alter the submit button text
         updateButton.text = resources.getText(R.string.btn_update)
     }
-
-    /**
-     * Function create API POST request and is called with some parameters
-     * @param Valeurs more info check ./api/NutritionValues
-     */
-    private fun sendFoodToServer(
-        Utilisateur: String,
-        Nom: String,
-        Marque: String,
-        Quantite: String,
-        Ingredients: List<String>,
-        Date: String,
-        Valeurs: NutritionValues,
-        Poids: String,
-        Lieu: String,
-        Category: String) {
-        val postUrl = "http://10.0.2.2:5000/api/addFood"
-        val requestQueue = Volley.newRequestQueue(this)
-
-        val postData = JSONObject()
-        try {
-            postData.put("Utilisateur", Utilisateur)
-            postData.put("Nom", Nom)
-            postData.put("Marque", Marque)
-            postData.put("Quantite", Quantite)
-            postData.put("Ingredients", Ingredients.joinToString())
-            postData.put("Date", Date)
-            postData.put("Valeurs", Valeurs)
-            postData.put("Poids", Poids)
-            postData.put("Lieu", Lieu)
-            postData.put("Categorie", Category)
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, postData,
-            { response ->
-                println(response)
-
-                // call the get api here in order to make sure it is called after the new
-                // product was added
-                ProductRepository.getFoodFromMongo(this)
-            }
-        ) { error -> error.printStackTrace() }
-        requestQueue.add(jsonObjectRequest)
-        Toast.makeText(this ,
-            "Produit ajouté", Toast.LENGTH_LONG).show();
-    }
-
 }

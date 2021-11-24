@@ -24,6 +24,8 @@ object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
 
+    var serverUrl = "http://10.0.2.2:5000/api"
+
     // only purpose of this is notify that the dataset has changed
     private lateinit var productAdapter: ProductAdapter
 
@@ -308,15 +310,17 @@ object ProductRepository {
      * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
      * We use adapter in order to notify the product list changed.
      */
-
-    fun getFoodFromMongo(context: Context){
+    fun getFoodFromMongo(
+        context: Context,
+    ) {
         val productListLength = productList.size
         productList.clear()
+
+        val url = "$serverUrl/getFood"
 
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
         val queue = Volley.newRequestQueue(context)
-        val url = "http://10.0.2.2:5000/api/getFood"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->
@@ -355,5 +359,56 @@ object ProductRepository {
             { Log.d("GetFood","That didn't work!") }
         )
         queue.add(stringRequest)
+    }
+
+    /**
+     * Function create API POST request and is called with some parameters
+     * @param Valeurs more info check ./api/NutritionValues
+     */
+    fun sendFoodToServer(
+        context: Context,
+        Utilisateur: String,
+        Nom: String,
+        Marque: String,
+        Quantite: String,
+        Ingredients: Array<String>,
+        Date: String,
+        Valeurs: NutritionValues,
+        Poids: String,
+        Lieu: String,
+        Category: String): String {
+        val postUrl = "$serverUrl/addFood"
+        val requestQueue = Volley.newRequestQueue(context)
+
+        val postData = JSONObject()
+        try {
+            postData.put("Utilisateur", Utilisateur)
+            postData.put("Nom", Nom)
+            postData.put("Marque", Marque)
+            postData.put("Quantite", Quantite)
+            postData.put("Ingredients", Arrays.toString(Ingredients))
+            postData.put("Date", Date)
+            postData.put("Valeurs", Valeurs)
+            postData.put("Poids", Poids)
+            postData.put("Lieu", Lieu)
+            postData.put("Category", Category)
+
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, postUrl, postData,
+            { response ->
+                println(response)
+
+                // call the get api here in order to make sure it is called after the new
+                // product was added
+                getFoodFromMongo(context)
+            }
+        ) { error -> error.printStackTrace() }
+        requestQueue.add(jsonObjectRequest)
+
+        return "Produit ajouté"
     }
 }

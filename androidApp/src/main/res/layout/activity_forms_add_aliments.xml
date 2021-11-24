@@ -1,332 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FormsAddAliments"
+    android:fillViewport="true"
     tools:ignore="LabelFor">
 
-
-    <LinearLayout
-        android:id="@+id/form_add_aliment_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" >
 
+        <ImageView
+            android:id="@+id/return_icon"
+            android:layout_width="@dimen/icon_dimensions"
+            android:layout_height="@dimen/icon_dimensions"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:layout_marginLeft="@dimen/label_side_margin"
+            android:contentDescription="@string/ic_close_description"
+            android:src="@drawable/ic_arrow_left"
+            android:textColor="@color/light_green"
+            app:layout_constraintBottom_toBottomOf="@+id/button_return_list_product"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_return_list_product" />
 
         <Button
             android:id="@+id/button_return_list_product"
-            android:layout_width="411dp"
-            android:layout_height="77dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
             android:background="@color/beige"
-            android:drawableStart="@drawable/ic_arrow_left"
-            android:drawableLeft="@drawable/ic_arrow_left"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
             android:text="@string/btn_return_product"
-            android:textColor="@color/light_green" />
-
-        <LinearLayout
-            android:layout_width="333dp"
-            android:layout_height="655dp"
-            android:orientation="vertical">
-
-
-            <!-- TextView Product Name   -->
+            android:textColor="@color/light_green"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <!-- EditText Product Name (input)   -->
+        <!-- TextView Product Name   -->
 
 
-            <LinearLayout
-                android:id="@+id/layout_name_Product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <!-- EditText Product Name (input)   -->
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:layout_marginLeft="@dimen/label_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:fontFamily="@font/arial"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/text_name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toTopOf="@+id/AlimentName"
+            app:layout_constraintStart_toStartOf="@+id/AlimentName" />
 
-                <TextView
-                    android:id="@+id/text_name"
-                    android:layout_width="126dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/arial"
-                    android:lineSpacingExtra="8sp"
-                    android:text="@string/text_name"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
+        <TextView
+            android:id="@+id/text_asterisk"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:text="@string/text_asterisk"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@+id/AlimentName"
+            app:layout_constraintStart_toEndOf="@+id/text_name" />
 
-                <TextView
-                    android:id="@+id/text_asterisk"
-                    android:layout_width="23dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_asterisk"
-                    android:textColor="@color/red" />
+        <TextView
+            android:id="@+id/text_name_max"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="@dimen/precisions_side_margin"
+            android:layout_marginRight="@dimen/precisions_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:gravity="end"
+            android:text="@string/text_max_name"
+            app:layout_constraintBottom_toTopOf="@+id/AlimentName"
+            app:layout_constraintEnd_toEndOf="@+id/AlimentName" />
 
-                <TextView
-                    android:id="@+id/text_name_max"
-                    android:layout_width="144dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:gravity="end"
-                    android:text="@string/text_max_name" />
+        <EditText
+            android:id="@+id/AlimentName"
+            android:layout_width="@dimen/input_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_margin_top"
+            android:autofillHints="aliment name"
+            android:background="@drawable/rounded_edittext"
 
+            android:inputType="textPersonName"
+            android:maxLength="30"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_return_list_product" />
 
-            </LinearLayout>
+        <!-- TextView Product Quantie    -->
 
-            <EditText
-                android:id="@+id/AlimentName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="5dp"
-                android:autofillHints="aliment name"
-                android:background="@drawable/rounded_edittext"
-                android:inputType="textPersonName"
+        <TextView
+            android:id="@+id/text_quantite"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:layout_marginLeft="@dimen/label_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:fontFamily="@font/arial"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/text_quantite"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toTopOf="@+id/AlimentQuantite"
+            app:layout_constraintStart_toStartOf="@+id/AlimentQuantite" />
 
-                android:maxLength="30"
-                android:padding="15dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/text_asterisk_quantie"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:text="@string/text_asterisk"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@+id/AlimentQuantite"
+            app:layout_constraintStart_toEndOf="@+id/text_quantite" />
 
-            <!-- TextView Product Quantie    -->
+        <TextView
+            android:id="@+id/text_name_g"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="@dimen/precisions_side_margin"
+            android:layout_marginRight="@dimen/precisions_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:gravity="end"
+            android:text="@string/text_g"
+            app:layout_constraintBottom_toTopOf="@+id/AlimentQuantite"
+            app:layout_constraintEnd_toEndOf="@+id/AlimentQuantite" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <!-- EditText Product Quantite (input)   -->
+        <EditText
+            android:id="@+id/AlimentQuantite"
+            android:layout_width="@dimen/input_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_margin_top"
+            android:autofillHints="aliment quantite"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AlimentName" />
 
-                <TextView
-                    android:id="@+id/text_quantite"
-                    android:layout_width="146dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/arial"
-                    android:lineSpacingExtra="8sp"
-                    android:text="@string/text_quantite"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
+        <!-- TextView Date (input)   -->
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:layout_marginLeft="@dimen/label_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:fontFamily="@font/arial"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/text_date"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_date_select"
+            app:layout_constraintStart_toStartOf="@+id/AlimentQuantite" />
 
-                <TextView
-                    android:id="@+id/text_asterisk_quantie"
-                    android:layout_width="23dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_asterisk"
-                    android:textColor="@color/red" />
+        <TextView
+            android:id="@+id/text_asterisk_date"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:text="@string/text_asterisk"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@+id/button_date_select"
+            app:layout_constraintStart_toEndOf="@+id/text_date" />
 
-                <TextView
-                    android:id="@+id/text_name_g"
-                    android:layout_width="101dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:gravity="end"
-                    android:text="@string/text_g" />
-
-            </LinearLayout>
-
-
-            <!-- EditText Product Quantite (input)   -->
-            <EditText
-                android:id="@+id/AlimentQuantite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="5dp"
-                android:autofillHints="aliment quantite"
-                android:background="@drawable/rounded_edittext"
-                android:inputType="number"
-                android:maxLength="4"
-                android:padding="15dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- TextView Date (input)   -->
-                <TextView
-                    android:id="@+id/text_date"
-                    android:layout_width="153dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/arial"
-                    android:lineSpacingExtra="8sp"
-                    android:text="@string/text_date"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-                <TextView
-                    android:id="@+id/text_asterisk_date"
-                    android:layout_width="23dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_asterisk"
-                    android:textColor="@color/red" />
-
-                <TextView
-                    android:id="@+id/text_date_format"
-                    android:layout_width="101dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:gravity="end"
-                    android:text="@string/text_date_format" />
-
-            </LinearLayout>
-
-
-            <!-- LinearLayout Date   -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!-- Button Date   -->
-
-                <Button
-
-                    android:id="@+id/button_date_select"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/btn_date" />
-
-                <TextView
-                    android:id="@+id/dateTv"
-                    android:layout_width="196dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="30sp" />
-                <!-- TextView Date  -->
-
-            </LinearLayout>
+        <TextView
+            android:id="@+id/text_date_format"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="@dimen/precisions_side_margin"
+            android:layout_marginRight="@dimen/precisions_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:gravity="end"
+            android:text="@string/text_date_format"
+            app:layout_constraintBottom_toTopOf="@+id/button_date_select"
+            app:layout_constraintEnd_toEndOf="@+id/AlimentQuantite" />
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <Button
+            android:id="@+id/button_date_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_margin_top"
+            android:gravity="center"
+            android:text="@string/btn_date"
+            app:layout_constraintStart_toStartOf="@+id/AlimentQuantite"
+            app:layout_constraintTop_toBottomOf="@+id/AlimentQuantite" />
 
-                <!-- TextView Categorie   -->
-                <TextView
-                    android:id="@+id/text_categorie"
-                    android:layout_width="81dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/arial"
-                    android:lineSpacingExtra="8sp"
-                    android:text="@string/text_categorie"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-                <TextView
-                    android:id="@+id/text_asterisk_category"
-                    android:layout_width="23dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_asterisk"
-                    android:textColor="@color/red" />
-
-            </LinearLayout>
-
-            <!-- Spinner Categorie   -->
-            <Spinner
-                android:id="@+id/categorie_spinner"
-                style="@style/SpinnerTheme"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="15dp"
-                android:spinnerMode="dialog" />
+        <TextView
+            android:id="@+id/dateTv"
+            android:layout_width="196dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/button_date_select"
+            app:layout_constraintEnd_toEndOf="@+id/AlimentQuantite"
+            app:layout_constraintTop_toTopOf="@+id/button_date_select" />
+        <!-- TextView Date  -->
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <!-- TextView Categorie   -->
+        <TextView
+            android:id="@+id/text_categorie"
+            android:layout_width="81dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:layout_marginLeft="@dimen/label_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:fontFamily="@font/arial"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/text_categorie"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toTopOf="@+id/categorie_spinner"
+            app:layout_constraintStart_toStartOf="@+id/AlimentQuantite" />
 
-                <!-- TextView Storage   -->
-                <TextView
-                    android:id="@+id/text_storage"
-                    android:layout_width="137dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/arial"
-                    android:lineSpacingExtra="8sp"
-                    android:text="@string/text_storage"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
+        <TextView
+            android:id="@+id/text_asterisk_category"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:text="@string/text_asterisk"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@+id/categorie_spinner"
+            app:layout_constraintStart_toEndOf="@+id/text_categorie" />
 
-                <TextView
-                    android:id="@+id/text_asterisk_place"
-                    android:layout_width="23dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_asterisk"
-                    android:textColor="@color/red" />
+        <!-- Spinner Categorie   -->
+        <Spinner
+            android:id="@+id/categorie_spinner"
+            style="@style/SpinnerTheme"
+            android:layout_width="@dimen/input_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_margin_top"
+            android:padding="15dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_date_select" />
 
-            </LinearLayout>
+        <!-- TextView Storage   -->
+        <TextView
+            android:id="@+id/text_storage"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:layout_marginLeft="@dimen/label_side_margin"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:fontFamily="@font/arial"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/text_storage"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toTopOf="@+id/place_spinner"
+            app:layout_constraintStart_toStartOf="@+id/AlimentQuantite" />
 
-            <!-- Spinner Storage   -->
-            <Spinner
-                android:id="@+id/place_spinner"
+        <TextView
+            android:id="@+id/text_asterisk_place"
+            android:layout_width="23dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:text="@string/text_asterisk"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@+id/place_spinner"
+            app:layout_constraintStart_toEndOf="@+id/text_storage" />
 
-                style="@style/SpinnerTheme"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="15dp"
-                android:spinnerMode="dialog"
+        <!-- Spinner Storage   -->
+        <Spinner
+            android:id="@+id/place_spinner"
 
-                />
+            style="@style/SpinnerTheme"
+            android:layout_width="@dimen/input_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_margin_top"
+            android:padding="15dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categorie_spinner" />
 
-            <!-- Button Add Forms Data   -->
-            <Button
-                android:id="@+id/button_add_aliment"
-                android:layout_width="159dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/btn_add"
-                android:textColor="@color/dark_grey" />
+        <!-- Button Add Forms Data   -->
+        <Button
+            android:id="@+id/button_add_aliment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_add"
+            android:textColor="@color/dark_grey"
+            android:layout_marginTop="@dimen/form_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/place_spinner" />
 
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
