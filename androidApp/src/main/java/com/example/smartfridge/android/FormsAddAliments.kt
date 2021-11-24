@@ -81,22 +81,29 @@ class FormsAddAliments(
                         names,
                         "TODO",
                         quantite,
-                        arrayOf<String>("ingredient1","ingredient2","ingredient3"),
-                        "04/10/2022",
+                        listOf("ingredient1","ingredient2","ingredient3"),
+                        date,
                         NutritionValues(),
                         "500g",
-                        "Frigo",
+                        store,
                         categorie
                     )
-                    ProductRepository.getFoodFromMongo(this)
+                    // ProductRepository.getFoodFromMongo(this)
                 } else {
-                    modifyProduct(
+                    ProductRepository.modifyProduct(
+                        this,
                         productIndex,
+                        "999",
                         names,
-                        Integer.parseInt(quantite),
+                        "TODO",
+                        quantite,
+                        listOf("ingredient1","ingredient2","ingredient3"),
                         date,
+                        NutritionValues(),
+                        "500g",
+                        store,
                         categorie,
-                        store
+                        ProductRepository.productList[productIndex].id
                     )
                 }
                 finish()
@@ -159,68 +166,10 @@ class FormsAddAliments(
 
             val dpd = DatePickerDialog(this, { _, year, monthOfYear, dayOfMonth ->
                 // Display Selected date in TextView
-                textView.text = "$dayOfMonth / ${monthOfYear + 1} / $year"
+                textView.text = "$dayOfMonth/${monthOfYear + 1}/$year"
             }, year, month, day)
             dpd.show()
         }
-    }
-
-    /**
-     * Function adds a new product to the system trough the ProductRepository.addProductFromForm
-     * method (cf./ProductRepository.kt). It then show a confirmation message on screen when the
-     * product was added.
-     *
-     * function unsupported replacing by post function see sendFoodToServer()
-     */
-    private fun addProduct(
-        productName: String,
-        productQuantity: Int,
-        expirationDate: String,
-        productCategory: String,
-        productLocation: String
-    ) {
-        // adding the new product to the product array in the 'ProductRepository' class
-        ProductRepository.addProductFromForm(
-            productName,
-            productQuantity,
-            expirationDate,
-            productCategory,
-            productLocation
-        )
-
-        Toast.makeText(
-            this,
-            "Produit ajouté", Toast.LENGTH_LONG
-        ).show();
-    }
-
-    /**
-     * Function modifies a product through the ProductRepository.modifyProduct method
-     * (cf./ProductRepository.kt). It then show a confirmation message on screen when the
-     * product was modified.
-     */
-    private fun modifyProduct(
-        productIndex: Int,
-        productName: String,
-        productQuantity: Int,
-        expirationDate: String,
-        productCategory: String,
-        productLocation: String
-    ) {
-        // call the method to modify the product and give it the new values
-        ProductRepository.modifyProduct(
-            productIndex,
-            productName,
-            productQuantity,
-            expirationDate,
-            productCategory,
-            productLocation
-        )
-
-        Toast.makeText(
-            this,
-            "Produit modifié", Toast.LENGTH_LONG
-        ).show();
     }
 
     /**
@@ -242,9 +191,8 @@ class FormsAddAliments(
 
         // pre-set the different product fields
         nameField.setText(productCopy.name)
-        quantityField.setText(productCopy.quantity.toString())
-        dateField.text = SimpleDateFormat("dd / M / yyyy", Locale.getDefault())
-            .format(productCopy.expirationDate)
+        quantityField.setText(productCopy.quantity)
+        dateField.text = productCopy.expirationDate
         categorySpinner.setSelection(
             resources.getStringArray(R.array.categorie_array).indexOf(productCopy.category)
         )
@@ -265,7 +213,7 @@ class FormsAddAliments(
         Nom: String,
         Marque: String,
         Quantite: String,
-        Ingredients: Array<String>,
+        Ingredients: List<String>,
         Date: String,
         Valeurs: NutritionValues,
         Poids: String,
@@ -280,12 +228,12 @@ class FormsAddAliments(
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
-            postData.put("Ingredients", Arrays.toString(Ingredients))
+            postData.put("Ingredients", Ingredients.joinToString())
             postData.put("Date", Date)
             postData.put("Valeurs", Valeurs)
             postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
-            postData.put("Category", Category)
+            postData.put("Categorie", Category)
 
         } catch (e: JSONException) {
             e.printStackTrace()

@@ -1,5 +1,5 @@
 from .client import app_client
-from .food import addFood, getFood
+from .food import addFood, getFood, removeFood, modifyFood
 from .hello_world import app_hw
 from .signIn import signIn
 from .users import getUsers
@@ -18,5 +18,7 @@ blueprints = [
     getUsers,
     login,
     addUser,
-    getFood
+    getFood,
+    removeFood,
+    modifyFood
 ]

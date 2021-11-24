@@ -9,8 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.fragments.FragmentProduct
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ProductPopup(
     private val adapter: ProductAdapter,
@@ -44,8 +42,7 @@ class ProductPopup(
 
         productStatus.setColorFilter(Color.parseColor(selectedProduct.productColor))
         productTitle.text = selectedProduct.name
-        expirationDate.text = SimpleDateFormat("dd / MM / yyyy", Locale.getDefault())
-            .format(selectedProduct.expirationDate)
+        expirationDate.text = selectedProduct.expirationDate
         productQuantity.text = selectedProduct.quantity.toString()
         productCategory.text = selectedProduct.category
         productLocation.text = selectedProduct.location
@@ -62,7 +59,21 @@ class ProductPopup(
     private fun setupDeleteButton() {
         findViewById<Button>(R.id.delete_button).setOnClickListener {
             // delete the item in the shared product list (cf. './ProductRepository.kt')
-            ProductRepository.deleteProduct(productPosition)
+            selectedProduct.user?.let { it1 ->
+                selectedProduct.brand?.let { it2 ->
+                    selectedProduct.ingredients?.let { it3 ->
+                        selectedProduct.nutritiveValues?.let { it4 ->
+                            selectedProduct.weight?.let { it5 ->
+                                ProductRepository.deleteProduct(productPosition, context,
+                                    it1, selectedProduct.name,
+                                    it2, selectedProduct.quantity,
+                                    it3, selectedProduct.expirationDate,
+                                    it4, it5, selectedProduct.location, selectedProduct.category)
+                            }
+                        }
+                    }
+                }
+            }
             // notify the adapter that an item has been removed from the list
             adapter.notifyItemRemoved(productPosition)
             // close the pop-up

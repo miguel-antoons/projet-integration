@@ -1,36 +1,34 @@
 # -*- coding: utf-8 -*-
 # Your code goes below this line
 
-#Flask Library
-from flask import Blueprint,request, jsonify, json
+# Flask Library
+from flask import Blueprint, request, jsonify, json
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
-from flask_mail import Mail,Message
-#Infos Database
-from .database import db,users
-#Library
+from flask_mail import Mail, Message
+# Infos Database
+from .database import db, users
+# Library
 import random
 import os
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
-
-
-app = Flask(__name__) 
+app = Flask(__name__)
 mail = Mail(app)
 
-#Mail Configuration
+# Mail Configuration
 
-app.config['MAIL_SERVER']=os.getenv('MAIL_SERVER')
-app.config['MAIL_PORT'] =  os.getenv('MAIL_PORT')
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
 app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 
-mail = Mail(app) 
-
+mail = Mail(app)
 
 getUsers = Blueprint('getUsers', __name__)
 
@@ -39,12 +37,10 @@ getUsers = Blueprint('getUsers', __name__)
 
  --- This route is the API to reset a user's password with his email address -- 
 
-""" 
+"""
 
 
-@getUsers.route('/api/users/reset-password/checkemail/<email>', methods=['GET','PUT'])
-
-
+@getUsers.route('/api/users/reset-password/checkemail/<email>', methods=['GET', 'PUT'])
 def check_email(email):
     """[check_email]
 
@@ -67,46 +63,42 @@ def check_email(email):
     """
 
     if request.method == 'GET':
-        
-        #Get email parameter
-        #email_param = request.args.get('email')
-        #print(email_param)
 
-        #Checks in the database if the email exists
-        email_exist = list(users.find({"Email" : email}))
-        #print(email_exist)
+        # Get email parameter
+        # email_param = request.args.get('email')
+        # print(email_param)
+
+        # Checks in the database if the email exists
+        email_exist = list(users.find({"Email": email}))
+        # print(email_exist)
 
         if email_exist:
 
-            #generate a random code with 6 number
+            # generate a random code with 6 number
             numbers = random.sample(range(10), 6)
             number_str = ''.join(map(str, numbers))
-            #print(number_str)
+            # print(number_str)
 
-            #Update the code via email
+            # Update the code via email
             users.find_one_and_update(
-            {"Email" : email},
-            {"$set":
-                {"Code": number_str}
-            },upsert=True
-            
-             )
+                {"Email": email},
+                {"$set":
+                     {"Code": number_str}
+                 }, upsert=True
 
+            )
 
-            #Send Mail
-            
-            msg = Message('Hello de SmartFridge Teams!', sender =   'smart.fridge.teams@gmail.com', recipients = [email])
+            # Send Mail
+
+            msg = Message('Hello de SmartFridge Teams!', sender='smart.fridge.teams@gmail.com', recipients=[email])
             msg.body = "Bonjour de l'Equipe SmartFridge, voici votre code :  " + number_str
-            mail.send(msg) 
-            
-            
-           
+            mail.send(msg)
 
-            #check ID
+            # check ID
             for user in email_exist:
                 user.pop('_id')
 
-            #Email data : json.dumps(email_exist)
+            # Email data : json.dumps(email_exist)
 
             message = ['message: this email exist']
             return json.dumps(message)
@@ -122,29 +114,25 @@ def check_email(email):
 
  --- This route is the API to check code with his email address -- 
 
-""" 
-
-@getUsers.route('/api/users/reset-password/checkcode/<email>/<code>', methods=['GET','PUT'])
+"""
 
 
-
-
-def check_code_email(email,code):
-
+@getUsers.route('/api/users/reset-password/checkcode/<email>/<code>', methods=['GET', 'PUT'])
+def check_code_email(email, code):
     if request.method == 'GET':
 
-        #Find code key by email
-        check_good_code = list(users.find({"Email" : email},{"Code":1}))
-      
-        #loop element
-        #delete ID
+        # Find code key by email
+        check_good_code = list(users.find({"Email": email}, {"Code": 1}))
+
+        # loop element
+        # delete ID
         for codevalue in check_good_code:
             codevalue.pop('_id')
-            #print(codevalue)
+            # print(codevalue)
 
-        #get ggood code from email   
+        # get ggood code from email
         good_code = codevalue['Code']
-     
+
         if code == good_code:
 
             message = ['The code is good']
@@ -156,7 +144,6 @@ def check_code_email(email,code):
             return json.dumps(message)
 
 
-
 """
 *** API ROUTE FOR UPDATE PASSWORD  ***
 
@@ -165,12 +152,12 @@ def check_code_email(email,code):
            
 """
 
-@getUsers.route('/api/users/reset-password/update-password/<email>/<password>', methods=['GET','PUT'])
-def update_password(email,password):
 
+@getUsers.route('/api/users/reset-password/update-password/<email>/<password>', methods=['GET', 'PUT'])
+def update_password(email, password):
     if request.method == 'GET':
-        #Check email address
-        email_exist = list(users.find({"Email" : email}))
+        # Check email address
+        email_exist = list(users.find({"Email": email}))
         print(email_exist)
 
         if email_exist:
@@ -181,44 +168,38 @@ def update_password(email,password):
 
     elif request.method == 'PUT':
 
-        #Check email address
-        email_exist = list(users.find({"Email" : email}))
+        # Check email address
+        email_exist = list(users.find({"Email": email}))
         print(email_exist)
 
         if email_exist:
 
-            #Update the code via email
+            # Update the code via email
             users.find_one_and_update(
-            {"Email" : email},
-            {"$set":
-                {"Password": password}
-            },upsert=True
+                {"Email": email},
+                {"$set":
+                     {"Password": password}
+                 }, upsert=True
 
-             )
-
+            )
 
             return json.dumps(["Password Update IS ok"])
         else:
             return json.dumps(["Email does not exist "])
 
 
-
-
-
-           
 """
 Verification if the username already exist
 """
-            
+
+
 @getUsers.route('/api/users/<username>', methods=['GET'])
 def username_exist(username):
     records = db.Users
-    result = list(records.find({"Username" : username}))
+    result = list(records.find({"Username": username}))
 
     for client in result:
-         client.pop('_id')
-    
+        client.pop('_id')
+
     print(result)
     return json.dumps(result)
-
-
