@@ -29,7 +29,7 @@ class FragmentHome : Fragment() {
 
     // When Home_Fragment is created, it will call onCreateView -> inject fragment_home on the page
     override fun onCreateView(inflater: LayoutInflater, container : ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         // Get the vertical recyclerview and set the adapter on it
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
