@@ -25,10 +25,13 @@ class FragmentProductTest {
 
     @Before
     fun setUp() {
+        // launch activity MainActivity
         val scenario = launchActivity<MainActivity>()
 
+        // change fragment to FragmentProduct
         scenario.onActivity { it.setCurrentFragment(FragmentProduct(it)) }
 
+        // add a product to ProductRepository in order to test
         ProductRepository.addProductFromForm(
             productTestName,
             3,
@@ -41,13 +44,18 @@ class FragmentProductTest {
     @Test
     fun `Click on add product button should start FormsAddAliments activity`() {
         Intents.init()
+
+        // click on add product button
         onView(withId(R.id.addingBtn)).perform(click())
+
+        // check if the new activity has started
         intended(hasComponent(FormsAddAliments::class.java.name))
         Intents.release()
     }
 
     @Test
     fun `Click on product should open pop-up`() {
+        // search the recyclerview item and click on it
         onView(withId(R.id.product_page_list))
             .perform(
                 RecyclerViewActions

@@ -28,8 +28,6 @@ import org.mockito.Mockito
 import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.mock
 import com.google.gson.JsonParser
-import edu.emory.mathcs.backport.java.util.concurrent.Callable
-import org.awaitility.Awaitility.await
 
 
 @RunWith(AndroidJUnit4::class)

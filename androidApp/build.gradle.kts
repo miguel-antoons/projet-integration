@@ -44,7 +44,6 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:4.6.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("org.mockito:mockito-inline:2.13.0")
-    testImplementation("org.awaitility:awaitility:4.1.1")
 }
 
 
