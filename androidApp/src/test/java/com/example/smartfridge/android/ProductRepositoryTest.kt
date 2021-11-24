@@ -9,10 +9,8 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito.anyInt
 import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.mock
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 @RunWith(AndroidJUnit4::class)
 class ProductRepositoryTest {
@@ -28,9 +26,6 @@ class ProductRepositoryTest {
     private val testCategories = arrayOf("testCate", "testCat2", "testCat3")
     private val testLocations = arrayOf("testLoc", "testLoc2", "testLoc3")
     private val testColors = arrayOf("#000000", "#FF0000", "#00A00F")
-
-    // variable converts string dates to a 'Date' object
-    private val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
     // variable converts 'LocalDate' object to string date with given format
     private val localeDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")

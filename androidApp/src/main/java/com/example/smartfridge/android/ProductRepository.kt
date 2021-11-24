@@ -2,7 +2,6 @@ package com.example.smartfridge.android
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
@@ -17,6 +16,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 // classes purpose is to keep all the products in it
 // (it could also be used later to update the list with data from the database)

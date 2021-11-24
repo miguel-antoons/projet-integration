@@ -36,7 +36,7 @@ dependencies {
     testImplementation("com.google.truth:truth:1.1")
     testImplementation("androidx.test:core-ktx:1.4.0")
     testImplementation("androidx.test.ext:junit-ktx:1.1.3")
-    testImplementation("org.robolectric:robolectric:4.2")
+    testImplementation("org.robolectric:robolectric:4.2.1")
     testImplementation("io.mockk:mockk:1.10.0")
     testImplementation("androidx.test.espresso:espresso-core:3.4.0")
     testImplementation("androidx.test.espresso:espresso-intents:3.4.0")
@@ -44,7 +44,7 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:4.6.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("org.mockito:mockito-inline:2.13.0")
-    testImplementation("com.beust:klaxon:5.5")
+    testImplementation("org.awaitility:awaitility:4.1.1")
 }
 
 
