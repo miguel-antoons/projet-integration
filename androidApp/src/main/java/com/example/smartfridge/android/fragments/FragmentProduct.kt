@@ -57,7 +57,7 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         ProductRepository.addProductAdapter(adapter)
 
         // get all the products from a remote database
-        ProductRepository.getFoodFromMongo(context)
+        ProductRepository.getFoodFromMongo(context, loadUsername(context))
 
         return view
     }

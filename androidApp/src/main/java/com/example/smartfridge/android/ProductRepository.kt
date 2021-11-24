@@ -110,7 +110,7 @@ object ProductRepository {
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context)
+                getFoodFromMongo(context, loadUsername(context))
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
@@ -193,7 +193,7 @@ object ProductRepository {
 
         // call the get api here in order to make sure it is called after the new
         // product was added
-         getFoodFromMongo(context)
+         getFoodFromMongo(context, loadUsername(context))
     }
 
 
@@ -305,14 +305,14 @@ object ProductRepository {
      * We use adapter in order to notify the product list changed.
      */
 
-    fun getFoodFromMongo(context: Context){
+    fun getFoodFromMongo(context: Context, productUser: String){
         val productListLength = productList.size
         productList.clear()
 
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
         val queue = Volley.newRequestQueue(context)
-        val url = "http://10.0.2.2:5000/api/getFood"
+        val url = "http://10.0.2.2:5000/api/getFood/$productUser"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->
@@ -352,4 +352,13 @@ object ProductRepository {
         )
         queue.add(stringRequest)
     }
+
+    // load Username
+    fun loadUsername(context: Context) : String {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val savedUsername = sharedPreferences.getString("USERNAME", null)
+
+        return savedUsername.toString()
+    }
 }
+
