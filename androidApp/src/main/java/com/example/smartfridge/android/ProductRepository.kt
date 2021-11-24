@@ -87,7 +87,7 @@ object ProductRepository {
         Category: String,
         productId: String
     ) {
-        val url = "$serverUrl/api/modifyFood/$productId"
+        val url = "$serverUrl/modifyFood/$productId"
         val requestQueue = Volley.newRequestQueue(context)
         val postData = JSONObject()
         try {
@@ -139,7 +139,7 @@ object ProductRepository {
         Category: String) {
         productList.removeAt(productPosition)
         // API DELETE
-        val postUrl = "$serverUrl/api/removeFood"
+        val postUrl = "$serverUrl/removeFood"
         val requestQueue = Volley.newRequestQueue(context)
 
         val deleteData = JSONObject()
@@ -353,7 +353,7 @@ object ProductRepository {
         Poids: String,
         Lieu: String,
         Category: String): String {
-        val postUrl = "$serverUrl/api/addFood"
+        val postUrl = "$serverUrl/addFood"
         val requestQueue = Volley.newRequestQueue(context)
 
         val postData = JSONObject()
