@@ -164,7 +164,7 @@ class SignUp : AppCompatActivity() {
 
         // Checking the proper email format
         if (!isEmailValid(etEmail.text.toString())) {
-            etEmail.setError("Please enter a valid email !")
+            etEmail.setError("Veuillez entrer une adresse mail valide !")
             return false
         }
         return true
@@ -189,7 +189,7 @@ class SignUp : AppCompatActivity() {
                     isEmailExist(etEmail.text.toString())
                 }
                 else {
-                    etUsername.setError("Username already taken!")
+                    etUsername.setError("Nom d'utilisateur déjà pris !")
                 }
 
             }, { error ->
@@ -219,7 +219,7 @@ class SignUp : AppCompatActivity() {
                     performSignUp()
                 }
                 else {
-                    etEmail.setError("Email already taken!")
+                    etEmail.setError("Adresse mail déjà prise !")
                 }
 
             }, { error ->
