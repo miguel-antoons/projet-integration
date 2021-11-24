@@ -7,6 +7,7 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.fragments.FragmentProduct
 
@@ -76,6 +77,10 @@ class ProductPopup(
             }
             // notify the adapter that an item has been removed from the list
             adapter.notifyItemRemoved(productPosition)
+            Toast.makeText(context ,
+                "Produit supprimé",
+                Toast.LENGTH_LONG
+            ).show();
             // close the pop-up
             dismiss()
         }

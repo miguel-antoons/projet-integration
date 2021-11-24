@@ -16,7 +16,6 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 // classes purpose is to keep all the products in it
 // (it could also be used later to update the list with data from the database)
@@ -51,13 +50,13 @@ object ProductRepository {
 
         // add the new product to the product list
         productList.add(ProductModel(
-            productName,
-            productQuantity,
-            productExpirationDate,
-            expirationPeriod,
-            productCategory,
-            productLocation,
-            productColor
+            name = productName,
+            quantity = productQuantity,
+            expirationDate = productExpirationDate,
+            expirationPeriod = expirationPeriod,
+            category = productCategory,
+            location = productLocation,
+            productColor = productColor
         ))
 
         // notify that a new product was added
@@ -88,7 +87,7 @@ object ProductRepository {
         Category: String,
         productId: String
     ) {
-        val url = "http://10.0.2.2:5000/api/modifyFood/$productId"
+        val url = "$serverUrl/api/modifyFood/$productId"
         val requestQueue = Volley.newRequestQueue(context)
         val postData = JSONObject()
         try {
@@ -118,27 +117,6 @@ object ProductRepository {
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
-        Toast.makeText(context ,
-            "Produit modifié", Toast.LENGTH_LONG).show();
-
-
-       /**
-        // update the product with a method from the 'ProductModel' class
-        productList[productPosition].updateProduct(
-            Nom,
-            Quantite,
-            expirationDate,
-            expirationPeriod,
-            Category,
-            Lieu,
-            productColor,
-            Ingredients,
-            Valeurs,
-            Poids,
-            Marque,
-            Utilisateur
-        )
-        */
 
         // notify that an item was changed inside the list
         // this will update the FragmentProduct page
@@ -161,7 +139,7 @@ object ProductRepository {
         Category: String) {
         productList.removeAt(productPosition)
         // API DELETE
-        val postUrl = "http://10.0.2.2:5000/api/removeFood"
+        val postUrl = "$serverUrl/api/removeFood"
         val requestQueue = Volley.newRequestQueue(context)
 
         val deleteData = JSONObject()
@@ -188,8 +166,6 @@ object ProductRepository {
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
-        Toast.makeText(context ,
-            "Produit supprimé", Toast.LENGTH_LONG).show();
 
         // notify that an item was removed
         // this will update the FragmentProduct page
@@ -371,13 +347,13 @@ object ProductRepository {
         Nom: String,
         Marque: String,
         Quantite: String,
-        Ingredients: Array<String>,
+        Ingredients: List<String>,
         Date: String,
         Valeurs: NutritionValues,
         Poids: String,
         Lieu: String,
         Category: String): String {
-        val postUrl = "$serverUrl/addFood"
+        val postUrl = "$serverUrl/api/addFood"
         val requestQueue = Volley.newRequestQueue(context)
 
         val postData = JSONObject()
@@ -386,12 +362,12 @@ object ProductRepository {
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
-            postData.put("Ingredients", Arrays.toString(Ingredients))
+            postData.put("Ingredients", Ingredients.joinToString())
             postData.put("Date", Date)
             postData.put("Valeurs", Valeurs)
             postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
-            postData.put("Category", Category)
+            postData.put("Categorie", Category)
 
         } catch (e: JSONException) {
             e.printStackTrace()

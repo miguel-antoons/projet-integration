@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 class ProductRepositoryTest {
     // these are all test values
     private val testNames = arrayOf("testProduct", "testProduct2", "testProduct3")
-    private val testQuantities = arrayOf(3, 3098, -100)
+    private val testQuantities = arrayOf("3", "3098", "-100")
     private val testDates = arrayOf(
         LocalDate.now(),
         LocalDate.now().plusDays(2),
@@ -68,85 +68,5 @@ class ProductRepositoryTest {
             assertThat(testElement.location).isEqualTo(testLocations[index])
             assertThat(testElement.productColor).isEqualTo(testColors[index])
         }
-    }
-
-    @Test
-    fun `Modifying products from productList`() {
-        // add a product to be modified later during the test
-        ProductRepository.addProductFromForm(
-            testNames[0],
-            testQuantities[0],
-            localeDateFormatter.format(testDates[0]),
-            testCategories[0],
-            testLocations[0]
-        )
-
-        // go over the 3 different test data
-        for (index in 1 until testNames.size) {
-            // convert the given date to a string
-            val stringDate = localeDateFormatter.format(
-                testDates[index]
-            )
-
-            // test the add function of the 'ProductRepository' object
-            ProductRepository.modifyProduct(
-                0,
-                testNames[index],
-                testQuantities[index],
-                stringDate,
-                testCategories[index],
-                testLocations[index]
-            )
-
-            // get the newly inserted element
-            val testElement = ProductRepository.productList[0]
-
-            // verify all of the inserted values
-            assertThat(testElement.name).isEqualTo(testNames[index])
-            assertThat(testElement.quantity).isEqualTo(testQuantities[index])
-            assertThat(testElement.expirationDate).isEqualTo(stringDate)
-            assertThat(testElement.expirationPeriod).isEqualTo(testPeriods[index])
-            assertThat(testElement.category).isEqualTo(testCategories[index])
-            assertThat(testElement.location).isEqualTo(testLocations[index])
-            assertThat(testElement.productColor).isEqualTo(testColors[index])
-        }
-    }
-
-    @Test
-    fun `Deleting products from producList`() {
-        // empty the productList array
-        ProductRepository.productList.clear()
-
-        // go over the 3 different test data
-        for (index in testNames.indices) {
-            // convert the given date to a string
-            val stringDate = localeDateFormatter.format(
-                testDates[index]
-            )
-
-            // test the add function of the 'ProductRepository' object
-            ProductRepository.addProductFromForm(
-                testNames[index],
-                testQuantities[index],
-                stringDate,
-                testCategories[index],
-                testLocations[index]
-            )
-        }
-
-        // delete elements from the array and verify the correct items were deleted
-        for (index in 0..(testNames.size - 2)) {
-            // first, delete the product
-            ProductRepository.deleteProduct(index)
-
-            // then, verify if the correct element was deleted
-            assertThat(ProductRepository.productList[0].name).isEqualTo(testNames[1])
-        }
-
-        // eventually, delete the last element
-        ProductRepository.deleteProduct(0)
-
-        // verify the array is now empty
-        assertThat(ProductRepository.productList).isEmpty()
     }
 }

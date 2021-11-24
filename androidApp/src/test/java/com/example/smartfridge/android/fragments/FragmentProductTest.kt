@@ -34,7 +34,7 @@ class FragmentProductTest {
         // add a product to ProductRepository in order to test
         ProductRepository.addProductFromForm(
             productTestName,
-            3,
+            "3",
             "03/05/2026",
             "testCat",
             productTestLocation

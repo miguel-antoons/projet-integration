@@ -35,6 +35,16 @@ class FormsAddAlimentsTest {
     private lateinit var scenario: ActivityScenario<FormsAddAliments>
     private lateinit var server: MockWebServer
 
+    // set test values
+    private val testUser = "testUser"
+    private val testProductName = "testProductName"
+    private val testBrand = "testBrand"
+    private val testQuantity = "testQuantity"
+    private val testDate = "testDate"
+    private val testWeight = "testWeight"
+    private val testLocation = "testLocation"
+    private val testCategory = "testCategory"
+
     @Before
     fun setUp() {
         scenario = launchActivity()
@@ -72,16 +82,6 @@ class FormsAddAlimentsTest {
 
     @Test
     fun `Activity should post data to back-end`() {
-        // set test values
-        val testUser = "testUser"
-        val testProductName = "testProductName"
-        val testBrand = "testBrand"
-        val testQuantity = "testQuantity"
-        val testDate = "testDate"
-        val testWeight = "testWeight"
-        val testLocation = "testLocation"
-        val testCategory = "testCategory"
-
         // post food to the mock server
         scenario.onActivity {
             ProductRepository.sendFoodToServer(
@@ -90,7 +90,7 @@ class FormsAddAlimentsTest {
                 testProductName,
                 testBrand,
                 testQuantity,
-                arrayOf("test"),
+                listOf("test"),
                 testDate,
                 NutritionValues(),
                 testWeight,
@@ -128,7 +128,122 @@ class FormsAddAlimentsTest {
             jsonData.get("Lieu").toString().replace("\"",""), testLocation
         )
         assertEquals(
-            jsonData.get("Category").toString().replace("\"",""), testCategory
+            jsonData.get("Categorie").toString().replace("\"",""), testCategory
+        )
+    }
+
+    @Test
+    fun `Activity should call modify api`() {
+        scenario.onActivity {
+            ProductRepository.modifyProduct(
+                it,
+                3,
+                testUser,
+                testProductName,
+                testBrand,
+                testQuantity,
+                listOf("test"),
+                testDate,
+                NutritionValues(),
+                testWeight,
+                testLocation,
+                testCategory,
+                "abc1243"
+            )
+        }
+
+        // convert the data sent to the mock server into json
+        val recordedRequest = server.takeRequest()
+        val recordedRequestBody = recordedRequest.body.readUtf8()
+        val jsonData = JsonParser.parseString(recordedRequestBody).asJsonObject
+
+        // verify if the data is correct
+        assertEquals("POST", recordedRequest.method)
+        assertEquals(
+            jsonData.get("Utilisateur").toString().replace("\"",""), testUser
+        )
+        assertEquals(
+            jsonData.get("Nom").toString().replace("\"",""), testProductName
+        )
+        assertEquals(
+            jsonData.get("Marque").toString().replace("\"",""), testBrand
+        )
+        assertEquals(
+            jsonData.get("Quantite").toString().replace("\"",""), testQuantity
+        )
+        assertEquals(
+            jsonData.get("Date").toString().replace("\"",""), testDate
+        )
+        assertEquals(
+            jsonData.get("Poids").toString().replace("\"",""), testWeight
+        )
+        assertEquals(
+            jsonData.get("Lieu").toString().replace("\"",""), testLocation
+        )
+        assertEquals(
+            jsonData.get("Categorie").toString().replace("\"",""), testCategory
+        )
+    }
+
+    @Test
+    fun `Activity should call delete food api`() {
+        // insert a product to delete
+        ProductRepository.addProductFromForm(
+            "test",
+            "3",
+            "03/05/2026",
+            "testCat",
+            "test"
+        )
+
+        // delete the product
+        scenario.onActivity {
+            ProductRepository.deleteProduct(
+                0,
+                it,
+                testUser,
+                testProductName,
+                testBrand,
+                testQuantity,
+                listOf("test"),
+                testDate,
+                NutritionValues(),
+                testWeight,
+                testLocation,
+                testCategory
+            )
+        }
+
+        // convert the data sent to the mock server into json
+        val recordedRequest = server.takeRequest()
+        val recordedRequestBody = recordedRequest.body.readUtf8()
+        val jsonData = JsonParser.parseString(recordedRequestBody).asJsonObject
+
+        // verify if the data is correct
+        assertEquals("POST", recordedRequest.method)
+        assertEquals(
+            jsonData.get("Utilisateur").toString().replace("\"",""), testUser
+        )
+        assertEquals(
+            jsonData.get("Nom").toString().replace("\"",""), testProductName
+        )
+        assertEquals(
+            jsonData.get("Marque").toString().replace("\"",""), testBrand
+        )
+        assertEquals(
+            jsonData.get("Quantite").toString().replace("\"",""), testQuantity
+        )
+        assertEquals(
+            jsonData.get("Date").toString().replace("\"",""), testDate
+        )
+        assertEquals(
+            jsonData.get("Poids").toString().replace("\"",""), testWeight
+        )
+        assertEquals(
+            jsonData.get("Lieu").toString().replace("\"",""), testLocation
+        )
+        assertEquals(
+            jsonData.get("Categorie").toString().replace("\"",""), testCategory
         )
     }
 

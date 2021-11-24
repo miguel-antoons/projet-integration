@@ -6,19 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.widget.*
-import java.text.SimpleDateFormat
 import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
-import androidx.fragment.app.FragmentTransaction
-import com.android.volley.*
-import com.android.volley.toolbox.Volley
-import org.json.JSONObject
 import java.util.*
-import com.android.volley.toolbox.JsonObjectRequest
-import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.api.NutritionValues
-import com.example.smartfridge.android.fragments.FragmentProduct
-import org.json.JSONException
 
 
 class FormsAddAliments(
@@ -97,7 +88,8 @@ class FormsAddAliments(
 
                     Toast.makeText(
                         this,
-                        confirmationMessage, Toast.LENGTH_LONG
+                        confirmationMessage,
+                        Toast.LENGTH_LONG
                     ).show()
                 } else {
                     ProductRepository.modifyProduct(
@@ -115,12 +107,14 @@ class FormsAddAliments(
                         categorie,
                         ProductRepository.productList[productIndex].id
                     )
+
+                    Toast.makeText(this ,
+                        "Produit modifié",
+                        Toast.LENGTH_LONG
+                    ).show();
                 }
                 finish()
-
-
             }
-
         }
 
 
