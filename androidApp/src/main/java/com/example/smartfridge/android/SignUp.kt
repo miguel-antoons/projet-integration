@@ -283,10 +283,20 @@ class SignUp : AppCompatActivity() {
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, postUrl, postData,
-            { response -> println(response) }
-        ) { error -> error.printStackTrace() }
+            { response ->
+                Log.d("responseCode", response.toString())
+                Toast.makeText(this, "Inscription réussie !", Toast.LENGTH_SHORT).show()
+
+                // creation de notre intent
+                val monIntent : Intent =  Intent(this,Login::class.java)
+                // start MainActivity
+                startActivity(monIntent)
+
+            }
+        ) { error ->
+            Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
+            }
         requestQueue.add(jsonObjectRequest)
 
-        Toast.makeText(this, "Inscription réussie !", Toast.LENGTH_SHORT).show()
     }
 }
