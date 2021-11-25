@@ -14,3 +14,7 @@ flask/__pycache__
 __pycache__
 venv
 env
+.vscode
+
+.env
+.cfg
