@@ -33,7 +33,7 @@ class CheckCodeMail : AppCompatActivity() {
 
         val code_editext = findViewById<EditText>(R.id.editTextCode)
 
-        val button_check_code = findViewById<Button>(R.id.button_check_code)
+        val button_check_code = findViewById<Button>(R.id.button_continued)
         button_check_code.setOnClickListener {
 
             // get text in EditText email
