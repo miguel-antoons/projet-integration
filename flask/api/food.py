@@ -18,9 +18,9 @@ def add_food():
     return jsonify({'Response': "Food was added"})
 
 
-@getFood.route('/api/getFood', methods=['GET'])
-def get_food():
-    result = list(food.find())
+@getFood.route('/api/getFood/<user>', methods=['GET'])
+def get_food(user):
+    result = list(food.find({"Utilisateur": user}))
     # TODO : if id == current user return his food list
     return json_util.dumps(result)
 

@@ -113,7 +113,7 @@ object ProductRepository {
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context)
+                getFoodFromMongo(context, loadUsername(context))
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
@@ -173,7 +173,7 @@ object ProductRepository {
 
         // call the get api here in order to make sure it is called after the new
         // product was added
-         getFoodFromMongo(context)
+         getFoodFromMongo(context, loadUsername(context))
     }
 
 
@@ -286,13 +286,11 @@ object ProductRepository {
      * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
      * We use adapter in order to notify the product list changed.
      */
-    fun getFoodFromMongo(
-        context: Context,
-    ) {
+    fun getFoodFromMongo(context: Context, productUser: String){
         val productListLength = productList.size
         productList.clear()
 
-        val url = "$serverUrl/getFood"
+        val url = "$serverUrl/getFood/$productUser"
 
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
@@ -387,4 +385,12 @@ object ProductRepository {
 
         return "Produit ajouté"
     }
+    // load Username
+    fun loadUsername(context: Context) : String {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val savedUsername = sharedPreferences.getString("USERNAME", null)
+
+        return savedUsername.toString()
+    }
 }
+

@@ -1,6 +1,7 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,10 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import java.util.*
 import com.example.smartfridge.android.api.NutritionValues
+
+import com.example.smartfridge.android.fragments.FragmentProduct
+import com.example.smartfridge.android.fragments.FragmentSettings
+import org.json.JSONException
 
 
 class FormsAddAliments(
@@ -72,9 +77,10 @@ class FormsAddAliments(
                 Toast.makeText(applicationContext, "Aliment Ajouté ", Toast.LENGTH_SHORT).show()
 
                 if (productIndex == -1) {
+
                     val confirmationMessage = ProductRepository.sendFoodToServer(
                         this,
-                        "999",
+                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
@@ -95,7 +101,7 @@ class FormsAddAliments(
                     ProductRepository.modifyProduct(
                         this,
                         productIndex,
-                        "999",
+                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
@@ -207,4 +213,12 @@ class FormsAddAliments(
         // alter the submit button text
         updateButton.text = resources.getText(R.string.btn_update)
     }
+}
+
+// load Username
+fun loadUsername(context: Context) : String {
+    val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+    val savedUsername = sharedPreferences.getString("USERNAME", null)
+
+    return savedUsername.toString()
 }
