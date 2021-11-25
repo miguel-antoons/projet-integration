@@ -378,7 +378,7 @@ object ProductRepository {
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context)
+                getFoodFromMongo(context, loadUsername(context))
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
