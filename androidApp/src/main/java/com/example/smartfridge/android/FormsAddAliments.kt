@@ -1,6 +1,7 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.api.NutritionValues
 import com.example.smartfridge.android.fragments.FragmentProduct
+import com.example.smartfridge.android.fragments.FragmentSettings
 import org.json.JSONException
 
 
@@ -77,7 +79,7 @@ class FormsAddAliments(
 
                 if (productIndex == -1) {
                     sendFoodToServer(
-                        "999",
+                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
@@ -93,7 +95,7 @@ class FormsAddAliments(
                     ProductRepository.modifyProduct(
                         this,
                         productIndex,
-                        "999",
+                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
@@ -246,7 +248,7 @@ class FormsAddAliments(
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                ProductRepository.getFoodFromMongo(this)
+                ProductRepository.getFoodFromMongo(this, loadUsername(this))
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
@@ -254,4 +256,12 @@ class FormsAddAliments(
             "Produit ajouté", Toast.LENGTH_LONG).show();
     }
 
+}
+
+// load Username
+fun loadUsername(context: Context) : String {
+    val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+    val savedUsername = sharedPreferences.getString("USERNAME", null)
+
+    return savedUsername.toString()
 }

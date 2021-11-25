@@ -146,12 +146,20 @@ class PlaylistsTests(TestCase):
         with unittest.mock.patch('api.food.food') as MockFood:
             # Force the return value of food.find() to sample_food
             MockFood.find.return_value = sample_food
-            with self.client.get("/api/getFood") as res:
+            with self.client.get("/api/getFood/999") as res:
                 resultat = res.data
                 final = resultat.decode('unicode-escape')
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(final,
-                                 '[{"Category":"Produit laitiers","Date":"20/12/2021","Lieu":"Frigo","Marque":"Danone","Nom":"Danette Vanille","Poids":"125g","Quantite":4,"Utilisateur":"999","Valeurs":{"Energie":"107 kcal","Glucides":"17,1g","Matières grasses":"3,0g","Proteines":"3g","Sel":"0,14g"},"ingredients":["lait entier","lait écrémé reconstitué à base de lait en poudre","sucre","crème","lait écrémé concentré ou en poudre","épaississants (amidon modifié, carraghénanes)","perméat de petit lait (lactosérum) en poudre","amidon","arôme (lait)","colorant (bêta-carotène)"]}]\n')
+                                 '[{"_id": {"$oid": "619e8f45ee462d6d876bbdbc"}, "Utilisateur": "999", "Nom": '
+                                 '"Danette Vanille", "Marque": "Danone", "Quantite": 4, "ingredients": ["lait '
+                                 'entier", "lait écrémé reconstitué à base de lait en poudre", "sucre", "crème", '
+                                 '"lait écrémé concentré ou en poudre", "épaississants (amidon modifié, '
+                                 'carraghénanes)", "perméat de petit lait (lactosérum) en poudre", "amidon", '
+                                 '"arôme (lait)", "colorant (bêta-carotène)"], "Date": "20/12/2021", "Valeurs": {'
+                                 '"Energie": "107 kcal", "Matières grasses": "3,0g", "Glucides": "17,1g", '
+                                 '"Proteines": "3g", "Sel": "0,14g"}, "Poids": "125g", "Lieu": "Frigo", "Category": '
+                                 '"Produit laitiers"}]')
                 # Check if food.find() was called
                 MockFood.find.assert_called()
 
