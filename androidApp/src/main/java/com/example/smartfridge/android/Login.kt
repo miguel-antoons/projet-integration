@@ -15,6 +15,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
 import com.example.smartfridge.android.Hashing.verifyPasswordHash
+import com.example.smartfridge.android.Hashing.passwordHash
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +28,8 @@ class Login : AppCompatActivity() {
         val signUpButton = findViewById<Button>(R.id.buttonRegister)
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val showPassword = findViewById<CheckBox>(R.id.showPassword)
+
+        passwordHash("test")
 
 
         // pre-load email and password if the rememberMe check box is checked
