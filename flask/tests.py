@@ -78,7 +78,7 @@ class PlaylistsTests(TestCase):
         self.assertIn('Hello world!', page_content)
 
     def test_login(self):
-        result = self.client.get(f'/api/login/{sample_user["Email"]}/{sample_user["Password"]}')
+        result = self.client.get(f'/api/login/{sample_user["Email"]}')
         self.assertEqual(result.status, '200 OK')
         page_content = result.get_data(as_text=True)
         page_content = json.loads(page_content)[0]
