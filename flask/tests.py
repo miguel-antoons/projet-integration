@@ -177,14 +177,14 @@ class PlaylistsTests(TestCase):
     # Testing of Mock on the POST SignUp User
     def test_post_user(self):
         # Mock the user values in ./api.users.py
-        with unittest.mock.patch('api.users.users') as MockUser:
+        with unittest.mock.patch('api.signUp.users') as MockUser:
             # Force the return value of users.insert_one(req) to sample_user
             MockUser.insert_one.return_value = sample_user_sign_up
             with self.client.post("/api/addUser", json=sample_user_sign_up) as res:
                 # Check if users.insert_one(json) was called
                 MockUser.insert_one.assert_called()
                 self.assertEqual(res.status_code, 200)
-                self.assertEqual(res.data, b'{"Response":"User is added"}\n')
+                self.assertEqual(res.data, b'{state : 200}')
 
 
 
