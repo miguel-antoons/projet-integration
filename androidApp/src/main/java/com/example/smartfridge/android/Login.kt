@@ -29,8 +29,6 @@ class Login : AppCompatActivity() {
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val showPassword = findViewById<CheckBox>(R.id.showPassword)
 
-        passwordHash("test")
-
 
         // pre-load email and password if the rememberMe check box is checked
         loadData()
