@@ -123,15 +123,12 @@ def check_code_email(email, code):
 
         # Find code key by email
         check_good_code = list(users.find({"Email": email}, {"Code": 1}))
+    
+       
 
-        # loop element
-        # delete ID
-        for codevalue in check_good_code:
-            codevalue.pop('_id')
-            # print(codevalue)
-
-        # get ggood code from email
-        good_code = codevalue['Code']
+        # get good code from email
+        good_code = check_good_code[0]['Code']
+     
 
         if code == good_code:
 
@@ -145,47 +142,42 @@ def check_code_email(email, code):
 
 
 """
-*** API ROUTE FOR UPDATE PASSWORD  ***
+ API ROUTE FOR UPDATE PASSWORD
 
  --- This route is the API to UPDATE PASSWORD with his email address -- 
 
-           
+
 """
 
+@getUsers.route('/api/users/update-password', methods=['GET','PUT'])
+def update_password():
 
-@getUsers.route('/api/users/reset-password/update-password/<email>/<password>', methods=['GET', 'PUT'])
-def update_password(email, password):
-    if request.method == 'GET':
-        # Check email address
-        email_exist = list(users.find({"Email": email}))
-        print(email_exist)
+    requete = request.json
 
-        if email_exist:
-            return json.dumps("Bonsoir Paris")
+    email = requete['Email']
+    print(email)
+    password = requete['Password']
+    print(password)
 
-        else:
-            return "Email does not exist "
+    if request.method == 'PUT':
 
-    elif request.method == 'PUT':
-
-        # Check email address
-        email_exist = list(users.find({"Email": email}))
+        #Check email address
+        email_exist = list(users.find({"Email" : email}))
         print(email_exist)
 
         if email_exist:
 
-            # Update the code via email
+            #Update the code via email
             users.find_one_and_update(
-                {"Email": email},
-                {"$set":
-                     {"Password": password}
-                 }, upsert=True
+            {"Email" : email},
+            {"$set":
+                {"Password": password}
+            },upsert=True
 
-            )
+             )
 
-            return json.dumps(["Password Update IS ok"])
-        else:
-            return json.dumps(["Email does not exist "])
+
+            return json.dumps(["Password Update is ok"])
 
 
 """
