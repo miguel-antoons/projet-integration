@@ -8,7 +8,7 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
 # Infos Database
-from .database import db, users
+from .database import  users
 # Library
 import random
 import os
@@ -187,7 +187,7 @@ Verification if the username already exist
 
 @getUsers.route('/api/users/<username>', methods=['GET'])
 def username_exist(username):
-    records = db.Users
+    records = users
     result = list(records.find({"Username": username}))
 
     for client in result:
@@ -203,7 +203,7 @@ Verification if the email already exist
             
 @getUsers.route('/api/users/email/<email>', methods=['GET'])
 def email_exist(email):
-    records = db.Users
+    records = users
     print(email)
     result = list(records.find({"Email" : email}))
 

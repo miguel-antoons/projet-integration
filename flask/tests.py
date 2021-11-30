@@ -119,7 +119,7 @@ class PlaylistsTests(TestCase):
 
             # TEST API USER /reset-password/checkemail/<email>'
             #Check Email 
-            with self.client.get(f'/api/users/reset-password/checkemail/FranceaufranÃ§ais@zemour.fr') as result:
+            with self.client.get(f'/api/users/reset-password/checkemail/Franceaufrancais@zemour.fr') as result:
                 #STATUS
                 self.assertEqual(result.status, '200 OK')
                 #Content Type
@@ -146,6 +146,9 @@ class PlaylistsTests(TestCase):
                 self.assertEqual(result.status, '404 NOT FOUND')
                 #Content Type
                 self.assertEqual(result.content_type, "text/html; charset=utf-8")
+
+
+    #----------------------------------- API FOOD---------------------------------------
 
    
 
