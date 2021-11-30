@@ -3,7 +3,7 @@ from .food import addFood, getFood, removeFood, modifyFood
 from .hello_world import app_hw
 from .signIn import signIn
 from .users import getUsers
-from .login import login
+from .login import getUser
 from .signUp import addUser
 
 
@@ -16,7 +16,7 @@ blueprints = [
     app_hw,
     signIn,
     getUsers,
-    login,
+    getUser,
     addUser,
     getFood,
     removeFood,

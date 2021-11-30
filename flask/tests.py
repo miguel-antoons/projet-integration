@@ -12,8 +12,9 @@ sample_user = {
     "FirstName": "Test",
     "Username": "LeTest",
     "Email": "sendme@gmail.com",
-    "Password": "test123",
-    "Qrcode": "TODO"
+    "Password": "Test1234",
+    "Qrcode": "TODO",
+    "Code" : "628476"
 }
 
 sample_user_sign_up = {
@@ -78,12 +79,16 @@ class PlaylistsTests(TestCase):
         self.assertIn('Hello world!', page_content)
 
     def test_login(self):
-        result = self.client.get(f'/api/login/{sample_user["Email"]}')
-        self.assertEqual(result.status, '200 OK')
-        page_content = result.get_data(as_text=True)
-        page_content = json.loads(page_content)[0]
-        self.assertIn(sample_user['Username'], page_content['Username'])
-        self.assertIn(sample_user['Password'], page_content['Password'])
+        # Mock the food value in ./api.food.py
+        with unittest.mock.patch('api.login.getUser') as MockUser:
+            # Force the return value of login.insert_one(json) to sample_user
+            MockUser.insert_one.return_value = sample_user
+            with self.client.get(f'/api/login/{sample_user["Email"]}') as result:
+                self.assertEqual(result.status, '200 OK')
+                page_content = result.get_data(as_text=True)
+                page_content = json.loads(page_content)[0]
+                self.assertIn(sample_user['Username'], page_content['Username'])
+                self.assertIn(sample_user['Password'], page_content['Password'])
 
     # TEST API USER /reset-password/checkemail/<email>'
 
@@ -101,7 +106,7 @@ class PlaylistsTests(TestCase):
     # check for data returned
     def test_check_email_data(self):
         # Test with email in database
-        result = self.client.get('/api/users/reset-password/checkemail/Michael@Scofield.be')
+        result = self.client.get('/api/users/reset-password/checkemail/sendme@gmail.com')
         self.assertEqual(result.data, b'["message: this email exist"]')
         self.assertTrue(result.data, b'["message: this email exist"]')
 
@@ -117,20 +122,20 @@ class PlaylistsTests(TestCase):
 
     # check if Response is 200
     def test_check_code_codestatus(self):
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476')
+        result = self.client.get('/api/users/reset-password/checkcode/sendme@gmail.com/628476')
         status_code = result.status_code
         self.assertEqual(status_code, 200)
 
     # check if content return is text
     def test_check_code_content(self):
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/628476')
+        result = self.client.get('/api/users/reset-password/checkcode/sendme@gmail.com/628476')
         self.assertEqual(result.content_type, "text/html; charset=utf-8")
 
     # check for data returned
     def test_check_code_data(self):
         # Test with email and true code in database
         # Good code
-        result = self.client.get('/api/users/reset-password/checkcode/test@api.be/897456')
+        result = self.client.get('/api/users/reset-password/checkcode/sendme@gmail.com/628476')
         self.assertEqual(result.data, b'["The code is good"]')
         self.assertTrue(result.data, b'["The code is good"]')
 
