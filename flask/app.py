@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from api import blueprints, database
 
 
+
 # app need to be outside the function for testing
 app = Flask(__name__)
 
@@ -16,4 +17,5 @@ for blueprint in blueprints:
 
 # Run debug mode
 if __name__ == '__main__':
+    #,ssl_context='adhoc'
     app.run(debug=True)

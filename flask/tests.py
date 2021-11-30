@@ -12,15 +12,18 @@ sample_user = {
     "FirstName": "Test",
     "Username": "LeTest",
     "Email": "sendme@gmail.com",
-    "Password": "Test1234",
+    "Password": "test123",
     "Qrcode": "TODO",
     "Code" : "628476"
 }
 
+
+
 sample_user_sign_up = {
     "Username": "LeTest",
     "Password": "Test1234",
-    "Email": "sendme@gmail.com"
+    "Email": "sendme@gmail.com",
+   
 }
 
 sample_food = [{
@@ -79,72 +82,86 @@ class PlaylistsTests(TestCase):
         self.assertIn('Hello world!', page_content)
 
     def test_login(self):
-        # Mock the food value in ./api.food.py
-        with unittest.mock.patch('api.login.getUser') as MockUser:
-            # Force the return value of login.insert_one(json) to sample_user
-            MockUser.insert_one.return_value = sample_user
-            with self.client.get(f'/api/login/{sample_user["Email"]}') as result:
+        result = self.client.get(f'/api/login/{sample_user["Email"]}')
+        self.assertEqual(result.status, '200 OK')
+        #page_content = result.get_data(as_text=True)
+        #page_content = json.loads(page_content)[0]
+        #self.assertIn(sample_user['Username'], page_content['Username'])
+        #self.assertIn(sample_user['Password'], page_content['Password'])
+
+    #---------------------------------------API USER ---------------------------------------------------
+
+    def test_get_email(self):
+        # Mock the food value in ./api.users.py
+        with unittest.mock.patch('api.users') as MockUsers:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = sample_user
+            #Sample user
+
+            # TEST API USER /reset-password/checkemail/<email>'
+            #Check Email 
+            with self.client.get(f'/api/users/reset-password/checkemail/{sample_user["Email"]}') as result:
+                #STATUS
                 self.assertEqual(result.status, '200 OK')
-                page_content = result.get_data(as_text=True)
-                page_content = json.loads(page_content)[0]
-                self.assertIn(sample_user['Username'], page_content['Username'])
-                self.assertIn(sample_user['Password'], page_content['Password'])
+                #Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                #DATA
+                self.assertEqual(result.data, b'["message: this email exist"]')
+                self.assertTrue(result.data, b'["message: this email exist"]')
 
-    # TEST API USER /reset-password/checkemail/<email>'
+    def test_get_email_Notexist(self):
+        # Mock the food value in ./api.users.py
+        with unittest.mock.patch('api.users') as MockUsers:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = sample_user
+            #Sample user
 
-    # check if Response is 200
-    def test_check_email_status(self):
-        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com')
-        status_code = result.status_code
-        self.assertEqual(status_code, 200)
+            # TEST API USER /reset-password/checkemail/<email>'
+            #Check Email 
+            with self.client.get(f'/api/users/reset-password/checkemail/Franceaufrançais@zemour.fr') as result:
+                #STATUS
+                self.assertEqual(result.status, '200 OK')
+                #Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                #DATA
+                self.assertEqual(result.data, b'["message: this email does not exist"]')
+                self.assertTrue(result.data, b'["message: this email does not exist"]')
 
-    # check if content return is text
-    def test_check_email_content(self):
-        result = self.client.get('/api/users/reset-password/checkemail/Test@gmail.com')
-        self.assertEqual(result.content_type, "text/html; charset=utf-8")
 
-    # check for data returned
-    def test_check_email_data(self):
-        # Test with email in database
-        result = self.client.get('/api/users/reset-password/checkemail/sendme@gmail.com')
-        self.assertEqual(result.data, b'["message: this email exist"]')
-        self.assertTrue(result.data, b'["message: this email exist"]')
+    def test_get_check_code(self):
+        # Mock the food value in ./api.users.py
+        with unittest.mock.patch('api.users') as MockUsers:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = sample_user
+            #Sample user
+            #checkcode/<email>/<code>
 
-        # Email Not exist
-        # Test with email is not in  database
-        false_result = self.client.get(
-            '/api/users/reset-password/checkemail/Lafranceaufrancais@Scofield.be')
-        self.assertEqual(false_result.data, b'["message: this email does not exist"]')
-        self.assertTrue(false_result.data, b'["message: this email exist"]')
+            with self.client.get(f'/api/users/reset-password/checkcode/{sample_user["Email"]}/{sample_user["Code"]}') as result:
+                 #STATUS
+                self.assertEqual(result.status, '200 OK')
+                #Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                #DATA
+                self.assertEqual(result.data, b'["code is false"]')
 
-    # TEST API USER /api/users/reset-password/checkcode/<email>/<code>
-    # A False USER in Database with false data
+              
+    def test_update_password_put(self):
+        # Mock the food value in ./api.users.py
+        with unittest.mock.patch('api.users') as MockUsers:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = sample_user
+            #PUT methode  
+            #Sample user
+            #/users/reset-password/checkcode/
 
-    # check if Response is 200
-    def test_check_code_codestatus(self):
-        result = self.client.get('/api/users/reset-password/checkcode/sendme@gmail.com/628476')
-        status_code = result.status_code
-        self.assertEqual(status_code, 200)
-
-    # check if content return is text
-    def test_check_code_content(self):
-        result = self.client.get('/api/users/reset-password/checkcode/sendme@gmail.com/628476')
-        self.assertEqual(result.content_type, "text/html; charset=utf-8")
-
-    # check for data returned
-    def test_check_code_data(self):
-        # Test with email and true code in database
-        # Good code
-        result = self.client.get('/api/users/reset-password/checkcode/sendme@gmail.com/628476')
-        self.assertEqual(result.data, b'["The code is good"]')
-        self.assertTrue(result.data, b'["The code is good"]')
-
-        # Email exist but fasle code
-        # False Code
-        # Test with email and false code  database
-        false_result = self.client.get('/api/users/reset-password/checkcode/test@api.be/11111')
-        self.assertEqual(false_result.data, b'["code is false"]')
-        self.assertTrue(false_result.data, b'["code is false"]')
+            with self.client.get(f'/users/reset-password/checkcode/{sample_user["Email"]}/TEST1234') as result:
+                #STATUS
+                self.assertEqual(result.status, '404 NOT FOUND')
+                #Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                
+   
+     #---------------------------------------API FOOD ---------------------------------------------------
 
     def test_get_food(self):
         # Mock the food value in ./api.food.py
@@ -193,42 +210,7 @@ class PlaylistsTests(TestCase):
 
 
 
-    # TEST API USER /api/users/reset-password/checkcode/<email>/<code>
-
-    # PUT METHODE
-
-    def test_update_password_put(self):
-        result = self.client.put(
-            '/users/reset-password/checkcode/Test@api.be/JesuisBanane12234TEST')
-        status_code = result.status_code
-        self.assertEqual(status_code, 404)
-
-    # The email not existing
-
-    # GET METHODE
-
-    def test_email_not_exist(self):
-        result = self.client.get(
-            '/users/reset-password/checkcode/Banane@api.be/JesuisBanane12234TEST')
-        status_code = result.status_code
-        self.assertEqual(status_code, 404)
-
-        result = self.client.get(
-            '/users/reset-password/checkcode/Michael@Scofield.be/JesuisBanane12234TEST')
-        status_code = result.status_code
-        self.assertEqual(status_code, 404)
-
-        result = self.client.get('/users/reset-password/checkcode//Test@gmail.com/jnjkfnkd21232')
-        status_code = result.status_code
-        self.assertEqual(status_code, 404)
-
-    # PUT METHODE
-
-    def test_update_password_put_not_email(self):
-        result = self.client.put(
-            '/users/reset-password/checkcode/BlaBlaest@api.be/JesuisBanane12234TEST')
-        status_code = result.status_code
-        self.assertEqual(status_code,404)
+    
 
 
     def test_remove_food(self):
