@@ -306,6 +306,7 @@ object ProductRepository {
                     val expirationDate = convertToDate(jsonArray.getJSONObject(i).getString("Date"))
                     val dateDifference = getDateDifference(expirationDate)
                     val expirationPeriod = convertDifferenceToString(dateDifference)
+
                     productList.add(
                         ProductModel(
                             id = jsonArray.getJSONObject(i).getString("_id"),
