@@ -23,7 +23,7 @@ object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
 
-    var serverUrl = "http://10.0.2.2:5000/api"
+    var serverUrl = "http://10.0.2.2:5000/api/food"
 
     // only purpose of this is notify that the dataset has changed
     private lateinit var productAdapter: ProductAdapter
@@ -79,15 +79,12 @@ object ProductRepository {
         Nom: String,
         Marque: String,
         Quantite: String,
-        Ingredients: List<String>,
         Date: String,
-        Valeurs: NutritionValues,
-        Poids: String,
         Lieu: String,
         Category: String,
         productId: String
     ) {
-        val url = "$serverUrl/modifyFood/$productId"
+        val url = "$serverUrl/$productId"
         val requestQueue = Volley.newRequestQueue(context)
         val postData = JSONObject()
         try {
@@ -95,10 +92,7 @@ object ProductRepository {
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
-            postData.put("Ingredients", Ingredients.joinToString())
             postData.put("Date", Date)
-            postData.put("Valeurs", Valeurs)
-            postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
             postData.put("Categorie", Category)
 
@@ -107,7 +101,7 @@ object ProductRepository {
         }
 
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, url, postData,
+            Request.Method.PUT, url, postData,
             { response ->
                 println(response)
 
@@ -125,55 +119,24 @@ object ProductRepository {
 
     // deletes an element from productList at a given index (productPosition)
     fun deleteProduct(
-        productPosition: Int,
         context: Context,
-        Utilisateur: String,
-        Nom: String,
-        Marque: String,
-        Quantite: String,
-        Ingredients: List<String>,
-        Date: String,
-        Valeurs: NutritionValues,
-        Poids: String,
-        Lieu: String,
-        Category: String) {
-        productList.removeAt(productPosition)
+        productId: String
+    ) {
         // API DELETE
-        val postUrl = "$serverUrl/removeFood"
+        val postUrl = "$serverUrl/$productId"
         val requestQueue = Volley.newRequestQueue(context)
 
-        val deleteData = JSONObject()
-        try {
-            deleteData.put("Utilisateur", Utilisateur)
-            deleteData.put("Nom", Nom)
-            deleteData.put("Marque", Marque)
-            deleteData.put("Quantite", Quantite)
-            deleteData.put("Ingredients", Ingredients.joinToString())
-            deleteData.put("Date", Date)
-            deleteData.put("Valeurs", Valeurs)
-            deleteData.put("Poids", Poids)
-            deleteData.put("Lieu", Lieu)
-            deleteData.put("Categorie", Category)
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, deleteData,
+        val jsonObjectRequest = StringRequest(
+            Request.Method.DELETE, postUrl,
             { response ->
                 println(response)
+
+                // call the get api here in order to make sure it is called after the new
+                // product was added
+                getFoodFromMongo(context)
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
-
-        // notify that an item was removed
-        // this will update the FragmentProduct page
-        productAdapter.notifyItemRemoved(productPosition)
-
-        // call the get api here in order to make sure it is called after the new
-        // product was added
-         getFoodFromMongo(context, loadUsername(context))
     }
 
 
@@ -290,10 +253,10 @@ object ProductRepository {
         val productListLength = productList.size
         productList.clear()
 
-        val url = "$serverUrl/getFood/$productUser"
-
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
+
+        val url = serverUrl
         val queue = Volley.newRequestQueue(context)
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -324,11 +287,10 @@ object ProductRepository {
                             productColor = getProductColor(dateDifference)
                         )
                     )
-
-                    // notify the adapter that new elements were added to the list
-                     productAdapter.notifyItemRangeInserted(0, jsonArray.length())
                     // productAdapter.notifyDataSetChanged()
                 }
+                // notify the adapter that new elements were added to the list
+                productAdapter.notifyItemRangeInserted(0, jsonArray.length())
                 Log.d("GetFood", "SUCCESS")
             },
             { Log.d("GetFood","That didn't work!") }
@@ -352,7 +314,7 @@ object ProductRepository {
         Poids: String,
         Lieu: String,
         Category: String): String {
-        val postUrl = "$serverUrl/addFood"
+        val postUrl = serverUrl
         val requestQueue = Volley.newRequestQueue(context)
 
         val postData = JSONObject()

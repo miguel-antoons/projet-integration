@@ -60,23 +60,11 @@ class ProductPopup(
     private fun setupDeleteButton() {
         findViewById<Button>(R.id.delete_button).setOnClickListener {
             // delete the item in the shared product list (cf. './ProductRepository.kt')
-            selectedProduct.user?.let { it1 ->
-                selectedProduct.brand?.let { it2 ->
-                    selectedProduct.ingredients?.let { it3 ->
-                        selectedProduct.nutritiveValues?.let { it4 ->
-                            selectedProduct.weight?.let { it5 ->
-                                ProductRepository.deleteProduct(productPosition, context,
-                                    it1, selectedProduct.name,
-                                    it2, selectedProduct.quantity,
-                                    it3, selectedProduct.expirationDate,
-                                    it4, it5, selectedProduct.location, selectedProduct.category)
-                            }
-                        }
-                    }
-                }
-            }
-            // notify the adapter that an item has been removed from the list
-            adapter.notifyItemRemoved(productPosition)
+            ProductRepository.deleteProduct(
+                context,
+                selectedProduct.id
+            )
+
             Toast.makeText(context ,
                 "Produit supprimé",
                 Toast.LENGTH_LONG
