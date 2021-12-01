@@ -256,7 +256,7 @@ object ProductRepository {
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
 
-        val url = serverUrl
+        val url = "$serverUrl/$productUser"
         val queue = Volley.newRequestQueue(context)
         val stringRequest = StringRequest(
             Request.Method.GET, url,

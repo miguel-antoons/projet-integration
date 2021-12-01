@@ -7,13 +7,26 @@ from .database import food
 app_food = Blueprint('food', __name__)
 
 
-@app_food.route('/api/food', methods=['POST', 'GET'])
-def food_api():
-    if request.method == 'GET':
-        return get_food()
+@app_food.route('/api/food/<user>', methods=['GET'])
+def get_food(user):
+    result = list(
+        food.find(
+            {"Utilisateur": user}
+        )
+    )
 
-    elif request.method == 'POST':
-        return add_food(request.get_json(force=True))
+    for item in result:
+        item["_id"] = str(item.get('_id'))
+    
+    # TODO : if id == current user return his food list
+    return json_util.dumps(result)
+
+
+@app_food.route('/api/food', methods=['POST'])
+def add_food():
+    req = request.get_json(force=True)
+    food.insert_one(req)
+    return jsonify({'Response': "Food was added"})
 
 
 @app_food.route('/api/food/<product_id>', methods=['PUT', 'DELETE'])
@@ -23,22 +36,6 @@ def food_with_id(product_id):
 
     elif request.method == 'DELETE':
         return remove_food(product_id)
-
-
-def add_food(req):
-    food.insert_one(req)
-    return jsonify({'Response': "Food was added"})
-
-
-@getFood.route('/api/getFood/<user>', methods=['GET'])
-def get_food():
-    result = list(food.find())
-
-    for item in result:
-        item["_id"] = str(item.get('_id'))
-    
-    # TODO : if id == current user return his food list
-    return json_util.dumps(result)
 
 
 def remove_food(product_id):

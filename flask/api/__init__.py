@@ -18,6 +18,4 @@ blueprints = [
     getUsers,
     getUser,
     addUser,
-    login,
-    addUser
 ]
