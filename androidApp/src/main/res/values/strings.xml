@@ -14,6 +14,7 @@
     <string name="hygrometry">Hygrométrie</string>
     <string name="degree">00°</string>
     <string name="percentage">00%</string>
+    <string name="send_notif">Envoyer une notification</string>
 
     <!-- Product list page -->
     <string name="product_page_title">Liste de Produits</string>
@@ -38,6 +39,16 @@
     <string name="def_category">None</string>
     <string name="product_location_title">Emplacement</string>
     <string name="def_product_location">None</string>
+    <string name="product_ecoscore_title">Ecoscore</string>
+    <string name="def_product_ecoscore">X</string>
+    <string name="product_nutriscore_title">Nutriscore</string>
+    <string name="def_product_nutriscore">X</string>
+    <string name="product_ingredients_title">Ingrédients</string>
+    <string name="def_product_ingredients">Ingrédient a, ingrédient b, ingrédient c</string>
+    <string name="product_brand_title">Marque</string>
+    <string name="def_product_brand">marque</string>
+    <string name="product_period_title">Période d\'Expiration</string>
+    <string name="def_product_period">1 jour</string>
 
     <string name="delete_button">Supprimer</string>
     <string name="modify_button">Modifier</string>
@@ -53,6 +64,7 @@
     <string name="btn_date">Choisir Date : </string>
     <string name="btn_add">Ajouter </string>
     <string name="btn_update">Modifier</string>
+
 
 
     <!--  TextView  -->

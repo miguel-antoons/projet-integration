@@ -5,16 +5,11 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import java.util.*
 import com.example.smartfridge.android.api.NutritionValues
-
-import com.example.smartfridge.android.fragments.FragmentProduct
-import com.example.smartfridge.android.fragments.FragmentSettings
-import org.json.JSONException
 
 
 class FormsAddAliments(
@@ -87,9 +82,10 @@ class FormsAddAliments(
                         listOf("ingredient1","ingredient2","ingredient3"),
                         date,
                         NutritionValues(),
-                        "500g",
                         store,
-                        categorie
+                        categorie,
+                        "X",
+                        "X"
                     )
 
                     Toast.makeText(
@@ -114,7 +110,7 @@ class FormsAddAliments(
                     Toast.makeText(this ,
                         "Produit modifié",
                         Toast.LENGTH_LONG
-                    ).show();
+                    ).show()
                 }
                 finish()
             }
