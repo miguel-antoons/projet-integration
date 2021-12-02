@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="400dp"
+    android:padding="@dimen/default_padding">
+
+    <!-- Top part of the pop-up -->
+    <ImageView
+        android:id="@+id/close_popup"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:contentDescription="@string/ic_close_description"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toTopOf="@+id/invisible_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/product_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/popup_title"
+        app:layout_constraintBottom_toTopOf="@+id/invisible_view"
+        app:layout_constraintEnd_toStartOf="@+id/product_status"
+        app:layout_constraintStart_toEndOf="@+id/close_popup"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/popup_title" />
+
+    <ImageView
+        android:id="@+id/product_status"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:padding="10dp"
+        android:contentDescription="@string/ic_status_description"
+        android:src="@drawable/ic_product_state"
+        app:layout_constraintBottom_toTopOf="@+id/invisible_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- View for aligning top elements -->
+    <View
+        android:id="@+id/invisible_view"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- middle part of the pop-up -->
+    <!-- Row 1 -->
+    <!-- Expiration Date -->
+    <TextView
+        android:id="@+id/expiration_date_title"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/expiration_date_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invisible_view"
+        style="@style/popup_subtitle" />
+
+    <TextView
+        android:id="@+id/expiration_date"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/def_expiration_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expiration_date_title"
+        style="@style/popup_default" />
+
+    <!-- Quantity -->
+    <TextView
+        android:id="@+id/quantity_title"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/quantity_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invisible_view"
+        style="@style/popup_subtitle" />
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/def_quantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantity_title"
+        style="@style/popup_default" />
+
+    <!-- Row 2 -->
+    <!-- Category -->
+    <TextView
+        android:id="@+id/category_title"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/category_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expiration_date"
+        style="@style/popup_subtitle" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/def_category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_title"
+        style="@style/popup_default" />
+
+    <!-- Product location -->
+    <TextView
+        android:id="@+id/product_location_title"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/product_location_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantity"
+        style="@style/popup_subtitle" />
+
+    <TextView
+        android:id="@+id/product_location"
+        android:layout_width="@dimen/product_characteristics"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:gravity="center"
+        android:text="@string/def_product_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_location_title"
+        style="@style/popup_default" />
+
+    <!-- Row 3 -->
+    <!-- (row 3 should come here) -->
+    <!-- and so on -->
+
+
+    <!-- Bottom part of the pop-up -->
+    <!-- Delete button -->
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/button_side_margin"
+        android:layout_marginStart="@dimen/button_side_margin"
+        android:background="@color/delete_red"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:text="@string/delete_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Modify button -->
+    <Button
+        android:id="@+id/modify_button"
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginRight="@dimen/button_side_margin"
+        android:layout_marginEnd="@dimen/button_side_margin"
+        android:background="@color/light_grey"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:text="@string/modify_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

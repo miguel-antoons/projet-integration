@@ -27,6 +27,7 @@ class Login : AppCompatActivity() {
         val signUpButton = findViewById<Button>(R.id.buttonRegister)
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val showPassword = findViewById<CheckBox>(R.id.showPassword)
+        val terms = findViewById<TextView>(R.id.terms_link)
 
 
         // pre-load email and password if the rememberMe check box is checked
@@ -40,6 +41,11 @@ class Login : AppCompatActivity() {
             else {
                 verifyClient(emailLayout.text.toString(), passwordLayout.text.toString())
             }
+        }
+
+        terms.setOnClickListener {
+            TermsPopUp(this).show()
+            // Toast.makeText(this, "POP UP", Toast.LENGTH_SHORT).show()
         }
 
         // onclick signup button

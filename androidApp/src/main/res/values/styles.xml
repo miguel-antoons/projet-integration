@@ -85,5 +85,12 @@
 
     </style>
 
+    <!-- Terms of signing up -->
+    <style name="terms_link_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>
