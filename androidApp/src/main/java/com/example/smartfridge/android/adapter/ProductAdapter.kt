@@ -41,10 +41,12 @@ class ProductAdapter(
     // function assigns the correct values to the correct recyclerview items
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentProduct = productList[position]
-
         // sets item color to light green if the position is uneven
         if ((position % 2) == 1) {
             holder.productItem.setBackgroundColor(Color.parseColor("#CBF4DA"))
+        }
+        else {
+            holder.productItem.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
 
         // create an interaction on product row click

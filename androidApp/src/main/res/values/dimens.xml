@@ -22,4 +22,10 @@
     <dimen name="button_side_margin">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!-- add product form -->
+    <dimen name="input_width">335dp</dimen>
+    <dimen name="form_margin_top">50dp</dimen>
+    <dimen name="label_margin_bottom">6dp</dimen>
+    <dimen name="label_side_margin">15dp</dimen>
+    <dimen name="precisions_side_margin">10dp</dimen>
 </resources>

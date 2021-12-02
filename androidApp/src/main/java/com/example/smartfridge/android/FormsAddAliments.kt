@@ -1,22 +1,19 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.widget.*
-import java.text.SimpleDateFormat
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentTransaction
-import com.android.volley.*
-import com.android.volley.toolbox.Volley
-import org.json.JSONObject
+import androidx.core.view.ViewCompat
 import java.util.*
-import com.android.volley.toolbox.JsonObjectRequest
-import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.api.NutritionValues
+
 import com.example.smartfridge.android.fragments.FragmentProduct
+import com.example.smartfridge.android.fragments.FragmentSettings
 import org.json.JSONException
 
 
@@ -34,6 +31,9 @@ class FormsAddAliments(
         val alimentName = findViewById<EditText>(R.id.AlimentName)
         val alimentQuantite = findViewById<EditText>(R.id.AlimentQuantite)
 
+        val returnImage = findViewById<ImageView>(R.id.return_icon)
+        ViewCompat.setTranslationZ(returnImage, 10F)
+
         // Date peeremption Textview and Button
         val mPickTimeBtn = findViewById<Button>(R.id.button_date_select)
         val textView = findViewById<TextView>(R.id.dateTv)
@@ -43,7 +43,8 @@ class FormsAddAliments(
         val alimentStore = findViewById<Spinner>(R.id.place_spinner)
 
         //Button event
-        val button_return_product = findViewById<Button>(R.id.button_return_list_product)
+        val button_return_product = findViewById<TextView>(R.id.button_return_list_product)
+        ViewCompat.setElevation(button_return_product, 1F)
         button_return_product.setOnClickListener {
             // end the activity and return to the previous fragment
             finish()
@@ -76,34 +77,47 @@ class FormsAddAliments(
                 Toast.makeText(applicationContext, "Aliment Ajouté ", Toast.LENGTH_SHORT).show()
 
                 if (productIndex == -1) {
-                    sendFoodToServer(
-                        "999",
+
+                    val confirmationMessage = ProductRepository.sendFoodToServer(
+                        this,
+                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
-                        arrayOf<String>("ingredient1","ingredient2","ingredient3"),
-                        "04/10/2022",
+                        listOf("ingredient1","ingredient2","ingredient3"),
+                        date,
                         NutritionValues(),
                         "500g",
-                        "Frigo",
+                        store,
                         categorie
                     )
-                    ProductRepository.getFoodFromMongo(this)
+
+                    Toast.makeText(
+                        this,
+                        confirmationMessage,
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
-                    modifyProduct(
+                    ProductRepository.modifyProduct(
+                        this,
                         productIndex,
+                        loadUsername(this),
                         names,
-                        Integer.parseInt(quantite),
+                        "TODO",
+                        quantite,
                         date,
+                        store,
                         categorie,
-                        store
+                        ProductRepository.productList[productIndex].id
                     )
+
+                    Toast.makeText(this ,
+                        "Produit modifié",
+                        Toast.LENGTH_LONG
+                    ).show();
                 }
                 finish()
-
-
             }
-
         }
 
 
@@ -159,68 +173,10 @@ class FormsAddAliments(
 
             val dpd = DatePickerDialog(this, { _, year, monthOfYear, dayOfMonth ->
                 // Display Selected date in TextView
-                textView.text = "$dayOfMonth / ${monthOfYear + 1} / $year"
+                textView.text = "$dayOfMonth/${monthOfYear + 1}/$year"
             }, year, month, day)
             dpd.show()
         }
-    }
-
-    /**
-     * Function adds a new product to the system trough the ProductRepository.addProductFromForm
-     * method (cf./ProductRepository.kt). It then show a confirmation message on screen when the
-     * product was added.
-     *
-     * function unsupported replacing by post function see sendFoodToServer()
-     */
-    private fun addProduct(
-        productName: String,
-        productQuantity: Int,
-        expirationDate: String,
-        productCategory: String,
-        productLocation: String
-    ) {
-        // adding the new product to the product array in the 'ProductRepository' class
-        ProductRepository.addProductFromForm(
-            productName,
-            productQuantity,
-            expirationDate,
-            productCategory,
-            productLocation
-        )
-
-        Toast.makeText(
-            this,
-            "Produit ajouté", Toast.LENGTH_LONG
-        ).show();
-    }
-
-    /**
-     * Function modifies a product through the ProductRepository.modifyProduct method
-     * (cf./ProductRepository.kt). It then show a confirmation message on screen when the
-     * product was modified.
-     */
-    private fun modifyProduct(
-        productIndex: Int,
-        productName: String,
-        productQuantity: Int,
-        expirationDate: String,
-        productCategory: String,
-        productLocation: String
-    ) {
-        // call the method to modify the product and give it the new values
-        ProductRepository.modifyProduct(
-            productIndex,
-            productName,
-            productQuantity,
-            expirationDate,
-            productCategory,
-            productLocation
-        )
-
-        Toast.makeText(
-            this,
-            "Produit modifié", Toast.LENGTH_LONG
-        ).show();
     }
 
     /**
@@ -242,9 +198,8 @@ class FormsAddAliments(
 
         // pre-set the different product fields
         nameField.setText(productCopy.name)
-        quantityField.setText(productCopy.quantity.toString())
-        dateField.text = SimpleDateFormat("dd / M / yyyy", Locale.getDefault())
-            .format(productCopy.expirationDate)
+        quantityField.setText(productCopy.quantity)
+        dateField.text = productCopy.expirationDate
         categorySpinner.setSelection(
             resources.getStringArray(R.array.categorie_array).indexOf(productCopy.category)
         )
@@ -255,55 +210,12 @@ class FormsAddAliments(
         // alter the submit button text
         updateButton.text = resources.getText(R.string.btn_update)
     }
+}
 
-    /**
-     * Function create API POST request and is called with some parameters
-     * @param Valeurs more info check ./api/NutritionValues
-     */
-    private fun sendFoodToServer(
-        Utilisateur: String,
-        Nom: String,
-        Marque: String,
-        Quantite: String,
-        Ingredients: Array<String>,
-        Date: String,
-        Valeurs: NutritionValues,
-        Poids: String,
-        Lieu: String,
-        Category: String) {
-        val postUrl = "http://10.0.2.2:5000/api/addFood"
-        val requestQueue = Volley.newRequestQueue(this)
+// load Username
+fun loadUsername(context: Context) : String {
+    val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+    val savedUsername = sharedPreferences.getString("USERNAME", null)
 
-        val postData = JSONObject()
-        try {
-            postData.put("Utilisateur", Utilisateur)
-            postData.put("Nom", Nom)
-            postData.put("Marque", Marque)
-            postData.put("Quantite", Quantite)
-            postData.put("Ingredients", Arrays.toString(Ingredients))
-            postData.put("Date", Date)
-            postData.put("Valeurs", Valeurs)
-            postData.put("Poids", Poids)
-            postData.put("Lieu", Lieu)
-            postData.put("Category", Category)
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, postData,
-            { response ->
-                println(response)
-
-                // call the get api here in order to make sure it is called after the new
-                // product was added
-                ProductRepository.getFoodFromMongo(this)
-            }
-        ) { error -> error.printStackTrace() }
-        requestQueue.add(jsonObjectRequest)
-        Toast.makeText(this ,
-            "Produit ajouté", Toast.LENGTH_LONG).show();
-    }
-
+    return savedUsername.toString()
 }

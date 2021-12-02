@@ -7,10 +7,9 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.fragments.FragmentProduct
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ProductPopup(
     private val adapter: ProductAdapter,
@@ -44,8 +43,7 @@ class ProductPopup(
 
         productStatus.setColorFilter(Color.parseColor(selectedProduct.productColor))
         productTitle.text = selectedProduct.name
-        expirationDate.text = SimpleDateFormat("dd / MM / yyyy", Locale.getDefault())
-            .format(selectedProduct.expirationDate)
+        expirationDate.text = selectedProduct.expirationDate
         productQuantity.text = selectedProduct.quantity.toString()
         productCategory.text = selectedProduct.category
         productLocation.text = selectedProduct.location
@@ -62,9 +60,15 @@ class ProductPopup(
     private fun setupDeleteButton() {
         findViewById<Button>(R.id.delete_button).setOnClickListener {
             // delete the item in the shared product list (cf. './ProductRepository.kt')
-            ProductRepository.deleteProduct(productPosition)
-            // notify the adapter that an item has been removed from the list
-            adapter.notifyItemRemoved(productPosition)
+            ProductRepository.deleteProduct(
+                context,
+                selectedProduct.id
+            )
+
+            Toast.makeText(context ,
+                "Produit supprimé",
+                Toast.LENGTH_LONG
+            ).show();
             // close the pop-up
             dismiss()
         }

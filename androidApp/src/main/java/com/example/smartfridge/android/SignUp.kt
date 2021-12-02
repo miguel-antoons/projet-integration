@@ -134,13 +134,13 @@ class SignUp : AppCompatActivity() {
 
         // Checking if the password contains or not at least one lowercase
         if (!lowercase.matcher(etPassword.text.toString()).find()) {
-            etPassword.setError("Doit contenir au moins une majuscule !")
+            etPassword.setError("Doit contenir au moins une minuscule !")
             return false
         }
 
         // Checking if the password contains or not at least one uppercase
         if (!uppercase.matcher(etPassword.text.toString()).find()) {
-            etPassword.setError("Doit contenir au moins une minuscule !")
+            etPassword.setError("Doit contenir au moins une majuscule !")
             return false
         }
 
@@ -164,7 +164,7 @@ class SignUp : AppCompatActivity() {
 
         // Checking the proper email format
         if (!isEmailValid(etEmail.text.toString())) {
-            etEmail.setError("Please enter a valid email !")
+            etEmail.setError("Veuillez entrer une adresse mail valide !")
             return false
         }
         return true
@@ -189,7 +189,7 @@ class SignUp : AppCompatActivity() {
                     isEmailExist(etEmail.text.toString())
                 }
                 else {
-                    etUsername.setError("Username already taken!")
+                    etUsername.setError("Nom d'utilisateur déjà pris !")
                 }
 
             }, { error ->
@@ -219,7 +219,7 @@ class SignUp : AppCompatActivity() {
                     performSignUp()
                 }
                 else {
-                    etEmail.setError("Email already taken!")
+                    etEmail.setError("Adresse mail déjà prise !")
                 }
 
             }, { error ->
@@ -283,10 +283,20 @@ class SignUp : AppCompatActivity() {
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, postUrl, postData,
-            { response -> println(response) }
-        ) { error -> error.printStackTrace() }
+            { response ->
+                Log.d("responseCode", response.toString())
+                Toast.makeText(this, "Inscription réussie !", Toast.LENGTH_SHORT).show()
+
+                // creation de notre intent
+                val monIntent : Intent =  Intent(this,Login::class.java)
+                // start MainActivity
+                startActivity(monIntent)
+
+            }
+        ) { error ->
+            Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
+            }
         requestQueue.add(jsonObjectRequest)
 
-        Toast.makeText(this, "Inscription réussie !", Toast.LENGTH_SHORT).show()
     }
 }

@@ -33,7 +33,7 @@ class CheckCodeMail : AppCompatActivity() {
 
         val code_editext = findViewById<EditText>(R.id.editTextCode)
 
-        val button_check_code = findViewById<Button>(R.id.button_check_code)
+        val button_check_code = findViewById<Button>(R.id.button_continued)
         button_check_code.setOnClickListener {
 
             // get text in EditText email
@@ -163,7 +163,7 @@ class CheckCodeMail : AppCompatActivity() {
 
                  if (response[0] == "message: this email exist") {
 
-                    Toast.makeText(this, "Un nouveau code est crée et envoyer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Un nouveau code est crée et envoyé", Toast.LENGTH_SHORT).show()
 
 
                 } else {

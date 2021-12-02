@@ -15,6 +15,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
 import com.example.smartfridge.android.Hashing.verifyPasswordHash
+import com.example.smartfridge.android.Hashing.passwordHash
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
