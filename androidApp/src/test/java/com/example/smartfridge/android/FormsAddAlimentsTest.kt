@@ -36,6 +36,7 @@ class FormsAddAlimentsTest {
     private lateinit var server: MockWebServer
 
     // set test values
+    private val testProductId = "124334546246"
     private val testUser = "testUser"
     private val testProductName = "testProductName"
     private val testBrand = "testBrand"
@@ -44,6 +45,8 @@ class FormsAddAlimentsTest {
     private val testWeight = "testWeight"
     private val testLocation = "testLocation"
     private val testCategory = "testCategory"
+    private val testNutriscore = "A"
+    private val testEcoscore = "A"
 
     @Before
     fun setUp() {
@@ -93,9 +96,10 @@ class FormsAddAlimentsTest {
                 listOf("test"),
                 testDate,
                 NutritionValues(),
-                testWeight,
                 testLocation,
-                testCategory
+                testCategory,
+                testEcoscore,
+                testNutriscore
             )
         }
 
@@ -122,13 +126,16 @@ class FormsAddAlimentsTest {
             jsonData.get("Date").toString().replace("\"",""), testDate
         )
         assertEquals(
-            jsonData.get("Poids").toString().replace("\"",""), testWeight
-        )
-        assertEquals(
             jsonData.get("Lieu").toString().replace("\"",""), testLocation
         )
         assertEquals(
             jsonData.get("Categorie").toString().replace("\"",""), testCategory
+        )
+        assertEquals(
+            jsonData.get("Ecoscore").toString().replace("\"",""), testEcoscore
+        )
+        assertEquals(
+            jsonData.get("Nutriscore").toString().replace("\"",""), testNutriscore
         )
     }
 
@@ -142,13 +149,10 @@ class FormsAddAlimentsTest {
                 testProductName,
                 testBrand,
                 testQuantity,
-                listOf("test"),
                 testDate,
-                NutritionValues(),
-                testWeight,
                 testLocation,
                 testCategory,
-                "abc1243"
+                testProductId
             )
         }
 
@@ -158,7 +162,7 @@ class FormsAddAlimentsTest {
         val jsonData = JsonParser.parseString(recordedRequestBody).asJsonObject
 
         // verify if the data is correct
-        assertEquals("POST", recordedRequest.method)
+        assertEquals("PUT", recordedRequest.method)
         assertEquals(
             jsonData.get("Utilisateur").toString().replace("\"",""), testUser
         )
@@ -173,9 +177,6 @@ class FormsAddAlimentsTest {
         )
         assertEquals(
             jsonData.get("Date").toString().replace("\"",""), testDate
-        )
-        assertEquals(
-            jsonData.get("Poids").toString().replace("\"",""), testWeight
         )
         assertEquals(
             jsonData.get("Lieu").toString().replace("\"",""), testLocation
@@ -199,52 +200,16 @@ class FormsAddAlimentsTest {
         // delete the product
         scenario.onActivity {
             ProductRepository.deleteProduct(
-                0,
                 it,
-                testUser,
-                testProductName,
-                testBrand,
-                testQuantity,
-                listOf("test"),
-                testDate,
-                NutritionValues(),
-                testWeight,
-                testLocation,
-                testCategory
+                testProductId
             )
         }
 
         // convert the data sent to the mock server into json
         val recordedRequest = server.takeRequest()
-        val recordedRequestBody = recordedRequest.body.readUtf8()
-        val jsonData = JsonParser.parseString(recordedRequestBody).asJsonObject
 
         // verify if the data is correct
-        assertEquals("POST", recordedRequest.method)
-        assertEquals(
-            jsonData.get("Utilisateur").toString().replace("\"",""), testUser
-        )
-        assertEquals(
-            jsonData.get("Nom").toString().replace("\"",""), testProductName
-        )
-        assertEquals(
-            jsonData.get("Marque").toString().replace("\"",""), testBrand
-        )
-        assertEquals(
-            jsonData.get("Quantite").toString().replace("\"",""), testQuantity
-        )
-        assertEquals(
-            jsonData.get("Date").toString().replace("\"",""), testDate
-        )
-        assertEquals(
-            jsonData.get("Poids").toString().replace("\"",""), testWeight
-        )
-        assertEquals(
-            jsonData.get("Lieu").toString().replace("\"",""), testLocation
-        )
-        assertEquals(
-            jsonData.get("Categorie").toString().replace("\"",""), testCategory
-        )
+        assertEquals("DELETE", recordedRequest.method)
     }
 
     @Test
