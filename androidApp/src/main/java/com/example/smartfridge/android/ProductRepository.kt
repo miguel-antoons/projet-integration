@@ -281,10 +281,11 @@ object ProductRepository {
                             brand = jsonArray.getJSONObject(i).getString("Marque"),
                             user = jsonArray.getJSONObject(i).getString("Utilisateur"),
                             location = jsonArray.getJSONObject(i).getString("Lieu"),
-                            weight = jsonArray.getJSONObject(i).getString("Poids"),
                             ingredients = listOf(jsonArray.getJSONObject(i).getString("Ingredients")),
                             nutritiveValues = NutritionValues(jsonArray.getJSONObject(i).getString("Valeurs")),
-                            productColor = getProductColor(dateDifference)
+                            productColor = getProductColor(dateDifference),
+                            ecoscore = jsonArray.getJSONObject(i).getString("Ecoscore"),
+                            nutriscore = jsonArray.getJSONObject(i).getString("Nutriscore")
                         )
                     )
                     // productAdapter.notifyDataSetChanged()
@@ -311,9 +312,11 @@ object ProductRepository {
         Ingredients: List<String>,
         Date: String,
         Valeurs: NutritionValues,
-        Poids: String,
         Lieu: String,
-        Category: String): String {
+        Category: String,
+        Ecoscore: String,
+        Nutriscore: String
+    ): String {
         val postUrl = serverUrl
         val requestQueue = Volley.newRequestQueue(context)
 
@@ -326,9 +329,10 @@ object ProductRepository {
             postData.put("Ingredients", Ingredients.joinToString())
             postData.put("Date", Date)
             postData.put("Valeurs", Valeurs)
-            postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
             postData.put("Categorie", Category)
+            postData.put("Ecoscore", Ecoscore)
+            postData.put("Nutriscore", Nutriscore)
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -349,7 +353,7 @@ object ProductRepository {
         return "Produit ajouté"
     }
     // load Username
-    fun loadUsername(context: Context) : String {
+    private fun loadUsername(context: Context) : String {
         val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val savedUsername = sharedPreferences.getString("USERNAME", null)
 
