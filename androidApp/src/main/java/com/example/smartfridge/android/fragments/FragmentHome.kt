@@ -1,5 +1,6 @@
 package com.example.smartfridge.android.fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.smartfridge.android.HowToConnect
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartfridge.android.MainActivity
 import com.example.smartfridge.android.R
 import com.example.smartfridge.android.adapter.FridgesAdapter
 import com.example.smartfridge.android.adapter.FridgesItemDecoration
@@ -24,6 +26,10 @@ class FragmentHome : Fragment() {
         buttonHowTo.setOnClickListener{
             val intent = Intent(context, HowToConnect::class.java);
             startActivity(intent);
+        }
+        val buttonNotif = view.findViewById<Button>(R.id.sendNotif)
+        buttonNotif.setOnClickListener {
+            (activity as MainActivity).sendNotification()
         }
     }
 

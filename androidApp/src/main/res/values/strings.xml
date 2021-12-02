@@ -14,6 +14,7 @@
     <string name="hygrometry">Hygrométrie</string>
     <string name="degree">00°</string>
     <string name="percentage">00%</string>
+    <string name="send_notif">Envoyer une notification</string>
 
     <!-- Product list page -->
     <string name="product_page_title">Liste de Produits</string>
@@ -53,6 +54,7 @@
     <string name="btn_date">Choisir Date : </string>
     <string name="btn_add">Ajouter </string>
     <string name="btn_update">Modifier</string>
+
 
 
     <!--  TextView  -->
