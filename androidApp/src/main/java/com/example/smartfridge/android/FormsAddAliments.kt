@@ -105,10 +105,7 @@ class FormsAddAliments(
                         names,
                         "TODO",
                         quantite,
-                        listOf("ingredient1","ingredient2","ingredient3"),
                         date,
-                        NutritionValues(),
-                        "500g",
                         store,
                         categorie,
                         ProductRepository.productList[productIndex].id

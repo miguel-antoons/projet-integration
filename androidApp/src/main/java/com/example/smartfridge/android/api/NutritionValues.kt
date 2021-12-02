@@ -10,7 +10,7 @@ data class NutritionValues(
     val salt : String = "test"
 ){
     override fun toString(): String {
-        var gson = Gson()
+        val gson = Gson()
         return gson.toJson(NutritionValues())
     }
 }
