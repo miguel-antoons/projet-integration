@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.VerifyEmailPassword.validateForm
 import org.json.JSONArray
@@ -16,6 +17,7 @@ import org.json.JSONObject
 import org.json.JSONTokener
 import com.example.smartfridge.android.Hashing.verifyPasswordHash
 import com.example.smartfridge.android.Hashing.passwordHash
+import org.json.JSONException
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,42 +77,36 @@ class Login : AppCompatActivity() {
     }
 
     // checks if the email and password are correct in the database
-    private fun verifyClient(email : String?, password : String) {
-        val url = "http://10.0.2.2:5000/api/login/$email"
+    private fun verifyClient(email : String, password : String) {
+        val url = "http://10.0.2.2:5000/api/login"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
-        val jsonObjectRequest = JsonArrayRequest(
-            Request.Method.GET, url, null,
-            { response ->
 
-                // Email verification
-                if(response.length() === 0) {
-                    Toast.makeText(this, "Email incorrect !", Toast.LENGTH_SHORT).show()
-                }
+        val postData = JSONObject()
+        try {
+            postData.put("Email", email)
+            postData.put("Password", password)
 
-                // Password verification
-                else {
-                    if(verifyPasswordHash(password, response.getJSONObject(0).getString("Password"))) {
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
 
-                        // save email and password, username locally
-                        val username = response.getJSONObject(0).getString("Username")
-                        saveData(email, password, username)
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url, postData,
+            { resp ->
 
-                        // creation de notre intent
-                        val monIntent : Intent =  Intent(this,MainActivity::class.java)
-                        // start MainActivity
-                        startActivity(monIntent)
-                    }
-                    else {
-                        Toast.makeText(this, "Mot de passe incorrect !", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                val username = resp.getString("Username")
+                saveData(email, password, username)
 
-                Log.d("MainActivity", "response: $response")
+                // creation de notre intent
+                val monIntent : Intent =  Intent(this,MainActivity::class.java)
+                // start MainActivity
+                startActivity(monIntent)
+
             }, {
                     error ->
+                Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
                 Log.d("TAGTest", "error: ${error.message}")
-                Log.d("MainActivity", "Api call failed")
 
             }
         )
