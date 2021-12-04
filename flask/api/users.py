@@ -7,8 +7,6 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
-from flask_httpauth import HTTPBasicAuth
-from werkzeug.security import generate_password_hash, check_password_hash
 
 # Infos Database
 from .database import  users
@@ -35,20 +33,6 @@ app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 
 mail = Mail(app)
-
-#API AUTH
-auth_user_api = os.getenv('API_USER')
-auth_pwd_api = os.getenv('API_PASSWORD')
-
-users_auth_api = {
-    auth_user_api : generate_password_hash(auth_pwd_api)
-}
-auth = HTTPBasicAuth()
-@auth.verify_password
-def verify_password(username, password):
-    if username in users_auth_api and \
-            check_password_hash(users_auth_api.get(username), password):
-        return username
 
 # JWT Config
 jwt = JWTManager(app)
