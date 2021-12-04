@@ -76,18 +76,6 @@ class PlaylistsTests(TestCase):
         page_content = result.get_data(as_text=True)
         self.assertIn('Hello world!', page_content)
 
-    def test_login(self):
-        # Mock the food value in ./api.food.py
-        with unittest.mock.patch('api.login.getUser') as MockUser:
-            # Force the return value of login.insert_one(json) to sample_user
-            MockUser.insert_one.return_value = sample_user
-            with self.client.get(f'/api/login/{sample_user["Email"]}') as result:
-                self.assertEqual(result.status, '200 OK')
-                page_content = result.get_data(as_text=True)
-                page_content = json.loads(page_content)[0]
-                self.assertIn(sample_user['Username'], page_content['Username'])
-                self.assertIn(sample_user['Password'], page_content['Password'])
-
     #---------------------------------------API USER ---------------------------------------------------
 
     def test_get_email(self):
