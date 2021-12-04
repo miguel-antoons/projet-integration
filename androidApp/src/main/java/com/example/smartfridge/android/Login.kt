@@ -7,6 +7,7 @@ import android.text.InputType
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
@@ -18,6 +19,10 @@ import org.json.JSONTokener
 import com.example.smartfridge.android.Hashing.verifyPasswordHash
 import com.example.smartfridge.android.Hashing.passwordHash
 import org.json.JSONException
+import com.android.volley.RequestQueue
+
+
+
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +99,6 @@ class Login : AppCompatActivity() {
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url, postData,
             { resp ->
-
                 // save email, password, username, token locally
                 val username = resp.getString("Username")
                 val token = resp.getString("access_token")
@@ -106,6 +110,7 @@ class Login : AppCompatActivity() {
                 // start MainActivity
                 startActivity(monIntent)
 
+
             }, {
                     error ->
                 Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
@@ -115,6 +120,35 @@ class Login : AppCompatActivity() {
         )
         queue.add(jsonObjectRequest)
     }
+
+    // test token example
+    private fun testToken() {
+        val url = "http://10.0.2.2:5000/api/users/email"
+        // create a request queue
+        val queue = Volley.newRequestQueue(this)
+
+                val jsonObjectRequest = object : JsonObjectRequest(
+                    Request.Method.GET, url, null,
+            { resp ->
+
+                Log.d("TOKENTEST", resp.toString())
+
+            }, {
+                    error ->
+                Toast.makeText(this, "Email ou mot de passe incorrect !", Toast.LENGTH_SHORT).show()
+                Log.d("TAGTest", "error: ${error.message}")
+
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                headers.put("Authorization", "Bearer ${loadToken()}")
+                return headers }
+            }
+
+        queue.add(jsonObjectRequest)
+    }
+
 
     // save email and password locally
     private fun saveData(email: String?, password: String?, username: String?, token : String) {
@@ -160,5 +194,11 @@ class Login : AppCompatActivity() {
             passwordLayout.setText(savedPassword)
             rememberMe.isChecked = savedBoolean
         }
+    }
+
+    // load Email and password pre-recorded
+    private fun loadToken() : String? {
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("TOKEN", null)
     }
 }

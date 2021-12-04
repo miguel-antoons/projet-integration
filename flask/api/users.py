@@ -190,7 +190,10 @@ def update_password():
 
             return json.dumps(["Password Update is ok"])
 
-            
+
+
+# How work token
+
 @getUsers.route('/api/users/email', methods=['GET'])
 @jwt_required()
 def email_exist():
@@ -202,4 +205,4 @@ def email_exist():
          client.pop('_id')
     
     print(result)
-    return json.dumps(result)
+    return json.dumps(result[0])
