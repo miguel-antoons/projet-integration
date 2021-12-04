@@ -95,8 +95,11 @@ class Login : AppCompatActivity() {
             Request.Method.POST, url, postData,
             { resp ->
 
+                // save email, password, username, token locally
                 val username = resp.getString("Username")
-                saveData(email, password, username)
+                val token = resp.getString("access_token")
+                Log.d("Token", token)
+                saveData(email, password, username, token)
 
                 // creation de notre intent
                 val monIntent : Intent =  Intent(this,MainActivity::class.java)
@@ -114,7 +117,7 @@ class Login : AppCompatActivity() {
     }
 
     // save email and password locally
-    private fun saveData(email: String?, password: String?, username: String?) {
+    private fun saveData(email: String?, password: String?, username: String?, token : String) {
         val rememberMe = findViewById<CheckBox>(R.id.rememberMe)
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         if(rememberMe.isChecked){
@@ -123,6 +126,7 @@ class Login : AppCompatActivity() {
                 putString("EMAIL", email)
                 putString("PASSWORD", password)
                 putString("USERNAME", username)
+                putString("TOKEN", token)
                 putBoolean("check", rememberMe.isChecked)
             }.apply()
         }
@@ -132,10 +136,10 @@ class Login : AppCompatActivity() {
                 putString("EMAIL", "email")
                 putString("PASSWORD", "password")
                 putString("USERNAME", username)
+                putString("TOKEN", token)
                 putBoolean("check", false)
             }.apply()
         }
-
     }
 
     // load Email and password pre-recorded

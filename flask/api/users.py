@@ -5,7 +5,7 @@
 from flask import Blueprint, request, jsonify, json
 from flask import Flask
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_mail import Mail, Message
 
 # Infos Database
@@ -33,13 +33,6 @@ app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 
 mail = Mail(app)
-
-# JWT Config
-jwt = JWTManager(app)
-app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
-
-
-
 
 getUsers = Blueprint('getUsers', __name__)
 
@@ -197,43 +190,16 @@ def update_password():
 
             return json.dumps(["Password Update is ok"])
 
-
-
-
-"""
-Verification if the username already exist
-"""
-
-
-@getUsers.route('/api/users/<username>', methods=['GET'])
-#@auth.login_required
-
-def username_exist(username):
-    records = users
-    result = list(records.find({"Username": username}))
-
-    for client in result:
-        client.pop('_id')
-
-    print(result)
-    return json.dumps(result)
-
-
-"""
-Verification if the email already exist
-"""
             
-@getUsers.route('/api/users/email/<email>', methods=['GET'])
-def email_exist(email):
-    records = users
-    print(email)
-    result = list(records.find({"Email" : email}))
+@getUsers.route('/api/users/email', methods=['GET'])
+@jwt_required()
+def email_exist():
+    data = get_jwt_identity()
+    print(data)
+    result = list(users.find({"Email" : data["Email"]}))
 
     for client in result:
          client.pop('_id')
     
     print(result)
     return json.dumps(result)
-
-
-
