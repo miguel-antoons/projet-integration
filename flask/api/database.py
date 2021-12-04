@@ -8,3 +8,7 @@ db = client['SmartFridge']
 users = db["Users"]
 food = db["Food"]
 new_user = db["NewUser"]
+
+
+flask_jwt_auth = client['flask_jwt_auth']
+flask_jwt_auth_coll = flask_jwt_auth["flask_jwt_auth"]

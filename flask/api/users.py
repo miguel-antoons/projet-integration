@@ -7,11 +7,17 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
+
 # Infos Database
 from .database import  users
 # Library
 import random
 import os
+import uuid
+import jwt
+import datetime
 
 from dotenv import load_dotenv
 
@@ -30,6 +36,27 @@ app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 
 mail = Mail(app)
 
+#API AUTH
+auth_user_api = os.getenv('API_USER')
+auth_pwd_api = os.getenv('API_PASSWORD')
+
+users_auth_api = {
+    auth_user_api : generate_password_hash(auth_pwd_api)
+}
+auth = HTTPBasicAuth()
+@auth.verify_password
+def verify_password(username, password):
+    if username in users_auth_api and \
+            check_password_hash(users_auth_api.get(username), password):
+        return username
+
+# JWT Config
+jwt = JWTManager(app)
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
+
+
+
+
 getUsers = Blueprint('getUsers', __name__)
 
 """
@@ -40,8 +67,8 @@ getUsers = Blueprint('getUsers', __name__)
 """
 
 
-@getUsers.route('/api/users/reset-password/checkemail/<email>', methods=['GET', 'PUT'])
-def check_email(email):
+@getUsers.route('/api/users/reset-password/checkemail', methods=['GET', 'PUT'])
+def check_email():
     """[check_email]
 
     Args:
@@ -61,12 +88,14 @@ def check_email(email):
        - ['message': 'this email does not exist']: [If the email does not exist]
 
     """
+    requete = request.json
+    print(requete)
 
-    if request.method == 'GET':
+    email = requete['Email']
+    print(email)
 
-        # Get email parameter
-        # email_param = request.args.get('email')
-        # print(email_param)
+
+    if request.method == 'PUT':
 
         # Checks in the database if the email exists
         email_exist = list(users.find({"Email": email}))
@@ -100,13 +129,14 @@ def check_email(email):
 
             # Email data : json.dumps(email_exist)
 
-            message = ['message: this email exist']
-            return json.dumps(message)
+            return json.dumps({"message" : 'message: this email exist'})
 
         else:
 
-            message = ['message: this email does not exist']
-            return json.dumps(message)
+            return json.dumps({"message" : 'this email does not exist' })
+      
+   
+        
 
 
 """
@@ -117,9 +147,15 @@ def check_email(email):
 """
 
 
-@getUsers.route('/api/users/reset-password/checkcode/<email>/<code>', methods=['GET', 'PUT'])
-def check_code_email(email, code):
-    if request.method == 'GET':
+@getUsers.route('/api/users/reset-password/checkcode', methods=['GET', 'PUT'])
+def check_code_email():
+    requete = request.json
+    print(requete)
+
+    email = requete['Email']
+    print(email)
+    code = requete['Code']
+    if request.method == 'PUT':
 
         # Find code key by email
         check_good_code = list(users.find({"Email": email}, {"Code": 1}))
@@ -132,13 +168,11 @@ def check_code_email(email, code):
 
         if code == good_code:
 
-            message = ['The code is good']
-            return json.dumps(message)
+            return json.dumps({"message" : 'The code is good'})
 
         else:
 
-            message = ['code is false']
-            return json.dumps(message)
+            return json.dumps({"message" : 'code is false'})
 
 
 """
@@ -180,12 +214,16 @@ def update_password():
             return json.dumps(["Password Update is ok"])
 
 
+
+
 """
 Verification if the username already exist
 """
 
 
 @getUsers.route('/api/users/<username>', methods=['GET'])
+#@auth.login_required
+
 def username_exist(username):
     records = users
     result = list(records.find({"Username": username}))
