@@ -169,18 +169,19 @@ def check_code_email():
 
 @getUsers.route('/api/users/update-password', methods=['GET','PUT'])
 def update_password():
-
     requete = request.json
-
+    print(requete)
     email = requete['Email']
     print(email)
     password = requete['Password']
     print(password)
-
+    code = requete['Code']
+    print(code)
+ 
     if request.method == 'PUT':
-
+       
         #Check email address
-        email_exist = list(users.find({"Email" : email}))
+        email_exist = list(users.find({"Email" : email,"Code" : code}))
         print(email_exist)
 
         if email_exist:
@@ -192,10 +193,20 @@ def update_password():
                 {"Password": password}
             },upsert=True
 
-             )
+                )
 
 
-            return json.dumps(["Password Update is ok"])
+        return json.dumps(["Password Update is ok"])
+
+    else:
+        return json.dumps({"message" : "Password Update is refused Email / code False"})
+        
+        
+        
+
+
+       
+
 
 
 

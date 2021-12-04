@@ -107,7 +107,7 @@ class CheckCodeMail : AppCompatActivity() {
         val jsonObjectRequest = JsonObjectRequest(
 
             // Type method
-            Request.Method.PUT,putUrl, putData,
+            Request.Method.PUT, putUrl, putData,
 
             { response ->
 
@@ -115,11 +115,16 @@ class CheckCodeMail : AppCompatActivity() {
                 if (response.getString("message") == "code is false") {
 
 
-                    essaie +=1
-                    Toast.makeText(this, "Le code est mauvais $essaie / 3", Toast.LENGTH_SHORT).show()
+                    essaie += 1
+                    Toast.makeText(this, "Le code est mauvais $essaie / 3", Toast.LENGTH_SHORT)
+                        .show()
 
-                    if (essaie == 3){
-                        Toast.makeText(this, "Vous avez échoué 3 fois veuillez recommencer ", Toast.LENGTH_SHORT).show()
+                    if (essaie == 3) {
+                        Toast.makeText(
+                            this,
+                            "Vous avez échoué 3 fois veuillez recommencer ",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         val i = Intent(this, Login::class.java)
 
 
@@ -127,7 +132,6 @@ class CheckCodeMail : AppCompatActivity() {
 
 
                     }
-
 
 
                 } else if (response.getString("message") == "The code is good") {
@@ -139,6 +143,7 @@ class CheckCodeMail : AppCompatActivity() {
                     Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
                     val i = Intent(this, UpdatePassword::class.java).apply {
                         putExtra("Email", tvt_email_text)
+                        putExtra("Code", code)
                     }
 
                     startActivity(i)
@@ -204,6 +209,8 @@ class CheckCodeMail : AppCompatActivity() {
 
                     val i = Intent(this, CheckCodeMail::class.java).apply {
                         putExtra("Email", email_champ_full)
+
+
                     }
 
                     startActivity(i)
