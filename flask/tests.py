@@ -14,7 +14,7 @@ sample_user = {
     "Email": "sendme@gmail.com",
     "Password": "Test1234",
     "Qrcode": "TODO",
-    "Code" : "628476"
+    "Code": "628476"
 }
 
 sample_user_sign_up = {
@@ -76,23 +76,24 @@ class PlaylistsTests(TestCase):
         page_content = result.get_data(as_text=True)
         self.assertIn('Hello world!', page_content)
 
-    #---------------------------------------API USER ---------------------------------------------------
+    # ---------------------------------------API USER ---------------------------------------------------
 
     def test_get_email(self):
         # Mock the food value in ./api.users.py
         with unittest.mock.patch('api.users') as MockUsers:
             # Force the return value of food.find() to sample_food
             MockUsers.find.return_value = sample_user
-            #Sample user
+            # Sample user
 
             # TEST API USER /reset-password/checkemail/<email>'
-            #Check Email 
-            with self.client.get(f'/api/users/reset-password/checkemail/{sample_user["Email"]}') as result:
-                #STATUS
+            # Check Email
+            with self.client.get(
+                    f'/api/users/reset-password/checkemail/{sample_user["Email"]}') as result:
+                # STATUS
                 self.assertEqual(result.status, '200 OK')
-                #Content Type
+                # Content Type
                 self.assertEqual(result.content_type, "text/html; charset=utf-8")
-                #DATA
+                # DATA
                 self.assertEqual(result.data, b'["message: this email exist"]')
                 self.assertTrue(result.data, b'["message: this email exist"]')
 
@@ -101,42 +102,37 @@ class PlaylistsTests(TestCase):
         with unittest.mock.patch('api.users') as MockUsers:
             # Force the return value of food.find() to sample_food
             MockUsers.find.return_value = sample_user
-            #Sample user
+            # Sample user
 
             # TEST API USER /reset-password/checkemail/<email>'
-            #Check Email 
-            with self.client.get(f'/api/users/reset-password/checkemail/Franceaufrancais@zemour.fr') as result:
-                #STATUS
+            # Check Email
+            with self.client.get(
+                    f'/api/users/reset-password/checkemail/Franceaufrancais@zemour.fr') as result:
+                # STATUS
                 self.assertEqual(result.status, '200 OK')
-                #Content Type
+                # Content Type
                 self.assertEqual(result.content_type, "text/html; charset=utf-8")
-                #DATA
+                # DATA
                 self.assertEqual(result.data, b'["message: this email does not exist"]')
                 self.assertTrue(result.data, b'["message: this email does not exist"]')
 
-
-    
-
-              
     def test_update_password_put(self):
         # Mock the food value in ./api.users.py
         with unittest.mock.patch('api.users') as MockUsers:
             # Force the return value of food.find() to sample_food
             MockUsers.find.return_value = sample_user
-            #PUT methode  
-            #Sample user
-            #/users/reset-password/checkcode/
+            # PUT methode
+            # Sample user
+            # /users/reset-password/checkcode/
 
-            with self.client.get(f'/users/reset-password/checkcode/{sample_user["Email"]}/TEST1234') as result:
-                #STATUS
+            with self.client.get(
+                    f'/users/reset-password/checkcode/{sample_user["Email"]}/TEST1234') as result:
+                # STATUS
                 self.assertEqual(result.status, '404 NOT FOUND')
-                #Content Type
+                # Content Type
                 self.assertEqual(result.content_type, "text/html; charset=utf-8")
 
-
-    #----------------------------------- API FOOD---------------------------------------
-
-   
+    # ----------------------------------- API FOOD---------------------------------------
 
     def test_get_food(self):
         self.maxDiff = None
@@ -184,8 +180,6 @@ class PlaylistsTests(TestCase):
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{state : 200}')
 
-
-
     def test_remove_food(self):
         # Mock the food value in ./api.food.py
         with unittest.mock.patch('api.food.food') as MockFood:
@@ -194,7 +188,6 @@ class PlaylistsTests(TestCase):
                 MockFood.delete_one.assert_called()
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{"Response":"Food was removed"}\n')
-
 
     def test_modify_food(self):
         with unittest.mock.patch('api.food.food') as MockFood:

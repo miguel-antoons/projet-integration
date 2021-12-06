@@ -92,5 +92,23 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Strings for how to connect page -->
+    <!-- Main title -->
+    <style name="main_title_how_to_connect">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/darkGreen</item>
+    </style>
+
+    <style name="normal_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="it_must">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>
