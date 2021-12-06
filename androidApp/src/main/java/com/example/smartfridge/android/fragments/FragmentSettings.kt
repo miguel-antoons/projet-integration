@@ -42,7 +42,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         // This little lines of code set an action to the button (onClickListener)
         disconnect.setOnClickListener{
             deleteData();
-            val intent = Intent(context, Login::class.java);
+            val intent = Intent(context, Login::class.java)
             startActivity(intent);
         }
 

@@ -176,16 +176,17 @@ class SignUp : AppCompatActivity() {
      */
     private fun isUsernameExist(username: String) {
 
-        val url = "http://10.0.2.2:5000/api/users/$username"
-        // create a request queue
+        val url = "http://10.0.2.2:5000/api/username_verfication/$username"
+        // create a request queue²
         val queue = Volley.newRequestQueue(this)
 
-        val jsonObjectRequest = JsonArrayRequest(
+        val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            { response ->
+            { resp ->
 
-                // Username verification
-                if (response.length() == 0) {
+                val response = resp.getString("state")
+                // email verification
+                if (response == "false") {
                     isEmailExist(etEmail.text.toString())
                 }
                 else {
@@ -206,16 +207,16 @@ class SignUp : AppCompatActivity() {
      */
     private fun isEmailExist(email: String){
 
-        val url = "http://10.0.2.2:5000/api/users/email/$email"
+        val url = "http://10.0.2.2:5000/api/email_verfication/$email"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
 
-        val jsonObjectRequest = JsonArrayRequest(
+        val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            { response ->
-
+            { resp ->
+                val response = resp.getString("state")
                 // email verification
-                if (response.length() == 0) {
+                if (response == "false") {
                     performSignUp()
                 }
                 else {

@@ -5,13 +5,17 @@
 from flask import Blueprint, request, jsonify, json
 from flask import Flask
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_mail import Mail, Message
+
 # Infos Database
 from .database import  users
 # Library
 import random
 import os
+import uuid
+import jwt
+import datetime
 
 from dotenv import load_dotenv
 
@@ -40,8 +44,8 @@ getUsers = Blueprint('getUsers', __name__)
 """
 
 
-@getUsers.route('/api/users/reset-password/checkemail/<email>', methods=['GET', 'PUT'])
-def check_email(email):
+@getUsers.route('/api/users/reset-password/checkemail', methods=['GET', 'PUT'])
+def check_email():
     """[check_email]
 
     Args:
@@ -61,12 +65,14 @@ def check_email(email):
        - ['message': 'this email does not exist']: [If the email does not exist]
 
     """
+    requete = request.json
+    print(requete)
 
-    if request.method == 'GET':
+    email = requete['Email']
+    print(email)
 
-        # Get email parameter
-        # email_param = request.args.get('email')
-        # print(email_param)
+
+    if request.method == 'PUT':
 
         # Checks in the database if the email exists
         email_exist = list(users.find({"Email": email}))
@@ -100,13 +106,14 @@ def check_email(email):
 
             # Email data : json.dumps(email_exist)
 
-            message = ['message: this email exist']
-            return json.dumps(message)
+            return json.dumps({"message" : 'message: this email exist'})
 
         else:
 
-            message = ['message: this email does not exist']
-            return json.dumps(message)
+            return json.dumps({"message" : 'this email does not exist' })
+      
+   
+        
 
 
 """
@@ -117,9 +124,15 @@ def check_email(email):
 """
 
 
-@getUsers.route('/api/users/reset-password/checkcode/<email>/<code>', methods=['GET', 'PUT'])
-def check_code_email(email, code):
-    if request.method == 'GET':
+@getUsers.route('/api/users/reset-password/checkcode', methods=['GET', 'PUT'])
+def check_code_email():
+    requete = request.json
+    print(requete)
+
+    email = requete['Email']
+    print(email)
+    code = requete['Code']
+    if request.method == 'PUT':
 
         # Find code key by email
         check_good_code = list(users.find({"Email": email}, {"Code": 1}))
@@ -132,13 +145,11 @@ def check_code_email(email, code):
 
         if code == good_code:
 
-            message = ['The code is good']
-            return json.dumps(message)
+            return json.dumps({"message" : 'The code is good'})
 
         else:
 
-            message = ['code is false']
-            return json.dumps(message)
+            return json.dumps({"message" : 'code is false'})
 
 
 """
@@ -180,38 +191,18 @@ def update_password():
             return json.dumps(["Password Update is ok"])
 
 
-"""
-Verification if the username already exist
-"""
 
+# How work token
 
-@getUsers.route('/api/users/<username>', methods=['GET'])
-def username_exist(username):
-    records = users
-    result = list(records.find({"Username": username}))
-
-    for client in result:
-        client.pop('_id')
-
-    print(result)
-    return json.dumps(result)
-
-
-"""
-Verification if the email already exist
-"""
-            
-@getUsers.route('/api/users/email/<email>', methods=['GET'])
-def email_exist(email):
-    records = users
-    print(email)
-    result = list(records.find({"Email" : email}))
+@getUsers.route('/api/users/email', methods=['GET'])
+@jwt_required()
+def email_exist():
+    data = get_jwt_identity()
+    print(data)
+    result = list(users.find({"Email" : data["Email"]}))
 
     for client in result:
          client.pop('_id')
     
     print(result)
-    return json.dumps(result)
-
-
-
+    return json.dumps(result[0])

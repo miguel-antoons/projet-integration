@@ -24,9 +24,7 @@ sample_user_sign_up = {
 }
 
 sample_food = [{
-    "_id": {
-        "$oid": "619e8f45ee462d6d876bbdbc"
-    },
+    "_id": "619e8f45ee462d6d876bbdbc",
     'Utilisateur': "999",
     'Nom': 'Danette Vanille',
     'Marque': 'Danone',
@@ -53,7 +51,7 @@ sample_food = [{
     },
     'Poids': '125g',
     'Lieu': 'Frigo',
-    'Category': "Produit laitiers"
+    'Categorie': "Produit laitiers"
 
 }]
 
@@ -77,18 +75,6 @@ class PlaylistsTests(TestCase):
         self.assertEqual(result.status, '200 OK')
         page_content = result.get_data(as_text=True)
         self.assertIn('Hello world!', page_content)
-
-    def test_login(self):
-        # Mock the food value in ./api.food.py
-        with unittest.mock.patch('api.login.getUser') as MockUser:
-            # Force the return value of login.insert_one(json) to sample_user
-            MockUser.insert_one.return_value = sample_user
-            with self.client.get(f'/api/login/{sample_user["Email"]}') as result:
-                self.assertEqual(result.status, '200 OK')
-                page_content = result.get_data(as_text=True)
-                page_content = json.loads(page_content)[0]
-                self.assertIn(sample_user['Username'], page_content['Username'])
-                self.assertIn(sample_user['Password'], page_content['Password'])
 
     #---------------------------------------API USER ---------------------------------------------------
 
@@ -153,23 +139,24 @@ class PlaylistsTests(TestCase):
    
 
     def test_get_food(self):
+        self.maxDiff = None
         # Mock the food value in ./api.food.py
         with unittest.mock.patch('api.food.food') as MockFood:
             # Force the return value of food.find() to sample_food
             MockFood.find.return_value = sample_food
-            with self.client.get("/api/getFood/999") as res:
+            with self.client.get("/api/food/999") as res:
                 resultat = res.data
                 final = resultat.decode('unicode-escape')
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(final,
-                                 '[{"_id": {"$oid": "619e8f45ee462d6d876bbdbc"}, "Utilisateur": "999", "Nom": '
+                                 '[{"_id": "619e8f45ee462d6d876bbdbc", "Utilisateur": "999", "Nom": '
                                  '"Danette Vanille", "Marque": "Danone", "Quantite": 4, "ingredients": ["lait '
                                  'entier", "lait écrémé reconstitué à base de lait en poudre", "sucre", "crème", '
                                  '"lait écrémé concentré ou en poudre", "épaississants (amidon modifié, '
                                  'carraghénanes)", "perméat de petit lait (lactosérum) en poudre", "amidon", '
                                  '"arôme (lait)", "colorant (bêta-carotène)"], "Date": "20/12/2021", "Valeurs": {'
                                  '"Energie": "107 kcal", "Matières grasses": "3,0g", "Glucides": "17,1g", '
-                                 '"Proteines": "3g", "Sel": "0,14g"}, "Poids": "125g", "Lieu": "Frigo", "Category": '
+                                 '"Proteines": "3g", "Sel": "0,14g"}, "Poids": "125g", "Lieu": "Frigo", "Categorie": '
                                  '"Produit laitiers"}]')
                 # Check if food.find() was called
                 MockFood.find.assert_called()
@@ -179,7 +166,7 @@ class PlaylistsTests(TestCase):
         with unittest.mock.patch('api.food.food') as MockFood:
             # Force the return value of food.insert_one(json) to sample_food
             MockFood.insert_one.return_value = sample_food
-            with self.client.post("/api/addFood", json=sample_food[0]) as res:
+            with self.client.post("/api/food", json=sample_food) as res:
                 # Check if food.insert_one(json) was called
                 MockFood.insert_one.assert_called()
                 self.assertEqual(res.status_code, 200)
@@ -203,7 +190,7 @@ class PlaylistsTests(TestCase):
         # Mock the food value in ./api.food.py
         with unittest.mock.patch('api.food.food') as MockFood:
             MockFood.delete_one.return_value = sample_food
-            with self.client.post('/api/removeFood', json=sample_food) as res:
+            with self.client.delete('/api/food/619e8f45ee462d6d876bbdbc') as res:
                 MockFood.delete_one.assert_called()
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{"Response":"Food was removed"}\n')
@@ -211,10 +198,8 @@ class PlaylistsTests(TestCase):
 
     def test_modify_food(self):
         with unittest.mock.patch('api.food.food') as MockFood:
-            MockFood.delete_one.return_value = sample_food
-            with self.client.post('/api/modifyFood/"{$oid": 619e8f45ee462d6d876bbdbc"}', json=sample_food) as res:
-                MockFood.delete_one.assert_called()
-                MockFood.insert_one.assert_called()
+            with self.client.put('/api/food/619e8f45ee462d6d876bbdbc', json=sample_food[0]) as res:
+                # MockFood.update_one().assert_called()
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{"Response":"Food was updated"}\n')
 
