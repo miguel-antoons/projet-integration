@@ -88,7 +88,6 @@ object ProductRepository {
         val requestQueue = Volley.newRequestQueue(context)
         val postData = JSONObject()
         try {
-            postData.put("Utilisateur", Utilisateur)
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
@@ -100,7 +99,7 @@ object ProductRepository {
             e.printStackTrace()
         }
 
-        val jsonObjectRequest = JsonObjectRequest(
+        val jsonObjectRequest = object : JsonObjectRequest(
             Request.Method.PUT, url, postData,
             { response ->
                 println(response)
@@ -108,8 +107,14 @@ object ProductRepository {
                 // call the get api here in order to make sure it is called after the new
                 // product was added
                 getFoodFromMongo(context, loadUsername(context))
-            }
-        ) { error -> error.printStackTrace() }
+            }, { error -> error.printStackTrace() })
+        {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                headers.put("Authorization", "Bearer ${loadToken(context)}")
+                return headers }
+        }
         requestQueue.add(jsonObjectRequest)
 
         // notify that an item was changed inside the list
@@ -256,9 +261,9 @@ object ProductRepository {
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
 
-        val url = "$serverUrl/$productUser"
+        val url = serverUrl
         val queue = Volley.newRequestQueue(context)
-        val stringRequest = StringRequest(
+        val stringRequest = object : StringRequest(
             Request.Method.GET, url,
             { response ->
                 /*
@@ -295,7 +300,13 @@ object ProductRepository {
                 Log.d("GetFood", "SUCCESS")
             },
             { Log.d("GetFood","That didn't work!") }
-        )
+        ){
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                headers.put("Authorization", "Bearer ${loadToken(context)}")
+                return headers }
+        }
         queue.add(stringRequest)
     }
 
@@ -322,7 +333,6 @@ object ProductRepository {
 
         val postData = JSONObject()
         try {
-            postData.put("Utilisateur", Utilisateur)
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
@@ -338,16 +348,22 @@ object ProductRepository {
             e.printStackTrace()
         }
 
-        val jsonObjectRequest = JsonObjectRequest(
+        val jsonObjectRequest = object : JsonObjectRequest(
             Request.Method.POST, postUrl, postData,
             { response ->
                 println(response)
-
                 // call the get api here in order to make sure it is called after the new
                 // product was added
                 getFoodFromMongo(context, loadUsername(context))
-            }
-        ) { error -> error.printStackTrace() }
+            },
+         { error -> error.printStackTrace() })
+        {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                headers.put("Authorization", "Bearer ${loadToken(context)}")
+                return headers }
+        }
         requestQueue.add(jsonObjectRequest)
 
         return "Produit ajouté"
@@ -358,6 +374,12 @@ object ProductRepository {
         val savedUsername = sharedPreferences.getString("USERNAME", null)
 
         return savedUsername.toString()
+    }
+
+    // load Email and password pre-recorded
+    private fun loadToken(context : Context) : String? {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("TOKEN", null)
     }
 }
 
