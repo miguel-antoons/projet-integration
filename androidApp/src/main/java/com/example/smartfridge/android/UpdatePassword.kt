@@ -29,7 +29,6 @@ class UpdatePassword : AppCompatActivity() {
         val secondepassword = findViewById<EditText>(R.id.confirm_new_mdp)
 
 
-
         //get email from previous activity
         //Recover the email from the previous activity
         val emailFromForgot = intent
@@ -112,7 +111,6 @@ class UpdatePassword : AppCompatActivity() {
     }
 
 
-
     /**
      *@author  : Ben-Tahri Merwane
      * FUNCTION : isValidPassword
@@ -180,11 +178,9 @@ class UpdatePassword : AppCompatActivity() {
         }
         val emailFromForgot = intent
             .getStringExtra("Email")
-        update_password(emailFromForgot,password_edittext2.text.toString())
+        update_password(emailFromForgot, password_edittext2.text.toString())
 
         return true
-
-
 
 
     }
@@ -200,6 +196,9 @@ class UpdatePassword : AppCompatActivity() {
 
     private fun update_password(email: String?, password: String?) {
 
+        val code = intent
+            .getStringExtra("Code")
+
         //hash password
         //val password_hash = passwordHash(password.toString())
         //Log.d("MainActivity", "$password_hash")
@@ -212,6 +211,8 @@ class UpdatePassword : AppCompatActivity() {
 
             putData.put("Password", passwordHash(password.toString()))
             putData.put("Email", email)
+            putData.put("Code", code)
+
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -219,11 +220,10 @@ class UpdatePassword : AppCompatActivity() {
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.PUT, putUrl, putData,
-            { response -> println(response)}
+            { response -> println(response) }
 
 
-
-        ) {error -> error.printStackTrace()}
+        ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
         Toast.makeText(
             this,
