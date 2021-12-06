@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/product_popup"
     android:layout_width="320dp"
-    android:layout_height="470dp"
+    android:layout_height="500dp"
     android:padding="@dimen/default_padding">
 
     <!-- Top part of the pop-up -->
@@ -285,6 +285,7 @@
         android:layout_marginLeft="@dimen/button_side_margin"
         android:layout_marginStart="@dimen/button_side_margin"
         android:background="@color/delete_red"
+        android:textColor="@color/white"
         android:gravity="center"
         android:textAllCaps="false"
         android:text="@string/delete_button"
@@ -302,6 +303,7 @@
         android:background="@color/light_grey"
         android:gravity="center"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:text="@string/modify_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

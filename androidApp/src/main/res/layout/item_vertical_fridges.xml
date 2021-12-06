@@ -48,6 +48,7 @@
         <TextView
             android:id="@+id/title_card"
             style="@style/MainTitle"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -57,19 +58,21 @@
         <!-- Thermometer TextView -->
         <TextView
             android:id="@+id/temperature_text"
+            style="@style/Subtitles"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/line_separator_images_v1"
-            android:layout_alignLeft="@+id/thermometer"
-            android:layout_marginLeft="80dp"
-            android:text="@string/temperature"
             android:layout_alignStart="@+id/thermometer"
+            android:layout_alignLeft="@+id/thermometer"
             android:layout_marginStart="80dp"
-            style="@style/Subtitles"/>
+            android:layout_marginLeft="80dp"
+            android:text="@string/temperature" />
 
         <!-- Hygrometry TextView -->
         <TextView
             android:id="@+id/hygrometry_text"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/line_separator_images_v2"

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.text.InputType
 import android.text.Selection.setSelection
 import android.util.Log

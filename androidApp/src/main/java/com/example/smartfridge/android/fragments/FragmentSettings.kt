@@ -11,18 +11,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.*
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import org.json.JSONTokener
 
 
 class FragmentSettings(private val context: MainActivity) : Fragment()  {
     // Initialisation of the data for the QR code
     private lateinit var ivQRcode: ImageView
     private lateinit var etData : String
+    private lateinit var raspberryButton: Button
+    private val resultingData = arrayListOf<Raspberry>()
 
     // Function that displays the fragment 'FragmentProduct' on the screen
     override fun onCreateView(
@@ -32,19 +40,26 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         val disconnect: Button = view.findViewById(R.id.disconnect)
+        raspberryButton = view.findViewById(R.id.new_raspberry)
 
         // create qrCode
         qrCode(view)
 
         val username = view.findViewById<TextView>(R.id.usernameSettings)
-        username.setText(loadUsername())
+        username.text = loadUsername()
 
         // This little lines of code set an action to the button (onClickListener)
         disconnect.setOnClickListener{
-            deleteData();
+            deleteData()
             val intent = Intent(context, Login::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
+
+        raspberryButton.setOnClickListener {
+            RaspberryPopup(context, resultingData, this).show()
+        }
+
+        getNewRaspberry()
 
         return view
 
@@ -91,5 +106,64 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
             putString("PASSWORD", "Password")
             putString("USERNAME", "Username")
         }.apply()
+    }
+
+    private fun getNewRaspberry() {
+        val url = "http://10.0.2.2:5000/api/raspberry/${loadUsername()}"
+        val queue = Volley.newRequestQueue(context)
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                val jsonData = JSONTokener(response).nextValue() as JSONArray
+                resultingData.clear()
+
+                for (i in 0 until jsonData.length()) {
+                    resultingData.add(
+                        Raspberry(
+                            jsonData.getJSONObject(i).getString("_id"),
+                            jsonData.getJSONObject(i).getString("user"),
+                            jsonData.getJSONObject(i).getString("location"),
+                            jsonData.getJSONObject(i).getString("status")
+                        )
+                    )
+                    println("All raspberries collected")
+                }
+
+                if (jsonData.length() > 0) {
+                    raspberryButton.visibility = View.VISIBLE
+                }
+                else {
+                    raspberryButton.visibility = View.GONE
+                }
+            },
+            { Log.d("GetRaspberry","didn't work") }
+        )
+        queue.add(stringRequest)
+    }
+
+    fun modifyNewRaspberry(newRaspberry: Raspberry) {
+        val url = "http://10.0.2.2:5000/api/raspberry"
+        val requestQueue = Volley.newRequestQueue(context)
+        val newJsonRaspberry = JSONObject()
+
+        try {
+            newJsonRaspberry.put("_id", newRaspberry.id)
+            newJsonRaspberry.put("user", newRaspberry.user)
+            newJsonRaspberry.put("location", newRaspberry.location)
+            newJsonRaspberry.put("status", newRaspberry.status)
+        }
+        catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.PUT, url, newJsonRaspberry,
+            { response ->
+                println(response)
+                getNewRaspberry()
+            },
+            { error -> error.printStackTrace() }
+        )
+        requestQueue.add(jsonObjectRequest)
     }
 }

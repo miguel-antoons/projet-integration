@@ -3,6 +3,7 @@ from .hello_world import app_hw
 from .users import getUsers
 from .login import getUser
 from .signUp import addUser
+from .raspberry import app_raspberry
 
 
 
@@ -14,4 +15,5 @@ blueprints = [
     getUsers,
     getUser,
     addUser,
+    app_raspberry
 ]
