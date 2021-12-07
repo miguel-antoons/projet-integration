@@ -75,7 +75,6 @@ class FormsAddAliments(
 
                     val confirmationMessage = ProductRepository.sendFoodToServer(
                         this,
-                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
@@ -97,7 +96,6 @@ class FormsAddAliments(
                     ProductRepository.modifyProduct(
                         this,
                         productIndex,
-                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
