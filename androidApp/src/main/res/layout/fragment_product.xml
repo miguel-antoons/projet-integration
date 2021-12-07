@@ -138,10 +138,10 @@
         android:layout_marginRight="@dimen/large_margin"
         android:layout_marginEnd="@dimen/large_margin"
         android:layout_marginBottom="@dimen/large_margin"
-        app:backgroundTint="@color/light_green"
+        app:backgroundTint="@color/dark_beige"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/really_dark_green" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

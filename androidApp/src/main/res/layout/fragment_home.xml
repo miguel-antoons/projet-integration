@@ -14,7 +14,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/home_first_button"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/really_dark_green"
         android:background="@drawable/home_page_button"
         android:textAllCaps="false"
         />
@@ -28,7 +28,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/send_notif"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/really_dark_green"
         android:background="@drawable/home_page_button"
         android:textAllCaps="false"
         />

@@ -10,17 +10,20 @@
     <color name="red">#FF0000</color>
     <color name="light_grey">#d9d9d9</color>
     <color name="dark_grey">#534F4F</color>
-    <color name="delete_red">#FF6B6B</color>
+    <color name="delete_red">#B30000</color>
+    <color name="brown">#6F3700</color>
+    <color name="really_dark_green">#004D21</color>
 
 
     <!-- Colors for the application : from the original maquette -->
     <color name="light_green">#67d28d</color>
     <color name="beige">#f4f4f4</color>
+    <color name="dark_beige">#E6E6E6</color>
     <color name="cyan_blue">#5376c1</color>
-    <color name="dark_green">#008037</color>
+    <color name="dark_green">#00662C</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="dark_blue">#5376c1</color>
+    <color name="dark_blue">#2B4478</color>
     <color name="dark_grey_v2">#83919c</color>
     <color name="dark_grey_v3">#7E8081</color>
 

@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
         createNotificationChannel()
+
+        LocationRepository.getLocations(this)
     }
 
     fun setCurrentFragment(fragment: Fragment){

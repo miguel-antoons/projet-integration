@@ -2,8 +2,9 @@ import json
 import bson
 from bson import json_util, ObjectId
 from flask import Blueprint, request, jsonify
-from .database import food
+from .database import food, raspberry
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
 
 app_food = Blueprint('food', __name__)
 
@@ -44,6 +45,30 @@ def food_with_id(product_id):
 
     elif request.method == 'DELETE':
         return remove_food(product_id, data["Username"])
+
+
+@app_food.route('/api/food/<raspberry_id>', methods=['POST'])
+def raspberry_post(raspberry_id):
+    new_food = request.json
+
+    raspberry_data = list(raspberry.find(
+        {"_id": ObjectId(raspberry_id)}
+    ))
+
+    try:
+        if raspberry_data[0]['status'] == "ready":
+            new_food["Utilisateur"] = raspberry_data[0]['user']
+            new_food["Lieu"] = raspberry_data[0]['location']
+
+            food.insert_one(new_food)
+            
+            return {"response": "food has been inserted"}
+
+        else:
+            return {"response": "raspberry not ready"}
+
+    except IndexError:
+        return {"response": "raspberry does not exist"}
 
 
 def remove_food(product_id, username):
