@@ -40,6 +40,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         val disconnect: Button = view.findViewById(R.id.disconnect)
+        val newLocationButton = view.findViewById<Button>(R.id.new_location)
         raspberryButton = view.findViewById(R.id.new_raspberry)
 
         // create qrCode
@@ -53,6 +54,10 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
             deleteData()
             val intent = Intent(context, Login::class.java)
             startActivity(intent)
+        }
+
+        newLocationButton.setOnClickListener {
+            LocationPopup(context, this).show()
         }
 
         raspberryButton.setOnClickListener {

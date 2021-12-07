@@ -276,6 +276,7 @@ class SignUp : AppCompatActivity() {
             postData.put("Username", username)
             postData.put("Password", passwordHash(etPassword.text.toString()))
             postData.put("Email", email)
+            postData.put("Locations", arrayListOf<String>())
 
         } catch (e: JSONException) {
             e.printStackTrace()

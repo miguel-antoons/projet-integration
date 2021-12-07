@@ -4,6 +4,7 @@ from .users import getUsers
 from .login import getUser
 from .signUp import addUser
 from .raspberry import app_raspberry
+from .locations import app_location
 
 
 
@@ -15,5 +16,6 @@ blueprints = [
     getUsers,
     getUser,
     addUser,
-    app_raspberry
+    app_raspberry,
+    app_location
 ]

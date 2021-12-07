@@ -130,6 +130,7 @@
     <string name="sign_out">Se déconnecter</string>
     <string name="new_raspberry">Nouveau scanneur</string>
     <string name="content_description_qr">Ajouter un scanneur grâce à ce qr-code</string>
+    <string name="new_location">Ajouter un Emplacement</string>
 
     <!-- raspberry popup -->
     <string name="raspberry_popup_title">Nouveau Scanneur Détecté</string>
