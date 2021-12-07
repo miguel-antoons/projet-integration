@@ -42,7 +42,6 @@ class FormsAddAlimentsTest {
     private val testBrand = "testBrand"
     private val testQuantity = "testQuantity"
     private val testDate = "testDate"
-    private val testWeight = "testWeight"
     private val testLocation = "testLocation"
     private val testCategory = "testCategory"
     private val testNutriscore = "A"
@@ -62,6 +61,7 @@ class FormsAddAlimentsTest {
         // set correct values for ProductRepository
         ProductRepository.addProductAdapter(adapter)
         ProductRepository.serverUrl = server.url("").toString()
+        LocationRepository.locationList.add("test")
     }
 
     @After
@@ -89,7 +89,6 @@ class FormsAddAlimentsTest {
         scenario.onActivity {
             ProductRepository.sendFoodToServer(
                 it,
-                testUser,
                 testProductName,
                 testBrand,
                 testQuantity,
@@ -110,9 +109,6 @@ class FormsAddAlimentsTest {
 
         // verify if the data is correct
         assertEquals("POST", recordedRequest.method)
-        assertEquals(
-            jsonData.get("Utilisateur").toString().replace("\"",""), testUser
-        )
         assertEquals(
             jsonData.get("Nom").toString().replace("\"",""), testProductName
         )
@@ -145,7 +141,6 @@ class FormsAddAlimentsTest {
             ProductRepository.modifyProduct(
                 it,
                 3,
-                testUser,
                 testProductName,
                 testBrand,
                 testQuantity,
@@ -163,9 +158,6 @@ class FormsAddAlimentsTest {
 
         // verify if the data is correct
         assertEquals("PUT", recordedRequest.method)
-        assertEquals(
-            jsonData.get("Utilisateur").toString().replace("\"",""), testUser
-        )
         assertEquals(
             jsonData.get("Nom").toString().replace("\"",""), testProductName
         )

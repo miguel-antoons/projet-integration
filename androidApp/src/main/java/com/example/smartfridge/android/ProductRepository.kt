@@ -75,7 +75,6 @@ object ProductRepository {
     fun modifyProduct(
         context: Context,
         productPosition: Int,
-        Utilisateur: String,
         Nom: String,
         Marque: String,
         Quantite: String,
@@ -100,19 +99,19 @@ object ProductRepository {
         }
 
         val jsonObjectRequest = object : JsonObjectRequest(
-            Request.Method.PUT, url, postData,
+            Method.PUT, url, postData,
             { response ->
                 println(response)
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context, loadUsername(context))
+                getFoodFromMongo(context)
             }, { error -> error.printStackTrace() })
         {
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
-                headers.put("Content-Type", "application/json")
-                headers.put("Authorization", "Bearer ${loadToken(context)}")
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
                 return headers }
         }
         requestQueue.add(jsonObjectRequest)
@@ -138,7 +137,7 @@ object ProductRepository {
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context, loadUsername(context))
+                getFoodFromMongo(context)
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
@@ -254,7 +253,7 @@ object ProductRepository {
      * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
      * We use adapter in order to notify the product list changed.
      */
-    fun getFoodFromMongo(context: Context, productUser: String){
+    fun getFoodFromMongo(context: Context){
         val productListLength = productList.size
         productList.clear()
 
@@ -264,7 +263,7 @@ object ProductRepository {
         val url = serverUrl
         val queue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
-            Request.Method.GET, url,
+            Method.GET, url,
             { response ->
                 /*
                 https://johncodeos.com/how-to-parse-json-in-android-using-kotlin/
@@ -303,8 +302,8 @@ object ProductRepository {
         ){
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
-                headers.put("Content-Type", "application/json")
-                headers.put("Authorization", "Bearer ${loadToken(context)}")
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
                 return headers }
         }
         queue.add(stringRequest)
@@ -316,7 +315,6 @@ object ProductRepository {
      */
     fun sendFoodToServer(
         context: Context,
-        Utilisateur: String,
         Nom: String,
         Marque: String,
         Quantite: String,
@@ -349,31 +347,24 @@ object ProductRepository {
         }
 
         val jsonObjectRequest = object : JsonObjectRequest(
-            Request.Method.POST, postUrl, postData,
+            Method.POST, postUrl, postData,
             { response ->
                 println(response)
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context, loadUsername(context))
+                getFoodFromMongo(context)
             },
          { error -> error.printStackTrace() })
         {
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
-                headers.put("Content-Type", "application/json")
-                headers.put("Authorization", "Bearer ${loadToken(context)}")
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
                 return headers }
         }
         requestQueue.add(jsonObjectRequest)
 
         return "Produit ajouté"
-    }
-    // load Username
-    private fun loadUsername(context: Context) : String {
-        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val savedUsername = sharedPreferences.getString("USERNAME", null)
-
-        return savedUsername.toString()
     }
 
     // load Email and password pre-recorded
