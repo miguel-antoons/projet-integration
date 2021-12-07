@@ -55,16 +55,20 @@ def raspberry_post(raspberry_id):
         {"_id": ObjectId(raspberry_id)}
     ))
 
-    if raspberry_data[0]['status'] == "ready":
-        new_food["Utilisateur"] = raspberry_data[0]['user']
-        new_food["Lieu"] = raspberry_data['location']
+    try:
+        if raspberry_data[0]['status'] == "ready":
+            new_food["Utilisateur"] = raspberry_data[0]['user']
+            new_food["Lieu"] = raspberry_data[0]['location']
 
-        food.insert_one(new_food)
-        
-        return {"response": "food has been inserted"}
+            food.insert_one(new_food)
+            
+            return {"response": "food has been inserted"}
 
-    else:
-        return {"response": "raspberry not ready"}
+        else:
+            return {"response": "raspberry not ready"}
+
+    except IndexError:
+        return {"response": "raspberry does not exist"}
 
 
 def remove_food(product_id, username):

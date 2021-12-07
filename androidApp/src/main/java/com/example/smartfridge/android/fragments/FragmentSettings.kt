@@ -31,6 +31,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
     private lateinit var etData : String
     private lateinit var raspberryButton: Button
     private val resultingData = arrayListOf<Raspberry>()
+    private val serverUrl = "http://10.0.2.2:5000/api/raspberry"
 
     // Function that displays the fragment 'FragmentProduct' on the screen
     override fun onCreateView(
@@ -56,10 +57,12 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
             startActivity(intent)
         }
 
+        // buttons will open a pop-up to modify user locations
         newLocationButton.setOnClickListener {
-            LocationPopup(context, this).show()
+            LocationPopup(context).show()
         }
 
+        // button opens a pop-up with inputs to add a new raspberry
         raspberryButton.setOnClickListener {
             RaspberryPopup(context, resultingData, this).show()
         }
@@ -113,15 +116,23 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         }.apply()
     }
 
+    /**
+     * Function calls the api to get all new raspberries of the current user. It then stores these
+     * raspberries in an array. If there are new raspberries, the button to validate a raspberry
+     * will show on screen (cf. 'raspberryButton').
+     */
     private fun getNewRaspberry() {
-        val url = "http://10.0.2.2:5000/api/raspberry/${loadUsername()}"
+        val url = "${serverUrl}/${loadUsername()}"
         val queue = Volley.newRequestQueue(context)
+
+        // get all the new raspberries
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->
                 val jsonData = JSONTokener(response).nextValue() as JSONArray
                 resultingData.clear()
 
+                // store them in an array with correct values
                 for (i in 0 until jsonData.length()) {
                     resultingData.add(
                         Raspberry(
@@ -134,9 +145,11 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
                     println("All raspberries collected")
                 }
 
+                // if there are new raspberries, show the button to confirm them
                 if (jsonData.length() > 0) {
                     raspberryButton.visibility = View.VISIBLE
                 }
+                // else hide the button since it's not needed
                 else {
                     raspberryButton.visibility = View.GONE
                 }
@@ -146,11 +159,14 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         queue.add(stringRequest)
     }
 
+    /**
+     * Function calls the api and provides the modified raspberry to back-end.
+     */
     fun modifyNewRaspberry(newRaspberry: Raspberry) {
-        val url = "http://10.0.2.2:5000/api/raspberry"
         val requestQueue = Volley.newRequestQueue(context)
         val newJsonRaspberry = JSONObject()
 
+        // add the validated to the data that will be sent
         try {
             newJsonRaspberry.put("_id", newRaspberry.id)
             newJsonRaspberry.put("user", newRaspberry.user)
@@ -161,14 +177,42 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
             e.printStackTrace()
         }
 
+        // call the PUT api and print its response
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.PUT, url, newJsonRaspberry,
+            Request.Method.PUT, serverUrl, newJsonRaspberry,
             { response ->
                 println(response)
+
+                // call the get api here to make sure it's called after the new raspberry is
+                // validated
                 getNewRaspberry()
             },
             { error -> error.printStackTrace() }
         )
+        requestQueue.add(jsonObjectRequest)
+    }
+
+    /**
+     * Function calls an api to delete a new raspberry from back-end.
+     */
+    fun deleteNewRaspberry(newRaspberry: Raspberry) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val raspberryID = newRaspberry.id
+
+        // create the url with the raspberry id to delete
+        val deleteUrl = "$serverUrl/$raspberryID"
+
+        // call the DELETE api and print its response
+        val jsonObjectRequest = StringRequest(
+            Request.Method.DELETE, deleteUrl,
+            { response ->
+                println(response)
+
+                // call the get api here to make sure it's called after the raspberry has been
+                // deleted
+                getNewRaspberry()
+            }
+        ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
     }
 }

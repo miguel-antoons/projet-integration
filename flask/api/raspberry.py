@@ -13,7 +13,6 @@ def api_raspberry():
         return validate_raspberry(request.json)
 
 
-
 def link_raspberry(payload):
     result = list(
         users.find(
@@ -51,6 +50,14 @@ def validate_raspberry(payload):
     )
 
     return json.dumps({'Response': "Raspberry was updated"})
+
+
+@app_raspberry.route('/api/raspberry/<raspberry_id>', methods=['DELETE'])
+def delete_raspberry(raspberry_id):
+    raspberry.delete_one(
+        {"_id": ObjectId(raspberry_id)}
+    )
+    return json.dumps({'Response': "Raspberry has been removed"})
 
 
 @app_raspberry.route('/api/raspberry/<user>', methods=['GET'])
