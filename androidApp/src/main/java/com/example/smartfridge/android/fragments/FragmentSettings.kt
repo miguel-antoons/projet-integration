@@ -45,7 +45,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         raspberryButton = view.findViewById(R.id.new_raspberry)
 
         // create qrCode
-        qrCode(view)
+        // qrCode(view)
 
         val username = view.findViewById<TextView>(R.id.usernameSettings)
         username.text = loadUsername()
