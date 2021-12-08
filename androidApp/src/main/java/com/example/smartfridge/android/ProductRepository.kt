@@ -2,7 +2,6 @@ package com.example.smartfridge.android
 
 import android.content.Context
 import android.util.Log
-import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -130,16 +129,23 @@ object ProductRepository {
         val postUrl = "$serverUrl/$productId"
         val requestQueue = Volley.newRequestQueue(context)
 
-        val jsonObjectRequest = StringRequest(
-            Request.Method.DELETE, postUrl,
+        val jsonObjectRequest = object: StringRequest(
+            Method.DELETE, postUrl,
             { response ->
                 println(response)
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
                 getFoodFromMongo(context)
-            }
-        ) { error -> error.printStackTrace() }
+            }, { error -> error.printStackTrace() }
+        ){
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
+
         requestQueue.add(jsonObjectRequest)
     }
 
