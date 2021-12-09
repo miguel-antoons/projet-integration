@@ -15,6 +15,7 @@ import android.widget.*
 import com.android.volley.*
 import com.android.volley.toolbox.JsonArrayRequest
 import com.example.smartfridge.android.Hashing.passwordHash
+import org.json.JSONArray
 import java.util.regex.Pattern
 
 /**
@@ -268,7 +269,7 @@ class SignUp : AppCompatActivity() {
             postData.put("Username", username)
             postData.put("Password", passwordHash(etPassword.text.toString()))
             postData.put("Email", email)
-            postData.put("Locations", arrayListOf("Emplacement Temporaire"))
+            postData.put("Locations", JSONArray(arrayListOf("Emplacement Temporaire")))
 
         } catch (e: JSONException) {
             e.printStackTrace()
