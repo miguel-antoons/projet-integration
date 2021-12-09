@@ -72,6 +72,17 @@ class CheckCodeMail : AppCompatActivity() {
             new_code_email(emailFromForgot)
         }
 
+        //BUTTON GO BACK CHECK MAIL PAGE
+        val button_return = findViewById<Button>(R.id.bouton_retour)
+        button_return.setOnClickListener {
+            val i = Intent(this, CheckAndSendEmail::class.java)
+
+
+
+            startActivity(i)
+
+        }
+
 
     }
 

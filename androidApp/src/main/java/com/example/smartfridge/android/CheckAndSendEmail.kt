@@ -50,6 +50,16 @@ class CheckAndSendEmail : AppCompatActivity() {
 
             }
         }
+        //button go back LOGIN PAGE
+        val button_return = findViewById<Button>(R.id.bouton_retour)
+        button_return.setOnClickListener {
+            val i = Intent(this, Login::class.java)
+
+
+
+            startActivity(i)
+
+        }
 
 
     }
