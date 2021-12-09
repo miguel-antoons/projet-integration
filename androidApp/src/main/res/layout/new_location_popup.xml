@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/product_popup"
+    android:layout_width="320dp"
+    android:layout_height="350dp"
+    android:padding="@dimen/default_padding">
+
+    <ImageView
+        android:id="@+id/close_popup"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:contentDescription="@string/ic_close_description"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@+id/location_popup_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/location_popup_title" />
+
+    <TextView
+        android:id="@+id/location_popup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="@string/raspberry_popup_title"
+        android:layout_marginTop="@dimen/location_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/location_popup_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/location_margin_top"
+        android:text="@string/raspberry_popup_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_popup_title" />
+
+    <TextView
+        android:id="@+id/location_popup_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/location_margin_top"
+        android:layout_marginLeft="@dimen/location_margin_left"
+        android:text="@string/raspberry_popup_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_popup_description"
+        android:layout_marginStart="@dimen/location_margin_left" />
+
+    <Spinner
+        android:id="@+id/location_popup_spinner"
+        style="@style/SpinnerTheme"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="15dp"
+        android:spinnerMode="dialog"
+        android:layout_marginTop="@dimen/location_margin_top_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_popup_location" />
+
+    <TextView
+        android:id="@+id/location_popup_new_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/location_margin_top"
+        android:layout_marginLeft="@dimen/location_margin_left"
+        android:textColor="@color/black"
+        android:text="@string/raspberry_popup_new_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_popup_spinner"
+        android:layout_marginStart="@dimen/location_margin_left" />
+
+    <EditText
+        android:id="@+id/location_popup_new_location_edit"
+        android:layout_width="250dp"
+        android:hint="@string/raspberry_popup_hint"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:autofillHints="New location"
+        android:layout_marginTop="@dimen/location_margin_top_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_popup_new_location"
+        android:inputType="text"
+        app:backgroundTint="@color/dark_green" />
+
+    <Button
+        android:id="@+id/location_popup_save"
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
+        android:text="@string/raspberry_popup_save"
+        android:textAllCaps="false"
+        android:background="@color/light_grey"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/location_margin_top"
+        android:layout_marginRight="@dimen/location_button_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/location_button_margin" />
+
+    <Button
+        android:id="@+id/location_popup_discard"
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
+        android:text="@string/raspberry_popup_discard"
+        android:textAllCaps="false"
+        android:background="@color/delete_red"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/location_margin_top"
+        android:layout_marginLeft="@dimen/location_button_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/location_button_margin" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

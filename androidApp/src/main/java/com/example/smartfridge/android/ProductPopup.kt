@@ -40,13 +40,23 @@ class ProductPopup(
         val productQuantity = findViewById<TextView>(R.id.quantity)
         val productCategory = findViewById<TextView>(R.id.category)
         val productLocation = findViewById<TextView>(R.id.product_location)
+        val productEcoscore = findViewById<TextView>(R.id.product_ecoscore)
+        val productNutriscore = findViewById<TextView>(R.id.product_nutriscore)
+        val productIngredients = findViewById<TextView>(R.id.product_ingredients)
+        val productBrand = findViewById<TextView>(R.id.brand)
+        val productExpirationPeriod = findViewById<TextView>(R.id.period)
 
         productStatus.setColorFilter(Color.parseColor(selectedProduct.productColor))
         productTitle.text = selectedProduct.name
         expirationDate.text = selectedProduct.expirationDate
-        productQuantity.text = selectedProduct.quantity.toString()
+        productQuantity.text = selectedProduct.quantity
         productCategory.text = selectedProduct.category
         productLocation.text = selectedProduct.location
+        productEcoscore.text = selectedProduct.ecoscore
+        productNutriscore.text = selectedProduct.nutriscore
+        productIngredients.text = selectedProduct.ingredients.joinToString(", ")
+        productBrand.text = selectedProduct.brand
+        productExpirationPeriod.text = selectedProduct.expirationPeriod
     }
 
     // close the pop-up when clicking on the close button
@@ -60,23 +70,11 @@ class ProductPopup(
     private fun setupDeleteButton() {
         findViewById<Button>(R.id.delete_button).setOnClickListener {
             // delete the item in the shared product list (cf. './ProductRepository.kt')
-            selectedProduct.user?.let { it1 ->
-                selectedProduct.brand?.let { it2 ->
-                    selectedProduct.ingredients?.let { it3 ->
-                        selectedProduct.nutritiveValues?.let { it4 ->
-                            selectedProduct.weight?.let { it5 ->
-                                ProductRepository.deleteProduct(productPosition, context,
-                                    it1, selectedProduct.name,
-                                    it2, selectedProduct.quantity,
-                                    it3, selectedProduct.expirationDate,
-                                    it4, it5, selectedProduct.location, selectedProduct.category)
-                            }
-                        }
-                    }
-                }
-            }
-            // notify the adapter that an item has been removed from the list
-            adapter.notifyItemRemoved(productPosition)
+            ProductRepository.deleteProduct(
+                context,
+                selectedProduct.id
+            )
+
             Toast.makeText(context ,
                 "Produit supprimé",
                 Toast.LENGTH_LONG

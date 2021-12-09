@@ -41,7 +41,7 @@
 
     <!-- product list font -->
     <style name="product_list">
-        <item name="android:textColor">#373636</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">12sp</item>
     </style>
 
@@ -60,7 +60,7 @@
 
     <!-- For the subtitles of each card view -> degree and temperature -->
     <style name="Subtitles">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Form Add Page  -->
@@ -85,5 +85,30 @@
 
     </style>
 
+    <!-- Terms of signing up -->
+    <style name="terms_link_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Strings for how to connect page -->
+    <!-- Main title -->
+    <style name="main_title_how_to_connect">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/darkGreen</item>
+    </style>
+
+    <style name="normal_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="it_must">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

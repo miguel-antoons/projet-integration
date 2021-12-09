@@ -1,13 +1,8 @@
 package com.example.smartfridge.android
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.text.InputType
-import android.text.Selection.setSelection
 import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
@@ -17,14 +12,10 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import org.json.JSONObject
 import android.widget.*
-
 import com.android.volley.*
 import com.android.volley.toolbox.JsonArrayRequest
 import com.example.smartfridge.android.Hashing.passwordHash
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.*
 import java.util.regex.Pattern
-import kotlin.system.*
 
 /**
  * Class gets all the data from the sign up form and POST them into the MongoDB database.
@@ -176,16 +167,17 @@ class SignUp : AppCompatActivity() {
      */
     private fun isUsernameExist(username: String) {
 
-        val url = "http://10.0.2.2:5000/api/users/$username"
-        // create a request queue
+        val url = "http://10.0.2.2:5000/api/username_verfication/$username"
+        // create a request queue²
         val queue = Volley.newRequestQueue(this)
 
-        val jsonObjectRequest = JsonArrayRequest(
+        val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            { response ->
+            { resp ->
 
-                // Username verification
-                if (response.length() == 0) {
+                val response = resp.getString("state")
+                // email verification
+                if (response == "false") {
                     isEmailExist(etEmail.text.toString())
                 }
                 else {
@@ -206,16 +198,16 @@ class SignUp : AppCompatActivity() {
      */
     private fun isEmailExist(email: String){
 
-        val url = "http://10.0.2.2:5000/api/users/email/$email"
+        val url = "http://10.0.2.2:5000/api/email_verfication/$email"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
 
-        val jsonObjectRequest = JsonArrayRequest(
+        val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            { response ->
-
+            { resp ->
+                val response = resp.getString("state")
                 // email verification
-                if (response.length() == 0) {
+                if (response == "false") {
                     performSignUp()
                 }
                 else {
@@ -276,6 +268,7 @@ class SignUp : AppCompatActivity() {
             postData.put("Username", username)
             postData.put("Password", passwordHash(etPassword.text.toString()))
             postData.put("Email", email)
+            postData.put("Locations", arrayListOf("Emplacement Temporaire"))
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -293,7 +286,7 @@ class SignUp : AppCompatActivity() {
                 startActivity(monIntent)
 
             }
-        ) { error ->
+        ) { _ ->
             Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
             }
         requestQueue.add(jsonObjectRequest)

@@ -1,7 +1,6 @@
 package com.example.smartfridge.android.adapter
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +44,9 @@ class ProductAdapter(
         // sets item color to light green if the position is uneven
         if ((position % 2) == 1) {
             holder.productItem.setBackgroundColor(Color.parseColor("#CBF4DA"))
+        }
+        else {
+            holder.productItem.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
 
         // create an interaction on product row click

@@ -48,28 +48,50 @@
 
     <ImageView
         android:id="@+id/ivQRcode"
+        android:contentDescription="@string/content_description_qr"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="204dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.603"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/new_raspberry"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/settings_button_margin_top"
+        android:background="@drawable/sign_up_inscription_button"
+        android:text="@string/new_raspberry"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivQRcode" />
+
+    <Button
+        android:id="@+id/new_location"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/settings_button_margin_top"
+        android:background="@drawable/sign_up_inscription_button"
+        android:text="@string/new_location"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_raspberry" />
 
     <Button
         android:id="@+id/disconnect"
         android:layout_width="226dp"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/settings_button_margin_top"
         android:background="@drawable/sign_up_inscription_button"
-        android:text="Se déconnecter"
+        android:text="@string/sign_out"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.825" />
+        app:layout_constraintTop_toBottomOf="@+id/new_location" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

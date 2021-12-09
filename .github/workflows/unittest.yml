@@ -31,9 +31,6 @@ jobs:
         with: 
           python-version: 3.8
 
-      - name: set up Mongo
-        uses: supercharge/mongodb-github-action@1.6.0
-
       # Runs a set of commands using the runners shell
       - name: Install Python Packages
         run: |

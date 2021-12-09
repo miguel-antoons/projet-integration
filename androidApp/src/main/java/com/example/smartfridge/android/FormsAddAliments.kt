@@ -5,16 +5,11 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import java.util.*
 import com.example.smartfridge.android.api.NutritionValues
-
-import com.example.smartfridge.android.fragments.FragmentProduct
-import com.example.smartfridge.android.fragments.FragmentSettings
-import org.json.JSONException
 
 
 class FormsAddAliments(
@@ -80,16 +75,16 @@ class FormsAddAliments(
 
                     val confirmationMessage = ProductRepository.sendFoodToServer(
                         this,
-                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
                         listOf("ingredient1","ingredient2","ingredient3"),
                         date,
                         NutritionValues(),
-                        "500g",
                         store,
-                        categorie
+                        categorie,
+                        "X",
+                        "X"
                     )
 
                     Toast.makeText(
@@ -101,14 +96,10 @@ class FormsAddAliments(
                     ProductRepository.modifyProduct(
                         this,
                         productIndex,
-                        loadUsername(this),
                         names,
                         "TODO",
                         quantite,
-                        listOf("ingredient1","ingredient2","ingredient3"),
                         date,
-                        NutritionValues(),
-                        "500g",
                         store,
                         categorie,
                         ProductRepository.productList[productIndex].id
@@ -117,7 +108,7 @@ class FormsAddAliments(
                     Toast.makeText(this ,
                         "Produit modifié",
                         Toast.LENGTH_LONG
-                    ).show();
+                    ).show()
                 }
                 finish()
             }
@@ -138,17 +129,15 @@ class FormsAddAliments(
             alimentCategorie.adapter = adapter
         }
 
-        // Spinner Place change Place
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.place_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            alimentStore.adapter = adapter
+        // set all the values inside the location spinner
+        if (alimentStore != null) {
+            val spinnerAdapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                LocationRepository.locationList
+            )
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            alimentStore.adapter = spinnerAdapter
         }
 
         // if a productIndex was given

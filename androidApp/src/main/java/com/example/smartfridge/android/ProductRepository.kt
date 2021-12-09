@@ -23,7 +23,7 @@ object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
 
-    var serverUrl = "http://10.0.2.2:5000/api"
+    var serverUrl = "http://10.0.2.2:5000/api/food"
 
     // only purpose of this is notify that the dataset has changed
     private lateinit var productAdapter: ProductAdapter
@@ -75,30 +75,22 @@ object ProductRepository {
     fun modifyProduct(
         context: Context,
         productPosition: Int,
-        Utilisateur: String,
         Nom: String,
         Marque: String,
         Quantite: String,
-        Ingredients: List<String>,
         Date: String,
-        Valeurs: NutritionValues,
-        Poids: String,
         Lieu: String,
         Category: String,
         productId: String
     ) {
-        val url = "$serverUrl/modifyFood/$productId"
+        val url = "$serverUrl/$productId"
         val requestQueue = Volley.newRequestQueue(context)
         val postData = JSONObject()
         try {
-            postData.put("Utilisateur", Utilisateur)
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
-            postData.put("Ingredients", Ingredients.joinToString())
             postData.put("Date", Date)
-            postData.put("Valeurs", Valeurs)
-            postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
             postData.put("Categorie", Category)
 
@@ -106,16 +98,22 @@ object ProductRepository {
             e.printStackTrace()
         }
 
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, url, postData,
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Method.PUT, url, postData,
             { response ->
                 println(response)
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context, loadUsername(context))
-            }
-        ) { error -> error.printStackTrace() }
+                getFoodFromMongo(context)
+            }, { error -> error.printStackTrace() })
+        {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
         requestQueue.add(jsonObjectRequest)
 
         // notify that an item was changed inside the list
@@ -125,55 +123,24 @@ object ProductRepository {
 
     // deletes an element from productList at a given index (productPosition)
     fun deleteProduct(
-        productPosition: Int,
         context: Context,
-        Utilisateur: String,
-        Nom: String,
-        Marque: String,
-        Quantite: String,
-        Ingredients: List<String>,
-        Date: String,
-        Valeurs: NutritionValues,
-        Poids: String,
-        Lieu: String,
-        Category: String) {
-        productList.removeAt(productPosition)
+        productId: String
+    ) {
         // API DELETE
-        val postUrl = "$serverUrl/removeFood"
+        val postUrl = "$serverUrl/$productId"
         val requestQueue = Volley.newRequestQueue(context)
 
-        val deleteData = JSONObject()
-        try {
-            deleteData.put("Utilisateur", Utilisateur)
-            deleteData.put("Nom", Nom)
-            deleteData.put("Marque", Marque)
-            deleteData.put("Quantite", Quantite)
-            deleteData.put("Ingredients", Ingredients.joinToString())
-            deleteData.put("Date", Date)
-            deleteData.put("Valeurs", Valeurs)
-            deleteData.put("Poids", Poids)
-            deleteData.put("Lieu", Lieu)
-            deleteData.put("Categorie", Category)
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, deleteData,
+        val jsonObjectRequest = StringRequest(
+            Request.Method.DELETE, postUrl,
             { response ->
                 println(response)
+
+                // call the get api here in order to make sure it is called after the new
+                // product was added
+                getFoodFromMongo(context)
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
-
-        // notify that an item was removed
-        // this will update the FragmentProduct page
-        productAdapter.notifyItemRemoved(productPosition)
-
-        // call the get api here in order to make sure it is called after the new
-        // product was added
-         getFoodFromMongo(context, loadUsername(context))
     }
 
 
@@ -286,17 +253,17 @@ object ProductRepository {
      * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
      * We use adapter in order to notify the product list changed.
      */
-    fun getFoodFromMongo(context: Context, productUser: String){
+    fun getFoodFromMongo(context: Context){
         val productListLength = productList.size
         productList.clear()
 
-        val url = "$serverUrl/getFood/$productUser"
-
         // notify the adapter that everything was removed
         productAdapter.notifyItemRangeRemoved(0, productListLength)
+
+        val url = serverUrl
         val queue = Volley.newRequestQueue(context)
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
+        val stringRequest = object : StringRequest(
+            Method.GET, url,
             { response ->
                 /*
                 https://johncodeos.com/how-to-parse-json-in-android-using-kotlin/
@@ -306,6 +273,7 @@ object ProductRepository {
                     val expirationDate = convertToDate(jsonArray.getJSONObject(i).getString("Date"))
                     val dateDifference = getDateDifference(expirationDate)
                     val expirationPeriod = convertDifferenceToString(dateDifference)
+
                     productList.add(
                         ProductModel(
                             id = jsonArray.getJSONObject(i).getString("_id"),
@@ -317,21 +285,27 @@ object ProductRepository {
                             brand = jsonArray.getJSONObject(i).getString("Marque"),
                             user = jsonArray.getJSONObject(i).getString("Utilisateur"),
                             location = jsonArray.getJSONObject(i).getString("Lieu"),
-                            weight = jsonArray.getJSONObject(i).getString("Poids"),
                             ingredients = listOf(jsonArray.getJSONObject(i).getString("Ingredients")),
                             nutritiveValues = NutritionValues(jsonArray.getJSONObject(i).getString("Valeurs")),
-                            productColor = getProductColor(dateDifference)
+                            productColor = getProductColor(dateDifference),
+                            ecoscore = jsonArray.getJSONObject(i).getString("Ecoscore"),
+                            nutriscore = jsonArray.getJSONObject(i).getString("Nutriscore")
                         )
                     )
-
-                    // notify the adapter that new elements were added to the list
-                     productAdapter.notifyItemRangeInserted(0, jsonArray.length())
                     // productAdapter.notifyDataSetChanged()
                 }
+                // notify the adapter that new elements were added to the list
+                productAdapter.notifyItemRangeInserted(0, jsonArray.length())
                 Log.d("GetFood", "SUCCESS")
             },
             { Log.d("GetFood","That didn't work!") }
-        )
+        ){
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
         queue.add(stringRequest)
     }
 
@@ -341,56 +315,62 @@ object ProductRepository {
      */
     fun sendFoodToServer(
         context: Context,
-        Utilisateur: String,
         Nom: String,
         Marque: String,
         Quantite: String,
         Ingredients: List<String>,
         Date: String,
         Valeurs: NutritionValues,
-        Poids: String,
         Lieu: String,
-        Category: String): String {
-        val postUrl = "$serverUrl/addFood"
+        Category: String,
+        Ecoscore: String,
+        Nutriscore: String
+    ): String {
+        val postUrl = serverUrl
         val requestQueue = Volley.newRequestQueue(context)
 
         val postData = JSONObject()
         try {
-            postData.put("Utilisateur", Utilisateur)
             postData.put("Nom", Nom)
             postData.put("Marque", Marque)
             postData.put("Quantite", Quantite)
             postData.put("Ingredients", Ingredients.joinToString())
             postData.put("Date", Date)
             postData.put("Valeurs", Valeurs)
-            postData.put("Poids", Poids)
             postData.put("Lieu", Lieu)
             postData.put("Categorie", Category)
+            postData.put("Ecoscore", Ecoscore)
+            postData.put("Nutriscore", Nutriscore)
 
         } catch (e: JSONException) {
             e.printStackTrace()
         }
 
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, postData,
+        val jsonObjectRequest = object : JsonObjectRequest(
+            Method.POST, postUrl, postData,
             { response ->
                 println(response)
-
                 // call the get api here in order to make sure it is called after the new
                 // product was added
-                getFoodFromMongo(context, loadUsername(context))
-            }
-        ) { error -> error.printStackTrace() }
+                getFoodFromMongo(context)
+            },
+         { error -> error.printStackTrace() })
+        {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
         requestQueue.add(jsonObjectRequest)
 
         return "Produit ajouté"
     }
-    // load Username
-    fun loadUsername(context: Context) : String {
-        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val savedUsername = sharedPreferences.getString("USERNAME", null)
 
-        return savedUsername.toString()
+    // load Email and password pre-recorded
+    private fun loadToken(context : Context) : String? {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("TOKEN", null)
     }
 }
 

@@ -9,12 +9,15 @@ import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.widget.*
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import java.util.regex.Pattern
 import com.example.smartfridge.android.Hashing.passwordHash
+import org.json.JSONException
+import org.json.JSONObject
 
 class UpdatePassword : AppCompatActivity() {
+    private val MIN_PASSWORD_LENGTH = 8
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +28,18 @@ class UpdatePassword : AppCompatActivity() {
         val firstpassword = findViewById<EditText>(R.id.new_mpd)
         val secondepassword = findViewById<EditText>(R.id.confirm_new_mdp)
 
+
         //get email from previous activity
         //Recover the email from the previous activity
         val emailFromForgot = intent
             .getStringExtra("Email")
 
         //display email
+
         val tv_email = findViewById<TextView>(R.id.textView_email).apply {
             text = emailFromForgot
         }
+
 
         //CheckBox
         val checkbox1 = findViewById<CheckBox>(R.id.checkBox_password_1)
@@ -79,14 +85,14 @@ class UpdatePassword : AppCompatActivity() {
         val button_check_strenght_1 = findViewById<Button>(R.id.button_check_password1)
         button_check_strenght_1.setOnClickListener {
 
-            isValidPassword(firstpassword.text.toString())
+            isValidPassword()
         }
 
 
         val button_check_strenght_2 = findViewById<Button>(R.id.button_check_password2)
         button_check_strenght_2.setOnClickListener {
 
-            isValidPassword(secondepassword.text.toString())
+            isValidPassword()
         }
 
 
@@ -97,85 +103,13 @@ class UpdatePassword : AppCompatActivity() {
 
         button_confirm.setOnClickListener {
 
-            passwords_strenghts(firstpassword.text.toString(), secondepassword.text.toString())
+            isValidPassword()
 
 
         }
 
     }
 
-    /**
-     * @author  : Ben-Tahri Merwane
-     * Function : passwords_strenghts
-     * this function passwords_strenghts , checks if both passwords respect the rules for a strong password
-     * @param -password1- : its a first password edittext string
-     * @param -password2- : its a second password edittext string
-     *
-     * @return return a console message if its good or not
-     *
-     */
-
-    fun passwords_strenghts(password1: String?, password2: String?) {
-        if (isValidPassword(password1.toString()).equals(true) && isValidPassword(password2.toString()).equals(
-                true
-            )
-        ) {
-
-            Log.d("MainActivity", "Tout est Bon")
-            check_equals_password(password1.toString(), password2.toString())
-
-
-        } else {
-            Log.d("MainActivity", "Mauvais mot de passe")
-
-
-        }
-
-
-    }
-
-
-    /**
-     * @author  : Ben-Tahri Merwane
-     * Function : check_equals_password
-     * This function check_equals_password : check if my first password equals my seconds password
-     *
-     * @param -password1- : its a first password edittext string
-     * @param -password2- : its a second password edittext string
-     *
-     */
-
-
-    fun check_equals_password(password1: String?, password2: String?) {
-
-        if (password1.toString().equals(password2.toString())) {
-            //get email from previous activity
-            //Recover the email from the previous activity
-            val email = intent
-                .getStringExtra("Email")
-
-            update_password(email, password1.toString())
-
-            Toast.makeText(
-                this,
-                "les mot de passe sont correctes ",
-                Toast.LENGTH_SHORT
-            ).show()
-            Log.d("MainActivity", "$password1")
-            Log.d("MainActivity", "Les mots de passe sont correctes et respectents les conditions")
-
-
-        } else {
-
-            Toast.makeText(
-                this,
-                "les mot de passe ne sont pas similaires",
-                Toast.LENGTH_SHORT
-            ).show()
-
-
-        }
-    }
 
     /**
      *@author  : Ben-Tahri Merwane
@@ -193,15 +127,10 @@ class UpdatePassword : AppCompatActivity() {
      *
      * @return - true if the password is valid as per the password policy.
      */
-    fun isValidPassword(password1: String?): Boolean {
+    fun isValidPassword(): Boolean {
 
-        // Display password Strenght
-        val atoz = findViewById<TextView>(R.id.atoz);
-        val AtoZ = findViewById<TextView>(R.id.AtoZ);
-        val num = findViewById<TextView>(R.id.num);
-        val charcount = findViewById<TextView>(R.id.charcount);
-
-        val password = password1.toString()
+        val password_edittext1 = findViewById<EditText>(R.id.new_mpd)
+        val password_edittext2 = findViewById<EditText>(R.id.confirm_new_mdp)
 
         // check for pattern
         // check for pattern
@@ -209,49 +138,47 @@ class UpdatePassword : AppCompatActivity() {
         val lowercase = Pattern.compile("[a-z]")
         val digit = Pattern.compile("[0-9]")
 
-        // if lowercase character is not present
-
-        // if lowercase character is not present
-        if (!lowercase.matcher(password).find()) {
-            atoz.setTextColor(Color.RED)
-            Log.d("MainActivity", "Pas de Minuscules")
-            return false
-        } else {
-            // if lowercase character is  present
-            atoz.setTextColor(Color.GREEN)
+        // Password
+        if (password_edittext1.text.toString() == "") {
+            password_edittext1.setError("Veuillez entrer un mot de passe !")
+        }
+        // Same password / verification
+        if (password_edittext2.text.toString() == "") {
+            password_edittext2.setError("Veuillez entrer un mot de passe !")
         }
 
-        // if uppercase character is not present
-
-        // if uppercase character is not present
-        if (!uppercase.matcher(password).find()) {
-            Log.d("MainActivity", "Pas de Majuscules")
-            AtoZ.setTextColor(Color.RED)
+        // Checking if the password contains or not at least one lowercase
+        if (!lowercase.matcher(password_edittext1.text.toString()).find()) {
+            password_edittext1.setError("Doit contenir au moins une minuscule !")
             return false
-        } else {
-            // if uppercase character is  present
-            AtoZ.setTextColor(Color.GREEN)
-        }
-        // if digit is not present
-        // if digit is not present
-        if (!digit.matcher(password).find()) {
-            Log.d("MainActivity", "Pas de chiffres")
-            num.setTextColor(Color.RED)
-            return false
-        } else {
-            // if digit is present
-            num.setTextColor(Color.GREEN)
         }
 
-        // if password length is less than 8
-        if (password.length < 8) {
-            Log.d("MainActivity", "Trop court")
-            charcount.setTextColor(Color.RED)
+        // Checking if the password contains or not at least one uppercase
+        if (!uppercase.matcher(password_edittext1.text.toString()).find()) {
+            password_edittext1.setError("Doit contenir au moins une majuscule !")
             return false
-
-        } else {
-            charcount.setTextColor(Color.GREEN)
         }
+
+        // Checking if the password contains or not at least one lowercase
+        if (!digit.matcher(password_edittext1.text.toString()).find()) {
+            password_edittext1.setError("Doit contenir au moins un chiffre !")
+            return false
+        }
+
+        // Checking minimum password length, in this case minimum of 8 characters
+        if (password_edittext1.text.length < MIN_PASSWORD_LENGTH) {
+            password_edittext1.setError("La longueur du mot de passe doit contenir au moins " + MIN_PASSWORD_LENGTH + " charactères")
+            return false
+        }
+
+        // Checking if repeat password is same
+        if (!password_edittext1.text.toString().equals(password_edittext2.text.toString())) {
+            password_edittext2.setError("La mot de passe ne correspond pas !")
+            return false
+        }
+        val emailFromForgot = intent
+            .getStringExtra("Email")
+        update_password(emailFromForgot, password_edittext2.text.toString())
 
         return true
 
@@ -269,56 +196,44 @@ class UpdatePassword : AppCompatActivity() {
 
     private fun update_password(email: String?, password: String?) {
 
+        val code = intent
+            .getStringExtra("Code")
+
         //hash password
-        val password_hash = passwordHash(password.toString())
-        Log.d("MainActivity", "$password_hash")
+        //val password_hash = passwordHash(password.toString())
+        //Log.d("MainActivity", "$password_hash")
+
+        val putUrl = "http://10.0.2.2:5000/api/users/update-password"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val putData = JSONObject()
+        try {
+
+            putData.put("Password", passwordHash(password.toString()))
+            putData.put("Email", email)
+            putData.put("Code", code)
 
 
-        // api route
-        val url =
-            "http://10.0.2.2:5000/api/users/reset-password/update-password/$email/$password_hash"
-        // 10.0.2.2 Special alias to your host loopback interface (i.e., 127.0.0.1 on your development machine)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
 
-        // create a request queue
-        val queue = Volley.newRequestQueue(this)
-
-        // A request for retrieving a JSONArray response body at a given URL
-        val jsonObjectRequest = JsonArrayRequest(
-
-            // Type method
-            Request.Method.PUT, url, null,
-            { response ->
-
-                if (response[0] == "Password Update IS ok") {
-
-                    Toast.makeText(
-                        this,
-                        "Mot de passe mis à jour pour : $email",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.PUT, putUrl, putData,
+            { response -> println(response) }
 
 
-                    val i = Intent(this, Login::class.java)
-                    startActivity(i)
+        ) { error -> error.printStackTrace() }
+        requestQueue.add(jsonObjectRequest)
+        Toast.makeText(
+            this,
+            "Mot de passe mis à jour pour : $email",
+            Toast.LENGTH_SHORT
+        ).show()
 
 
-                } else {
-
-                    setContentView(R.layout.activity_update_password)
-
-
-                }
-                Toast.makeText(this, "$response", Toast.LENGTH_SHORT).show()
-
-
-                Log.d("MainActivity", "response: $response")
-            }, { error ->
-                Log.d("TAGTest", "error: ${error.message}")
-                Log.d("MainActivity", "Api call failed")
-
-            }
-        )
-        queue.add(jsonObjectRequest)
+        val i = Intent(this, Login::class.java)
+        startActivity(i)
 
 
     }

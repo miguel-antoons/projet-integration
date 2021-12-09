@@ -11,13 +11,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class CheckCodeMail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_email_reset_password)
+
 
         //Recover the email from the previous activity
         val emailFromForgot = intent
@@ -33,7 +37,7 @@ class CheckCodeMail : AppCompatActivity() {
 
         val code_editext = findViewById<EditText>(R.id.editTextCode)
 
-        val button_check_code = findViewById<Button>(R.id.button_check_code)
+        val button_check_code = findViewById<Button>(R.id.button_continued)
         button_check_code.setOnClickListener {
 
             // get text in EditText email
@@ -69,9 +73,6 @@ class CheckCodeMail : AppCompatActivity() {
         }
 
 
-
-
-
     }
 
     /**
@@ -80,33 +81,60 @@ class CheckCodeMail : AppCompatActivity() {
      * else the email is not found, a message is displayed to tell you
      */
 
+    var essaie = 0
+
     private fun check_code(email: String?, code: String?) {
 
         // api route
-        val url = "http://10.0.2.2:5000/api/users/reset-password/checkcode/$email/$code"
+        val putUrl = "http://10.0.2.2:5000/api/users/reset-password/checkcode"
         // 10.0.2.2 Special alias to your host loopback interface (i.e., 127.0.0.1 on your development machine)
 
         // create a request queue
         val queue = Volley.newRequestQueue(this)
 
+        val putData = JSONObject()
+        try {
+
+            putData.put("Email", email)
+            putData.put("Code", code)
+
+
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
         // A request for retrieving a JSONArray response body at a given URL
-        val jsonObjectRequest = JsonArrayRequest(
+        val jsonObjectRequest = JsonObjectRequest(
 
             // Type method
-            Request.Method.GET, url, null,
+            Request.Method.PUT, putUrl, putData,
+
             { response ->
 
 
-                if (response.length() == 0) {
-                    Toast.makeText(this, "Veuillez remplir le champ de code !", Toast.LENGTH_SHORT)
+                if (response.getString("message") == "code is false") {
+
+
+                    essaie += 1
+                    Toast.makeText(this, "Le code est mauvais $essaie / 3", Toast.LENGTH_SHORT)
                         .show()
 
-                } else if (response[0] == "code is false") {
+                    if (essaie == 3) {
+                        Toast.makeText(
+                            this,
+                            "Vous avez échoué 3 fois veuillez recommencer ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val i = Intent(this, Login::class.java)
 
-                    Toast.makeText(this, "Le code est mauvais", Toast.LENGTH_SHORT).show()
+
+                        startActivity(i)
 
 
-                } else if (response[0] == "The code is good") {
+                    }
+
+
+                } else if (response.getString("message") == "The code is good") {
 
                     Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
                     //Chang textview through email
@@ -114,7 +142,8 @@ class CheckCodeMail : AppCompatActivity() {
 
                     Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
                     val i = Intent(this, UpdatePassword::class.java).apply {
-                        putExtra("Email",tvt_email_text)
+                        putExtra("Email", tvt_email_text)
+                        putExtra("Code", code)
                     }
 
                     startActivity(i)
@@ -126,7 +155,7 @@ class CheckCodeMail : AppCompatActivity() {
 
 
                 }
-                Toast.makeText(this, "$response", Toast.LENGTH_SHORT).show()
+
 
 
                 Log.d("MainActivity", "response: $response")
@@ -147,42 +176,63 @@ class CheckCodeMail : AppCompatActivity() {
 
     private fun new_code_email(email: String?) {
 
-        // api route
-        val url = "http://10.0.2.2:5000/api/users/reset-password/checkemail/$email"
-        // 10.0.2.2 Special alias to your host loopback interface (i.e., 127.0.0.1 on your development machine)
+        val putUrl = "http://10.0.2.2:5000/api/users/reset-password/checkemail"
+        val requestQueue = Volley.newRequestQueue(this)
 
-        // create a request queue
-        val queue = Volley.newRequestQueue(this)
+        val putData = JSONObject()
+        try {
 
-        // A request for retrieving a JSONArray response body at a given URL
-        val jsonObjectRequest = JsonArrayRequest(
+            putData.put("Email", email)
 
-            // Type method
-            Request.Method.GET, url, null,
+
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.PUT, putUrl, putData,
+
+
             { response ->
+                // RETURN API
+                println(response.getString("message"))
 
-                 if (response[0] == "message: this email exist") {
+                if (response.getString("message") == "message: this email does not exist") {
 
-                    Toast.makeText(this, "Un nouveau code est crée et envoyé", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Email n'existe pas", Toast.LENGTH_SHORT).show()
+
+
+                } else if (response.getString("message") == "message: this email exist") {
+
+                    Toast.makeText(this, "Changement de page", Toast.LENGTH_SHORT).show()
+                    val email_champ_full = findViewById<EditText>(R.id.et_email).text.toString()
+
+                    val i = Intent(this, CheckCodeMail::class.java).apply {
+                        putExtra("Email", email_champ_full)
+
+
+                    }
+
+                    startActivity(i)
 
 
                 } else {
 
-                    setContentView(R.layout.activity_send_email_reset_password)
+                    setContentView(R.layout.activity_check_and_send_mail)
 
 
                 }
                 Toast.makeText(this, "$response", Toast.LENGTH_SHORT).show()
 
 
-                Log.d("MainActivity", "response: $response")
-            }, { error ->
-                Log.d("TAGTest", "error: ${error.message}")
-                Log.d("MainActivity", "Api call failed")
-
             }
-        )
-        queue.add(jsonObjectRequest)
+
+
+        ) { error -> error.printStackTrace() }
+
+        requestQueue.add(jsonObjectRequest)
+
+
     }
 
 
