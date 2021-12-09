@@ -60,7 +60,7 @@ class MainActivityTest {
         }
 
         // check if an element on the FragmentSettings fragment is displayed *
-        onView(withId(R.id.ivQRcode)).check(matches(isDisplayed()))
+        onView(withId(R.id.new_location)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -78,7 +78,7 @@ class MainActivityTest {
     @Test
     fun `Fragment should change to FragmentSettings on button click`() {
         onView(withId(R.id.settings_page)).perform(click())
-        onView(withId(R.id.ivQRcode)).check(matches(isDisplayed())) // *
+        onView(withId(R.id.new_location)).check(matches(isDisplayed())) // *
     }
 
     @Test
