@@ -138,7 +138,7 @@ object ProductRepository {
                 // product was added
                 getFoodFromMongo(context)
             }, { error -> error.printStackTrace() }
-        ){
+        ) {
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"

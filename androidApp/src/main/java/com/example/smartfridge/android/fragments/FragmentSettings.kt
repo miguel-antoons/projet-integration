@@ -23,6 +23,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import org.json.JSONTokener
+import java.util.HashMap
 
 
 class FragmentSettings(private val context: MainActivity) : Fragment()  {
@@ -122,12 +123,11 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
      * will show on screen (cf. 'raspberryButton').
      */
     private fun getNewRaspberry() {
-        val url = "${serverUrl}/${loadUsername()}"
         val queue = Volley.newRequestQueue(context)
 
         // get all the new raspberries
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
+        val stringRequest = object: StringRequest(
+            Method.GET, serverUrl,
             { response ->
                 val jsonData = JSONTokener(response).nextValue() as JSONArray
                 resultingData.clear()
@@ -155,7 +155,14 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
                 }
             },
             { Log.d("GetRaspberry","didn't work") }
-        )
+        ) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken()}"
+                return headers }
+        }
+
         queue.add(stringRequest)
     }
 
@@ -178,8 +185,8 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         }
 
         // call the PUT api and print its response
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.PUT, serverUrl, newJsonRaspberry,
+        val jsonObjectRequest = object: JsonObjectRequest(
+            Method.PUT, serverUrl, newJsonRaspberry,
             { response ->
                 println(response)
 
@@ -188,7 +195,14 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
                 getNewRaspberry()
             },
             { error -> error.printStackTrace() }
-        )
+        ) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken()}"
+                return headers }
+        }
+
         requestQueue.add(jsonObjectRequest)
     }
 
@@ -214,5 +228,11 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
             }
         ) { error -> error.printStackTrace() }
         requestQueue.add(jsonObjectRequest)
+    }
+
+    // load Email and password pre-recorded
+    private fun loadToken() : String? {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("TOKEN", null)
     }
 }
