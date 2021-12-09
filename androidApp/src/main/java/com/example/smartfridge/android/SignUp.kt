@@ -289,7 +289,7 @@ class SignUp : AppCompatActivity() {
             }
         ) { _ ->
             Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
-            }
+        }
         requestQueue.add(jsonObjectRequest)
 
     }
