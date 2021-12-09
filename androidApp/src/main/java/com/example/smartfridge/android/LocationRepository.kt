@@ -19,8 +19,6 @@ object LocationRepository {
      * Function call an api that will return all the locations of the current user
      */
     fun getLocations(context: Context) {
-        // get shared preferences of the phone
-        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         locationList.clear()
         val queue = Volley.newRequestQueue(context)
 
@@ -55,7 +53,6 @@ object LocationRepository {
      * Posts the modified locations array to back-end
      */
     fun postLocations(context: Context) {
-        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val queue = Volley.newRequestQueue(context)
         val locationData = JSONObject()
 
