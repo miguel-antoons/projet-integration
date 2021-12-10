@@ -110,7 +110,7 @@ def check_email():
 
         else:
 
-            return json.dumps({"message" : 'this email does not exist' })
+            return json.dumps({"message" : 'this email does not exist'})
       
    
         
