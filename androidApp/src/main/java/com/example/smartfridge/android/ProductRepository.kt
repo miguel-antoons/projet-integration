@@ -163,7 +163,7 @@ object ProductRepository {
      * to a Kotlin Date object.
      * For this function to work correctly, the string date format MUST be respected.
      */
-    private fun convertToDate(stringDate: String): Date {
+    fun convertToDate(stringDate: String): Date {
         // convert expiration date to 'LocalDate' type
         val expirationLocalDate = LocalDate.parse(
             stringDate,

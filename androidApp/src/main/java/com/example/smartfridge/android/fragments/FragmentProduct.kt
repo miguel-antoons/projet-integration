@@ -11,6 +11,8 @@ import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartfridge.android.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class FragmentProduct(private val context: MainActivity) : Fragment() {
@@ -43,6 +45,8 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
             }
         }
 
+        setupSortButtons(view)
+
         // give the adapter element to the ProductRepository object
         ProductRepository.addProductAdapter(adapter)
 
@@ -68,5 +72,58 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         }
     }
 
+    /**
+     * Function sets the function to call when the sort buttons are clicked
+     */
+    private fun setupSortButtons(view: View) {
+        // if the 'sort by name' button is clicked, sort the product list by product name
+        view.findViewById<View>(R.id.sort_by_name).setOnClickListener {
+            // sort the products and store the sorted list in a new variable
+            val tempProducts = ProductRepository
+                .productList
+                .sortedWith(compareBy { it.name.lowercase(Locale.getDefault()) })
+
+            // change the product list contents with the sorted list
+            ProductRepository.productList.clear()
+            ProductRepository.productList.addAll(tempProducts)
+
+            // notify the adapter of the changes made to the list
+            adapter.notifyItemRangeChanged(0, ProductRepository.productList.size)
+        }
+
+        // if the 'sort by location' button is clicked, sort the product list by product location
+        view.findViewById<View>(R.id.sort_by_location).setOnClickListener {
+            // sort the products and store the sorted list in a new variable
+            val tempProducts = ProductRepository
+                .productList
+                .sortedWith(compareBy { it.location.lowercase(Locale.getDefault()) })
+
+            // change the product list contents with the sorted list
+            ProductRepository.productList.clear()
+            ProductRepository.productList.addAll(tempProducts)
+
+            // notify the adapter of the changes made to the list
+            adapter.notifyItemRangeChanged(0, ProductRepository.productList.size)
+        }
+
+        // if the 'sort by expiration date' button is clicked, sort the product list by product
+        // expiration date
+        view.findViewById<View>(R.id.sort_by_expiration_date).setOnClickListener {
+            // create a date formatter to change a string date into a Date object
+            val dateFormatter = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+
+            // sort the products by converting the string date to a Date object
+            val tempProducts = ProductRepository
+                .productList
+                .sortedWith(compareBy { dateFormatter.parse(it.expirationDate) })
+
+            // change the product list contents with the sorted list
+            ProductRepository.productList.clear()
+            ProductRepository.productList.addAll(tempProducts)
+
+            // notify the adapter of the changes made to the list
+            adapter.notifyItemRangeChanged(0, ProductRepository.productList.size)
+        }
+    }
 
 }
