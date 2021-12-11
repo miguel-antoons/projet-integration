@@ -38,7 +38,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_page_title"
-        app:backgroundTint="@color/dark_green" />
+        app:backgroundTint="@color/dark_green"
+        android:autofillHints="food" />
 
     <!-- header row of the table -->
     <View
