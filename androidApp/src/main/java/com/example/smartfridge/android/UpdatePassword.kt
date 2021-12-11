@@ -108,6 +108,16 @@ class UpdatePassword : AppCompatActivity() {
 
         }
 
+        val button_return = findViewById<Button>(R.id.bouton_retour)
+        button_return.setOnClickListener {
+            val i = Intent(this, CheckCodeMail::class.java)
+
+
+
+            startActivity(i)
+
+        }
+
     }
 
 
@@ -201,6 +211,7 @@ class UpdatePassword : AppCompatActivity() {
 
         //hash password
         //val password_hash = passwordHash(password.toString())
+        //Log.d("MainActivity", "$password_hash")
         //Log.d("MainActivity", "$password_hash")
 
         val putUrl = "http://10.0.2.2:5000/api/users/update-password"

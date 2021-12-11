@@ -145,8 +145,16 @@
 
     <!-- Strings for how to connect page -->
     <string name="main_title_how_to_connect">Comment se connecter ?</string>
-    <string name="sub_title_how_to_connect">Afin de jumeler votre smartphone à un SmartFridge : </string>
-    <string name="it_must">Il faut : </string>
-    <string name="first_subtitle_how_to_connect"> - Présenter le QR code ci-dessous devant le scanner de votre boîtier Smartfridge. </string>
-    <string name="it_must_step">Cette étape est indispensable afin que l\'application soit connectée à votre boîtier.</string>
+    <string name="sub_title_how_to_connect">Afin de jumeler votre smartphone à un SmartFridge</string>
+    <string name="it_must">Il faut</string>
+    <string name="first_subtitle_how_to_connect"> 1. Présenter le QR code ci-dessous devant le scanner de votre boîtier Smartfridge. </string>
+    <string name="second_subtitle_how_to_connect"> 2. Un bouton "Nouveau Scanneur" va apparaitre dans la page Paramètres, clickez dessus. </string>
+    <string name="third_subtitle_how_to_connect"> 3. Sélectionnez l\'emplacement de votre scanneur (vous pouvez également lui attribuer un nouvel emplacement) et appuyez sur Enregistrer. </string>
+
+    <!-- location pop-up -->
+    <string name="location_popup_title">Emplacements</string>
+    <string name="location_popup_description">
+        Sélectionnez \'Nouvel Emplacment\' pour ajouter un emplacement ou sélectionnez un
+        emplacement existant pour modifier celui-ci.
+    </string>
 </resources>

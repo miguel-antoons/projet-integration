@@ -1,7 +1,6 @@
 package com.example.smartfridge.android
 
 import android.content.Context
-import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -9,6 +8,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import org.json.JSONTokener
+import java.util.HashMap
 
 object LocationRepository {
     // contains all the locations of the current user
@@ -19,15 +19,12 @@ object LocationRepository {
      * Function call an api that will return all the locations of the current user
      */
     fun getLocations(context: Context) {
-        // get shared preferences of the phone
-        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         locationList.clear()
-        val url = "${serverUrl}/${sharedPreferences.getString("USERNAME", null)}"
         val queue = Volley.newRequestQueue(context)
 
         // api call is here, get all the locations and store them in the 'locationList' array
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
+        val stringRequest = object: StringRequest(
+            Method.GET, serverUrl,
             { response ->
                 val jsonArray = JSONTokener(response).nextValue() as JSONArray
                 val receivedLocations = jsonArray.getJSONObject(0).getString("Locations")
@@ -41,7 +38,14 @@ object LocationRepository {
                 println(locationList)
 
             }, { error -> error.printStackTrace() }
-        )
+        ) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
+
         queue.add(stringRequest)
     }
 
@@ -49,8 +53,6 @@ object LocationRepository {
      * Posts the modified locations array to back-end
      */
     fun postLocations(context: Context) {
-        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val postUrl = "${serverUrl}/${sharedPreferences.getString("USERNAME", null)}"
         val queue = Volley.newRequestQueue(context)
         val locationData = JSONObject()
 
@@ -63,8 +65,8 @@ object LocationRepository {
         }
 
         // call the api and print the response
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.PUT, postUrl, locationData,
+        val jsonObjectRequest = object: JsonObjectRequest(
+            Method.PUT, serverUrl, locationData,
             { response ->
                 println(response)
 
@@ -72,7 +74,19 @@ object LocationRepository {
                 // location was added
                 getLocations(context)
             }, { error -> error.printStackTrace() }
-        )
+        ) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
         queue.add(jsonObjectRequest)
+    }
+
+    // load Email and password pre-recorded
+    private fun loadToken(context : Context) : String? {
+        val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("TOKEN", null)
     }
 }

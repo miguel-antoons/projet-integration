@@ -25,7 +25,7 @@
         android:textColor="@color/dark_green"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:text="@string/raspberry_popup_title"
+        android:text="@string/location_popup_title"
         android:layout_marginTop="@dimen/location_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/location_margin_top"
-        android:text="@string/raspberry_popup_description"
+        android:text="@string/location_popup_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_popup_title" />
