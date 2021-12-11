@@ -2,10 +2,14 @@ package com.example.smartfridge.android.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -32,7 +36,9 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         productPageList.layoutManager = linearLayoutManager
 
         // give the adapter to the fragment
-        adapter =  ProductAdapter(ProductRepository.productList, context, this)
+        adapter =  ProductAdapter(
+            ProductRepository.searchedProductList, context, this
+        )
         productPageList.adapter = adapter
         // Add fragment here
         val bt = view.findViewById<FloatingActionButton>(R.id.addingBtn)
@@ -45,7 +51,11 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
             }
         }
 
+        // setup different sort buttons
         setupSortButtons(view)
+
+        // setup the the product search bar
+        setupSearchBar(view)
 
         // give the adapter element to the ProductRepository object
         ProductRepository.addProductAdapter(adapter)
@@ -126,4 +136,26 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         }
     }
 
+    /**
+     * Function sets the function to launch when the searchbar is modified
+     */
+    private fun setupSearchBar(view:View) {
+        view.findViewById<EditText>(R.id.search_products).addTextChangedListener(
+            object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    // store the input of the searchbar
+                    ProductRepository.searchTerms = s.toString()
+
+                    // update the filtered list according to the new search terms
+                    ProductRepository.setFilteredProducts(s.toString())
+                }
+            }
+        )
+    }
 }

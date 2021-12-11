@@ -22,6 +22,12 @@ object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
 
+    // list contains products filtered according to the search terms
+    val searchedProductList = arrayListOf<ProductModel>()
+
+    // variable contains the user's product search terms
+    var searchTerms = ""
+
     var serverUrl = "http://10.0.2.2:5000/api/food"
 
     // only purpose of this is notify that the dataset has changed
@@ -298,10 +304,11 @@ object ProductRepository {
                             nutriscore = jsonArray.getJSONObject(i).getString("Nutriscore")
                         )
                     )
-                    // productAdapter.notifyDataSetChanged()
                 }
+                setFilteredProducts(searchTerms)
+
                 // notify the adapter that new elements were added to the list
-                productAdapter.notifyItemRangeInserted(0, jsonArray.length())
+                productAdapter.notifyItemRangeInserted(0, searchedProductList.size)
                 Log.d("GetFood", "SUCCESS")
             },
             { Log.d("GetFood","That didn't work!") }
@@ -377,6 +384,37 @@ object ProductRepository {
     private fun loadToken(context : Context) : String? {
         val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         return sharedPreferences.getString("TOKEN", null)
+    }
+
+    /**
+     * Function sets the 'searchedProductList' by filtering the 'productList' according to the
+     * 'searchTerms' given as arguments. The list is filtered on the following terms: product name,
+     * product location, product brand, product category or product ingredients.
+     * It then notifies the 'productAdapter' that modifications were applied to the list.
+     */
+    fun setFilteredProducts(searchTerms: String) {
+        // store the filtered productList in a local variable
+        val tempProducts = productList.filter {
+            product ->
+                product.name.contains(searchTerms, true)
+                || product.location.contains(searchTerms, true)
+                || product.brand.contains(searchTerms, true)
+                || product.category.contains(searchTerms, true)
+                || product.ingredients.filter { ingredient ->
+                    ingredient.contains(
+                        searchTerms,
+                        true
+                    )
+                }.isNotEmpty()
+        }
+
+        // set the 'searchedProductList' to the local filtered list and notify the adapter of
+        // the changes that were made
+        val productListSize = searchedProductList.size
+        searchedProductList.clear()
+        productAdapter.notifyItemRangeRemoved(0, productListSize)
+        searchedProductList.addAll(tempProducts)
+        productAdapter.notifyItemRangeInserted(0, searchedProductList.size)
     }
 }
 
