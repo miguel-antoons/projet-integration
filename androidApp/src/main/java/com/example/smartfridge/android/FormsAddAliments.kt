@@ -1,7 +1,6 @@
 package com.example.smartfridge.android
 
 import android.app.DatePickerDialog
-import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,8 +11,7 @@ import java.util.*
 import com.example.smartfridge.android.api.NutritionValues
 
 
-class FormsAddAliments(
-) : AppCompatActivity() {
+class FormsAddAliments: AppCompatActivity() {
     private var productIndex: Int = -1
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -38,15 +36,15 @@ class FormsAddAliments(
         val alimentStore = findViewById<Spinner>(R.id.place_spinner)
 
         //Button event
-        val button_return_product = findViewById<TextView>(R.id.button_return_list_product)
-        ViewCompat.setElevation(button_return_product, 1F)
-        button_return_product.setOnClickListener {
+        val buttonReturnProduct = findViewById<TextView>(R.id.button_return_list_product)
+        ViewCompat.setElevation(buttonReturnProduct, 1F)
+        buttonReturnProduct.setOnClickListener {
             // end the activity and return to the previous fragment
             finish()
         }
 
-        val button_add_aliment = findViewById<Button>(R.id.button_add_aliment)
-        button_add_aliment.setOnClickListener {
+        val buttonAddAliment = findViewById<Button>(R.id.button_add_aliment)
+        buttonAddAliment.setOnClickListener {
 
             val names = alimentName.text.toString()
             val quantite = alimentQuantite.text.toString()
@@ -55,62 +53,64 @@ class FormsAddAliments(
             val store = alimentStore.selectedItem.toString()
 
             //check if the EditText have values or not
-            if (names.isEmpty()) {
+            when {
+                names.isEmpty() -> {
 
-                Toast.makeText(applicationContext, " Name Required ", Toast.LENGTH_SHORT).show()
-            } else if (quantite.isEmpty()) {
-
-                Toast.makeText(applicationContext, "Quantite Required ", Toast.LENGTH_SHORT).show()
-            }
-            else if (date.isEmpty()) {
-
-                Toast.makeText(applicationContext, "Date Required ", Toast.LENGTH_SHORT).show()
-            }
-
-            else {
-
-                Toast.makeText(applicationContext, "Aliment Ajouté ", Toast.LENGTH_SHORT).show()
-
-                if (productIndex == -1) {
-
-                    val confirmationMessage = ProductRepository.sendFoodToServer(
-                        this,
-                        names,
-                        "TODO",
-                        quantite,
-                        listOf("ingredient1","ingredient2","ingredient3"),
-                        date,
-                        NutritionValues(),
-                        store,
-                        categorie,
-                        "X",
-                        "X"
-                    )
-
-                    Toast.makeText(
-                        this,
-                        confirmationMessage,
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    ProductRepository.modifyProduct(
-                        this,
-                        productIndex,
-                        names,
-                        "TODO",
-                        quantite,
-                        date,
-                        store,
-                        categorie,
-                        ProductRepository.productList[productIndex].id
-                    )
-
-                    Toast.makeText(this ,
-                        "Produit modifié",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(applicationContext, " Name Required ", Toast.LENGTH_SHORT).show()
                 }
-                finish()
+                quantite.isEmpty() -> {
+
+                    Toast.makeText(applicationContext, "Quantite Required ", Toast.LENGTH_SHORT).show()
+                }
+                date.isEmpty() -> {
+
+                    Toast.makeText(applicationContext, "Date Required ", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+
+                    Toast.makeText(applicationContext, "Aliment Ajouté ", Toast.LENGTH_SHORT).show()
+
+                    if (productIndex == -1) {
+
+                        val confirmationMessage = ProductRepository.sendFoodToServer(
+                            this,
+                            names,
+                            "TODO",
+                            quantite,
+                            listOf("ingredient1","ingredient2","ingredient3"),
+                            date,
+                            NutritionValues(),
+                            store,
+                            categorie,
+                            "X",
+                            "X"
+                        )
+
+                        Toast.makeText(
+                            this,
+                            confirmationMessage,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        ProductRepository.modifyProduct(
+                            this,
+                            productIndex,
+                            names,
+                            "TODO",
+                            quantite,
+                            date,
+                            store,
+                            categorie,
+                            ProductRepository.productList[productIndex].id
+                        )
+
+                        Toast.makeText(this ,
+                            "Produit modifié",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    finish()
+                }
             }
         }
 
@@ -134,7 +134,7 @@ class FormsAddAliments(
             val spinnerAdapter = ArrayAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
-                LocationRepository.locationList
+                setLocations()
             )
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             alimentStore.adapter = spinnerAdapter
@@ -150,7 +150,7 @@ class FormsAddAliments(
                 textView,
                 alimentCategorie,
                 alimentStore,
-                button_add_aliment
+                buttonAddAliment
             )
         }
 
@@ -168,6 +168,24 @@ class FormsAddAliments(
                 textView.text = "$dayOfMonth/${monthOfYear + 1}/$year"
             }, year, month, day)
             dpd.show()
+        }
+    }
+
+    /**
+     * Function checks if the location of the product still exists. If it doesn't, the function will
+     * return a list with the location in it. This is done to prevent the form from having an
+     * empty location spinner.
+     */
+    private fun setLocations(): List<String> {
+        return if (
+            productIndex == -1
+            || ProductRepository.productList[productIndex].location in LocationRepository.locationList
+        ) {
+            LocationRepository.locationList
+        }
+        else {
+            arrayListOf(ProductRepository.productList[productIndex].location) +
+                    LocationRepository.locationList
         }
     }
 
@@ -196,18 +214,10 @@ class FormsAddAliments(
             resources.getStringArray(R.array.categorie_array).indexOf(productCopy.category)
         )
         locationSpinner.setSelection(
-            resources.getStringArray(R.array.place_array).indexOf(productCopy.location)
+            setLocations().indexOf(productCopy.location)
         )
 
         // alter the submit button text
         updateButton.text = resources.getText(R.string.btn_update)
     }
-}
-
-// load Username
-fun loadUsername(context: Context) : String {
-    val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-    val savedUsername = sharedPreferences.getString("USERNAME", null)
-
-    return savedUsername.toString()
 }
