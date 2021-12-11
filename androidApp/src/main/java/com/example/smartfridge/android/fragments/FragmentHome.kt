@@ -27,10 +27,6 @@ class FragmentHome : Fragment() {
             val intent = Intent(context, HowToConnect::class.java);
             startActivity(intent);
         }
-        val buttonNotif = view.findViewById<Button>(R.id.sendNotif)
-        buttonNotif.setOnClickListener {
-            (activity as MainActivity).sendNotification()
-        }
     }
 
     // When Home_Fragment is created, it will call onCreateView -> inject fragment_home on the page
