@@ -90,12 +90,12 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         view.findViewById<View>(R.id.sort_by_name).setOnClickListener {
             // sort the products and store the sorted list in a new variable
             val tempProducts = ProductRepository
-                .productList
+                .searchedProductList
                 .sortedWith(compareBy { it.name.lowercase(Locale.getDefault()) })
 
             // change the product list contents with the sorted list
-            ProductRepository.productList.clear()
-            ProductRepository.productList.addAll(tempProducts)
+            ProductRepository.searchedProductList.clear()
+            ProductRepository.searchedProductList.addAll(tempProducts)
 
             // notify the adapter of the changes made to the list
             adapter.notifyItemRangeChanged(0, ProductRepository.productList.size)
@@ -105,12 +105,12 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
         view.findViewById<View>(R.id.sort_by_location).setOnClickListener {
             // sort the products and store the sorted list in a new variable
             val tempProducts = ProductRepository
-                .productList
+                .searchedProductList
                 .sortedWith(compareBy { it.location.lowercase(Locale.getDefault()) })
 
             // change the product list contents with the sorted list
-            ProductRepository.productList.clear()
-            ProductRepository.productList.addAll(tempProducts)
+            ProductRepository.searchedProductList.clear()
+            ProductRepository.searchedProductList.addAll(tempProducts)
 
             // notify the adapter of the changes made to the list
             adapter.notifyItemRangeChanged(0, ProductRepository.productList.size)
@@ -124,15 +124,15 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
 
             // sort the products by converting the string date to a Date object
             val tempProducts = ProductRepository
-                .productList
+                .searchedProductList
                 .sortedWith(compareBy { dateFormatter.parse(it.expirationDate) })
 
             // change the product list contents with the sorted list
-            ProductRepository.productList.clear()
-            ProductRepository.productList.addAll(tempProducts)
+            ProductRepository.searchedProductList.clear()
+            ProductRepository.searchedProductList.addAll(tempProducts)
 
             // notify the adapter of the changes made to the list
-            adapter.notifyItemRangeChanged(0, ProductRepository.productList.size)
+            adapter.notifyItemRangeChanged(0, ProductRepository.searchedProductList.size)
         }
     }
 
