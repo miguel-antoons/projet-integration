@@ -1,4 +1,5 @@
-from flask import Blueprint, request, json
+from flask import Blueprint, request
+
 from .database import users
 
 addUser = Blueprint('addUser', __name__)
