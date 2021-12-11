@@ -54,7 +54,7 @@ object ProductRepository {
         val productColor = getProductColor(dateDifference)
 
         // add the new product to the product list
-        productList.add(ProductModel(
+        searchedProductList.add(ProductModel(
             name = productName,
             quantity = productQuantity,
             expirationDate = productExpirationDate,
@@ -66,9 +66,9 @@ object ProductRepository {
 
         // notify that a new product was added
         // this will update the FragmentProduct page
-        productAdapter.notifyItemInserted(productList.lastIndex)
+        productAdapter.notifyItemInserted(searchedProductList.lastIndex)
 
-        return productList.lastIndex
+        return searchedProductList.lastIndex
     }
 
     /**
