@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.Window
 import android.widget.*
-import com.example.smartfridge.android.fragments.FragmentSettings
 
 class LocationPopup(
     context: MainActivity

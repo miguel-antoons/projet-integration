@@ -1,8 +1,11 @@
-from flask import Blueprint, request, json
-from .database import users, raspberry
+import secrets
+import string
+
 from bson import ObjectId
+from flask import Blueprint, request, json
 from flask_jwt_extended import jwt_required, get_jwt_identity
-import random, string, secrets
+
+from .database import users, raspberry
 
 app_raspberry = Blueprint('raspberry', __name__)
 

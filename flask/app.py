@@ -1,9 +1,10 @@
-from flask import Flask, request
-from pymongo import MongoClient
-from api import blueprints, database
-from flask_jwt_extended import JWTManager
-import os
 import base64
+import os
+
+from flask import Flask
+from flask_jwt_extended import JWTManager
+
+from api import blueprints
 
 # app need to be outside the function for testing
 app = Flask(__name__)

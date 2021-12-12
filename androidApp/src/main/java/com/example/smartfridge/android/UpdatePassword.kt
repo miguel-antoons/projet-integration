@@ -1,20 +1,18 @@
 package com.example.smartfridge.android
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import java.util.regex.Pattern
 import com.example.smartfridge.android.Hashing.passwordHash
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.regex.Pattern
 
 class UpdatePassword : AppCompatActivity() {
     private val MIN_PASSWORD_LENGTH = 8

@@ -1,11 +1,9 @@
 import unittest.mock
 from unittest import TestCase, main as unittest_main
+
 from flask_jwt_extended import create_access_token
-from bson import ObjectId
 
 from app import app
-import json
-from unittest.mock import patch
 
 sample_user = {
     "_id": "testId",
