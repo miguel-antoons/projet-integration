@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
 
 dependencies {
@@ -12,6 +13,7 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.0.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Hashing password
