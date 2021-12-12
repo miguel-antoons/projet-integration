@@ -111,4 +111,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Splash Sceen -->
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+            <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>

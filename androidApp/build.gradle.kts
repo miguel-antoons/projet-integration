@@ -54,7 +54,7 @@ android {
     compileSdk = 31
     defaultConfig {
         applicationId = "com.example.smartfridge.android"
-        minSdk = 16
+        minSdk = 19
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
