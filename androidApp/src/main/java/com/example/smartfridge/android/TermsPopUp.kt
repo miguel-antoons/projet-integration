@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Window
 
 class TermsPopUp (
-    context: Login,
+    context: SignUp,
         ): Dialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
