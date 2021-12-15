@@ -27,5 +27,4 @@ def client_login():
             # delete password
             verify_password[0].pop('Password')
             
-
             return verify_password[0]
