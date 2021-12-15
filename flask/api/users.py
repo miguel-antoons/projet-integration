@@ -1,23 +1,19 @@
 # -*- coding: utf-8 -*-
 # Your code goes below this line
 
+import os
+# Library
+import random
+
+from dotenv import load_dotenv
 # Flask Library
-from flask import Blueprint, request, jsonify, json
+from flask import Blueprint, request, json
 from flask import Flask
-from flask_bcrypt import Bcrypt
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_mail import Mail, Message
 
 # Infos Database
-from .database import  users
-# Library
-import random
-import os
-import uuid
-import jwt
-import datetime
-
-from dotenv import load_dotenv
+from .database import users
 
 load_dotenv()
 
@@ -110,7 +106,7 @@ def check_email():
 
         else:
 
-            return json.dumps({"message" : 'this email does not exist' })
+            return json.dumps({"message" : 'this email does not exist'})
       
    
         

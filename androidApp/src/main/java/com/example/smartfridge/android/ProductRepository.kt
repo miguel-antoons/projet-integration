@@ -2,7 +2,6 @@ package com.example.smartfridge.android
 
 import android.content.Context
 import android.util.Log
-import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -22,6 +21,12 @@ import java.util.*
 object ProductRepository {
     // list which contains all the products
     val productList = arrayListOf<ProductModel>()
+
+    // list contains products filtered according to the search terms
+    val searchedProductList = arrayListOf<ProductModel>()
+
+    // variable contains the user's product search terms
+    var searchTerms = ""
 
     var serverUrl = "http://10.0.2.2:5000/api/food"
 
@@ -49,7 +54,7 @@ object ProductRepository {
         val productColor = getProductColor(dateDifference)
 
         // add the new product to the product list
-        productList.add(ProductModel(
+        searchedProductList.add(ProductModel(
             name = productName,
             quantity = productQuantity,
             expirationDate = productExpirationDate,
@@ -61,9 +66,9 @@ object ProductRepository {
 
         // notify that a new product was added
         // this will update the FragmentProduct page
-        productAdapter.notifyItemInserted(productList.lastIndex)
+        productAdapter.notifyItemInserted(searchedProductList.lastIndex)
 
-        return productList.lastIndex
+        return searchedProductList.lastIndex
     }
 
     /**
@@ -130,16 +135,23 @@ object ProductRepository {
         val postUrl = "$serverUrl/$productId"
         val requestQueue = Volley.newRequestQueue(context)
 
-        val jsonObjectRequest = StringRequest(
-            Request.Method.DELETE, postUrl,
+        val jsonObjectRequest = object: StringRequest(
+            Method.DELETE, postUrl,
             { response ->
                 println(response)
 
                 // call the get api here in order to make sure it is called after the new
                 // product was added
                 getFoodFromMongo(context)
-            }
-        ) { error -> error.printStackTrace() }
+            }, { error -> error.printStackTrace() }
+        ) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                headers["Authorization"] = "Bearer ${loadToken(context)}"
+                return headers }
+        }
+
         requestQueue.add(jsonObjectRequest)
     }
 
@@ -157,7 +169,7 @@ object ProductRepository {
      * to a Kotlin Date object.
      * For this function to work correctly, the string date format MUST be respected.
      */
-    private fun convertToDate(stringDate: String): Date {
+    fun convertToDate(stringDate: String): Date {
         // convert expiration date to 'LocalDate' type
         val expirationLocalDate = LocalDate.parse(
             stringDate,
@@ -292,10 +304,11 @@ object ProductRepository {
                             nutriscore = jsonArray.getJSONObject(i).getString("Nutriscore")
                         )
                     )
-                    // productAdapter.notifyDataSetChanged()
                 }
+                setFilteredProducts(searchTerms)
+
                 // notify the adapter that new elements were added to the list
-                productAdapter.notifyItemRangeInserted(0, jsonArray.length())
+                productAdapter.notifyItemRangeInserted(0, searchedProductList.size)
                 Log.d("GetFood", "SUCCESS")
             },
             { Log.d("GetFood","That didn't work!") }
@@ -371,6 +384,37 @@ object ProductRepository {
     private fun loadToken(context : Context) : String? {
         val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         return sharedPreferences.getString("TOKEN", null)
+    }
+
+    /**
+     * Function sets the 'searchedProductList' by filtering the 'productList' according to the
+     * 'searchTerms' given as arguments. The list is filtered on the following terms: product name,
+     * product location, product brand, product category or product ingredients.
+     * It then notifies the 'productAdapter' that modifications were applied to the list.
+     */
+    fun setFilteredProducts(searchTerms: String) {
+        // store the filtered productList in a local variable
+        val tempProducts = productList.filter {
+            product ->
+                product.name.contains(searchTerms, true)
+                || product.location.contains(searchTerms, true)
+                || product.brand.contains(searchTerms, true)
+                || product.category.contains(searchTerms, true)
+                || product.ingredients.filter { ingredient ->
+                    ingredient.contains(
+                        searchTerms,
+                        true
+                    )
+                }.isNotEmpty()
+        }
+
+        // set the 'searchedProductList' to the local filtered list and notify the adapter of
+        // the changes that were made
+        val productListSize = searchedProductList.size
+        searchedProductList.clear()
+        productAdapter.notifyItemRangeRemoved(0, productListSize)
+        searchedProductList.addAll(tempProducts)
+        productAdapter.notifyItemRangeInserted(0, searchedProductList.size)
     }
 }
 

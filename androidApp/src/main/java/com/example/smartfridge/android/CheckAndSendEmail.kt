@@ -1,17 +1,14 @@
 package com.example.smartfridge.android
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.gson.JsonObject
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -49,6 +46,16 @@ class CheckAndSendEmail : AppCompatActivity() {
                 check_email_get(email_text)
 
             }
+        }
+        //button go back LOGIN PAGE
+        val button_return = findViewById<Button>(R.id.bouton_retour)
+        button_return.setOnClickListener {
+            val i = Intent(this, Login::class.java)
+
+
+
+            startActivity(i)
+
         }
 
 

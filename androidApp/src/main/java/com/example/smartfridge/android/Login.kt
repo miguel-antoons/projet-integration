@@ -7,21 +7,12 @@ import android.text.InputType
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.AuthFailureError
 import com.android.volley.Request
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.smartfridge.android.VerifyEmailPassword.validateForm
-import org.json.JSONArray
-import org.json.JSONObject
-import org.json.JSONTokener
-import com.example.smartfridge.android.Hashing.verifyPasswordHash
-import com.example.smartfridge.android.Hashing.passwordHash
 import org.json.JSONException
-import com.android.volley.RequestQueue
-
-
+import org.json.JSONObject
 
 
 class Login : AppCompatActivity() {
@@ -35,7 +26,6 @@ class Login : AppCompatActivity() {
         val signUpButton = findViewById<Button>(R.id.buttonRegister)
         val forgotPassword = findViewById<TextView>(R.id.forgotPassword)
         val showPassword = findViewById<CheckBox>(R.id.showPassword)
-        val terms = findViewById<TextView>(R.id.terms_link)
 
 
         // pre-load email and password if the rememberMe check box is checked
@@ -49,11 +39,6 @@ class Login : AppCompatActivity() {
             else {
                 verifyClient(emailLayout.text.toString(), passwordLayout.text.toString())
             }
-        }
-
-        terms.setOnClickListener {
-            TermsPopUp(this).show()
-            // Toast.makeText(this, "POP UP", Toast.LENGTH_SHORT).show()
         }
 
         // onclick signup button

@@ -1,6 +1,5 @@
 package com.example.smartfridge.android.fragments
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.smartfridge.android.HowToConnect
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartfridge.android.BarcodeReader
+import com.example.smartfridge.android.HowToConnect
 import com.example.smartfridge.android.MainActivity
 import com.example.smartfridge.android.R
 import com.example.smartfridge.android.adapter.FridgesAdapter
@@ -21,15 +21,17 @@ class FragmentHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val buttonHowTo: Button = view.findViewById(R.id.fragment_button)
+        val buttonScan: Button = view.findViewById(R.id.scan_button)
 
         // This little lines of code set an action to the button (onClickListener)
         buttonHowTo.setOnClickListener{
             val intent = Intent(context, HowToConnect::class.java);
             startActivity(intent);
         }
-        val buttonNotif = view.findViewById<Button>(R.id.sendNotif)
-        buttonNotif.setOnClickListener {
-            (activity as MainActivity).sendNotification()
+
+        buttonScan.setOnClickListener{
+            val intent = Intent(context, BarcodeReader::class.java);
+            startActivity(intent);
         }
     }
 

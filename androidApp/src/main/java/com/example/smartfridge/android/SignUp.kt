@@ -15,6 +15,7 @@ import android.widget.*
 import com.android.volley.*
 import com.android.volley.toolbox.JsonArrayRequest
 import com.example.smartfridge.android.Hashing.passwordHash
+import org.json.JSONArray
 import java.util.regex.Pattern
 
 /**
@@ -34,6 +35,7 @@ class SignUp : AppCompatActivity() {
     lateinit var etEmail: EditText
     lateinit var etCheckBox1: CheckBox
     lateinit var etCheckBox2: CheckBox
+    lateinit var etTerms_checkbox : CheckBox
 
     private val MIN_PASSWORD_LENGTH = 8
 
@@ -47,6 +49,7 @@ class SignUp : AppCompatActivity() {
         etConfirmPassword = findViewById(R.id.confirm_password)
         etCheckBox1 = findViewById(R.id.checkBox1)
         etCheckBox2 = findViewById(R.id.checkBox2)
+        etTerms_checkbox = findViewById(R.id.Terms_checkbox)
 
         /**
          * etCheckBox1 and etCheckBox2 allows the user the show his password or instead hide it.
@@ -71,6 +74,11 @@ class SignUp : AppCompatActivity() {
                 etConfirmPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 etConfirmPassword.setSelection(etConfirmPassword.getText().length)
             }
+        }
+
+        val terms = findViewById<TextView>(R.id.terms_link)
+        terms.setOnClickListener {
+            TermsPopUp(this).show()
         }
 
         // Button of validation / execute the validation of all the fields and call the function performSignUp()
@@ -157,6 +165,10 @@ class SignUp : AppCompatActivity() {
         if (!isEmailValid(etEmail.text.toString())) {
             etEmail.setError("Veuillez entrer une adresse mail valide !")
             return false
+        }
+
+        if (!etTerms_checkbox.isChecked) {
+            etTerms_checkbox.setError(("Veuillez accepter les termes d'utilisation !"))
         }
         return true
     }
@@ -268,7 +280,7 @@ class SignUp : AppCompatActivity() {
             postData.put("Username", username)
             postData.put("Password", passwordHash(etPassword.text.toString()))
             postData.put("Email", email)
-            postData.put("Locations", arrayListOf("Emplacement Temporaire"))
+            postData.put("Locations", JSONArray(arrayListOf("Emplacement Temporaire")))
 
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -288,7 +300,7 @@ class SignUp : AppCompatActivity() {
             }
         ) { _ ->
             Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
-            }
+        }
         requestQueue.add(jsonObjectRequest)
 
     }

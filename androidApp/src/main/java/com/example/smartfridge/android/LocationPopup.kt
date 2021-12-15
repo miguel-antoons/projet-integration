@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.Window
 import android.widget.*
-import com.example.smartfridge.android.fragments.FragmentSettings
 
 class LocationPopup(
     context: MainActivity
@@ -113,7 +112,7 @@ class LocationPopup(
 
             when {
                 // if there is only one location left
-                LocationRepository.locationList.size > 1 -> {
+                LocationRepository.locationList.size == 1 -> {
                     // show an error message
                     Toast.makeText(
                         context,

@@ -7,6 +7,18 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/bouton_retour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:background="@color/beige"
+        android:drawableStart="@drawable/ic_arrow_left"
+        android:drawableLeft="@drawable/ic_arrow_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_heading"
         android:layout_width="wrap_content"

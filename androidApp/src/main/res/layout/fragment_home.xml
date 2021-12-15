@@ -20,13 +20,13 @@
         />
 
     <Button
-        android:id="@+id/sendNotif"
+        android:id="@+id/scan_button"
         android:layout_width="350dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:text="@string/send_notif"
+        android:text="@string/scanner_un_code_bar"
         android:textSize="20sp"
         android:textColor="@color/really_dark_green"
         android:background="@drawable/home_page_button"

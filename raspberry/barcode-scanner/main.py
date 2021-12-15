@@ -7,13 +7,21 @@ from datetime import datetime
 
 url = "http://192.168.1.43:5000/api"
 raspberry_id = 0
+secret_key = ""
 
 def main():
     global raspberry_id
+    global secret_key
+
     try:
-        file = open("raspberry_id", "r")
-        raspberry_id = file.read()
+        id_file = open("raspberry_id", "r")
+        raspberry_id = id_file.read()
+        id_file.close()
         print(f"\n\033[92mRaspberry started with id {raspberry_id}\033[0m\n")
+
+        key_file = open('raspberry_key', 'r')
+        secret_key = key_file.read()
+        key_file.close()
     except OSError:
         print("\033[91mRaspberry has not yet been registered\033[0m")
 
@@ -65,8 +73,12 @@ def process_barcode(barcode):
     print("\n--------------------------------------------")
     print(barcode)
     product_data = get_data_from_barcode(barcode)
-    print(post_data(product_data))
-    print_data(product_data)
+
+    if product_data:
+        product_data['secret'] = secret_key
+        print(post_data(product_data))
+        print_data(product_data)
+
     time.sleep(1)
 
 
@@ -79,17 +91,24 @@ def add_to_user(user):
     json_data = response.json()
     
     if json_data['status']:
-        print(save_user(json_data['raspberry_id']))
+        print(save_user(json_data['raspberry_id'], json_data['secret']))
     else:
         print("\033[93No user was found with provided qr-code\033[0m")
 
 
-def save_user(new_id):
+def save_user(new_id, new_key):
     global raspberry_id
+    global secret_key
+
     raspberry_id = new_id
-    file = open('raspberry_id', 'w')
-    file.write(new_id)
-    file.close()
+    secret_key = new_key
+    id_file = open('raspberry_id', 'w')
+    id_file.write(new_id)
+    id_file.close()
+
+    secret_file = open('raspberry_key', 'w')
+    secret_file.write(new_key)
+    secret_file.close()
 
     return f"\n\033[92mRaspberry has been registered with id {new_id}\033[0m\n"
 
@@ -176,4 +195,3 @@ def print_data(product_data):
 
 if __name__ == "__main__":
         main()
-

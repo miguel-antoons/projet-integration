@@ -57,7 +57,7 @@ class ProductRepositoryTest {
             )
 
             // get the newly inserted element
-            val testElement = ProductRepository.productList[productIndex]
+            val testElement = ProductRepository.searchedProductList[productIndex]
 
             // verify all of the inserted values
             assertThat(testElement.name).isEqualTo(testNames[index])

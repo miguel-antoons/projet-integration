@@ -1,7 +1,8 @@
-from flask import Blueprint, request, json, Flask
-from .database import users
 from argon2 import PasswordHasher
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+from flask import Blueprint, request
+from flask_jwt_extended import create_access_token
+
+from .database import users
 
 getUser = Blueprint('login', __name__)
 ph = PasswordHasher()

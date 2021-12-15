@@ -1,20 +1,18 @@
 package com.example.smartfridge.android
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import java.util.regex.Pattern
 import com.example.smartfridge.android.Hashing.passwordHash
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.regex.Pattern
 
 class UpdatePassword : AppCompatActivity() {
     private val MIN_PASSWORD_LENGTH = 8
@@ -105,6 +103,16 @@ class UpdatePassword : AppCompatActivity() {
 
             isValidPassword()
 
+
+        }
+
+        val button_return = findViewById<Button>(R.id.bouton_retour)
+        button_return.setOnClickListener {
+            val i = Intent(this, CheckCodeMail::class.java)
+
+
+
+            startActivity(i)
 
         }
 
@@ -201,6 +209,7 @@ class UpdatePassword : AppCompatActivity() {
 
         //hash password
         //val password_hash = passwordHash(password.toString())
+        //Log.d("MainActivity", "$password_hash")
         //Log.d("MainActivity", "$password_hash")
 
         val putUrl = "http://10.0.2.2:5000/api/users/update-password"

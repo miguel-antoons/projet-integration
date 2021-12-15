@@ -1,6 +1,4 @@
-from flask import Blueprint, request, jsonify, json
-from .database import db
-
+from flask import Blueprint
 
 app_hw = Blueprint('app_hw', __name__)
 

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:layout_width="300dp"
         android:padding="10dp"
@@ -107,31 +108,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Se souvenir de moi" />
-
-        <CheckBox
-            android:id="@+id/Terms_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:text="J'accepte avoir lu et accepter les"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/terms_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:radius="30dp"
-            android:linksClickable="true"
-            style="@style/terms_link_style"
-            android:text="termes d'utilisation"
-            android:focusable="true">
-
-        </TextView>
 
         <Button
             android:id="@+id/buttonLogin"

@@ -34,41 +34,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.158" />
 
-    <TextView
-        android:id="@+id/title_qr_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/full_qr_code"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.216" />
-
-    <ImageView
-        android:id="@+id/ivQRcode"
-        android:contentDescription="@string/content_description_qr"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="204dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/new_raspberry"
         android:layout_width="226dp"
         android:layout_height="48dp"
-        android:layout_marginTop="@dimen/settings_button_margin_top"
         android:background="@drawable/sign_up_inscription_button"
         android:text="@string/new_raspberry"
         android:textColor="@color/white"
+        android:layout_marginTop="@dimen/settings_button_margin_top"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivQRcode" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameSettings" />
 
     <Button
         android:id="@+id/new_location"
