@@ -40,8 +40,6 @@
         <activity
             android:name=".TermsPopUp"
             android:exported="false" />
-            android:exported="false"
-            tools:ignore="Instantiatable" />
         <activity
             android:name=".SplashScreen"
             android:label="SplashScreen"

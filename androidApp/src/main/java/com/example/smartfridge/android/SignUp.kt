@@ -35,6 +35,7 @@ class SignUp : AppCompatActivity() {
     lateinit var etEmail: EditText
     lateinit var etCheckBox1: CheckBox
     lateinit var etCheckBox2: CheckBox
+    lateinit var etTerms_checkbox : CheckBox
 
     private val MIN_PASSWORD_LENGTH = 8
 
@@ -48,6 +49,7 @@ class SignUp : AppCompatActivity() {
         etConfirmPassword = findViewById(R.id.confirm_password)
         etCheckBox1 = findViewById(R.id.checkBox1)
         etCheckBox2 = findViewById(R.id.checkBox2)
+        etTerms_checkbox = findViewById(R.id.Terms_checkbox)
 
         /**
          * etCheckBox1 and etCheckBox2 allows the user the show his password or instead hide it.
@@ -72,6 +74,11 @@ class SignUp : AppCompatActivity() {
                 etConfirmPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 etConfirmPassword.setSelection(etConfirmPassword.getText().length)
             }
+        }
+
+        val terms = findViewById<TextView>(R.id.terms_link)
+        terms.setOnClickListener {
+            TermsPopUp(this).show()
         }
 
         // Button of validation / execute the validation of all the fields and call the function performSignUp()
@@ -158,6 +165,10 @@ class SignUp : AppCompatActivity() {
         if (!isEmailValid(etEmail.text.toString())) {
             etEmail.setError("Veuillez entrer une adresse mail valide !")
             return false
+        }
+
+        if (!etTerms_checkbox.isChecked) {
+            etTerms_checkbox.setError(("Veuillez accepter les termes d'utilisation !"))
         }
         return true
     }
