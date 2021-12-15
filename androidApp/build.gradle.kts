@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     id("kotlin-android")
     id("com.google.gms.google-services")
+    id("kotlin-android-extensions")
 }
 
 dependencies {
@@ -49,6 +50,18 @@ dependencies {
 
     // Argon2
     implementation("com.lambdapioneer.argon2kt:argon2kt:1.3.0")
+
+    // Bar code
+    implementation("com.google.mlkit:barcode-scanning:17.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("androidx.camera:camera-camera2:1.0.2")
+    implementation("androidx.camera:camera-lifecycle:1.0.2")
+    implementation("androidx.camera:camera-view:1.0.0-alpha31")
+
+
+
+
 }
 
 
@@ -56,7 +69,7 @@ android {
     compileSdk = 31
     defaultConfig {
         applicationId = "com.example.smartfridge.android"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
