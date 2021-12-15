@@ -6,12 +6,12 @@ from flask_jwt_extended import create_access_token
 from app import app
 
 sample_user = {
-    "_id": "testId",
+    "_id": "619e8f45ee462d6d876bbdbc",
     "Name": "Test",
     "FirstName": "Test",
     "Username": "LeTest",
     "Email": "sendme@gmail.com",
-    "Password": "Test1234",
+    "Password": "$argon2i$v=19$m=65536,t=5,p=2$hAXIxb7pps7WuZfWUdoKJJKPIoM$HNzycd5XhfhwFngbcYRfsnsULoveAcqWhqrexIS+Ef8",
     "Qrcode": "TODO",
     "Code": "628476"
 }
@@ -81,6 +81,17 @@ class PlaylistsTests(TestCase):
         self.assertIn('Hello world!', page_content)
 
     # ---------------------------------------API USER ---------------------------------------------------
+
+    def test_login(self):
+        sample_user['_id'] = "619e8f45ee462d6d876bbdbc"
+        # Mock the food value in ./api.users.py
+        with unittest.mock.patch('api.login.users') as MockUser:
+            # Force the return value of users.find(req) to sample_user
+            MockUser.find.return_value = [sample_user]
+            user_password = {"Email" : "sendme@gmail.com", "Password" : "Test12345"} 
+            with self.client.post("/api/login", json=user_password, headers=self.headers) as res:
+                self.assertEqual(res.status_code, 200)
+
 
     def test_get_email(self):
         # Mock the food value in ./api.users.py

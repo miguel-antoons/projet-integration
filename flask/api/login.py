@@ -1,4 +1,5 @@
 from argon2 import PasswordHasher
+from argon2.low_level import verify_secret
 from flask import Blueprint, request
 from flask_jwt_extended import create_access_token
 
@@ -15,7 +16,7 @@ def client_login():
         # data client
         verify_password = list(users.find({"Email" : req["Email"]}))
         for client in verify_password:
-         client.pop('_id')
+            client.pop('_id')
 
         # verification mots de passe
         if(ph.verify(verify_password[0]["Password"], req["Password"])):
@@ -25,5 +26,6 @@ def client_login():
 
             # delete password
             verify_password[0].pop('Password')
+            
 
             return verify_password[0]
