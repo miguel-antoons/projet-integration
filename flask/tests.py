@@ -4,6 +4,7 @@ from unittest import TestCase, main as unittest_main
 from flask_jwt_extended import create_access_token
 
 from app import app
+import json
 
 sample_user = {
     "_id": "619e8f45ee462d6d876bbdbc",
@@ -91,6 +92,11 @@ class PlaylistsTests(TestCase):
             user_password = {"Email" : "sendme@gmail.com", "Password" : "Test12345"} 
             with self.client.post("/api/login", json=user_password, headers=self.headers) as res:
                 self.assertEqual(res.status_code, 200)
+                # DATA
+                res = json.loads(res.data.decode("utf-8"))
+                self.assertEqual(res["Username"], sample_user["Username"])
+                self.assertEqual(res["Email"], sample_user["Email"])
+
 
 
     def test_get_email(self):
