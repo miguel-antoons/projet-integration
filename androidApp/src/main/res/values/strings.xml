@@ -66,7 +66,6 @@
     <string name="btn_update">Modifier</string>
 
 
-
     <!--  TextView  -->
 
     <string name="title_forms_add">Ajouter un Produits</string>
@@ -157,4 +156,8 @@
         Sélectionnez \'Nouvel Emplacment\' pour ajouter un emplacement ou sélectionnez un
         emplacement existant pour modifier celui-ci.
     </string>
+    <string name="scanner_un_code_bar">Scanner un code bar</string>
+    <string name="reticule_du_lecteur_de_code_barre">Reticule du lecteur de code barre</string>
+    <string name="trouvez_les_ingredients_d_un_produit">Trouvez les ingredients d\'un produit</string>
+    <string name="liste_des_ingr_dients">Liste des Ingrédients</string>
 </resources>
