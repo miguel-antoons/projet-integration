@@ -170,22 +170,32 @@ def update_password():
     if request.method == 'PUT':
        
         #Check email address
-        email_exist = list(users.find({"Email" : email,"Code" : code}))
+        email_exist = list(users.find({"Email" : email}))
         print(email_exist)
 
         if email_exist:
 
-            #Update the code via email
-            users.find_one_and_update(
-            {"Email" : email},
-            {"$set":
-                {"Password": password}
-            },upsert=True
+            for i in email_exist:
+                print(i["Code"])
 
-                )
+            if i["Code"] == code:
+                print('Code OK')
 
+                #Update the code via email
+                users.find_one_and_update(
+                {"Email" : email},
+                {"$set":
+                    {"Password": password}
+                },upsert=True
 
-        return json.dumps(["Password Update is ok"])
+                    )
+                
+                return json.dumps({"message" : "Password Update is ok"})
+
+            else:
+                return json.dumps({"message" : "Bad Code"})
+                
+
 
     else:
         return json.dumps({"message" : "Password Update is refused Email / code False"})
