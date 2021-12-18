@@ -15,6 +15,12 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("com.google.firebase:firebase-messaging-ktx:23.0.0")
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2") {
+        exclude(mapOf("group" to "com.android.support", "module" to "support-annotations"))
+        exclude(mapOf("group" to "com.android.support", "module" to "support-v4"))
+        exclude(mapOf("group" to "com.android.support", "module" to "design"))
+        exclude(mapOf("group" to "com.android.support", "module" to "recyclerview-v7"))
+    }
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Hashing password
@@ -59,6 +65,13 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.0.2")
     implementation("androidx.camera:camera-view:1.0.0-alpha31")
 
+    // end2end
+    androidTestImplementation("com.android.support.test:runner:1.0.2")
+    androidTestImplementation ("com.android.support.test:rules:1.0.2")
+    androidTestImplementation ("com.android.support.test.espresso:espresso-intents:3.0.2")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
+
 
 
 
@@ -75,13 +88,14 @@ android {
         versionName = "1.0"
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
     compileOptions {
         // Flag to enable support for the new language APIs
         isCoreLibraryDesugaringEnabled = true
-        // Sets Java compatibility to Java 8
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        // Sets Java compatibility to Java 11
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     buildTypes {
         getByName("release") {
@@ -93,10 +107,11 @@ android {
         viewBinding = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     testOptions {
         unitTests.isIncludeAndroidResources = true
         animationsDisabled = true
     }
+
 }
