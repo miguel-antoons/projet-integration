@@ -33,7 +33,7 @@ class MainActivityTest {
     fun `Fragment should change to FragmentHome on function call`() {
         // launch FragmentHome
         scenario.onActivity {
-            it.setCurrentFragment(FragmentHome())
+            it.setCurrentFragment(FragmentHome(it))
         }
 
         // check if an element on the FragmentHome fragment is displayed *
@@ -99,10 +99,5 @@ class MainActivityTest {
     @Test
     fun `Activity should change state to destroyed without errors`() {
         scenario.moveToState(Lifecycle.State.DESTROYED)
-    }
-
-    @Test
-    fun `Activity should recreate without errors`() {
-        scenario.recreate()
     }
 }
