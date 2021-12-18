@@ -14,7 +14,7 @@ import java.util.HashMap
 
 object FridgesRepository {
 
-    var serverUrl = "http://10.0.2.2:5000/api/environnement"
+    var serverUrl = "https://smartfridge.online/api/environnement"
 
     // create list with all fridges
     val fridgesList = arrayListOf<FridgesModel>()
@@ -44,6 +44,7 @@ object FridgesRepository {
                 https://johncodeos.com/how-to-parse-json-in-android-using-kotlin/
                 */
                 for (i in 0 until response.length()) {
+                    Log.d("PLEASE", response.toString())
                     fridgesList.add(
                         FridgesModel(
                             name = response.getJSONObject(i).getString("location"),

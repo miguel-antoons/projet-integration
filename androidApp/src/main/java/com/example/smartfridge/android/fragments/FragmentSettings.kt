@@ -32,7 +32,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
     private lateinit var etData : String
     private lateinit var raspberryButton: Button
     private val resultingData = arrayListOf<Raspberry>()
-    private val serverUrl = "http://10.0.2.2:5000/api/raspberry"
+    private val serverUrl = "https://smartfridge.online/api/raspberry"
 
     // Function that displays the fragment 'FragmentProduct' on the screen
     override fun onCreateView(

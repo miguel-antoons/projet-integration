@@ -28,7 +28,7 @@ object ProductRepository {
     // variable contains the user's product search terms
     var searchTerms = ""
 
-    var serverUrl = "http://10.0.2.2:5000/api/food"
+    var serverUrl = "https://smartfridge.online/api/food"
 
     // only purpose of this is notify that the dataset has changed
     private lateinit var productAdapter: ProductAdapter
