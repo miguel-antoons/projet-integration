@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         // Navigation Bar
         bottomNavBar = findViewById(R.id.bottomNavBar)
-        val homeFragment = FragmentHome()
+        val homeFragment = FragmentHome(this)
         val productFragment = FragmentProduct(this)
         val settingsFragment = FragmentSettings(this)
         setCurrentFragment(homeFragment)
