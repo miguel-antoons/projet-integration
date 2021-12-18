@@ -38,9 +38,9 @@ def link_raspberry():
             "location": "",
             "status": "waiting",
             "secret": secret_key,
-            "Light" : "",
-            "Temperature" : "",
-            "Humidity" : ""
+            "Light" : 0.0,
+            "Temperature" : 0.0,
+            "Humidity" : 0.0
         })
 
         return json.dumps({
