@@ -179,7 +179,7 @@ class SignUp : AppCompatActivity() {
      */
     private fun isUsernameExist(username: String) {
 
-        val url = "http://10.0.2.2:5000/api/username_verfication/$username"
+        val url = "https://smartfridge.online/api/username_verfication/$username"
         // create a request queue²
         val queue = Volley.newRequestQueue(this)
 
@@ -210,7 +210,7 @@ class SignUp : AppCompatActivity() {
      */
     private fun isEmailExist(email: String){
 
-        val url = "http://10.0.2.2:5000/api/email_verfication/$email"
+        val url = "https://smartfridge.online/api/email_verfication/$email"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
 
@@ -272,7 +272,7 @@ class SignUp : AppCompatActivity() {
 
         // println(getRandomString(12))
         // Here you can call your API
-        val postUrl = "http://10.0.2.2:5000/api/addUser"
+        val postUrl = "https://smartfridge.online/api/addUser"
         val requestQueue = Volley.newRequestQueue(this)
 
         val postData = JSONObject()

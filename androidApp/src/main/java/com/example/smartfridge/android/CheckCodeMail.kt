@@ -95,7 +95,7 @@ class CheckCodeMail : AppCompatActivity() {
     private fun check_code(email: String?, code: String?) {
 
         // api route
-        val putUrl = "http://10.0.2.2:5000/api/users/reset-password/checkcode"
+        val putUrl = "https://smartfridge.online/api/users/reset-password/checkcode"
         // 10.0.2.2 Special alias to your host loopback interface (i.e., 127.0.0.1 on your development machine)
 
         // create a request queue
@@ -185,7 +185,7 @@ class CheckCodeMail : AppCompatActivity() {
 
     private fun new_code_email(email: String?) {
 
-        val putUrl = "http://10.0.2.2:5000/api/users/reset-password/checkemail"
+        val putUrl = "https://smartfridge.online/api/users/reset-password/checkemail"
         val requestQueue = Volley.newRequestQueue(this)
 
         val putData = JSONObject()

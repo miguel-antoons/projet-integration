@@ -69,7 +69,7 @@ class CheckAndSendEmail : AppCompatActivity() {
 
     private fun check_email_get(email: String?) {
 
-        val putUrl = "http://10.0.2.2:5000/api/users/reset-password/checkemail"
+        val putUrl = "https://smartfridge.online/api/users/reset-password/checkemail"
         val requestQueue = Volley.newRequestQueue(this)
 
         val putData = JSONObject()

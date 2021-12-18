@@ -37,7 +37,10 @@ def link_raspberry():
             "user": payload['user'],
             "location": "",
             "status": "waiting",
-            "secret": secret_key
+            "secret": secret_key,
+            "Light" : "",
+            "Temperature" : "",
+            "Humidity" : ""
         })
 
         return json.dumps({

@@ -16,5 +16,8 @@ def environnement():
         result = list(raspberry.find({"user" : data["Username"]}))
         for envi in result:
             envi.pop('_id')
+            envi.pop('secret')
+            envi.pop('user')
+            envi.pop('status')
 
         return json.dumps(result)
