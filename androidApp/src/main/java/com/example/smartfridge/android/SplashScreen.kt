@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
         val splashScreenTimeOut = 2000
         val loginIntent = Intent(this, Login::class.java )
 
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
           startActivity(loginIntent)
             finish()
         }, splashScreenTimeOut.toLong())
