@@ -63,11 +63,8 @@ class FragmentHome(
     private fun setupPullToRefresh(view: View) {
         val pullToRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
         pullToRefresh.setOnRefreshListener {
-            // this line below must be moved to the get fridges information API
-            pullToRefresh.isRefreshing = false
-            // call the get api for the fridges here and pass the 'pullToRefresh' variable to it
-            // for more information check how it is done with 'FragmentProduct' and
-            // 'getFoodFromMongo'
+            // get the new information from back-end
+            FridgesRepository.getFridges(context, pullToRefresh)
         }
     }
 }

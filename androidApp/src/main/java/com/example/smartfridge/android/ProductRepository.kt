@@ -312,7 +312,9 @@ object ProductRepository {
                 // notify the adapter that new elements were added to the list
                 productAdapter.notifyItemRangeInserted(0, searchedProductList.size)
 
+                // if the refreshing component has been given to the function
                 if (pullToRefresh != null) {
+                    // stop the refreshing animation
                     pullToRefresh.isRefreshing = false
                 }
 
@@ -321,7 +323,9 @@ object ProductRepository {
             {
                 Log.d("GetFood","That didn't work!")
 
+                // if the refreshing component has been given to the function
                 if (pullToRefresh != null) {
+                    // stop the refreshing animation
                     pullToRefresh.isRefreshing = false
                 }
             }
