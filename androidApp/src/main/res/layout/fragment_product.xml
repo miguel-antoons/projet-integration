@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/default_top_margin">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".fragments.FragmentProduct">
 
 
@@ -27,7 +28,7 @@
         <EditText
             android:id="@+id/search_products"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/searchbar_height"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/large_margin"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginRight="@dimen/large_margin"
@@ -49,30 +50,34 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="@dimen/top_products_row"
-            android:background="@color/dark_green"
             android:layout_marginTop="@dimen/default_margin"
-            app:layout_constraintTop_toBottomOf="@+id/search_products"
-            />
+            android:background="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_products" />
 
         <!-- sort by product name button -->
+
         <View
             android:id="@+id/sort_by_name"
-            android:layout_width="@dimen/product_name_width"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="0dp"
             android:layout_height="@dimen/top_products_row"
             android:background="@color/dark_green"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/sort_by_location"
             app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toTopOf="@+id/textView5" />
+            app:layout_constraintTop_toTopOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/sort_by_name_arrow"
             android:layout_width="@dimen/sort_arrow_dimens"
             android:layout_height="@dimen/sort_arrow_dimens"
-            android:src="@drawable/ic_sort_products_up"
             android:contentDescription="@string/sort_product_name_description"
+            android:src="@drawable/ic_sort_products_up"
             app:layout_constraintBottom_toBottomOf="@+id/sort_by_name"
             app:layout_constraintEnd_toEndOf="@+id/sort_by_name"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/sort_by_name"
             app:layout_constraintTop_toTopOf="@+id/sort_by_name"
             app:tint="@color/white" />
 
@@ -82,18 +87,18 @@
             android:layout_width="@dimen/location_name_width"
             android:layout_height="@dimen/top_products_row"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintStart_toEndOf="@+id/sort_by_name"
+            app:layout_constraintEnd_toStartOf="@+id/sort_by_expiration_date"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
 
         <ImageView
             android:id="@+id/sort_by_location_arrow"
             android:layout_width="@dimen/sort_arrow_dimens"
             android:layout_height="@dimen/sort_arrow_dimens"
-            android:src="@drawable/ic_sort_products_up"
             android:contentDescription="@string/sort_location_description"
+            android:src="@drawable/ic_sort_products_up"
             app:layout_constraintBottom_toBottomOf="@+id/sort_by_location"
             app:layout_constraintEnd_toEndOf="@+id/sort_by_location"
-            app:layout_constraintStart_toEndOf="@+id/sort_by_name"
+            app:layout_constraintStart_toStartOf="@+id/sort_by_location"
             app:layout_constraintTop_toTopOf="@+id/sort_by_location"
             app:tint="@color/white" />
 
@@ -102,19 +107,20 @@
             android:id="@+id/sort_by_expiration_date"
             android:layout_width="@dimen/expiration_date_width"
             android:layout_height="@dimen/top_products_row"
+            android:layout_marginRight="@dimen/large_margin"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintStart_toEndOf="@+id/sort_by_location"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
 
         <ImageView
             android:id="@+id/sort_by_expiration_date_arrow"
             android:layout_width="@dimen/sort_arrow_dimens"
             android:layout_height="@dimen/sort_arrow_dimens"
-            android:src="@drawable/ic_sort_products_up"
             android:contentDescription="@string/sort_expiration_period_description"
+            android:src="@drawable/ic_sort_products_up"
             app:layout_constraintBottom_toBottomOf="@+id/sort_by_expiration_date"
             app:layout_constraintEnd_toEndOf="@+id/sort_by_expiration_date"
-            app:layout_constraintStart_toEndOf="@+id/sort_by_location"
+            app:layout_constraintStart_toStartOf="@+id/sort_by_expiration_date"
             app:layout_constraintTop_toTopOf="@+id/sort_by_expiration_date"
             app:tint="@color/white" />
 

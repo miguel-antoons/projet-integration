@@ -160,4 +160,5 @@
     <string name="reticule_du_lecteur_de_code_barre">Reticule du lecteur de code barre</string>
     <string name="trouvez_les_ingredients_d_un_produit">Trouvez les ingredients d\'un produit</string>
     <string name="liste_des_ingr_dients">Liste des Ingrédients</string>
+    <string name="product_expiration_period_hint">Product expiration period hint</string>
 </resources>
