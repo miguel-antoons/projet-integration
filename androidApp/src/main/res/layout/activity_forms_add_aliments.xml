@@ -17,7 +17,6 @@
             android:layout_width="@dimen/icon_dimensions"
             android:layout_height="@dimen/icon_dimensions"
             android:layout_marginStart="@dimen/label_side_margin"
-            android:layout_marginLeft="@dimen/label_side_margin"
             android:contentDescription="@string/ic_close_description"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintBottom_toBottomOf="@+id/button_return_list_product"
@@ -51,7 +50,6 @@
             android:layout_width="126dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_side_margin"
-            android:layout_marginLeft="@dimen/label_side_margin"
             android:layout_marginBottom="@dimen/label_margin_bottom"
             android:fontFamily="@font/arial"
             android:lineSpacingExtra="8sp"
@@ -79,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginEnd="@dimen/precisions_side_margin"
-            android:layout_marginRight="@dimen/precisions_side_margin"
             android:layout_marginBottom="@dimen/label_margin_bottom"
             android:gravity="end"
             android:text="@string/text_max_name"
@@ -88,13 +85,15 @@
 
         <EditText
             android:id="@+id/AlimentName"
-            android:layout_width="@dimen/input_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/form_margin_top"
             android:autofillHints="aliment name"
             android:background="@drawable/rounded_edittext"
             android:inputType="textPersonName"
-            android:maxLength="30"
+            android:maxLength="50"
+            android:layout_marginLeft="@dimen/form_side_margin"
+            android:layout_marginRight="@dimen/form_side_margin"
             android:padding="15dp"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -109,7 +108,6 @@
             android:layout_width="146dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_side_margin"
-            android:layout_marginLeft="@dimen/label_side_margin"
             android:layout_marginBottom="@dimen/label_margin_bottom"
             android:fontFamily="@font/arial"
             android:lineSpacingExtra="8sp"
@@ -131,28 +129,17 @@
             app:layout_constraintBottom_toTopOf="@+id/AlimentQuantite"
             app:layout_constraintStart_toEndOf="@+id/text_quantite" />
 
-        <TextView
-            android:id="@+id/text_name_g"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="@dimen/precisions_side_margin"
-            android:layout_marginRight="@dimen/precisions_side_margin"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
-            android:gravity="end"
-            android:text="@string/text_g"
-            app:layout_constraintBottom_toTopOf="@+id/AlimentQuantite"
-            app:layout_constraintEnd_toEndOf="@+id/AlimentQuantite" />
-
         <!-- EditText Product Quantite (input)   -->
         <EditText
             android:id="@+id/AlimentQuantite"
-            android:layout_width="@dimen/input_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/form_margin_top"
             android:autofillHints="aliment quantite"
             android:background="@drawable/rounded_edittext"
             android:inputType="text"
+            android:layout_marginLeft="@dimen/form_side_margin"
+            android:layout_marginRight="@dimen/form_side_margin"
             android:padding="15dp"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -166,7 +153,6 @@
             android:layout_width="153dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_side_margin"
-            android:layout_marginLeft="@dimen/label_side_margin"
             android:layout_marginBottom="@dimen/label_margin_bottom"
             android:fontFamily="@font/arial"
             android:lineSpacingExtra="8sp"
@@ -188,20 +174,6 @@
             app:layout_constraintBottom_toTopOf="@+id/button_date_select"
             app:layout_constraintStart_toEndOf="@+id/text_date" />
 
-        <TextView
-            android:id="@+id/text_date_format"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="@dimen/precisions_side_margin"
-            android:layout_marginRight="@dimen/precisions_side_margin"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
-            android:gravity="end"
-            android:text="@string/text_date_format"
-            app:layout_constraintBottom_toTopOf="@+id/button_date_select"
-            app:layout_constraintEnd_toEndOf="@+id/AlimentQuantite" />
-
-
         <Button
             android:id="@+id/button_date_select"
             android:layout_width="wrap_content"
@@ -214,10 +186,11 @@
 
         <TextView
             android:id="@+id/dateTv"
-            android:layout_width="196dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center"
-            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/button_date_select"
             app:layout_constraintEnd_toEndOf="@+id/AlimentQuantite"
             app:layout_constraintTop_toTopOf="@+id/button_date_select" />
@@ -230,7 +203,6 @@
             android:layout_width="81dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_side_margin"
-            android:layout_marginLeft="@dimen/label_side_margin"
             android:layout_marginBottom="@dimen/label_margin_bottom"
             android:fontFamily="@font/arial"
             android:lineSpacingExtra="8sp"
@@ -256,10 +228,12 @@
         <Spinner
             android:id="@+id/categorie_spinner"
             style="@style/SpinnerTheme"
-            android:layout_width="@dimen/input_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/form_margin_top"
+            android:layout_marginLeft="@dimen/form_side_margin"
+            android:layout_marginRight="@dimen/form_side_margin"
             android:padding="15dp"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toEndOf="parent"
@@ -272,7 +246,6 @@
             android:layout_width="137dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_side_margin"
-            android:layout_marginLeft="@dimen/label_side_margin"
             android:layout_marginBottom="@dimen/label_margin_bottom"
             android:fontFamily="@font/arial"
             android:lineSpacingExtra="8sp"
@@ -297,9 +270,10 @@
         <!-- Spinner Storage   -->
         <Spinner
             android:id="@+id/place_spinner"
-
+            android:layout_marginLeft="@dimen/form_side_margin"
+            android:layout_marginRight="@dimen/form_side_margin"
             style="@style/SpinnerTheme"
-            android:layout_width="@dimen/input_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/form_margin_top"

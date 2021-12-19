@@ -28,6 +28,7 @@
     <dimen name="label_margin_bottom">6dp</dimen>
     <dimen name="label_side_margin">15dp</dimen>
     <dimen name="precisions_side_margin">10dp</dimen>
+    <dimen name="form_side_margin">40dp</dimen>
 
     <!-- settings page -->
     <dimen name="settings_button_margin_top">15dp</dimen>
