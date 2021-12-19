@@ -15,12 +15,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("com.google.firebase:firebase-messaging-ktx:23.0.0")
-    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2") {
-        exclude(mapOf("group" to "com.android.support", "module" to "support-annotations"))
-        exclude(mapOf("group" to "com.android.support", "module" to "support-v4"))
-        exclude(mapOf("group" to "com.android.support", "module" to "design"))
-        exclude(mapOf("group" to "com.android.support", "module" to "recyclerview-v7"))
-    }
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Hashing password
@@ -35,6 +31,12 @@ dependencies {
     // Required -- JUnit 4 framework
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2") {
+        exclude(mapOf("group" to "com.android.support", "module" to "support-annotations"))
+        exclude(mapOf("group" to "com.android.support", "module" to "support-v4"))
+        exclude(mapOf("group" to "com.android.support", "module" to "design"))
+        exclude(mapOf("group" to "com.android.support", "module" to "recyclerview-v7"))
+    }
 
 
     //Gson
