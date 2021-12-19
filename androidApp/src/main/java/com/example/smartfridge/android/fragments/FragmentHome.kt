@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.*
 import com.example.smartfridge.android.FridgesRepository.fridgesList
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.smartfridge.android.adapter.FridgesAdapter
 import com.example.smartfridge.android.adapter.FridgesItemDecoration
 
@@ -53,7 +54,17 @@ class FragmentHome(
         // Add decoration to the section item_vertical_fridges -> we can find this configuration of design in the FridgesItemDecoration file/class
         verticalRecyclerView.addItemDecoration(FridgesItemDecoration())
 
+        // setup the pull to refresh action
+        setupPullToRefresh(view)
 
         return view
+    }
+
+    private fun setupPullToRefresh(view: View) {
+        val pullToRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
+        pullToRefresh.setOnRefreshListener {
+            // get the new information from back-end
+            FridgesRepository.getFridges(context, pullToRefresh)
+        }
     }
 }

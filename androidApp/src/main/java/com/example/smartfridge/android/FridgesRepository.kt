@@ -2,6 +2,7 @@ package com.example.smartfridge.android
 
 import android.content.Context
 import android.util.Log
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -28,7 +29,7 @@ object FridgesRepository {
      * We use adapter in order to notify the product list changed.
      */
 
-    fun getFridges(context: Context){
+    fun getFridges(context: Context, pullToRefresh: SwipeRefreshLayout? = null) {
         val fridgesListLength = fridgesList.size
         fridgesList.clear()
 
@@ -57,10 +58,25 @@ object FridgesRepository {
 
                 // notify the adapter that new elements were added to the list
                 fridgesAdaptater.notifyItemRangeInserted(0, fridgesList.size)
+
+                // if the pull to refresh element was given to the function
+                if (pullToRefresh != null) {
+                    // stop the refreshing animation
+                    pullToRefresh.isRefreshing = false
+                }
+
                 Log.d("GetFridges", "SUCCESS")
 
             },
-            { Log.d("GetFridges","That didn't work!") }
+            {
+                Log.d("GetFridges","That didn't work!")
+
+                // if the pull to refresh element was given to the function
+                if (pullToRefresh != null) {
+                    // stop the refreshing animation
+                    pullToRefresh.isRefreshing = false
+                }
+            }
         ){
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
