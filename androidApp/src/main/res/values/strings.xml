@@ -166,4 +166,6 @@
     <string name="logo_de_l_application">Logo de l\'application</string>
     <string name="qr_code_qu_il_faut_scanner">QR-code qu\'il faut scanner</string>
     <string name="image_de_description">Image de description</string>
+    <string name="j_accepte_avoir_lu_et_accepter_les">J\'accepte avoir lu et accepter les</string>
+    <string name="termes_d_utilisation">termes d\'utilisation</string>
 </resources>

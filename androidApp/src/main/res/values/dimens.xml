@@ -43,4 +43,9 @@
     <!-- home page -->
     <dimen name="home_page_large_margin">40dp</dimen>
     <dimen name="large_padding">15dp</dimen>
+
+    <!-- sign up page -->
+    <dimen name="sign_up_margin">30dp</dimen>
+    <dimen name="label_right_margins">40dp</dimen>
+    <dimen name="label_large_margin">80dp</dimen>
 </resources>
