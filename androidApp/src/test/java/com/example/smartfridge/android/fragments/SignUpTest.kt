@@ -88,6 +88,26 @@ class SignUpTest {
     // If a device is low on resources, the system might destroy an activity, requiring the app to
     // recreate that activity when the user returns to your app. We use then recreate()
     @Test
+    fun `Activity should change state to create without error`() {
+        scenario.moveToState(Lifecycle.State.CREATED)
+    }
+
+    @Test
+    fun `Activity should change state to started without errors`() {
+        scenario.moveToState(Lifecycle.State.STARTED)
+    }
+
+    @Test
+    fun `Activity should change state to resumed without errors`() {
+        scenario.moveToState(Lifecycle.State.RESUMED)
+    }
+
+    @Test
+    fun `Activity should change state to destroyed without errors`() {
+        scenario.moveToState(Lifecycle.State.DESTROYED)
+    }
+
+    @Test
     fun testEvent() {
             val scenario = launchActivity<SignUp>()
             scenario.recreate()

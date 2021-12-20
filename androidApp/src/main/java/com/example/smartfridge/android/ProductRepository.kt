@@ -2,6 +2,7 @@ package com.example.smartfridge.android
 
 import android.content.Context
 import android.util.Log
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -28,7 +29,7 @@ object ProductRepository {
     // variable contains the user's product search terms
     var searchTerms = ""
 
-    var serverUrl = "http://10.0.2.2:5000/api/food"
+    var serverUrl = "https://smartfridge.online/api/food"
 
     // only purpose of this is notify that the dataset has changed
     private lateinit var productAdapter: ProductAdapter
@@ -262,10 +263,11 @@ object ProductRepository {
     }
 
     /**
-     * Function called in order to get all the products of the test user 999 in the database (cf: food.py) and sendFoodToServer().
+     * Function called in order to get all the products of the test user 999 in the database
+     * (cf: food.py) and sendFoodToServer().
      * We use adapter in order to notify the product list changed.
      */
-    fun getFoodFromMongo(context: Context){
+    fun getFoodFromMongo(context: Context, pullToRefresh: SwipeRefreshLayout? = null){
         val productListLength = productList.size
         productList.clear()
 
@@ -274,7 +276,7 @@ object ProductRepository {
 
         val url = serverUrl
         val queue = Volley.newRequestQueue(context)
-        val stringRequest = object : StringRequest(
+        val stringRequest = object: StringRequest(
             Method.GET, url,
             { response ->
                 /*
@@ -309,9 +311,24 @@ object ProductRepository {
 
                 // notify the adapter that new elements were added to the list
                 productAdapter.notifyItemRangeInserted(0, searchedProductList.size)
+
+                // if the refreshing component has been given to the function
+                if (pullToRefresh != null) {
+                    // stop the refreshing animation
+                    pullToRefresh.isRefreshing = false
+                }
+
                 Log.d("GetFood", "SUCCESS")
             },
-            { Log.d("GetFood","That didn't work!") }
+            {
+                Log.d("GetFood","That didn't work!")
+
+                // if the refreshing component has been given to the function
+                if (pullToRefresh != null) {
+                    // stop the refreshing animation
+                    pullToRefresh.isRefreshing = false
+                }
+            }
         ){
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
@@ -400,12 +417,12 @@ object ProductRepository {
                 || product.location.contains(searchTerms, true)
                 || product.brand.contains(searchTerms, true)
                 || product.category.contains(searchTerms, true)
-                || product.ingredients.filter { ingredient ->
+                || product.ingredients.any { ingredient ->
                     ingredient.contains(
                         searchTerms,
                         true
                     )
-                }.isNotEmpty()
+                }
         }
 
         // set the 'searchedProductList' to the local filtered list and notify the adapter of

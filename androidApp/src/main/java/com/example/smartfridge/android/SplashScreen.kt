@@ -21,8 +21,8 @@ class SplashScreen : AppCompatActivity() {
         val circle = findViewById<FrameLayout>(R.id.container_circles)
         circle.startAnimation(myAnimation)
 
-        // Stop Activity after 7000 ms and go to Login activity
-        val splashScreenTimeOut = 7000
+        // Stop Activity after 2000 ms and go to Login activity
+        val splashScreenTimeOut = 2000
         val loginIntent = Intent(this, Login::class.java )
 
         Handler().postDelayed({

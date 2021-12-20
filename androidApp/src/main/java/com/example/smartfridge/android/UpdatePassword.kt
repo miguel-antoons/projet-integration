@@ -212,7 +212,7 @@ class UpdatePassword : AppCompatActivity() {
         //Log.d("MainActivity", "$password_hash")
         //Log.d("MainActivity", "$password_hash")
 
-        val putUrl = "http://10.0.2.2:5000/api/users/update-password"
+        val putUrl = "https://smartfridge.online/api/users/update-password"
         val requestQueue = Volley.newRequestQueue(this)
 
         val putData = JSONObject()

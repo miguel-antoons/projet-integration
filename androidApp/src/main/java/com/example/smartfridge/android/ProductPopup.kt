@@ -12,7 +12,7 @@ import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.fragments.FragmentProduct
 
 class ProductPopup(
-    private val adapter: ProductAdapter,
+    adapter: ProductAdapter,
     private val selectedProduct: ProductModel,
     private val productPosition: Int,
     private val productFragment: FragmentProduct

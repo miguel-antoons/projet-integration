@@ -4,14 +4,15 @@ from unittest import TestCase, main as unittest_main
 from flask_jwt_extended import create_access_token
 
 from app import app
+import json
 
 sample_user = {
-    "_id": "testId",
+    "_id": "619e8f45ee462d6d876bbdbc",
     "Name": "Test",
     "FirstName": "Test",
     "Username": "LeTest",
     "Email": "sendme@gmail.com",
-    "Password": "Test1234",
+    "Password": "$argon2i$v=19$m=65536,t=5,p=2$hAXIxb7pps7WuZfWUdoKJJKPIoM$HNzycd5XhfhwFngbcYRfsnsULoveAcqWhqrexIS+Ef8",
     "Qrcode": "TODO",
     "Code": "628476"
 }
@@ -82,7 +83,23 @@ class PlaylistsTests(TestCase):
 
     # ---------------------------------------API USER ---------------------------------------------------
 
+    def test_login(self):
+        sample_user['_id'] = "619e8f45ee462d6d876bbdbc"
+        # Mock the food value in ./api.users.py
+        with unittest.mock.patch('api.login.users') as MockUser:
+            # Force the return value of users.find(req) to sample_user
+            MockUser.find.return_value = [sample_user]
+            user_password = {"Email" : "sendme@gmail.com", "Password" : "Test12345"} 
+            with self.client.post("/api/login", json=user_password, headers=self.headers) as res:
+                self.assertEqual(res.status_code, 200)
+                # DATA
+                res = json.loads(res.data.decode("utf-8"))
+                self.assertEqual(res["Username"], sample_user["Username"])
+                self.assertEqual(res["Email"], sample_user["Email"])
+
+
     def test_get_email(self):
+        # Mock the user value in ./api.users.py
         # Mock the food value in ./api.users.py
         with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users.mail') as MockSend:
             # Force the return value of food.find() to sample_food
@@ -102,6 +119,7 @@ class PlaylistsTests(TestCase):
                 self.assertEqual(result.data, b'{"message": "message: this email exist"}')
 
     def test_get_email_Notexist(self):
+        # Mock the user value in ./api.users.py
         # Mock the food value in ./api.users.py
         with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users.mail') as MockSend:
             # Force the return value of food.find() to sample_food
@@ -119,6 +137,85 @@ class PlaylistsTests(TestCase):
                 self.assertEqual(result.content_type, "text/html; charset=utf-8")
                 # DATA
                 self.assertEqual(result.data, b'{"message": "this email does not exist"}')
+
+    def test_checkcode_true(self):
+        # Mock the user value in ./api.users.py
+        with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users') as MockSend:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = [sample_user]
+            # Sample user
+
+            # TEST API USER /api/users/reset-password/checkcode'
+            # Check Email
+            with self.client.put(
+                    f'/api/users/reset-password/checkcode', json={"Email": "sendme@gmail.com","Code":"628476"}) as result:
+                # STATUS
+                self.assertEqual(result.status, '200 OK')
+                # Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                # DATA
+                self.assertEqual(result.data, b'{"message": "The code is good"}')
+
+    def test_checkcode_false(self):
+        # Mock the user value in ./api.users.py
+        with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users') as MockSend:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = [sample_user]
+            # Sample user
+
+            # TEST API USER /api/users/reset-password/checkcode'
+            # Check Email
+            with self.client.put(
+                    f'/api/users/reset-password/checkcode', json={"Email": "sendme@gmail.com","Code":"111111"}) as result:
+                # STATUS
+                self.assertEqual(result.status, '200 OK')
+                # Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                # DATA
+                self.assertEqual(result.data, b'{"message": "code is false"}')
+
+    def test_reset_password_ok(self):
+        # Mock the user value in ./api.users.py
+        with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users') as MockSend:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = sample_user
+            # Sample user
+
+            # TEST API USER /api/users/update-password
+            # Check Email
+            with self.client.put(
+                    f'/api/users/update-password', json={"Email": "sendme@gmail.com","Code":"111111","Password":"Test1234"}) as result:
+                # STATUS
+                self.assertEqual(result.status, '200 OK')
+                # Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                # DATA
+                self.assertEqual(result.data, b'["Password Update is ok"]')
+
+    def test_reset_password_NotOk(self):
+        # Mock the user value in ./api.users.py
+        with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users') as MockSend:
+            # Force the return value of food.find() to sample_food
+            MockUsers.find.return_value = sample_user
+            # Sample user
+
+            # TEST API USER /api/users/update-password
+            # Check Email
+            with self.client.put(
+                    f'/api/users/update-password', json={"Email": "sendme@gmail.com","Code":"111111","Password":"Test1234"}) as result:
+                # STATUS
+                self.assertEqual(result.status, '200 OK')
+                # Content Type
+                self.assertEqual(result.content_type, "text/html; charset=utf-8")
+                # DATA
+                self.assertEqual(result.data, b'["Password Update is ok"]')
+
+
+
+
+
+
+
 
     def test_update_password_put(self):
         # Mock the food value in ./api.users.py

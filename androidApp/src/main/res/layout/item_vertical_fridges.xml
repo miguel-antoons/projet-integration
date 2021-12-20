@@ -48,12 +48,12 @@
         <TextView
             android:id="@+id/title_card"
             style="@style/MainTitle"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="@string/first_name_component_title" />
+            android:text="@string/first_name_component_title"
+            android:textColor="@color/black" />
 
         <!-- Thermometer TextView -->
         <TextView
@@ -84,6 +84,8 @@
             style="@style/Subtitles"/>
 
         <!-- Number / degree TextView -->
+
+        <!-- Number / percentage TextView -->
         <TextView
             android:id="@+id/temperature_number"
             style="@style/PoliceHomeCardView"
@@ -92,25 +94,29 @@
             android:layout_above="@+id/line_separator_images_v3"
             android:layout_alignStart="@+id/water_droplet"
             android:layout_alignLeft="@+id/temperature_text"
-            android:layout_marginStart="250dp"
-            android:layout_marginLeft="250dp"
-            android:text="@string/degree" />
+            android:layout_marginStart="226dp"
+            android:layout_marginLeft="146dp"
+            android:layout_marginBottom="0dp"
+            android:text="@string/degree"
+            android:textSize="35dp" />
 
-        <!-- Number / percentage TextView -->
+
+        <!-- All views of the card, it allows to place the different ImageView and TextView wherever we want -->
+
         <TextView
             android:id="@+id/hygrometry_number"
+            style="@style/PoliceHomeCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/line_separator_images_v4"
             android:layout_alignStart="@+id/water_droplet"
             android:layout_alignLeft="@+id/temperature_text"
-            android:layout_marginLeft="250dp"
+            android:layout_marginStart="226dp"
+            android:layout_marginLeft="146dp"
+            android:layout_marginBottom="0dp"
             android:text="@string/percentage"
-            android:layout_marginStart="250dp"
-            style="@style/PoliceHomeCardView"/>
+            android:textSize="35dp" />
 
-
-        <!-- All views of the card, it allows to place the different ImageView and TextView wherever we want -->
         <View
             android:id="@+id/line_separator_images_v1"
             android:layout_width="wrap_content"
@@ -118,16 +124,16 @@
             android:layout_alignBottom="@+id/thermometer"
             android:layout_marginBottom="53dp"
             android:background="@color/cyan_blue"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <View
             android:id="@+id/line_separator_images_v2"
             android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:layout_alignBottom="@+id/water_droplet"
-            android:layout_marginBottom="53dp"
+            android:layout_marginBottom="56dp"
             android:background="@color/light_green"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <View
             android:id="@+id/line_separator_images_v3"
@@ -136,7 +142,7 @@
             android:layout_alignBottom="@+id/water_droplet"
             android:layout_marginBottom="127dp"
             android:background="@color/orange"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <View
             android:id="@+id/line_separator_images_v4"

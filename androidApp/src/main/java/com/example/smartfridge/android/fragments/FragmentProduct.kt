@@ -9,11 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.smartfridge.android.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -56,6 +56,9 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
 
         // setup the the product search bar
         setupSearchBar(view)
+
+        // setup the pull to refresh action to refresh the shown productList
+        setupPullToRefresh(view)
 
         // give the adapter element to the ProductRepository object
         ProductRepository.addProductAdapter(adapter)
@@ -139,7 +142,7 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
     /**
      * Function sets the function to launch when the searchbar is modified
      */
-    private fun setupSearchBar(view:View) {
+    private fun setupSearchBar(view: View) {
         view.findViewById<EditText>(R.id.search_products).addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
@@ -157,5 +160,13 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
                 }
             }
         )
+    }
+
+    private fun setupPullToRefresh(view: View) {
+        val pullToRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
+        pullToRefresh.setOnRefreshListener {
+            pullToRefresh.isRefreshing = true
+            ProductRepository.getFoodFromMongo(context, pullToRefresh)
+        }
     }
 }
