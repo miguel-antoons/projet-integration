@@ -44,6 +44,7 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         val disconnect: Button = view.findViewById(R.id.disconnect)
         val newLocationButton = view.findViewById<Button>(R.id.new_location)
         raspberryButton = view.findViewById(R.id.new_raspberry)
+        val deleteButton : Button = view.findViewById(R.id.delete_account)
 
         // create qrCode
         // qrCode(view)
@@ -66,6 +67,10 @@ class FragmentSettings(private val context: MainActivity) : Fragment()  {
         // button opens a pop-up with inputs to add a new raspberry
         raspberryButton.setOnClickListener {
             RaspberryPopup(context, resultingData, this).show()
+        }
+
+        deleteButton.setOnClickListener{
+            DeleteAccount(context).show()
         }
 
         getNewRaspberry()

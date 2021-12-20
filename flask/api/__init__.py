@@ -1,3 +1,4 @@
+from .delete_account import app_account
 from .food import app_food
 from .hello_world import app_hw
 from .users import getUsers
@@ -19,5 +20,6 @@ blueprints = [
     addUser,
     app_raspberry,
     app_location,
+    app_account,
     envi
 ]
