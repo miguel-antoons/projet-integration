@@ -6,12 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".BarcodeReader">
 
-
-
     <ImageButton
         android:id="@+id/button_return_scan"
         android:layout_width="40dp"
-        android:layout_marginLeft="@dimen/label_side_margin"
+        android:layout_marginStart="@dimen/label_side_margin"
         android:layout_height="55dp"
         android:background="@color/beige"
         android:gravity="center"
@@ -21,7 +19,8 @@
         android:textColor="@color/dark_green"
         app:tint="@color/dark_green"
         android:src="@drawable/ic_arrow_left"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/ic_close_description" />
 
     <androidx.camera.view.PreviewView
         android:id="@+id/preview_view"
