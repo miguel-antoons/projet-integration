@@ -107,7 +107,7 @@
             android:id="@+id/sort_by_expiration_date"
             android:layout_width="@dimen/expiration_date_width"
             android:layout_height="@dimen/top_products_row"
-            android:layout_marginRight="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />

@@ -43,7 +43,7 @@
         style="@style/product_list"
         android:layout_width="@dimen/expiration_date_width"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/large_margin"
+        android:layout_marginEnd="@dimen/large_margin"
         android:gravity="center"
         android:paddingStart="@dimen/table_cell_padding"
         android:paddingLeft="@dimen/table_cell_padding"

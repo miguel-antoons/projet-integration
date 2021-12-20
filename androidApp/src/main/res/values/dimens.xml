@@ -39,5 +39,7 @@
     <dimen name="location_margin_top_light">4dp</dimen>
     <dimen name="location_button_margin">20dp</dimen>
 
-    <!-- raspberry pop-up -->
+    <!-- home page -->
+    <dimen name="home_page_large_margin">40dp</dimen>
+    <dimen name="large_padding">15dp</dimen>
 </resources>
