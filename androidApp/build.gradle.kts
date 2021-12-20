@@ -31,14 +31,20 @@ dependencies {
 
     // Required -- JUnit 4 framework
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2") {
-        exclude(mapOf("group" to "com.android.support", "module" to "support-annotations"))
-        exclude(mapOf("group" to "com.android.support", "module" to "support-v4"))
-        exclude(mapOf("group" to "com.android.support", "module" to "design"))
-        exclude(mapOf("group" to "com.android.support", "module" to "recyclerview-v7"))
-    }
-
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
+    // Optional -- Hamcrest library
+    androidTestImplementation("org.hamcrest:hamcrest-library:2.2")
+    // Optional -- UI testing with Espresso
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    // Optional -- UI testing with UI Automator
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
+    /*androidTestImplementation("org.robolectric:robolectric:4.2.1"){
+        exclude("org.apache.maven")
+        exclude("org.apache.maven.wagon")
+    }*/
 
     //Gson
     implementation("com.google.code.gson:gson:2.8.9")
@@ -61,23 +67,15 @@ dependencies {
     implementation("com.lambdapioneer.argon2kt:argon2kt:1.3.0")
 
     // Bar code
-    implementation("com.google.mlkit:barcode-scanning:17.0.0")
+    implementation("com.google.mlkit:barcode-scanning:17.0.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation("androidx.camera:camera-camera2:1.0.2")
     implementation("androidx.camera:camera-lifecycle:1.0.2")
-    implementation("androidx.camera:camera-view:1.0.0-alpha31")
+    implementation("androidx.camera:camera-view:1.0.0-alpha32")
 
     // end2end
-    androidTestImplementation("com.android.support.test:runner:1.0.2")
-    androidTestImplementation ("com.android.support.test:rules:1.0.2")
-    androidTestImplementation ("com.android.support.test.espresso:espresso-intents:3.0.2")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
-
-
-
-
-
 }
 
 

@@ -14,8 +14,8 @@
         <TextView
             android:id="@+id/textView4"
             style="@style/main_title_how_to_connect"
-            app:layout_constraintWidth_default="wrap"
-            android:layout_width="0dp"
+            app:layout_constrainedWidth="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/main_title_how_to_connect"
@@ -26,8 +26,8 @@
         <TextView
             android:id="@+id/textView6"
             style="@style/normal_text"
-            app:layout_constraintWidth_default="wrap"
-            android:layout_width="0dp"
+            app:layout_constrainedWidth="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:layout_marginEnd="@dimen/default_margin"

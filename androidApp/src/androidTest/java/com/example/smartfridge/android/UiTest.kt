@@ -1,17 +1,25 @@
 package com.example.smartfridge.android
 
 
-import android.support.test.espresso.Espresso.onData
+/*import android.support.test.espresso.Espresso.onData
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.pressBack
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
-import android.support.test.rule.GrantPermissionRule
-import android.support.test.runner.AndroidJUnit4
+import android.support.test.rule.GrantPermissionRule*/
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.view.View
 import android.view.ViewGroup
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
+import androidx.test.rule.GrantPermissionRule
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.*
@@ -20,9 +28,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@LargeTest
 @RunWith(AndroidJUnit4::class)
-class TestUi {
+@LargeTest
+class UiTest {
 
     @Rule
     @JvmField
@@ -30,7 +38,7 @@ class TestUi {
 
     @Rule
     @JvmField
-    var mGrantPermissionRule =
+    var mGrantPermissionRule: GrantPermissionRule =
         GrantPermissionRule.grant(
             "android.permission.CAMERA"
         )
@@ -52,7 +60,7 @@ class TestUi {
         )
         appCompatButton.perform(click())
 
-        val appCompatEditText = onView(
+        /*val appCompatEditText = onView(
             allOf(
                 withId(R.id.username),
                 childAtPosition(
@@ -65,22 +73,12 @@ class TestUi {
                 isDisplayed()
             )
         )
-        appCompatEditText.perform(click())
+        appCompatEditText.perform(click())*/
 
-        val appCompatEditText2 = onView(
-            allOf(
-                withId(R.id.username),
-                childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText2.perform(replaceText("Test"), closeSoftKeyboard())
+        val userNameField = onView(withId(R.id.username))
+        userNameField.check(matches(isDisplayed()))
+        userNameField.perform(click())
+        userNameField.perform(replaceText("Test"), closeSoftKeyboard())
 
         val appCompatEditText3 = onView(
             allOf(
