@@ -8,19 +8,20 @@
     <dimen name="top_products_row">30dp</dimen>
     <dimen name="searchbar_height">40dp</dimen>
     <dimen name="table_cell_padding">5dp</dimen>
-    <dimen name="product_name_width">180dp</dimen>
-    <dimen name="location_name_width">110dp</dimen>
+    <dimen name="product_name_width">130dp</dimen>
+    <dimen name="location_name_width">90dp</dimen>
     <dimen name="expiration_date_width">90dp</dimen>
     <dimen name="sort_arrow_dimens">20dp</dimen>
 
     <!-- Product pop-up -->
     <dimen name="icon_dimensions">40dp</dimen>
-    <dimen name="product_characteristics">160dp</dimen>
+    <dimen name="product_characteristics">120dp</dimen>
     <dimen name="ingredients">310dp</dimen>
     <dimen name="popup_button_height">35dp</dimen>
     <dimen name="popup_button_width">110dp</dimen>
     <dimen name="button_side_margin">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="very_large_margin">40dp</dimen>
 
     <!-- add product form -->
     <dimen name="input_width">335dp</dimen>
@@ -28,6 +29,7 @@
     <dimen name="label_margin_bottom">6dp</dimen>
     <dimen name="label_side_margin">15dp</dimen>
     <dimen name="precisions_side_margin">10dp</dimen>
+    <dimen name="form_side_margin">40dp</dimen>
 
     <!-- settings page -->
     <dimen name="settings_button_margin_top">15dp</dimen>
@@ -38,5 +40,12 @@
     <dimen name="location_margin_top_light">4dp</dimen>
     <dimen name="location_button_margin">20dp</dimen>
 
-    <!-- raspberry pop-up -->
+    <!-- home page -->
+    <dimen name="home_page_large_margin">40dp</dimen>
+    <dimen name="large_padding">15dp</dimen>
+
+    <!-- sign up page -->
+    <dimen name="sign_up_margin">30dp</dimen>
+    <dimen name="label_right_margins">40dp</dimen>
+    <dimen name="label_large_margin">80dp</dimen>
 </resources>

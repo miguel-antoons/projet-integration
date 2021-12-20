@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/default_top_margin">
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:context=".fragments.FragmentHome">
 
         <Button
             android:id="@+id/fragment_button"
-            android:layout_width="350dp"
-            android:layout_height="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:text="@string/home_first_button"
-            android:textSize="20sp"
-            android:textColor="@color/really_dark_green"
             android:background="@drawable/home_page_button"
+            android:text="@string/home_first_button"
             android:textAllCaps="false"
-            />
+            android:textColor="@color/really_dark_green"
+            android:textSize="20sp"
+            android:layout_marginEnd="@dimen/home_page_large_margin"
+            android:layout_marginStart="@dimen/home_page_large_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:padding="@dimen/large_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/scan_button"
-            android:layout_width="350dp"
-            android:layout_height="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/scanner_un_code_bar"
-            android:textSize="20sp"
-            android:textColor="@color/really_dark_green"
             android:background="@drawable/home_page_button"
+            android:text="@string/scanner_un_code_bar"
             android:textAllCaps="false"
-            />
+            android:textColor="@color/really_dark_green"
+            android:textSize="20sp"
+            android:layout_marginEnd="@dimen/home_page_large_margin"
+            android:layout_marginStart="@dimen/home_page_large_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:padding="@dimen/large_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_button" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:padding="@dimen/default_padding"
+            android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_margin="20dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scan_button">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

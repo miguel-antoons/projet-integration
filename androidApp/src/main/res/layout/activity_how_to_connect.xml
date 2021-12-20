@@ -1,130 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HowToConnect">
 
-    <TextView
-        android:id="@+id/textView4"
-        style="@style/main_title_how_to_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/main_title_how_to_connect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_return_list_product" />
-
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/normal_text"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:text="@string/sub_title_how_to_connect"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <ImageView
-        android:id="@+id/ivQRcode"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_third_step" />
-
-    <TextView
-        android:id="@+id/connect_first_step"
-        style="@style/normal_text"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/first_subtitle_how_to_connect"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/connect_second_step"
-        style="@style/normal_text"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/second_subtitle_how_to_connect"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_first_step" />
-
-    <TextView
-        android:id="@+id/connect_third_step"
-        style="@style/normal_text"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="36dp"
-        android:text="@string/third_subtitle_how_to_connect"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_second_step" />
-
-    <TextView
-        android:id="@+id/textView3"
-        style="@style/it_must"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginLeft="36dp"
-        android:text="@string/it_must"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <ImageView
-        android:layout_width="78dp"
-        android:layout_height="100dp"
-        android:src="@drawable/smartphone"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
-        tools:ignore="MissingConstraints" />
-
-
-    <Button
-        android:id="@+id/button_return_list_product"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/beige"
-        android:gravity="center"
-        android:padding="@dimen/default_padding"
-        android:textColor="@color/light_green"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        tools:context=".HowToConnect">
 
-    <ImageView
-        android:id="@+id/return_icon"
-        android:layout_width="@dimen/icon_dimensions"
-        android:layout_height="@dimen/icon_dimensions"
-        android:layout_marginStart="@dimen/label_side_margin"
-        android:layout_marginLeft="@dimen/label_side_margin"
-        android:contentDescription="@string/ic_close_description"
-        android:src="@drawable/ic_arrow_left"
-        android:textColor="@color/dark_green"
-        app:tint="@color/dark_green"
-        app:layout_constraintBottom_toBottomOf="@+id/button_return_list_product"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_return_list_product" />
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/main_title_how_to_connect"
+            app:layout_constraintWidth_default="wrap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/main_title_how_to_connect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_return_list_product" />
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/normal_text"
+            app:layout_constraintWidth_default="wrap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginStart="@dimen/large_margin"
+            android:text="@string/sub_title_how_to_connect"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <ImageView
+            android:id="@+id/ivQRcode"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connect_third_step"
+            android:contentDescription="@string/qr_code_qu_il_faut_scanner" />
+
+        <TextView
+            android:id="@+id/connect_first_step"
+            style="@style/normal_text"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:text="@string/first_subtitle_how_to_connect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/connect_second_step"
+            style="@style/normal_text"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:text="@string/second_subtitle_how_to_connect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connect_first_step" />
+
+        <TextView
+            android:id="@+id/connect_third_step"
+            style="@style/normal_text"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:text="@string/third_subtitle_how_to_connect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connect_second_step" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/it_must"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:text="@string/it_must"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="78dp"
+            android:layout_height="100dp"
+            android:src="@drawable/smartphone"
+            android:layout_marginEnd="@dimen/large_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView6"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/image_de_description" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/button_return_list_product"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/beige"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
+            android:textColor="@color/light_green"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/return_icon"
+            android:layout_width="@dimen/icon_dimensions"
+            android:layout_height="@dimen/icon_dimensions"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:contentDescription="@string/ic_close_description"
+            android:src="@drawable/ic_arrow_left"
+            android:textColor="@color/dark_green"
+            app:tint="@color/dark_green"
+            app:layout_constraintBottom_toBottomOf="@+id/button_return_list_product"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_return_list_product" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

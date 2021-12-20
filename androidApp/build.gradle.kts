@@ -4,6 +4,7 @@ plugins {
     id("kotlin-android")
     id("com.google.gms.google-services")
     id("kotlin-android-extensions")
+    jacoco
 }
 
 dependencies {

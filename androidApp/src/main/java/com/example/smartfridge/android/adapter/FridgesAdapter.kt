@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.FridgesModel
 import com.example.smartfridge.android.MainActivity
@@ -21,10 +20,9 @@ class FridgesAdapter(
     // Box to tidy all the components to control
     class ViewHolder(view : View)  : RecyclerView.ViewHolder(view) {
         // Get the card view that we want to inject
-        val component_card = view.findViewById<CardView>(R.id.card_view)
-        val fridgeName = view.findViewById<TextView>(R.id.title_card)
-        val fridgeTemperature = view.findViewById<TextView>(R.id.temperature_number)
-        val fridgeHumidity = view.findViewById<TextView>(R.id.hygrometry_number)
+        val fridgeName: TextView = view.findViewById(R.id.title_card)
+        val fridgeTemperature: TextView = view.findViewById(R.id.temperature_number)
+        val fridgeHumidity: TextView = view.findViewById(R.id.hygrometry_number)
     }
 
 
@@ -43,8 +41,10 @@ class FridgesAdapter(
 
         // update name, temperature, humidity of current fridge
         holder.fridgeName.text = currentFridge.name
-        holder.fridgeHumidity.text = currentFridge.humidity.toString() + " %"
-        holder.fridgeTemperature.text = currentFridge.temperature.toString() + " °"
+        holder.fridgeTemperature.text = context.resources.getString(
+            R.string.degree, currentFridge.temperature.toString())
+        holder.fridgeHumidity.text = context.resources.getString(
+            R.string.percentage, currentFridge.humidity.toString())
 
     }
 

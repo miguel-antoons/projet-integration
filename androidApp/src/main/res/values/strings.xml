@@ -2,7 +2,7 @@
 <resources>
     <!-- Navigation bar -->
     <string name="bottom_home_item">Accueil</string>
-    <string name="bottom_list_item">Liste produits</string>
+    <string name="bottom_list_item">Produits</string>
     <string name="bottom_settings_item">Paramètres</string>
 
     <!-- Home Page -->
@@ -12,8 +12,8 @@
     <string name="second_name_component_title">Armoire</string>
     <string name="temperature">Température</string>
     <string name="hygrometry">Hygrométrie</string>
-    <string name="degree">00°</string>
-    <string name="percentage">00%</string>
+    <string name="degree">%1$s°</string>
+    <string name="percentage">%1$s%%</string>
     <string name="send_notif">Envoyer une notification</string>
 
     <!-- Product list page -->
@@ -71,7 +71,7 @@
     <string name="title_forms_add">Ajouter un Produits</string>
     <string name="text_name">Nom du Produit  </string>
     <string name="text_asterisk"><font fgcolor='#FF0000'>*</font></string>
-    <string name="text_max_name">max 30 car.</string>
+    <string name="text_max_name">max 50 car.</string>
 
 
     <string name="text_quantite">Quantité du produit</string>
@@ -156,8 +156,17 @@
         Sélectionnez \'Nouvel Emplacment\' pour ajouter un emplacement ou sélectionnez un
         emplacement existant pour modifier celui-ci.
     </string>
-    <string name="scanner_un_code_bar">Scanner un code bar</string>
+    <string name="scanner_un_code_bar">Scanner un code barre</string>
     <string name="reticule_du_lecteur_de_code_barre">Reticule du lecteur de code barre</string>
     <string name="trouvez_les_ingredients_d_un_produit">Trouvez les ingredients d\'un produit</string>
     <string name="liste_des_ingr_dients">Liste des Ingrédients</string>
+    <string name="product_expiration_period_hint">Product expiration period hint</string>
+    <string name="image_de_thermom_tre">Image de thermomètre</string>
+    <string name="image_d_humidit">Image d\'humidité</string>
+    <string name="logo_de_l_application">Logo de l\'application</string>
+    <string name="qr_code_qu_il_faut_scanner">QR-code qu\'il faut scanner</string>
+    <string name="image_de_description">Image de description</string>
+    <string name="j_accepte_avoir_lu_et_accepter_les">J\'accepte avoir lu et accepter les</string>
+    <string name="termes_d_utilisation">termes d\'utilisation</string>
+    <string name="mot_de_passe_oubli">Mot de passe oublié ?</string>
 </resources>
