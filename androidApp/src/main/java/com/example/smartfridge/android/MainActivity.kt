@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val settingsFragment = FragmentSettings(this)
         setCurrentFragment(homeFragment)
 
-        bottomNavBar.setOnNavigationItemSelectedListener {
+        bottomNavBar.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home_page-> setCurrentFragment(homeFragment)
                 R.id.product_page -> setCurrentFragment(productFragment)

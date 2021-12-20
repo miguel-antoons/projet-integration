@@ -25,25 +25,19 @@ class CheckCodeMail : AppCompatActivity() {
         val emailFromForgot = intent
             .getStringExtra("Email")
 
-        //Chang textview through email
-        val tvt_email = findViewById<TextView>(R.id.textView_email).apply {
-
-            text = emailFromForgot
-        }
-
         //code input
 
-        val code_editext = findViewById<EditText>(R.id.editTextCode)
+        val codeEditext = findViewById<EditText>(R.id.editTextCode)
 
-        val button_check_code = findViewById<Button>(R.id.button_continued)
-        button_check_code.setOnClickListener {
+        val buttonCheckCode = findViewById<Button>(R.id.button_continued)
+        buttonCheckCode.setOnClickListener {
 
             // get text in EditText email
 
-            val code_text = code_editext.text.toString().trim { it <= ' ' }
+            val codeText = codeEditext.text.toString().trim { it <= ' ' }
 
             // if edittext is empty
-            if (code_text.isEmpty()) {
+            if (codeText.isEmpty()) {
 
                 Toast.makeText(
                     this@CheckCodeMail,
@@ -54,7 +48,7 @@ class CheckCodeMail : AppCompatActivity() {
 
             } else {
 
-                check_code(emailFromForgot, code_text)
+                checkCode(emailFromForgot, codeText)
 
 
             }
@@ -64,15 +58,15 @@ class CheckCodeMail : AppCompatActivity() {
 
         //Button resend create a new code and send new email
 
-        val button_resend_new_code = findViewById<Button>(R.id.button_resend_code)
-        button_resend_new_code.setOnClickListener {
+        val buttonResendNewCode = findViewById<Button>(R.id.button_resend_code)
+        buttonResendNewCode.setOnClickListener {
 
-            new_code_email(emailFromForgot)
+            newCodeEmail(emailFromForgot)
         }
 
         //BUTTON GO BACK CHECK MAIL PAGE
-        val button_return = findViewById<Button>(R.id.bouton_retour)
-        button_return.setOnClickListener {
+        val buttonReturn = findViewById<Button>(R.id.bouton_retour)
+        buttonReturn.setOnClickListener {
             val i = Intent(this, CheckAndSendEmail::class.java)
 
 
@@ -90,9 +84,9 @@ class CheckCodeMail : AppCompatActivity() {
      * else the email is not found, a message is displayed to tell you
      */
 
-    var essaie = 0
+    private var essaie = 0
 
-    private fun check_code(email: String?, code: String?) {
+    private fun checkCode(email: String?, code: String?) {
 
         // api route
         val putUrl = "https://smartfridge.online/api/users/reset-password/checkcode"
@@ -147,11 +141,11 @@ class CheckCodeMail : AppCompatActivity() {
 
                     Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
                     //Chang textview through email
-                    val tvt_email_text = findViewById<TextView>(R.id.textView_email).text
+                    val tvtEmailText = findViewById<TextView>(R.id.textView_email).text
 
                     Toast.makeText(this, "Go changement de mot de passe", Toast.LENGTH_SHORT).show()
                     val i = Intent(this, UpdatePassword::class.java).apply {
-                        putExtra("Email", tvt_email_text)
+                        putExtra("Email", tvtEmailText)
                         putExtra("Code", code)
                     }
 
@@ -183,7 +177,7 @@ class CheckCodeMail : AppCompatActivity() {
      * else the email is not found, a message is displayed to tell you
      */
 
-    private fun new_code_email(email: String?) {
+    private fun newCodeEmail(email: String?) {
 
         val putUrl = "https://smartfridge.online/api/users/reset-password/checkemail"
         val requestQueue = Volley.newRequestQueue(this)
@@ -206,30 +200,34 @@ class CheckCodeMail : AppCompatActivity() {
                 // RETURN API
                 println(response.getString("message"))
 
-                if (response.getString("message") == "message: this email does not exist") {
+                when {
+                    response.getString("message") == "message: this email does not exist" -> {
 
-                    Toast.makeText(this, "Email n'existe pas", Toast.LENGTH_SHORT).show()
-
-
-                } else if (response.getString("message") == "message: this email exist") {
-
-                    Toast.makeText(this, "Changement de page", Toast.LENGTH_SHORT).show()
-                    val email_champ_full = findViewById<EditText>(R.id.et_email).text.toString()
-
-                    val i = Intent(this, CheckCodeMail::class.java).apply {
-                        putExtra("Email", email_champ_full)
+                        Toast.makeText(this, "Email n'existe pas", Toast.LENGTH_SHORT).show()
 
 
                     }
+                    response.getString("message") == "message: this email exist" -> {
 
-                    startActivity(i)
+                        Toast.makeText(this, "Changement de page", Toast.LENGTH_SHORT).show()
+                        val emailChampFull = findViewById<EditText>(R.id.et_email).text.toString()
+
+                        val i = Intent(this, CheckCodeMail::class.java).apply {
+                            putExtra("Email", emailChampFull)
 
 
-                } else {
+                        }
 
-                    setContentView(R.layout.activity_check_and_send_mail)
+                        startActivity(i)
 
 
+                    }
+                    else -> {
+
+                        setContentView(R.layout.activity_check_and_send_mail)
+
+
+                    }
                 }
                 Toast.makeText(this, "$response", Toast.LENGTH_SHORT).show()
 

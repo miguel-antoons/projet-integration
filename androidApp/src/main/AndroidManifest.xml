@@ -41,9 +41,6 @@
             android:name=".Login"
             android:exported="true"/>
         <activity
-            android:name=".TermsPopUp"
-            android:exported="false" />
-        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:label="SplashScreen"

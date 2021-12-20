@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/product_popup"
-    android:layout_width="320dp"
-    android:layout_height="500dp"
-    android:padding="@dimen/default_padding">
+    android:layout_width="305dp"
+    android:layout_height="470dp"
+    android:padding="@dimen/default_padding"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Top part of the pop-up -->
     <ImageView
@@ -20,9 +30,11 @@
 
     <TextView
         android:id="@+id/product_title"
-        android:layout_width="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/popup_title"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/invisible_view"
         app:layout_constraintEnd_toStartOf="@+id/product_status"
         app:layout_constraintStart_toEndOf="@+id/close_popup"
@@ -55,49 +67,57 @@
     <!-- Expiration Date -->
     <TextView
         android:id="@+id/expiration_date_title"
-        android:layout_width="@dimen/product_characteristics"
+        style="@style/popup_subtitle"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
-        android:padding="@dimen/default_padding"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/expiration_date_title"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/invisible_view"
-        style="@style/popup_subtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/invisible_view" />
 
     <TextView
         android:id="@+id/expiration_date"
-        android:layout_width="@dimen/product_characteristics"
+        style="@style/popup_default"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/def_expiration_date"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expiration_date_title"
-        style="@style/popup_default" />
+        app:layout_constraintTop_toBottomOf="@+id/expiration_date_title" />
 
     <!-- Brand -->
     <TextView
         android:id="@+id/period_title"
-        android:layout_width="@dimen/product_characteristics"
+        style="@style/popup_subtitle"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
-        android:padding="@dimen/default_padding"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/product_period_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/invisible_view"
-        style="@style/popup_subtitle" />
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/invisible_view" />
 
     <TextView
         android:id="@+id/period"
         style="@style/popup_default"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/def_product_period"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/period_title" />
 
     <!-- Row 2 -->
@@ -105,23 +125,27 @@
     <TextView
         android:id="@+id/quantity_title"
         style="@style/popup_subtitle"
-        android:layout_width="@dimen/product_characteristics"
-        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/quantity_title"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expiration_date" />
 
     <TextView
         android:id="@+id/quantity"
         style="@style/popup_default"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/def_quantity"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quantity_title" />
 
@@ -129,24 +153,28 @@
     <TextView
         android:id="@+id/brand_title"
         style="@style/popup_subtitle"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/product_brand_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/expiration_date" />
 
     <TextView
         android:id="@+id/brand"
         style="@style/popup_default"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/def_product_brand"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/quantity_title" />
 
     <!-- Row 3 -->
@@ -154,72 +182,84 @@
     <TextView
         android:id="@+id/category_title"
         style="@style/popup_subtitle"
-        android:layout_width="@dimen/product_characteristics"
-        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/category_title"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
     <TextView
         android:id="@+id/category"
-        android:layout_width="@dimen/product_characteristics"
+        style="@style/popup_default"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/def_category"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_title"
-        style="@style/popup_default" />
+        app:layout_constraintTop_toBottomOf="@+id/category_title" />
 
     <!-- Product location -->
     <TextView
         android:id="@+id/product_location_title"
         style="@style/popup_subtitle"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/product_location_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/brand" />
 
     <TextView
         android:id="@+id/product_location"
-        android:layout_width="@dimen/product_characteristics"
+        style="@style/popup_default"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/def_product_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_location_title"
-        style="@style/popup_default" />
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/product_location_title" />
 
     <!-- Row 4 -->
     <!-- Ecoscore -->
     <TextView
         android:id="@+id/product_ecoscore_title"
-        android:layout_width="@dimen/product_characteristics"
+        style="@style/popup_subtitle"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
-        android:padding="@dimen/default_padding"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/product_ecoscore_title"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category"
-        style="@style/popup_subtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/category" />
 
     <TextView
         android:id="@+id/product_ecoscore"
         style="@style/popup_default"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/def_product_ecoscore"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_ecoscore_title" />
 
@@ -227,24 +267,28 @@
     <TextView
         android:id="@+id/product_nutriscore_title"
         style="@style/popup_subtitle"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/product_nutriscore_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/product_location" />
 
     <TextView
         android:id="@+id/product_nutriscore"
         style="@style/popup_default"
-        android:layout_width="@dimen/product_characteristics"
+        app:layout_constraintWidth_default="spread"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/default_padding"
         android:text="@string/def_product_ecoscore"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/product_nutriscore_title" />
 
     <!-- Row 5 -->
@@ -265,11 +309,15 @@
     <TextView
         android:id="@+id/product_ingredients"
         style="@style/popup_default"
-        android:layout_width="@dimen/ingredients"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
+        app:layout_constrainedHeight="true"
+        android:layout_margin="@dimen/default_margin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:gravity="center"
+        android:padding="@dimen/default_padding"
         android:text="@string/def_product_ingredients"
+        android:scrollbars = "vertical"
+        app:layout_constraintBottom_toTopOf="@+id/delete_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_ingredients_title" />
@@ -282,14 +330,13 @@
         android:layout_width="@dimen/popup_button_width"
         android:layout_height="@dimen/popup_button_height"
         android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginLeft="@dimen/button_side_margin"
-        android:layout_marginStart="@dimen/button_side_margin"
         android:background="@color/delete_red"
-        android:textColor="@color/white"
         android:gravity="center"
-        android:textAllCaps="false"
         android:text="@string/delete_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Modify button -->
@@ -298,14 +345,13 @@
         android:layout_width="@dimen/popup_button_width"
         android:layout_height="@dimen/popup_button_height"
         android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginRight="@dimen/button_side_margin"
-        android:layout_marginEnd="@dimen/button_side_margin"
-        android:gravity="center"
-        android:textAllCaps="false"
         android:background="@color/light_grey"
-        android:textColor="@color/black"
+        android:gravity="center"
         android:text="@string/modify_button"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
