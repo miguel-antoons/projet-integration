@@ -15,12 +15,13 @@
 
     <!-- Product pop-up -->
     <dimen name="icon_dimensions">40dp</dimen>
-    <dimen name="product_characteristics">160dp</dimen>
+    <dimen name="product_characteristics">120dp</dimen>
     <dimen name="ingredients">310dp</dimen>
     <dimen name="popup_button_height">35dp</dimen>
     <dimen name="popup_button_width">110dp</dimen>
     <dimen name="button_side_margin">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="very_large_margin">40dp</dimen>
 
     <!-- add product form -->
     <dimen name="input_width">335dp</dimen>
