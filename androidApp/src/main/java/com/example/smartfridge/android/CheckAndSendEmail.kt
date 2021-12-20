@@ -113,7 +113,7 @@ class CheckAndSendEmail : AppCompatActivity() {
 
 
                 }
-                Toast.makeText(this, "$response", Toast.LENGTH_SHORT).show()
+
 
 
             }
