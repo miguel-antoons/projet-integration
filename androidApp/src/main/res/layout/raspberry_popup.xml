@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/product_popup"
-    android:layout_width="320dp"
+    android:layout_width="305dp"
     android:layout_height="350dp"
     android:padding="@dimen/default_padding">
 

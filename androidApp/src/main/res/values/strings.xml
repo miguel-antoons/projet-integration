@@ -163,4 +163,7 @@
     <string name="product_expiration_period_hint">Product expiration period hint</string>
     <string name="image_de_thermom_tre">Image de thermomètre</string>
     <string name="image_d_humidit">Image d\'humidité</string>
+    <string name="logo_de_l_application">Logo de l\'application</string>
+    <string name="qr_code_qu_il_faut_scanner">QR-code qu\'il faut scanner</string>
+    <string name="image_de_description">Image de description</string>
 </resources>
