@@ -167,9 +167,10 @@ class SignUp : AppCompatActivity() {
             return false
         }
 
+        /**
         if (!etTerms_checkbox.isChecked) {
             etTerms_checkbox.setError(("Veuillez accepter les termes d'utilisation !"))
-        }
+        }**/
         return true
     }
 
@@ -243,65 +244,70 @@ class SignUp : AppCompatActivity() {
 
     // Hook click event
     private fun performSignUp() {
-        // If all the fields are correct the go further
 
-        // Input is valid, here send data to your server
-        val username = etUsername.text.toString()
-        val email = etEmail.text.toString()
+        if (!etTerms_checkbox.isChecked) {
+            etTerms_checkbox.setError(("Veuillez accepter les termes d'utilisation !"))
+        } else {
+            // If all the fields are correct the go further
+
+            // Input is valid, here send data to your server
+            val username = etUsername.text.toString()
+            val email = etEmail.text.toString()
 
 
-        /**
-         * This example of code check that indeed, when we compare a wrong password with the effective hash code
-         * we get from the result -> Password not verified !
+            /**
+             * This example of code check that indeed, when we compare a wrong password with the effective hash code
+             * we get from the result -> Password not verified !
 
-        val hashPassword1 = "eliott123"
-        val hashPassword2 = "test123"
-        val bcryptHashString2 = BCrypt.withDefaults().hashToString(12, hashPassword2.toCharArray())
-        // same with 1
+            val hashPassword1 = "eliott123"
+            val hashPassword2 = "test123"
+            val bcryptHashString2 = BCrypt.withDefaults().hashToString(12, hashPassword2.toCharArray())
+            // same with 1
 
-        val result2 = BCrypt.verifyer().verify(hashPassword.toCharArray(), bcryptHashString2)
-        // same with 1
+            val result2 = BCrypt.verifyer().verify(hashPassword.toCharArray(), bcryptHashString2)
+            // same with 1
 
-        if (result2.verified) {
-        Toast.makeText(this, "Password verified !", Toast.LENGTH_SHORT).show()
-        }
-        else {
-        Toast.makeText(this, "Password not verified !", Toast.LENGTH_SHORT).show()
-        }
-         **/
-
-        // println(getRandomString(12))
-        // Here you can call your API
-        val postUrl = "https://smartfridge.online/api/addUser"
-        val requestQueue = Volley.newRequestQueue(this)
-
-        val postData = JSONObject()
-        try {
-            postData.put("Username", username)
-            postData.put("Password", passwordHash(etPassword.text.toString()))
-            postData.put("Email", email)
-            postData.put("Locations", JSONArray(arrayListOf("Emplacement Temporaire")))
-
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, postData,
-            { response ->
-                Log.d("responseCode", response.toString())
-                Toast.makeText(this, "Inscription réussie !", Toast.LENGTH_SHORT).show()
-
-                // creation de notre intent
-                val monIntent : Intent =  Intent(this,Login::class.java)
-                // start MainActivity
-                startActivity(monIntent)
-
+            if (result2.verified) {
+            Toast.makeText(this, "Password verified !", Toast.LENGTH_SHORT).show()
             }
-        ) { _ ->
-            Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
-        }
-        requestQueue.add(jsonObjectRequest)
+            else {
+            Toast.makeText(this, "Password not verified !", Toast.LENGTH_SHORT).show()
+            }
+             **/
 
+            // println(getRandomString(12))
+            // Here you can call your API
+            val postUrl = "https://smartfridge.online/api/addUser"
+            val requestQueue = Volley.newRequestQueue(this)
+
+            val postData = JSONObject()
+            try {
+                postData.put("Username", username)
+                postData.put("Password", passwordHash(etPassword.text.toString()))
+                postData.put("Email", email)
+                postData.put("Locations", JSONArray(arrayListOf("Emplacement Temporaire")))
+
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+
+            val jsonObjectRequest = JsonObjectRequest(
+                Request.Method.POST, postUrl, postData,
+                { response ->
+                    Log.d("responseCode", response.toString())
+                    Toast.makeText(this, "Inscription réussie !", Toast.LENGTH_SHORT).show()
+
+                    // creation de notre intent
+                    val monIntent: Intent = Intent(this, Login::class.java)
+                    // start MainActivity
+                    startActivity(monIntent)
+
+                }
+            ) { _ ->
+                Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show()
+            }
+            requestQueue.add(jsonObjectRequest)
+
+        }
     }
 }
