@@ -1,81 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BarcodeReader">
 
-    <ImageButton
-        android:id="@+id/button_return_scan"
-        android:layout_width="40dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="@dimen/label_side_margin"
-        android:background="@color/beige"
-        android:contentDescription="@string/ic_close_description"
-        android:gravity="center"
-        android:padding="@dimen/default_padding"
-        android:src="@drawable/ic_arrow_left"
-        android:textColor="@color/dark_green"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/dark_green" />
-
-    <androidx.camera.view.PreviewView
-        android:id="@+id/preview_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_return_scan" />
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/button_return_scan"
+            android:layout_width="40dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="@dimen/label_side_margin"
+            android:background="@color/beige"
+            android:contentDescription="@string/ic_close_description"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
+            android:src="@drawable/ic_arrow_left"
+            android:textColor="@color/dark_green"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dark_green" />
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_return_scan" />
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="250dp"
-        android:layout_height="323dp"
-        android:layout_gravity="center"
-        android:alpha=".35"
-        android:contentDescription="@string/reticule_du_lecteur_de_code_barre"
-        android:src="@drawable/ic_barcode_square_reticle"
-        app:layout_constraintBottom_toBottomOf="@+id/preview_view"
-        app:layout_constraintEnd_toEndOf="@+id/preview_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/preview_view" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="250dp"
+            android:layout_height="323dp"
+            android:layout_gravity="center"
+            android:alpha=".35"
+            android:contentDescription="@string/reticule_du_lecteur_de_code_barre"
+            android:src="@drawable/ic_barcode_square_reticle"
+            app:layout_constraintBottom_toBottomOf="@+id/preview_view"
+            app:layout_constraintEnd_toEndOf="@+id/preview_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/preview_view" />
 
-    <TextView
-        android:id="@+id/title_scan_section"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:text="@string/liste_des_ingr_dients"
-        android:textAlignment="center"
-        android:textColor="@color/light_green"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preview_view"
-        tools:ignore="RtlCompat" />
-
-
-    <TextView
-        android:id="@+id/title_scan"
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/light_green"
-        android:paddingTop="20dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_scan_section"
-        android:scrollbars="vertical"
-        android:layout_height="210dp"/>
+        <TextView
+            android:id="@+id/title_scan_section"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:text="@string/liste_des_ingr_dients"
+            android:textAlignment="center"
+            android:textColor="@color/light_green"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preview_view"
+            tools:ignore="RtlCompat" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/title_scan"
+            app:layout_constraintHeight_default="spread"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/light_green"
+            android:paddingTop="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_scan_section"
+            android:scrollbars="vertical"
+            android:layout_height="match_parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
