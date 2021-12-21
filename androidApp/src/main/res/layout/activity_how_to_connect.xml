@@ -124,18 +124,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+
+        <ImageButton
             android:id="@+id/return_icon"
             android:layout_width="@dimen/icon_dimensions"
             android:layout_height="@dimen/icon_dimensions"
             android:layout_marginStart="@dimen/label_side_margin"
+            android:background="@color/beige"
             android:contentDescription="@string/ic_close_description"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
             android:src="@drawable/ic_arrow_left"
             android:textColor="@color/dark_green"
-            app:tint="@color/dark_green"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/button_return_list_product"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_return_list_product" />
+            app:layout_constraintTop_toTopOf="@+id/button_return_list_product"
+            app:tint="@color/dark_green" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
