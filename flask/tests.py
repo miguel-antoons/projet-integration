@@ -89,14 +89,13 @@ class PlaylistsTests(TestCase):
         with unittest.mock.patch('api.login.users') as MockUser:
             # Force the return value of users.find(req) to sample_user
             MockUser.find.return_value = [sample_user]
-            user_password = {"Email" : "sendme@gmail.com", "Password" : "Test12345"} 
+            user_password = {"Email": "sendme@gmail.com", "Password": "Test12345"}
             with self.client.post("/api/login", json=user_password, headers=self.headers) as res:
                 self.assertEqual(res.status_code, 200)
                 # DATA
                 res = json.loads(res.data.decode("utf-8"))
                 self.assertEqual(res["Username"], sample_user["Username"])
                 self.assertEqual(res["Email"], sample_user["Email"])
-
 
     def test_get_email(self):
         # Mock the user value in ./api.users.py
@@ -148,7 +147,8 @@ class PlaylistsTests(TestCase):
             # TEST API USER /api/users/reset-password/checkcode'
             # Check Email
             with self.client.put(
-                    f'/api/users/reset-password/checkcode', json={"Email": "sendme@gmail.com","Code":"628476"}) as result:
+                    f'/api/users/reset-password/checkcode',
+                    json={"Email": "sendme@gmail.com", "Code": "628476"}) as result:
                 # STATUS
                 self.assertEqual(result.status, '200 OK')
                 # Content Type
@@ -166,7 +166,8 @@ class PlaylistsTests(TestCase):
             # TEST API USER /api/users/reset-password/checkcode'
             # Check Email
             with self.client.put(
-                    f'/api/users/reset-password/checkcode', json={"Email": "sendme@gmail.com","Code":"111111"}) as result:
+                    f'/api/users/reset-password/checkcode',
+                    json={"Email": "sendme@gmail.com", "Code": "111111"}) as result:
                 # STATUS
                 self.assertEqual(result.status, '200 OK')
                 # Content Type
@@ -184,7 +185,8 @@ class PlaylistsTests(TestCase):
             # TEST API USER /api/users/update-password
             # Check Email
             with self.client.put(
-                    f'/api/users/update-password', json={"Email": "sendme@gmail.com","Code":"111111","Password":"Test1234"}) as result:
+                    f'/api/users/update-password',
+                    json={"Email": "sendme@gmail.com", "Code": "111111", "Password": "Test1234"}) as result:
                 # STATUS
                 self.assertEqual(result.status, '200 OK')
                 # Content Type
@@ -202,20 +204,14 @@ class PlaylistsTests(TestCase):
             # TEST API USER /api/users/update-password
             # Check Email
             with self.client.put(
-                    f'/api/users/update-password', json={"Email": "sendme@gmail.com","Code":"111111","Password":"Test1234"}) as result:
+                    f'/api/users/update-password',
+                    json={"Email": "sendme@gmail.com", "Code": "111111", "Password": "Test1234"}) as result:
                 # STATUS
                 self.assertEqual(result.status, '200 OK')
                 # Content Type
                 self.assertEqual(result.content_type, "text/html; charset=utf-8")
                 # DATA
                 self.assertEqual(result.data, b'["Password Update is ok"]')
-
-
-
-
-
-
-
 
     def test_update_password_put(self):
         # Mock the food value in ./api.users.py
@@ -297,6 +293,19 @@ class PlaylistsTests(TestCase):
                 self.assertEqual(res.status_code, 200)
                 self.assertEqual(res.data, b'{"Response":"Food was updated"}\n')
 
+
+# ---------------------------------------API ACCOUNT ---------------------------------------------------
+
+    def test_delete_account(self):
+        with unittest.mock.patch('api.delete_account.food') as MockFood:
+            MockFood.remove.return_value = sample_food
+            with unittest.mock.patch('api.delete_account.users') as MockUsers:
+                with self.client.delete('/api/account', headers=self.headers) as res:
+                    MockFood.remove.assert_called()
+                    MockUsers.remove.assert_called()
+                    self.assertEqual(res.status_code, 200)
+                    self.assertEqual(res.data, b'{"Response":"All Food of the user and the user account were '
+                                               b'removed"}\n')
 
 if __name__ == '__main__':
     unittest_main()

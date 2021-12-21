@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/delete_account_popup"
+    android:layout_width="305dp"
+    android:layout_height="350dp"
+    android:padding="@dimen/default_padding">
+
+    <ImageView
+        android:id="@+id/close_popup_account"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:contentDescription="@string/ic_close_description"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@+id/delete_account_popup_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/delete_account_popup_title" />
+
+    <TextView
+        android:id="@+id/delete_account_popup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="@string/attention"
+        android:layout_marginTop="@dimen/location_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/delete_account_popup_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/location_margin_top"
+        android:text="@string/decription_delete_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_account_popup_title" />
+
+
+    <Button
+        android:id="@+id/delte_account_popup_discard"
+        android:layout_width="@dimen/popup_button_width"
+        android:layout_height="@dimen/popup_button_height"
+        android:layout_marginBottom="@dimen/location_margin_top"
+        android:background="@color/delete_red"
+        android:text="@string/raspberry_popup_discard"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
