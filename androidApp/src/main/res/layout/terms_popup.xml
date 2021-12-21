@@ -1,17 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="320dp"
-    android:layout_height="400dp"
-    android:padding="@dimen/default_padding">
+    android:id="@+id/terms_popup"
+    android:layout_width="380dp"
+    android:layout_height="wrap_content">
 
-    <TextView
+    <ScrollView
+        android:id="@+id/terms_scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Introduction -->
+            <TextView
+                style="@style/terms_main_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/terms_main_title" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_introduction" />
+
+            <!-- Objectif -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_first_title" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_first_paragraph_01" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_first_paragraph_02" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_first_paragraph_03" />
+
+            <!-- Quelle est la portée de cette politique ? -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_second_title" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_second_paragraph_01" />
+
+            <!--Quelles données sont couvertes par notre politique ? -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_third_title" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_third_paragraph_01" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_third_paragraph_02" />
+
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_third_paragraph_03" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_third_paragraph_04" />
+
+            <!-- Fourth paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fourth_title" />
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fourth_paragraph_01" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fourth_paragraph_02" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fourth_paragraph_03" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fourth_paragraph_04" />
+
+            <!-- Fifth paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fifth_title" />
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fifth_paragraph_01" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fifth_paragraph_02" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_fifth_paragraph_03" />
+
+            <!-- Sixth paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_sixth_title" />
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_sixth_paragraph_01" />
+
+            <!-- Seventh paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_seventh_title" />
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_seventh_paragraph_01" />
+
+            <!-- Eighth paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_eighth_title" />
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_eighth_paragraph_01" />
+
+            <!-- Ninth paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_title" />
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_01" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_02" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_03" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_04" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_05" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_06" />
+            <TextView
+                style="@style/terms_with_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_ninth_paragraph_07" />
+
+            <!-- Tenth paragraph -->
+            <TextView
+                style="@style/terms_main_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_tenth_title" />
+
+            <TextView
+                style="@style/terms_paragraphs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_tenth_paragraph_01" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
