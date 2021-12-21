@@ -103,7 +103,7 @@ class CheckAndSendEmail : AppCompatActivity() {
                     val i = Intent(this, CheckCodeMail::class.java).apply {
                         putExtra("Email", email_champ_full)
                     }
-
+                    Toast.makeText(this, "Voici l'email : $email_champ_full", Toast.LENGTH_SHORT).show()
                     startActivity(i)
 
 

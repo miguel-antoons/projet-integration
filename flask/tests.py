@@ -209,7 +209,7 @@ class PlaylistsTests(TestCase):
         # Mock the user value in ./api.users.py
         with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users') as MockSend:
             # Force the return value of food.find() to sample_food
-            MockUsers.find.return_value = sample_user
+            MockUsers.find.return_value = [sample_user]
             # Sample user
 
             # TEST API USER /api/users/update-password
@@ -228,7 +228,7 @@ class PlaylistsTests(TestCase):
         # Mock the user value in ./api.users.py
         with unittest.mock.patch('api.users.users') as MockUsers, unittest.mock.patch('api.users') as MockSend:
             # Force the return value of food.find() to sample_food
-            MockUsers.find.return_value = sample_user
+            MockUsers.find.return_value = [sample_user]
             # Sample user
 
             # TEST API USER /api/users/update-password

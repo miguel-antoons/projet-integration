@@ -4,7 +4,7 @@
 import os
 # Library
 import random
-
+from argon2 import PasswordHasher
 from dotenv import load_dotenv
 # Flask Library
 from flask import Blueprint, request, json
@@ -170,10 +170,16 @@ def update_password():
     if request.method == 'PUT':
        
         #Check email address
-        email_exist = list(users.find({"Email" : email,"Code" : code}))
+        email_exist = list(users.find({"Email": email}, {"Code": 1}))
         print(email_exist)
+        for i in email_exist:
+            print(i['Code'])
+            if code == i['Code']:
+                print("Code OK")
+            else:
+                print("NO OK")
 
-        if email_exist:
+        if email_exist and code == i['Code']:
 
             #Update the code via email
             users.find_one_and_update(
