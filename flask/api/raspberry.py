@@ -10,12 +10,12 @@ from .database import users, raspberry
 app_raspberry = Blueprint('raspberry', __name__)
 
 
-
 def api_raspberry():
     if request.method == 'POST':
         return link_raspberry(request.json)
     elif request.method == 'PUT':
         return validate_raspberry(request.json)
+
 
 @app_raspberry.route('/api/raspberry', methods=['POST'])
 def link_raspberry():
@@ -38,9 +38,9 @@ def link_raspberry():
             "location": "",
             "status": "waiting",
             "secret": secret_key,
-            "Light" : 0.0,
-            "Temperature" : 0.0,
-            "Humidity" : 0.0
+            "Light": 0.0,
+            "Temperature": 0.0,
+            "Humidity": 0.0
         })
 
         return json.dumps({
@@ -52,6 +52,7 @@ def link_raspberry():
     return json.dumps({
         "status": 0
     })
+
 
 @app_raspberry.route('/api/raspberry', methods=['PUT'])
 @jwt_required()
