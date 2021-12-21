@@ -14,14 +14,13 @@
         <TextView
             android:id="@+id/textView4"
             style="@style/main_title_how_to_connect"
-            app:layout_constrainedWidth="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/main_title_how_to_connect"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_return_list_product" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView6"
@@ -110,20 +109,6 @@
             android:contentDescription="@string/image_de_description" />
 
 
-        <Button
-            android:id="@+id/button_return_list_product"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@color/beige"
-            android:gravity="center"
-            android:padding="@dimen/default_padding"
-            android:textColor="@color/light_green"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
         <ImageButton
             android:id="@+id/return_icon"
             android:layout_width="@dimen/icon_dimensions"
@@ -136,9 +121,8 @@
             android:src="@drawable/ic_arrow_left"
             android:textColor="@color/dark_green"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/button_return_list_product"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_return_list_product"
+            app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/dark_green" />
 
 

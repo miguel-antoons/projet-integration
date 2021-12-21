@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
@@ -22,12 +23,8 @@ class HowToConnect : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_how_to_connect)
 
-        val returnImage = findViewById<ImageView>(R.id.return_icon)
-        ViewCompat.setTranslationZ(returnImage, 10F)
-
         // Button event
-        val button_return = findViewById<TextView>(R.id.button_return_list_product)
-        ViewCompat.setElevation(button_return, 1F)
+        val button_return = findViewById<ImageButton>(R.id.return_icon)
         button_return.setOnClickListener {
             // end the activity and return to the previous fragment
             finish()
