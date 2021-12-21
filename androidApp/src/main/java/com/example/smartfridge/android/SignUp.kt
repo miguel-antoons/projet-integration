@@ -169,7 +169,7 @@ class SignUp : AppCompatActivity() {
 
         /**
         if (!etTerms_checkbox.isChecked) {
-            etTerms_checkbox.setError(("Veuillez accepter les termes d'utilisation !"))
+        etTerms_checkbox.setError(("Veuillez accepter les termes d'utilisation !"))
         }**/
         return true
     }

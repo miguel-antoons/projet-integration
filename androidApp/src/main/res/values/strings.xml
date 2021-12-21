@@ -174,4 +174,64 @@
     <string name="supprimer_son_compte">supprimer son compte</string>
     <string name="attention">ATTENTION</string>
     <string name="decription_delete_account">Supprimer un compte est irreversible, vous perdrez vos données de connexion ainsi que vos listes de produits !</string>
+
+    <!-- Terms Pop Up -->
+    <string name="terms_main_title">Politique "Vie Privée" de SmartFridge Company</string>
+    <string name="terms_introduction">Merci de lire attentivement la présente Politique de protection de la vie privée. En utilisant certains de nos services, en contractant avec nous, et/ou en acceptant nos conditions générales, vous acceptez d’être lié sans réserve à la présente Politique de protection de la vie privée.</string>
+
+        <!-- First paragraph -->
+    <string name="terms_first_title">Objectifs</string>
+    <string name="terms_first_paragraph_01">Ce document constitue la politique "Vie Privée" mise en oeuvre par SmartFridge Company dans le cadre de ses activités. La protection de votre vie privée et de vos données à caractère personnel est d\'une importance capitale pour SmartFridge Company.</string>
+    <string name="terms_first_paragraph_02">Cette politique « Vie Privée » est rédigée afin de garantir le respect du Règlement européen 2016/679 du 27 avril 2016 relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données, et abrogeant la Directive 95/46/EC (Règlement général sur la protection des données, ou <bold>RGPD</bold>).</string>
+    <string name="terms_first_paragraph_03">Cette politique "Vie Privée" a pour but de vous informer au mieux sur le sujet et qui explique comment nous traitons vos données personnelles au sein de notre application SmartFridge.</string>
+
+        <!-- Second paragraph -->
+    <string name="terms_second_title">Quelle est la portée de cette politique ?</string>
+    <string name="terms_second_paragraph_01">Nous recueillons et utilisons uniquement les données personnelles qui sont nécessaires dans le cadre de nos activités et qui nous permettent de représenter les articles qui se trouvent dans vos endroits de stockage (frigos, armoires, paniers, …).</string>
+
+    <!-- Third paragraph -->
+    <string name="terms_third_title">Quelles données sont couvertes par notre politique ?</string>
+    <string name="terms_third_paragraph_01">Les données couvertes par la présente politique sont les données à caractère personnel des personnes physiques, c’est-à-dire des données qui permettent directement ou indirectement d’identifier une personne.</string>
+    <string name="terms_third_paragraph_02">Dans le cadre de vos relations et interactions avec SmartFridge Company, nous pouvons être amenés à collecter différentes données à caractère personnel, telles que :</string>
+    <string name="terms_third_paragraph_03">• <bold>Des données d\'identification et de contact</bold> (nom, prénom, adresse mail).</string>
+    <string name="terms_third_paragraph_04">Nous ne traitons jamais de données relatives à vos origines raciales ou ethniques, vos opinions politiques, votre religion, vos convictions philosophiques ou l’appartenance syndicale, vos données génétiques, votre vie sexuelle ou orientation sexuelle à moins que la législation nous l\'impose ou que cela résulte de l\'exécution que vous faites de nos produits et services (exemple : vous mentionnez ce type d\'information).</string>
+
+    <!-- Fourth paragraph -->
+    <string name="terms_fourth_title">Principes pour traiter les données à caractères personnel</string>
+    <string name="terms_fourth_paragraph_01">SmartFridge respectera entre autres les principes suivants lors des traitements des données à caractère personnel :</string>
+    <string name="terms_fourth_paragraph_02">• <bold>Traitement de données licite</bold> ("qui est permis par la loi, par l'autorité établie").</string>
+    <string name="terms_fourth_paragraph_03">• <bold>Minimisation du traitement des données :</bold> SmartFridge Company limite le traitement des données à caractère personnel à ce qui est nécessaire dans le cadre de ses activités.</string>
+    <string name="terms_fourth_paragraph_04">• <bold>Mesure de sécurité : </bold>SmartFridge Company prend les mesures techniques et/ou organisationnelles nécessaires et adéquates pour la sécurité des données à caractère personnel.</string>
+
+    <!-- Fifth paragraph -->
+    <string name="terms_fifth_title"> Quand vos données à caractère personnel sont-elles collectées ?</string>
+    <string name="terms_fifth_paragraph_01">Vos données sont uniquement collectées par notre entreprise SmartFridge Company ; aucune donnée n\'est fournie ou transmise à d\'autres entreprises. A quel moment ?</string>
+    <string name="terms_fifth_paragraph_02">• Lorsque vous devenez membre après avoir rempli le formulaire d\'inscription. Seule les données d\'identification et de contact sont collectées.</string>
+    <string name="terms_fifth_paragraph_03">• Lorsque vous scanner ou introduisez manuellement un article (uniquement les informations en rapport avec l\'article : date de péremption, poids, matières grasses, énergie (kcal), protéines, glucides et tous les ingrédients qui le composent).</string>
+
+    <!-- Sixth paragraph -->
+    <string name="terms_sixth_title">Sur quel fondement et pourquoi utilisons-nous vos données personnelles ?</string>
+    <string name="terms_sixth_paragraph_01">Nous traitons vos données personnelles en vue de vous fournir les services que nous proposons : l\'affichage de vos diverses articles entreposés dans vos espaces de stockage. Nous pouvons alors vous fournir une liste complète des articles ainsi que leur date de péremption correspondant.</string>
+
+    <!-- Seventh paragraph -->
+    <string name="terms_seventh_title">Qui a accès à vos données et à qui sont-elles transférées ?</string>
+    <string name="terms_seventh_paragraph_01">Les uniques personnes ayant accès à vos données sont les développeurs qui, lorsque qu\'une maintenance ou une demande particulière d\'un client doit être effectuée, ont indirectement accès à vos données à caractère personnel. Mais aucun intervenant externe au secteur de développement n\'a accès aux données. Nous nous assurons qu\'ils traitent vos données d\'une manière sûre et respectueuse. De manière plus générale, nous ne vendons aucune de vos données personnelles à des tiers.</string>
+
+    <!-- Eighth paragraph -->
+    <string name="terms_eighth_title">Combien de temps conservons-nous vos données ?</string>
+    <string name="terms_eighth_paragraph_01">Nous conservons vos données personnelles pour une durée de 3 ans comme le stipule la loi. Une chose importante à souligner est le fait que tout utilisateur est autorisé à supprimer son compte ainsi que les données qui le contiennent via un bouton "Supprimer mon compte" sur la page Paramètres de notre application SmartFridge.</string>
+
+    <!-- Ninth paragraph -->
+    <string name="terms_ninth_title">Quels sont vos droits et comment les exercer ?</string>
+    <string name="terms_ninth_paragraph_01">Vous disposez de différents droits :</string>
+    <string name="terms_ninth_paragraph_02">• Le droit de demander l\'accès aux données à caractère personnel;</string>
+    <string name="terms_ninth_paragraph_03">• Le droit à la rectification;</string>
+    <string name="terms_ninth_paragraph_04">• Le droit à l\'effacement des données;</string>
+    <string name="terms_ninth_paragraph_05">• Le droit de s’opposer au traitement;</string>
+    <string name="terms_ninth_paragraph_06">• Le droit de retirer son consentement;</string>
+    <string name="terms_ninth_paragraph_07">• Le droit de demander une limitation du traitement.</string>
+
+    <!-- Tenth paragraph -->
+    <string name="terms_tenth_title">Comment nous contacter ?</string>
+    <string name="terms_tenth_paragraph_01">Si vous avez des questions concernant l’utilisation de vos données personnelles visée par la présente politique, vous nous contacter par e-mail à l’adresse smart.fridge.teams@gmail.com.</string>
 </resources>
