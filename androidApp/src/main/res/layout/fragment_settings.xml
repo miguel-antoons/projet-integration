@@ -60,4 +60,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_location" />
 
+
+    <Button
+        android:id="@+id/delete_account"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/settings_button_margin_top"
+        android:background="@drawable/button_delete_account"
+        android:text="@string/supprimer_son_compte"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disconnect" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

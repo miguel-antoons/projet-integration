@@ -169,4 +169,7 @@
     <string name="j_accepte_avoir_lu_et_accepter_les">J\'accepte avoir lu et accepter les</string>
     <string name="termes_d_utilisation">termes d\'utilisation</string>
     <string name="mot_de_passe_oubli">Mot de passe oublié ?</string>
+    <string name="supprimer_son_compte">supprimer son compte</string>
+    <string name="attention">ATTENTION</string>
+    <string name="decription_delete_account">Supprimer un compte est irreversible, vous perdrez vos données de connexion ainsi que vos listes de produits !</string>
 </resources>

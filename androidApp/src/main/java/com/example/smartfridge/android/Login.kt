@@ -56,7 +56,7 @@ class Login : AppCompatActivity() {
             val monIntent : Intent =  Intent(this,CheckAndSendEmail::class.java)
             // start MainActivity
             startActivity(monIntent)
-            Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+
         }
 
         // show or hide password

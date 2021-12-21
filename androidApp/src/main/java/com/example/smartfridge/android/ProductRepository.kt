@@ -398,7 +398,7 @@ object ProductRepository {
     }
 
     // load Email and password pre-recorded
-    private fun loadToken(context : Context) : String? {
+    fun loadToken(context : Context) : String? {
         val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         return sharedPreferences.getString("TOKEN", null)
     }
