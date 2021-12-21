@@ -31,6 +31,11 @@ class UpdatePassword : AppCompatActivity() {
         //Recover the email from the previous activity
         val emailFromForgot = intent
             .getStringExtra("Email")
+        Toast.makeText(
+            this,
+            "Pour l'émail :  : $emailFromForgot",
+            Toast.LENGTH_SHORT
+        ).show()
 
         //display email
 
@@ -207,6 +212,8 @@ class UpdatePassword : AppCompatActivity() {
 
         val code = intent
             .getStringExtra("Code")
+
+
 
         //hash password
         //val password_hash = passwordHash(password.toString())

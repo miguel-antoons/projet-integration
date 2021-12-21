@@ -145,7 +145,7 @@ class CheckCodeMail : AppCompatActivity() {
 
 
                     val i = Intent(this, UpdatePassword::class.java).apply {
-                        putExtra("Email", tvtEmailText)
+                        putExtra("Email", email)
                         putExtra("Code", code)
                     }
 
