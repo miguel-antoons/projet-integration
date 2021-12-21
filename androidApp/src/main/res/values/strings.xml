@@ -141,7 +141,7 @@
     <string name="raspberry_popup_location">Emplacement existant</string>
     <string name="raspberry_popup_new_location">Nouvel emplacement</string>
     <string name="raspberry_popup_save">Enregistrer</string>
-    <string name="raspberry_popup_discard">Supprimmer</string>
+    <string name="raspberry_popup_discard">Supprimer</string>
     <string name="raspberry_popup_hint">Nouvel emplacement</string>
 
     <!-- Strings for how to connect page -->
