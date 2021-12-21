@@ -46,7 +46,7 @@ object Hashing {
 
     private fun generateSalt(): ByteArray {
         val random = SecureRandom()
-        val bytes = ByteArray(20)
+        val bytes = ByteArray(16)
         random.nextBytes(bytes)
         return bytes
     }
