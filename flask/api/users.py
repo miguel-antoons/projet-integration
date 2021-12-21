@@ -4,6 +4,7 @@
 import os
 # Library
 import random
+from argon2 import PasswordHasher
 
 from dotenv import load_dotenv
 # Flask Library
@@ -159,27 +160,37 @@ def check_code_email():
 @getUsers.route('/api/users/update-password', methods=['GET','PUT'])
 def update_password():
     requete = request.json
-    print(requete)
+    #print(requete)
     email = requete['Email']
-    print(email)
+    #print(email)
     password = requete['Password']
-    print(password)
+    #print(password)
     code = requete['Code']
-    print(code)
+    #print(code)
  
     if request.method == 'PUT':
+
+        ph = PasswordHasher()
+
        
         #Check email address
-        email_exist = list(users.find({"Email" : email,"Code" : code}))
+        email_exist = list(users.find({"Email": email}, {"Code": 1}))
         print(email_exist)
+        for i in email_exist:
+            print(i['Code'])
+            if code == i['Code']:
+                print("Code OK")
+            else:
+                print("NO OK")
+        
 
-        if email_exist:
+        if email_exist and code == i['Code']:
 
             #Update the code via email
             users.find_one_and_update(
             {"Email" : email},
             {"$set":
-                {"Password": password}
+                {"Password": ph.hash(password)}
             },upsert=True
 
                 )
