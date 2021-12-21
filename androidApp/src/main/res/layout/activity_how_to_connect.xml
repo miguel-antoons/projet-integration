@@ -41,7 +41,6 @@
             android:id="@+id/ivQRcode"
             android:layout_width="230dp"
             android:layout_height="230dp"
-            android:src="@mipmap/ic_launcher"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
