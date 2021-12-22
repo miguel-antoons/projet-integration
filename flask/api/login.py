@@ -19,7 +19,7 @@ def client_login():
             client.pop('_id')
 
         # verification mots de passe
-        if (ph.verify(verify_password[0]["Password"], req["Password"])):
+        if ph.verify(verify_password[0]["Password"], req["Password"]):
             additional_claims = {"Email": req["Email"], "Username": verify_password[0]["Username"]}
             access_token = create_access_token(identity=additional_claims)
             verify_password[0]["access_token"] = access_token

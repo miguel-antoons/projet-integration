@@ -76,6 +76,8 @@ dependencies {
 
     // end2end
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
 }
 
 

@@ -1,52 +1,7 @@
 [
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841001979,
-    "replacementText": "Mot de passe oublié ?",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatTextView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 4,
-        "resourceId": "com.example.smartfridge.android:id/forgotPassword",
-        "contentDescription": "",
-        "text": "Mot de passe oublié ?"
-      },
-      {
-        "className": "android.widget.LinearLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.LinearLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "PRESSED_BACK_EMULATOR_28",
-    "timestamp": 1639841007447,
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": []
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841009230,
+    "timestamp": 1640212014459,
     "replacementText": "Inscription",
     "actionCode": -1,
     "delayTime": 0,
@@ -83,11 +38,11 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841013127,
-    "replacementText": "Test",
+    "timestamp": 1640212027802,
+    "replacementText": "Text",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatEditText",
@@ -108,11 +63,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -120,11 +75,11 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841033271,
-    "replacementText": "Test1234",
+    "timestamp": 1640212035544,
+    "replacementText": " ",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatEditText",
@@ -145,11 +100,48 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212036576,
+    "replacementText": " ",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 4,
+        "resourceId": "com.example.smartfridge.android:id/password",
+        "contentDescription": "",
+        "text": " "
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -157,11 +149,48 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841036412,
+    "timestamp": 1640212040022,
     "replacementText": "Test1234",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 4,
+        "resourceId": "com.example.smartfridge.android:id/password",
+        "contentDescription": "",
+        "text": " "
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_TEXT_CHANGED",
+    "timestamp": 1640212049461,
+    "replacementText": "Test1234",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatEditText",
@@ -182,11 +211,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -194,11 +223,11 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841040611,
+    "timestamp": 1640212052579,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatCheckBox",
@@ -219,11 +248,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -231,11 +260,11 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841041463,
+    "timestamp": 1640212053804,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatCheckBox",
@@ -256,48 +285,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841044611,
-    "replacementText": "test",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 5,
-        "resourceId": "com.example.smartfridge.android:id/email",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 0,
         "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
         "contentDescription": "",
         "text": ""
       }
@@ -305,122 +297,11 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841048520,
-    "replacementText": "Inscription",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 13,
-        "resourceId": "com.example.smartfridge.android:id/button",
-        "contentDescription": "",
-        "text": "Inscription"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841049815,
-    "replacementText": "test",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 5,
-        "resourceId": "com.example.smartfridge.android:id/email",
-        "contentDescription": "",
-        "text": "test"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841050504,
-    "replacementText": "test@gmail.test",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 5,
-        "resourceId": "com.example.smartfridge.android:id/email",
-        "contentDescription": "",
-        "text": "test"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841057260,
+    "timestamp": 1640212058102,
     "replacementText": "termes d\u0027utilisation",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatTextView",
@@ -441,11 +322,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -453,11 +334,85 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841059729,
+    "timestamp": 1640212069752,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 5,
+        "resourceId": "com.example.smartfridge.android:id/email",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_TEXT_CHANGED",
+    "timestamp": 1640212073901,
+    "replacementText": "test@gmail.test",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 5,
+        "resourceId": "com.example.smartfridge.android:id/email",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212098798,
     "replacementText": "J\u0027accepte avoir lu et accepter les",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatCheckBox",
@@ -478,11 +433,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -490,11 +445,11 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841060897,
+    "timestamp": 1640212100340,
     "replacementText": "Inscription",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
         "className": "androidx.appcompat.widget.AppCompatButton",
@@ -515,11 +470,48 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212113729,
+    "replacementText": "Text",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "resourceId": "com.example.smartfridge.android:id/username",
+        "contentDescription": "",
+        "text": "Text"
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -527,7 +519,81 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841065616,
+    "timestamp": 1640212115317,
+    "replacementText": "Text2",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 1,
+        "resourceId": "com.example.smartfridge.android:id/username",
+        "contentDescription": "",
+        "text": "Text"
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212118625,
+    "replacementText": "Inscription",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 13,
+        "resourceId": "com.example.smartfridge.android:id/button",
+        "contentDescription": "",
+        "text": "Inscription"
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_TEXT_CHANGED",
+    "timestamp": 1640212123474,
     "replacementText": "test@gmail.test",
     "actionCode": -1,
     "delayTime": 0,
@@ -564,7 +630,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841072527,
+    "timestamp": 1640212134351,
     "replacementText": "Test1234",
     "actionCode": -1,
     "delayTime": 0,
@@ -601,7 +667,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841075697,
+    "timestamp": 1640212141814,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -638,7 +704,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841078101,
+    "timestamp": 1640212143357,
     "replacementText": "Se souvenir de moi",
     "actionCode": -1,
     "delayTime": 0,
@@ -675,7 +741,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841078792,
+    "timestamp": 1640212144179,
     "replacementText": "Connexion",
     "actionCode": -1,
     "delayTime": 0,
@@ -712,7 +778,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841080948,
+    "timestamp": 1640212151783,
     "replacementText": "Connecter un SmartFridge",
     "actionCode": -1,
     "delayTime": 0,
@@ -728,7 +794,7 @@
         "text": "Connecter un SmartFridge"
       },
       {
-        "className": "android.widget.LinearLayout",
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 0,
@@ -737,11 +803,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -749,19 +815,19 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841084140,
+    "timestamp": 1640212157751,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
-    "canScrollTo": false,
+    "canScrollTo": true,
     "elementDescriptors": [
       {
-        "className": "androidx.appcompat.widget.AppCompatButton",
+        "className": "androidx.appcompat.widget.AppCompatImageButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 8,
-        "resourceId": "com.example.smartfridge.android:id/button_return_list_product",
-        "contentDescription": "",
+        "resourceId": "com.example.smartfridge.android:id/return_icon",
+        "contentDescription": "Fermer la pop-up",
         "text": ""
       },
       {
@@ -774,11 +840,11 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "android.widget.ScrollView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "",
         "contentDescription": "",
         "text": ""
       }
@@ -786,8 +852,8 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841085602,
-    "replacementText": "Scanner un code bar",
+    "timestamp": 1640212160960,
+    "replacementText": "Scanner un code barre",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
@@ -799,55 +865,7 @@
         "groupViewChildPosition": 1,
         "resourceId": "com.example.smartfridge.android:id/scan_button",
         "contentDescription": "",
-        "text": "Scanner un code bar"
-      },
-      {
-        "className": "android.widget.LinearLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "PERMISSIONS_REQUEST",
-    "timestamp": 1639841086434,
-    "actionCode": -1,
-    "delayTime": 0,
-    "requestedPermissions": [
-      "android.permission.CAMERA"
-    ],
-    "canScrollTo": false,
-    "elementDescriptors": []
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841092073,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatImageButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/button_return_scan",
-        "contentDescription": "",
-        "text": ""
+        "text": "Scanner un code barre"
       },
       {
         "className": "androidx.constraintlayout.widget.ConstraintLayout",
@@ -859,19 +877,38 @@
         "text": ""
       },
       {
-        "className": "androidx.appcompat.widget.ContentFrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "android:id/content",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
     ]
   },
   {
+    "eventType": "PERMISSIONS_REQUEST",
+    "timestamp": 1640212163234,
+    "actionCode": -1,
+    "delayTime": 0,
+    "requestedPermissions": [
+      "android.permission.CAMERA"
+    ],
+    "canScrollTo": false,
+    "elementDescriptors": []
+  },
+  {
+    "eventType": "PRESSED_BACK_EMULATOR_28",
+    "timestamp": 1640212348877,
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": []
+  },
+  {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841095846,
+    "timestamp": 1640212369063,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -908,7 +945,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841097904,
+    "timestamp": 1640212380364,
     "replacementText": "Modifier Emplacements",
     "actionCode": -1,
     "delayTime": 0,
@@ -918,7 +955,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
+        "groupViewChildPosition": 2,
         "resourceId": "com.example.smartfridge.android:id/new_location",
         "contentDescription": "",
         "text": "Modifier Emplacements"
@@ -945,7 +982,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841099772,
+    "timestamp": 1640212384867,
     "replacementText": "Frigo",
     "actionCode": -1,
     "delayTime": 0,
@@ -982,7 +1019,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841102512,
+    "timestamp": 1640212387393,
     "replacementText": "Enregistrer",
     "actionCode": -1,
     "delayTime": 0,
@@ -1019,7 +1056,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841104760,
+    "timestamp": 1640212389406,
     "replacementText": "Modifier Emplacements",
     "actionCode": -1,
     "delayTime": 0,
@@ -1029,7 +1066,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
+        "groupViewChildPosition": 2,
         "resourceId": "com.example.smartfridge.android:id/new_location",
         "contentDescription": "",
         "text": "Modifier Emplacements"
@@ -1056,7 +1093,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841106681,
+    "timestamp": 1640212391807,
     "replacementText": "Panier",
     "actionCode": -1,
     "delayTime": 0,
@@ -1093,7 +1130,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841109727,
+    "timestamp": 1640212394733,
     "replacementText": "Enregistrer",
     "actionCode": -1,
     "delayTime": 0,
@@ -1130,7 +1167,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841111913,
+    "timestamp": 1640212396069,
     "replacementText": "Modifier Emplacements",
     "actionCode": -1,
     "delayTime": 0,
@@ -1140,7 +1177,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
+        "groupViewChildPosition": 2,
         "resourceId": "com.example.smartfridge.android:id/new_location",
         "contentDescription": "",
         "text": "Modifier Emplacements"
@@ -1167,7 +1204,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841113765,
+    "timestamp": 1640212398458,
     "replacementText": "Armoire",
     "actionCode": -1,
     "delayTime": 0,
@@ -1204,7 +1241,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841119914,
+    "timestamp": 1640212405261,
     "replacementText": "Enregistrer",
     "actionCode": -1,
     "delayTime": 0,
@@ -1241,7 +1278,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841121473,
+    "timestamp": 1640212409629,
     "replacementText": "Modifier Emplacements",
     "actionCode": -1,
     "delayTime": 0,
@@ -1251,7 +1288,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
+        "groupViewChildPosition": 2,
         "resourceId": "com.example.smartfridge.android:id/new_location",
         "contentDescription": "",
         "text": "Modifier Emplacements"
@@ -1278,7 +1315,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841123085,
+    "timestamp": 1640212411300,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1315,7 +1352,81 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841124770,
+    "timestamp": 1640212413388,
+    "replacementText": "Panier",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatCheckedTextView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": 3,
+        "groupViewChildPosition": -1,
+        "resourceId": "android:id/text1",
+        "contentDescription": "",
+        "text": "Panier"
+      },
+      {
+        "className": "androidx.appcompat.app.AlertController$RecycleListView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/select_dialog_listview",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.FrameLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 1,
+        "resourceId": "com.example.smartfridge.android:id/contentPanel",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212414882,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatSpinner",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 4,
+        "resourceId": "com.example.smartfridge.android:id/location_popup_spinner",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/product_popup",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.FrameLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "android:id/content",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "LIST_ITEM_CLICKED",
+    "timestamp": 1640212415882,
     "replacementText": "Armoire",
     "actionCode": -1,
     "delayTime": 0,
@@ -1352,8 +1463,8 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841126353,
-    "replacementText": "Supprimmer",
+    "timestamp": 1640212417611,
+    "replacementText": "Supprimer",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
@@ -1365,7 +1476,7 @@
         "groupViewChildPosition": 8,
         "resourceId": "com.example.smartfridge.android:id/location_popup_discard",
         "contentDescription": "",
-        "text": "Supprimmer"
+        "text": "Supprimer"
       },
       {
         "className": "androidx.constraintlayout.widget.ConstraintLayout",
@@ -1389,7 +1500,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841128376,
+    "timestamp": 1640212419155,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1401,7 +1512,7 @@
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 1,
         "resourceId": "com.example.smartfridge.android:id/product_page",
-        "contentDescription": "Liste produits",
+        "contentDescription": "Produits",
         "text": ""
       },
       {
@@ -1426,7 +1537,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841132101,
+    "timestamp": 1640212421185,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1436,7 +1547,7 @@
         "className": "com.google.android.material.floatingactionbutton.FloatingActionButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 10,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/addingBtn",
         "contentDescription": "Add new product",
         "text": ""
@@ -1451,11 +1562,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -1463,7 +1574,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841134192,
+    "timestamp": 1640212423583,
     "replacementText": "Banane",
     "actionCode": -1,
     "delayTime": 0,
@@ -1500,7 +1611,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841136839,
+    "timestamp": 1640212426338,
     "replacementText": "5",
     "actionCode": -1,
     "delayTime": 0,
@@ -1510,7 +1621,7 @@
         "className": "androidx.appcompat.widget.AppCompatEditText",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
+        "groupViewChildPosition": 8,
         "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
         "contentDescription": "",
         "text": ""
@@ -1537,7 +1648,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841138025,
+    "timestamp": 1640212427368,
     "replacementText": "Choisir Date",
     "actionCode": -1,
     "delayTime": 0,
@@ -1547,7 +1658,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 13,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/button_date_select",
         "contentDescription": "",
         "text": "Choisir Date"
@@ -1574,7 +1685,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841140940,
+    "timestamp": 1640212429648,
     "replacementText": "OK",
     "actionCode": -1,
     "delayTime": 0,
@@ -1611,7 +1722,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841142146,
+    "timestamp": 1640212430841,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1621,7 +1732,7 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 17,
+        "groupViewChildPosition": 15,
         "resourceId": "com.example.smartfridge.android:id/categorie_spinner",
         "contentDescription": "",
         "text": ""
@@ -1648,7 +1759,7 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841143789,
+    "timestamp": 1640212432008,
     "replacementText": "Fruits, légumes",
     "actionCode": -1,
     "delayTime": 0,
@@ -1685,7 +1796,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841145746,
+    "timestamp": 1640212437736,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1695,7 +1806,7 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 20,
+        "groupViewChildPosition": 18,
         "resourceId": "com.example.smartfridge.android:id/place_spinner",
         "contentDescription": "",
         "text": ""
@@ -1722,7 +1833,7 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841147835,
+    "timestamp": 1640212439079,
     "replacementText": "Panier",
     "actionCode": -1,
     "delayTime": 0,
@@ -1759,7 +1870,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841148735,
+    "timestamp": 1640212439818,
     "replacementText": "Ajouter",
     "actionCode": -1,
     "delayTime": 0,
@@ -1769,7 +1880,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 21,
+        "groupViewChildPosition": 19,
         "resourceId": "com.example.smartfridge.android:id/button_add_aliment",
         "contentDescription": "",
         "text": "Ajouter"
@@ -1796,7 +1907,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841150088,
+    "timestamp": 1640212448320,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1806,7 +1917,7 @@
         "className": "com.google.android.material.floatingactionbutton.FloatingActionButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 10,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/addingBtn",
         "contentDescription": "Add new product",
         "text": ""
@@ -1821,11 +1932,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -1833,8 +1944,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841152714,
-    "replacementText": "Viande",
+    "timestamp": 1640212452026,
+    "replacementText": "Poulet",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": true,
@@ -1870,7 +1981,7 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841155438,
+    "timestamp": 1640212454352,
     "replacementText": "500",
     "actionCode": -1,
     "delayTime": 0,
@@ -1880,7 +1991,7 @@
         "className": "androidx.appcompat.widget.AppCompatEditText",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
+        "groupViewChildPosition": 8,
         "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
         "contentDescription": "",
         "text": ""
@@ -1907,7 +2018,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841157398,
+    "timestamp": 1640212455734,
     "replacementText": "Choisir Date",
     "actionCode": -1,
     "delayTime": 0,
@@ -1917,7 +2028,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 13,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/button_date_select",
         "contentDescription": "",
         "text": "Choisir Date"
@@ -1944,7 +2055,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841162313,
+    "timestamp": 1640212457762,
     "replacementText": "OK",
     "actionCode": -1,
     "delayTime": 0,
@@ -1981,7 +2092,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841163629,
+    "timestamp": 1640212459389,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -1991,7 +2102,7 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 17,
+        "groupViewChildPosition": 15,
         "resourceId": "com.example.smartfridge.android:id/categorie_spinner",
         "contentDescription": "",
         "text": ""
@@ -2018,7 +2129,7 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841165765,
+    "timestamp": 1640212461650,
     "replacementText": "Viandes, poissons, œufs",
     "actionCode": -1,
     "delayTime": 0,
@@ -2055,7 +2166,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841168237,
+    "timestamp": 1640212464300,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -2065,7 +2176,7 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 20,
+        "groupViewChildPosition": 18,
         "resourceId": "com.example.smartfridge.android:id/place_spinner",
         "contentDescription": "",
         "text": ""
@@ -2092,7 +2203,7 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841169811,
+    "timestamp": 1640212465499,
     "replacementText": "Frigo",
     "actionCode": -1,
     "delayTime": 0,
@@ -2129,7 +2240,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841170644,
+    "timestamp": 1640212466485,
     "replacementText": "Ajouter",
     "actionCode": -1,
     "delayTime": 0,
@@ -2139,7 +2250,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 21,
+        "groupViewChildPosition": 19,
         "resourceId": "com.example.smartfridge.android:id/button_add_aliment",
         "contentDescription": "",
         "text": "Ajouter"
@@ -2166,7 +2277,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841172599,
+    "timestamp": 1640212469472,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -2176,7 +2287,7 @@
         "className": "com.google.android.material.floatingactionbutton.FloatingActionButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 10,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/addingBtn",
         "contentDescription": "Add new product",
         "text": ""
@@ -2191,11 +2302,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -2203,8 +2314,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841174454,
-    "replacementText": "Surimi",
+    "timestamp": 1640212473286,
+    "replacementText": "Tomates",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": true,
@@ -2240,8 +2351,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841176774,
-    "replacementText": "130",
+    "timestamp": 1640212476189,
+    "replacementText": "200",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": true,
@@ -2250,7 +2361,7 @@
         "className": "androidx.appcompat.widget.AppCompatEditText",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
+        "groupViewChildPosition": 8,
         "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
         "contentDescription": "",
         "text": ""
@@ -2277,7 +2388,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841178272,
+    "timestamp": 1640212477423,
     "replacementText": "Choisir Date",
     "actionCode": -1,
     "delayTime": 0,
@@ -2287,7 +2398,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 13,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/button_date_select",
         "contentDescription": "",
         "text": "Choisir Date"
@@ -2314,7 +2425,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841180620,
+    "timestamp": 1640212480960,
     "replacementText": "OK",
     "actionCode": -1,
     "delayTime": 0,
@@ -2351,7 +2462,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841181997,
+    "timestamp": 1640212482548,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -2361,7 +2472,7 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 17,
+        "groupViewChildPosition": 15,
         "resourceId": "com.example.smartfridge.android:id/categorie_spinner",
         "contentDescription": "",
         "text": ""
@@ -2388,451 +2499,7 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841183647,
-    "replacementText": "Viandes, poissons, œufs",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatCheckedTextView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": 3,
-        "groupViewChildPosition": -1,
-        "resourceId": "android:id/text1",
-        "contentDescription": "",
-        "text": "Viandes, poissons, œufs"
-      },
-      {
-        "className": "androidx.appcompat.app.AlertController$RecycleListView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/select_dialog_listview",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/contentPanel",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841186672,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatSpinner",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 20,
-        "resourceId": "com.example.smartfridge.android:id/place_spinner",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841188162,
-    "replacementText": "Frigo",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatCheckedTextView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": 1,
-        "groupViewChildPosition": -1,
-        "resourceId": "android:id/text1",
-        "contentDescription": "",
-        "text": "Frigo"
-      },
-      {
-        "className": "androidx.appcompat.app.AlertController$RecycleListView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/select_dialog_listview",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/contentPanel",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841188934,
-    "replacementText": "Ajouter",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 21,
-        "resourceId": "com.example.smartfridge.android:id/button_add_aliment",
-        "contentDescription": "",
-        "text": "Ajouter"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841190964,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "com.google.android.material.floatingactionbutton.FloatingActionButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 10,
-        "resourceId": "com.example.smartfridge.android:id/addingBtn",
-        "contentDescription": "Add new product",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841195387,
-    "replacementText": "Pasteque",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 5,
-        "resourceId": "com.example.smartfridge.android:id/AlimentName",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841198987,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841199514,
-    "replacementText": "1",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841200505,
-    "replacementText": "Choisir Date",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 13,
-        "resourceId": "com.example.smartfridge.android:id/button_date_select",
-        "contentDescription": "",
-        "text": "Choisir Date"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841203047,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatImageButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 2,
-        "resourceId": "android:id/next",
-        "contentDescription": "Next month",
-        "text": ""
-      },
-      {
-        "className": "android.widget.DayPickerView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "android:id/date_picker_day_picker",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "com.android.internal.widget.DialogViewAnimator",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "android:id/animator",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841205904,
-    "replacementText": "OK",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
-        "resourceId": "android:id/button1",
-        "contentDescription": "",
-        "text": "OK"
-      },
-      {
-        "className": "com.android.internal.widget.ButtonBarLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
-        "resourceId": "android:id/buttonPanel",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841207065,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatSpinner",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 17,
-        "resourceId": "com.example.smartfridge.android:id/categorie_spinner",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841208390,
+    "timestamp": 1640212485526,
     "replacementText": "Fruits, légumes",
     "actionCode": -1,
     "delayTime": 0,
@@ -2869,7 +2536,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841210729,
+    "timestamp": 1640212487147,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -2879,7 +2546,44 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 20,
+        "groupViewChildPosition": 18,
+        "resourceId": "com.example.smartfridge.android:id/place_spinner",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212488031,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatSpinner",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 18,
         "resourceId": "com.example.smartfridge.android:id/place_spinner",
         "contentDescription": "",
         "text": ""
@@ -2906,7 +2610,7 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841212194,
+    "timestamp": 1640212489018,
     "replacementText": "Panier",
     "actionCode": -1,
     "delayTime": 0,
@@ -2943,7 +2647,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841213065,
+    "timestamp": 1640212490442,
     "replacementText": "Ajouter",
     "actionCode": -1,
     "delayTime": 0,
@@ -2953,7 +2657,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 21,
+        "groupViewChildPosition": 19,
         "resourceId": "com.example.smartfridge.android:id/button_add_aliment",
         "contentDescription": "",
         "text": "Ajouter"
@@ -2979,45 +2683,8 @@
     ]
   },
   {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841217566,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/search_products",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841225343,
+    "timestamp": 1640212494016,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -3027,7 +2694,7 @@
         "className": "com.google.android.material.floatingactionbutton.FloatingActionButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 10,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/addingBtn",
         "contentDescription": "Add new product",
         "text": ""
@@ -3042,11 +2709,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -3054,8 +2721,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841227608,
-    "replacementText": "Cereales",
+    "timestamp": 1640212495831,
+    "replacementText": "Emmental",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": true,
@@ -3091,8 +2758,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841233149,
-    "replacementText": "300",
+    "timestamp": 1640212498556,
+    "replacementText": "250",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": true,
@@ -3101,7 +2768,7 @@
         "className": "androidx.appcompat.widget.AppCompatEditText",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
+        "groupViewChildPosition": 8,
         "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
         "contentDescription": "",
         "text": ""
@@ -3128,7 +2795,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841234954,
+    "timestamp": 1640212500154,
     "replacementText": "Choisir Date",
     "actionCode": -1,
     "delayTime": 0,
@@ -3138,7 +2805,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 13,
+        "groupViewChildPosition": 11,
         "resourceId": "com.example.smartfridge.android:id/button_date_select",
         "contentDescription": "",
         "text": "Choisir Date"
@@ -3165,7 +2832,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841238721,
+    "timestamp": 1640212503616,
     "replacementText": "OK",
     "actionCode": -1,
     "delayTime": 0,
@@ -3202,7 +2869,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841241974,
+    "timestamp": 1640212505442,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -3212,7 +2879,7 @@
         "className": "androidx.appcompat.widget.AppCompatSpinner",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 20,
+        "groupViewChildPosition": 18,
         "resourceId": "com.example.smartfridge.android:id/place_spinner",
         "contentDescription": "",
         "text": ""
@@ -3239,8 +2906,8 @@
   },
   {
     "eventType": "LIST_ITEM_CLICKED",
-    "timestamp": 1639841243375,
-    "replacementText": "Panier",
+    "timestamp": 1640212506824,
+    "replacementText": "Frigo",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
@@ -3248,11 +2915,11 @@
       {
         "className": "androidx.appcompat.widget.AppCompatCheckedTextView",
         "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": 2,
+        "adapterViewChildPosition": 1,
         "groupViewChildPosition": -1,
         "resourceId": "android:id/text1",
         "contentDescription": "",
-        "text": "Panier"
+        "text": "Frigo"
       },
       {
         "className": "androidx.appcompat.app.AlertController$RecycleListView",
@@ -3276,7 +2943,118 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841244162,
+    "timestamp": 1640212508967,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatSpinner",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 15,
+        "resourceId": "com.example.smartfridge.android:id/categorie_spinner",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212510007,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": true,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatSpinner",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 15,
+        "resourceId": "com.example.smartfridge.android:id/categorie_spinner",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.ScrollView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "LIST_ITEM_CLICKED",
+    "timestamp": 1640212511383,
+    "replacementText": "Lait, produits laitiers",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatCheckedTextView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": 2,
+        "groupViewChildPosition": -1,
+        "resourceId": "android:id/text1",
+        "contentDescription": "",
+        "text": "Lait, produits laitiers"
+      },
+      {
+        "className": "androidx.appcompat.app.AlertController$RecycleListView",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/select_dialog_listview",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.FrameLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 1,
+        "resourceId": "com.example.smartfridge.android:id/contentPanel",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212512613,
     "replacementText": "Ajouter",
     "actionCode": -1,
     "delayTime": 0,
@@ -3286,7 +3064,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 21,
+        "groupViewChildPosition": 19,
         "resourceId": "com.example.smartfridge.android:id/button_add_aliment",
         "contentDescription": "",
         "text": "Ajouter"
@@ -3313,81 +3091,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841246295,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": 4,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": -1,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.recyclerview.widget.RecyclerView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/product_page_list",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841247745,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatImageView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/close_popup",
-        "contentDescription": "Fermer la pop-up",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/product_popup",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841249694,
+    "timestamp": 1640212515302,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -3397,81 +3101,7 @@
         "className": "android.view.View",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 3,
-        "resourceId": "com.example.smartfridge.android:id/sort_by_name",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841252931,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "android.view.View",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 5,
-        "resourceId": "com.example.smartfridge.android:id/sort_by_location",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841254925,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "android.view.View",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 7,
+        "groupViewChildPosition": 8,
         "resourceId": "com.example.smartfridge.android:id/sort_by_expiration_date",
         "contentDescription": "",
         "text": ""
@@ -3486,11 +3116,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -3498,18 +3128,18 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841258132,
+    "timestamp": 1640212516797,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
     "elementDescriptors": [
       {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "className": "android.view.View",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/search_products",
+        "groupViewChildPosition": 6,
+        "resourceId": "com.example.smartfridge.android:id/sort_by_location",
         "contentDescription": "",
         "text": ""
       },
@@ -3523,11 +3153,48 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212518367,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "android.view.View",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 4,
+        "resourceId": "com.example.smartfridge.android:id/sort_by_name",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -3535,8 +3202,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841259185,
-    "replacementText": "viande",
+    "timestamp": 1640212520620,
+    "replacementText": "ba",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
@@ -3560,11 +3227,11 @@
         "text": ""
       },
       {
-        "className": "android.widget.FrameLayout",
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
         "contentDescription": "",
         "text": ""
       }
@@ -3572,7 +3239,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841266312,
+    "timestamp": 1640212523485,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -3591,7 +3258,7 @@
         "className": "androidx.recyclerview.widget.RecyclerView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
+        "groupViewChildPosition": 10,
         "resourceId": "com.example.smartfridge.android:id/product_page_list",
         "contentDescription": "",
         "text": ""
@@ -3609,266 +3276,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841268810,
-    "replacementText": "Modifier",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 23,
-        "resourceId": "com.example.smartfridge.android:id/modify_button",
-        "contentDescription": "",
-        "text": "Modifier"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/product_popup",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841277162,
-    "replacementText": "Ajouter un Produit",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/button_return_list_product",
-        "contentDescription": "",
-        "text": "Ajouter un Produit"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841279465,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": 1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": -1,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.recyclerview.widget.RecyclerView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/product_page_list",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841281966,
-    "replacementText": "Modifier",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 23,
-        "resourceId": "com.example.smartfridge.android:id/modify_button",
-        "contentDescription": "",
-        "text": "Modifier"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/product_popup",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "android:id/content",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841284345,
-    "replacementText": "Ajouter un Produit",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatButton",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/button_return_list_product",
-        "contentDescription": "",
-        "text": "Ajouter un Produit"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841325499,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/search_products",
-        "contentDescription": "",
-        "text": "viande"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.FrameLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 1,
-        "resourceId": "com.example.smartfridge.android:id/fragment_container",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841331941,
-    "replacementText": "",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": false,
-    "elementDescriptors": [
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": 3,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": -1,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.recyclerview.widget.RecyclerView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/product_page_list",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841333702,
+    "timestamp": 1640212525332,
     "replacementText": "Supprimer",
     "actionCode": -1,
     "delayTime": 0,
@@ -3878,7 +3286,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 22,
+        "groupViewChildPosition": 23,
         "resourceId": "com.example.smartfridge.android:id/delete_button",
         "contentDescription": "",
         "text": "Supprimer"
@@ -3905,7 +3313,81 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841335099,
+    "timestamp": 1640212527608,
+    "replacementText": "ba",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 1,
+        "resourceId": "com.example.smartfridge.android:id/search_products",
+        "contentDescription": "",
+        "text": "ba"
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_TEXT_CHANGED",
+    "timestamp": 1640212528176,
+    "replacementText": "",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatEditText",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 1,
+        "resourceId": "com.example.smartfridge.android:id/search_products",
+        "contentDescription": "",
+        "text": "ba"
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212530193,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -3913,7 +3395,7 @@
     "elementDescriptors": [
       {
         "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": 2,
+        "recyclerViewChildPosition": 1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": -1,
         "resourceId": "",
@@ -3924,7 +3406,7 @@
         "className": "androidx.recyclerview.widget.RecyclerView",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
+        "groupViewChildPosition": 10,
         "resourceId": "com.example.smartfridge.android:id/product_page_list",
         "contentDescription": "",
         "text": ""
@@ -3942,7 +3424,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841336580,
+    "timestamp": 1640212531459,
     "replacementText": "Modifier",
     "actionCode": -1,
     "delayTime": 0,
@@ -3952,7 +3434,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 23,
+        "groupViewChildPosition": 24,
         "resourceId": "com.example.smartfridge.android:id/modify_button",
         "contentDescription": "",
         "text": "Modifier"
@@ -3979,8 +3461,8 @@
   },
   {
     "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841339892,
-    "replacementText": "Surimi blanc",
+    "timestamp": 1640212533449,
+    "replacementText": "Tomates périmées",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": true,
@@ -3992,44 +3474,7 @@
         "groupViewChildPosition": 5,
         "resourceId": "com.example.smartfridge.android:id/AlimentName",
         "contentDescription": "",
-        "text": "Surimi"
-      },
-      {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "android.widget.ScrollView",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 0,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      }
-    ]
-  },
-  {
-    "eventType": "VIEW_TEXT_CHANGED",
-    "timestamp": 1639841342704,
-    "replacementText": "150",
-    "actionCode": -1,
-    "delayTime": 0,
-    "canScrollTo": true,
-    "elementDescriptors": [
-      {
-        "className": "androidx.appcompat.widget.AppCompatEditText",
-        "recyclerViewChildPosition": -1,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/AlimentQuantite",
-        "contentDescription": "",
-        "text": "130"
+        "text": "Tomates"
       },
       {
         "className": "androidx.constraintlayout.widget.ConstraintLayout",
@@ -4053,7 +3498,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841346522,
+    "timestamp": 1640212538778,
     "replacementText": "Modifier",
     "actionCode": -1,
     "delayTime": 0,
@@ -4063,7 +3508,7 @@
         "className": "androidx.appcompat.widget.AppCompatButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 21,
+        "groupViewChildPosition": 19,
         "resourceId": "com.example.smartfridge.android:id/button_add_aliment",
         "contentDescription": "",
         "text": "Modifier"
@@ -4090,27 +3535,18 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841348266,
+    "timestamp": 1640212542424,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
     "elementDescriptors": [
       {
-        "className": "androidx.constraintlayout.widget.ConstraintLayout",
-        "recyclerViewChildPosition": 2,
-        "adapterViewChildPosition": -1,
-        "groupViewChildPosition": -1,
-        "resourceId": "",
-        "contentDescription": "",
-        "text": ""
-      },
-      {
-        "className": "androidx.recyclerview.widget.RecyclerView",
+        "className": "androidx.appcompat.widget.AppCompatImageButton",
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
-        "groupViewChildPosition": 9,
-        "resourceId": "com.example.smartfridge.android:id/product_page_list",
+        "groupViewChildPosition": 2,
+        "resourceId": "com.example.smartfridge.android:id/info_legend",
         "contentDescription": "",
         "text": ""
       },
@@ -4122,12 +3558,21 @@
         "resourceId": "",
         "contentDescription": "",
         "text": ""
+      },
+      {
+        "className": "androidx.swiperefreshlayout.widget.SwipeRefreshLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/swiperefresh",
+        "contentDescription": "",
+        "text": ""
       }
     ]
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841350345,
+    "timestamp": 1640212544030,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -4138,7 +3583,7 @@
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/close_popup",
+        "resourceId": "com.example.smartfridge.android:id/leg_close_popup",
         "contentDescription": "Fermer la pop-up",
         "text": ""
       },
@@ -4147,7 +3592,7 @@
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 0,
-        "resourceId": "com.example.smartfridge.android:id/product_popup",
+        "resourceId": "com.example.smartfridge.android:id/legend_popup",
         "contentDescription": "",
         "text": ""
       },
@@ -4164,7 +3609,7 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841352366,
+    "timestamp": 1640212546318,
     "replacementText": "",
     "actionCode": -1,
     "delayTime": 0,
@@ -4201,8 +3646,8 @@
   },
   {
     "eventType": "VIEW_CLICKED",
-    "timestamp": 1639841354577,
-    "replacementText": "Se déconnecter",
+    "timestamp": 1640212547904,
+    "replacementText": "supprimer son compte",
     "actionCode": -1,
     "delayTime": 0,
     "canScrollTo": false,
@@ -4212,9 +3657,9 @@
         "recyclerViewChildPosition": -1,
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 4,
-        "resourceId": "com.example.smartfridge.android:id/disconnect",
+        "resourceId": "com.example.smartfridge.android:id/delete_account",
         "contentDescription": "",
-        "text": "Se déconnecter"
+        "text": "supprimer son compte"
       },
       {
         "className": "androidx.constraintlayout.widget.ConstraintLayout",
@@ -4231,6 +3676,43 @@
         "adapterViewChildPosition": -1,
         "groupViewChildPosition": 1,
         "resourceId": "com.example.smartfridge.android:id/fragment_container",
+        "contentDescription": "",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "timestamp": 1640212550318,
+    "replacementText": "Supprimer",
+    "actionCode": -1,
+    "delayTime": 0,
+    "canScrollTo": false,
+    "elementDescriptors": [
+      {
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 3,
+        "resourceId": "com.example.smartfridge.android:id/delte_account_popup_discard",
+        "contentDescription": "",
+        "text": "Supprimer"
+      },
+      {
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "com.example.smartfridge.android:id/delete_account_popup",
+        "contentDescription": "",
+        "text": ""
+      },
+      {
+        "className": "android.widget.FrameLayout",
+        "recyclerViewChildPosition": -1,
+        "adapterViewChildPosition": -1,
+        "groupViewChildPosition": 0,
+        "resourceId": "android:id/content",
         "contentDescription": "",
         "text": ""
       }
