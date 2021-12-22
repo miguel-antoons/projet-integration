@@ -24,7 +24,7 @@ mail = Mail(app)
 
 app.config['MAIL_SERVER'] = os.environ['MAIL_SERVER']
 app.config['MAIL_PORT'] = os.environ['MAIL_PORT']
-app.config['MAIL_USE_SSL'] = os.environ['MAIL_USE_TLS']
+app.config['MAIL_USE_TLS'] = os.environ['MAIL_USE_TLS']
 app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
 app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 
