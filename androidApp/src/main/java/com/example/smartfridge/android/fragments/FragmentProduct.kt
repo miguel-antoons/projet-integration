@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartfridge.android.adapter.ProductAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -51,6 +52,13 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
             }
         }
 
+        val legend = view.findViewById<ImageButton>(R.id.info_legend)
+        legend.setOnClickListener {
+            LegendPopUp(context).show()
+        }
+
+
+
         // setup different sort buttons
         setupSortButtons(view)
 
@@ -84,6 +92,8 @@ class FragmentProduct(private val context: MainActivity) : Fragment() {
             it.startActivity(intent)
         }
     }
+
+
 
     /**
      * Function sets the function to call when the sort buttons are clicked

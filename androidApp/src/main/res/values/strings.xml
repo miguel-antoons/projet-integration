@@ -234,4 +234,12 @@
     <!-- Tenth paragraph -->
     <string name="terms_tenth_title">Comment nous contacter ?</string>
     <string name="terms_tenth_paragraph_01">Si vous avez des questions concernant l’utilisation de vos données personnelles visée par la présente politique, vous nous contacter par e-mail à l’adresse smart.fridge.teams@gmail.com.</string>
+
+    <!--  -->
+    <!-- Legend POP UP -->
+    <string name="leg_main_title">Légende</string>
+    <string name="leg_title_green">Aucune alerte, votre produit ne périme pas dans les jours qui suivent !</string>
+    <string name="leg_title_orange">Attention, votre produit arrive à sa date de péremption dans 2 jours !</string>
+    <string name="leg_title_red">Attention, votre produit arrive à sa date de péremption dans 1 jours !</string>
+    <string name="leg_title_black">Votre produit est périmé !</string>
 </resources>

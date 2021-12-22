@@ -25,27 +25,41 @@
             style="@style/pageTitle"/>
 
         <!-- search bar -->
-        <EditText
-            android:id="@+id/search_products"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/large_margin"
-            android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginRight="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/large_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:textCursorDrawable="@null"
-            android:inputType="text"
-            android:gravity="center"
-            android:hint="@string/search_hint"
-            android:drawableStart="@drawable/ic_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_page_title"
-            app:backgroundTint="@color/dark_green"
-            android:autofillHints="food" />
 
         <!-- header row of the table -->
+
+        <EditText
+            android:id="@+id/search_products"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:autofillHints="food"
+            android:drawableStart="@drawable/ic_search"
+            android:gravity="center"
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:textCursorDrawable="@null"
+            app:backgroundTint="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_page_title" />
+
+        <ImageButton
+            android:id="@+id/info_legend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:src="@drawable/ic_baseline_info_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.047" />
+
         <View
             android:id="@+id/textView5"
             android:layout_width="match_parent"
