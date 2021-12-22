@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/legend_popup"
+    android:layout_width="305dp"
+    android:layout_height="470dp"
+    android:padding="@dimen/default_padding"
+    tools:context=".MainActivity">
+
+
+    <!-- Top part of the pop-up -->
+    <ImageView
+        android:id="@+id/leg_close_popup"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:contentDescription="@string/ic_close_description"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/leg_product_title"
+        style="@style/popup_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/leg_main_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.095"
+        app:layout_constraintWidth_default="spread" />
+
+
+    <ImageView
+        android:id="@+id/leg_product_status_green"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="248dp"
+        android:contentDescription="@string/ic_status_description"
+        android:padding="10dp"
+        android:src="@drawable/ic_legend_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="@string/leg_title_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/leg_product_status_orange"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="248dp"
+        android:contentDescription="@string/ic_status_description"
+        android:padding="10dp"
+        android:src="@drawable/ic_legend_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="@string/leg_title_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/leg_product_status_red"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="248dp"
+        android:contentDescription="@string/ic_status_description"
+        android:padding="10dp"
+        android:src="@drawable/ic_legend_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="@string/leg_title_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/leg_product_status_black"
+        android:layout_width="@dimen/icon_dimensions"
+        android:layout_height="@dimen/icon_dimensions"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="248dp"
+        android:contentDescription="@string/ic_status_description"
+        android:padding="10dp"
+        android:src="@drawable/ic_product_state"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="348dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="@string/leg_title_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
