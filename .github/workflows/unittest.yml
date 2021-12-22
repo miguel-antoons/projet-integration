@@ -43,7 +43,9 @@ jobs:
         run: |
           cd flask
           touch .env
-          echo "JWT_SECRET_KEY = 'sdofuhgpohn,pofjmijdsmofitporijdpjdfùpogjdi54686'" > .env
+          echo "JWT_SECRET_KEY='sdofuhgpohn,pofjmijdsmofitporijdpjdfùpogjdi54686'" > .env
+          echo "MONGO_DB_PASSWORD=" > .env
+          echo "MONGO_DB_HOST='mongodb://127.0.0.1:27017'" > .env
 
       - name: Launch flask developpment server
         run: |
