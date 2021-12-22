@@ -97,7 +97,7 @@ class PlaylistsTests(TestCase):
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
         page_content = result.get_data(as_text=True)
-        self.assertIn('Hello world!', page_content)
+        self.assertIn('Hello smartfridge!', page_content)
 
     # ---------------------------------------API USER ---------------------------------------------------
 

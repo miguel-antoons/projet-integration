@@ -1,0 +1,62 @@
+version: "3.7"
+
+services:
+
+
+  nginx:
+    image: niutalol/pi_nginx:latest
+    container_name: nginx
+    restart: always
+    volumes:
+          - ./nginx/logs/nginx.log:/etc/nginx/main_access.log:rw
+          - ./certbot/conf:/etc/nginx/ssl:ro
+          - ./certbot/data:/var/www/certbot:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      default:
+        ipv4_address: 172.20.0.5
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  
+  
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    volumes:
+        - ./certbot/conf:/etc/letsencrypt:rw
+        - ./certbot/logs:/var/log/letsencrypt:rw
+        - ./certbot/data:/var/www/certbot:rw
+
+
+  flask:
+    image: niutalol/pi_flask:latest
+    container_name: flask
+    restart: always
+    env_file:
+      - ./flask/.env
+    expose:
+      - 8080
+    depends_on:
+      - mongodb
+    networks:
+      default:
+        ipv4_address: 172.20.0.6
+
+
+  mongodb:
+    image: niutalol/pi_mongodb:latest
+    container_name: mongodb
+    restart: always
+    volumes:
+      - ./mongodbdata:/data/db
+    env_file:
+      - ./mongodb/.env
+
+
+networks:
+  default:
+    external: true
+    name: reseau-interne-smartfridge
+

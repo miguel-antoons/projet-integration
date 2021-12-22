@@ -17,11 +17,8 @@ app.config["JWT_SECRET_KEY"] = base64.urlsafe_b64decode(os.environ['JWT_SECRET_K
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 
 
-
-
 for blueprint in blueprints:
     app.register_blueprint(blueprint)
-
 
 
 # Run debug mode
