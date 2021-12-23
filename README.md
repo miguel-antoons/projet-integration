@@ -25,6 +25,9 @@ SmartFridge est un projet qui consiste à veiller sur ses aliments dans son frig
 * Vers le gestionnaire de temps
 -> https://clockify.me/projects/614889fbc343e9463a2b50e0/edit
 
+* Vidéo
+-> https://youtu.be/oAOlOZdKw2w
+
 
 
 
