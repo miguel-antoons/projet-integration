@@ -56,7 +56,7 @@ class Login : AppCompatActivity() {
             val monIntent : Intent =  Intent(this,CheckAndSendEmail::class.java)
             // start MainActivity
             startActivity(monIntent)
-            Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+
         }
 
         // show or hide password
@@ -74,7 +74,7 @@ class Login : AppCompatActivity() {
 
     // checks if the email and password are correct in the database
     private fun verifyClient(email : String, password : String) {
-        val url = "http://10.0.2.2:5000/api/login"
+        val url = "https://smartfridge.online/api/login"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
 
@@ -114,7 +114,7 @@ class Login : AppCompatActivity() {
 
     // test token example
     private fun testToken() {
-        val url = "http://10.0.2.2:5000/api/users/email"
+        val url = "https://smartfridge.online/api/users/email"
         // create a request queue
         val queue = Volley.newRequestQueue(this)
 

@@ -5,29 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
-    android:layout_gravity="center"
+    android:layout_margin="@dimen/large_margin"
     app:cardCornerRadius="30dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/product_popup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/beige"
-        android:clipToPadding="false">
+        android:padding="@dimen/default_padding"
+        >
 
         <!-- Thermometer ImageView -->
         <ImageView
             android:id="@+id/thermometer"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/temperature"/>
+            android:src="@drawable/temperature"
+            android:layout_marginTop="@dimen/default_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_card"
+            android:contentDescription="@string/image_de_thermom_tre" />
 
         <!-- Water droplet ImageView -->
         <ImageView
@@ -35,119 +33,83 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_below="@+id/thermometer"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/water_droplet" />
+            android:src="@drawable/water_droplet"
+            android:layout_marginTop="@dimen/default_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thermometer"
+            android:contentDescription="@string/image_d_humidit" />
 
         <!-- Main text of the card view -->
         <TextView
             android:id="@+id/title_card"
             style="@style/MainTitle"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/first_name_component_title" />
+            android:text="@string/first_name_component_title"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Thermometer TextView -->
         <TextView
             android:id="@+id/temperature_text"
             style="@style/Subtitles"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/line_separator_images_v1"
             android:layout_alignStart="@+id/thermometer"
-            android:layout_alignLeft="@+id/thermometer"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:text="@string/temperature" />
+            android:text="@string/temperature"
+            android:textColor="@color/black"
+
+            app:layout_constraintStart_toEndOf="@+id/thermometer"
+            app:layout_constraintTop_toTopOf="@+id/thermometer" />
 
         <!-- Hygrometry TextView -->
         <TextView
             android:id="@+id/hygrometry_text"
-            android:textColor="@color/black"
+            style="@style/Subtitles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/line_separator_images_v2"
-            android:layout_alignLeft="@+id/water_droplet"
-            android:layout_marginLeft="80dp"
-            android:text="@string/hygrometry"
             android:layout_alignStart="@+id/water_droplet"
-            android:layout_marginStart="80dp"
-            style="@style/Subtitles"/>
+            android:text="@string/hygrometry"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/water_droplet"
+            app:layout_constraintTop_toTopOf="@+id/water_droplet" />
 
         <!-- Number / degree TextView -->
+
+        <!-- Number / percentage TextView -->
         <TextView
             android:id="@+id/temperature_number"
             style="@style/PoliceHomeCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/line_separator_images_v3"
             android:layout_alignStart="@+id/water_droplet"
-            android:layout_alignLeft="@+id/temperature_text"
-            android:layout_marginStart="250dp"
-            android:layout_marginLeft="250dp"
-            android:text="@string/degree" />
-
-        <!-- Number / percentage TextView -->
-        <TextView
-            android:id="@+id/hygrometry_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/line_separator_images_v4"
-            android:layout_alignStart="@+id/water_droplet"
-            android:layout_alignLeft="@+id/temperature_text"
-            android:layout_marginLeft="250dp"
-            android:text="@string/percentage"
-            android:layout_marginStart="250dp"
-            style="@style/PoliceHomeCardView"/>
+            android:text="@string/degree"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="@+id/thermometer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/temperature_text"
+            app:layout_constraintTop_toTopOf="@+id/thermometer" />
 
 
         <!-- All views of the card, it allows to place the different ImageView and TextView wherever we want -->
-        <View
-            android:id="@+id/line_separator_images_v1"
+
+        <TextView
+            android:id="@+id/hygrometry_number"
+            style="@style/PoliceHomeCardView"
             android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_alignBottom="@+id/thermometer"
-            android:layout_marginBottom="53dp"
-            android:background="@color/cyan_blue"
-            android:visibility="invisible"/>
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/water_droplet"
+            android:text="@string/percentage"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="@+id/water_droplet"
+            app:layout_constraintEnd_toEndOf="@+id/temperature_number"
+            app:layout_constraintStart_toStartOf="@+id/temperature_number"
+            app:layout_constraintTop_toTopOf="@+id/water_droplet" />
 
-        <View
-            android:id="@+id/line_separator_images_v2"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_alignBottom="@+id/water_droplet"
-            android:layout_marginBottom="53dp"
-            android:background="@color/light_green"
-            android:visibility="invisible"/>
-
-        <View
-            android:id="@+id/line_separator_images_v3"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_alignBottom="@+id/water_droplet"
-            android:layout_marginBottom="127dp"
-            android:background="@color/orange"
-            android:visibility="invisible"/>
-
-        <View
-            android:id="@+id/line_separator_images_v4"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_alignBottom="@+id/water_droplet"
-            android:layout_marginBottom="19dp"
-            android:background="@color/red"
-            android:visibility="invisible"/>
-
-    </RelativeLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 

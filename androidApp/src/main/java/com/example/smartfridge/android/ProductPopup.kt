@@ -3,6 +3,7 @@ package com.example.smartfridge.android
 import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
@@ -12,7 +13,7 @@ import com.example.smartfridge.android.adapter.ProductAdapter
 import com.example.smartfridge.android.fragments.FragmentProduct
 
 class ProductPopup(
-    private val adapter: ProductAdapter,
+    adapter: ProductAdapter,
     private val selectedProduct: ProductModel,
     private val productPosition: Int,
     private val productFragment: FragmentProduct
@@ -55,6 +56,7 @@ class ProductPopup(
         productEcoscore.text = selectedProduct.ecoscore
         productNutriscore.text = selectedProduct.nutriscore
         productIngredients.text = selectedProduct.ingredients.joinToString(", ")
+        productIngredients.movementMethod = ScrollingMovementMethod()
         productBrand.text = selectedProduct.brand
         productExpirationPeriod.text = selectedProduct.expirationPeriod
     }

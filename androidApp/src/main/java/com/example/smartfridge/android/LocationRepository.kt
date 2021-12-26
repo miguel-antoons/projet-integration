@@ -13,7 +13,7 @@ import java.util.HashMap
 object LocationRepository {
     // contains all the locations of the current user
     var locationList = arrayListOf<String>()
-    private const val serverUrl = "http://10.0.2.2:5000/api/locations"
+    private const val serverUrl = "https://smartfridge.online/api/locations"
 
     /**
      * Function call an api that will return all the locations of the current user

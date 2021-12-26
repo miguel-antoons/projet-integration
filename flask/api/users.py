@@ -4,7 +4,7 @@
 import os
 # Library
 import random
-
+from argon2 import PasswordHasher
 from dotenv import load_dotenv
 # Flask Library
 from flask import Blueprint, request, json
@@ -22,11 +22,11 @@ mail = Mail(app)
 
 # Mail Configuration
 
-app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
-app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
-app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_SERVER'] = os.environ['MAIL_SERVER']
+app.config['MAIL_PORT'] = os.environ['MAIL_PORT']
+app.config['MAIL_USE_TLS'] = os.environ['MAIL_USE_TLS']
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 
 mail = Mail(app)
 
@@ -170,10 +170,16 @@ def update_password():
     if request.method == 'PUT':
        
         #Check email address
-        email_exist = list(users.find({"Email" : email,"Code" : code}))
+        email_exist = list(users.find({"Email": email}, {"Code": 1}))
         print(email_exist)
+        for i in email_exist:
+            print(i['Code'])
+            if code == i['Code']:
+                print("Code OK")
+            else:
+                print("NO OK")
 
-        if email_exist:
+        if email_exist and code == i['Code']:
 
             #Update the code via email
             users.find_one_and_update(

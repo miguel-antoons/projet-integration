@@ -8,42 +8,29 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
-    <TextView
-        android:id="@+id/main_title_page_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_main_title"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.033" />
-
     <TextView
         android:id="@+id/usernameSettings"
+        android:layout_marginTop="@dimen/default_top_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
         style="@style/main_title_sign_up_page"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/new_raspberry"
         android:layout_width="226dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/sign_up_inscription_button"
         android:text="@string/new_raspberry"
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/settings_button_margin_top"
         android:visibility="gone"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameSettings" />
@@ -51,9 +38,10 @@
     <Button
         android:id="@+id/new_location"
         android:layout_width="226dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/settings_button_margin_top"
         android:background="@drawable/sign_up_inscription_button"
+        android:textAllCaps="false"
         android:text="@string/new_location"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,5 +59,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_location" />
+
+
+    <Button
+        android:id="@+id/delete_account"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/settings_button_margin_top"
+        android:background="@drawable/button_delete_account"
+        android:text="@string/supprimer_son_compte"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disconnect" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

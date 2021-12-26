@@ -1,148 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.FragmentProduct">
+    android:layout_marginTop="@dimen/default_top_margin">
 
-
-    <TextView
-        android:id="@+id/product_page_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/product_page_title"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginLeft="@dimen/default_margin"
-        android:layout_marginTop="@dimen/default_top_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/pageTitle"/>
-
-    <!-- search bar -->
-    <EditText
-        android:id="@+id/search_products"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/searchbar_height"
-        android:layout_marginLeft="@dimen/large_margin"
-        android:layout_marginStart="@dimen/large_margin"
-        android:layout_marginRight="@dimen/large_margin"
-        android:layout_marginEnd="@dimen/large_margin"
-        android:layout_marginTop="@dimen/default_margin"
-        android:textCursorDrawable="@null"
-        android:inputType="text"
-        android:gravity="center"
-        android:hint="@string/search_hint"
-        android:drawableLeft="@drawable/ic_search"
-        android:drawableStart="@drawable/ic_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_page_title"
-        app:backgroundTint="@color/dark_green"
-        android:autofillHints="food" />
-
-    <!-- header row of the table -->
-    <View
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_products_row"
-        android:background="@color/dark_green"
-        android:layout_marginTop="@dimen/default_margin"
-        app:layout_constraintTop_toBottomOf="@+id/search_products"
-        />
-
-    <!-- sort by product name button -->
-    <View
-        android:id="@+id/sort_by_name"
-        android:layout_width="@dimen/product_name_width"
-        android:layout_height="@dimen/top_products_row"
-        android:background="@color/dark_green"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <ImageView
-        android:id="@+id/sort_by_name_arrow"
-        android:layout_width="@dimen/sort_arrow_dimens"
-        android:layout_height="@dimen/sort_arrow_dimens"
-        android:src="@drawable/ic_sort_products_up"
-        android:contentDescription="@string/sort_product_name_description"
-        app:layout_constraintBottom_toBottomOf="@+id/sort_by_name"
-        app:layout_constraintEnd_toEndOf="@+id/sort_by_name"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/sort_by_name"
-        app:tint="@color/white" />
-
-    <!-- sort by location button -->
-    <View
-        android:id="@+id/sort_by_location"
-        android:layout_width="@dimen/location_name_width"
-        android:layout_height="@dimen/top_products_row"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/sort_by_name"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <ImageView
-        android:id="@+id/sort_by_location_arrow"
-        android:layout_width="@dimen/sort_arrow_dimens"
-        android:layout_height="@dimen/sort_arrow_dimens"
-        android:src="@drawable/ic_sort_products_up"
-        android:contentDescription="@string/sort_location_description"
-        app:layout_constraintBottom_toBottomOf="@+id/sort_by_location"
-        app:layout_constraintEnd_toEndOf="@+id/sort_by_location"
-        app:layout_constraintStart_toEndOf="@+id/sort_by_name"
-        app:layout_constraintTop_toTopOf="@+id/sort_by_location"
-        app:tint="@color/white" />
-
-    <!-- sort by expiration date button -->
-    <View
-        android:id="@+id/sort_by_expiration_date"
-        android:layout_width="@dimen/expiration_date_width"
-        android:layout_height="@dimen/top_products_row"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/sort_by_location"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <ImageView
-        android:id="@+id/sort_by_expiration_date_arrow"
-        android:layout_width="@dimen/sort_arrow_dimens"
-        android:layout_height="@dimen/sort_arrow_dimens"
-        android:src="@drawable/ic_sort_products_up"
-        android:contentDescription="@string/sort_expiration_period_description"
-        app:layout_constraintBottom_toBottomOf="@+id/sort_by_expiration_date"
-        app:layout_constraintEnd_toEndOf="@+id/sort_by_expiration_date"
-        app:layout_constraintStart_toEndOf="@+id/sort_by_location"
-        app:layout_constraintTop_toTopOf="@+id/sort_by_expiration_date"
-        app:tint="@color/white" />
-
-    <!-- product table -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_page_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sort_by_location" />
+        android:layout_height="match_parent"
+        tools:context=".fragments.FragmentProduct">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addingBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_add"
-        android:contentDescription="@string/add_product_description"
-        android:layout_marginRight="@dimen/large_margin"
-        android:layout_marginEnd="@dimen/large_margin"
-        android:layout_marginBottom="@dimen/large_margin"
-        app:backgroundTint="@color/dark_beige"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/really_dark_green" />
+        <TextView
+            android:id="@+id/product_page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_page_title"
+            android:layout_marginStart="@dimen/default_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/pageTitle"/>
+
+        <!-- search bar -->
+
+        <!-- header row of the table -->
+
+        <EditText
+            android:id="@+id/search_products"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:autofillHints="food"
+            android:drawableStart="@drawable/ic_search"
+            android:gravity="center"
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:textCursorDrawable="@null"
+            app:backgroundTint="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_page_title" />
+
+        <ImageButton
+            android:id="@+id/info_legend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:src="@drawable/ic_baseline_info_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.047" />
+
+        <View
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_products_row"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_products" />
+
+        <!-- sort by product name button -->
+
+        <View
+            android:id="@+id/sort_by_name"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/top_products_row"
+            android:background="@color/dark_green"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/sort_by_location"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/sort_by_name_arrow"
+            android:layout_width="@dimen/sort_arrow_dimens"
+            android:layout_height="@dimen/sort_arrow_dimens"
+            android:contentDescription="@string/sort_product_name_description"
+            android:src="@drawable/ic_sort_products_up"
+            app:layout_constraintBottom_toBottomOf="@+id/sort_by_name"
+            app:layout_constraintEnd_toEndOf="@+id/sort_by_name"
+            app:layout_constraintStart_toStartOf="@+id/sort_by_name"
+            app:layout_constraintTop_toTopOf="@+id/sort_by_name"
+            app:tint="@color/white" />
+
+        <!-- sort by location button -->
+        <View
+            android:id="@+id/sort_by_location"
+            android:layout_width="@dimen/location_name_width"
+            android:layout_height="@dimen/top_products_row"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/sort_by_expiration_date"
+            app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+        <ImageView
+            android:id="@+id/sort_by_location_arrow"
+            android:layout_width="@dimen/sort_arrow_dimens"
+            android:layout_height="@dimen/sort_arrow_dimens"
+            android:contentDescription="@string/sort_location_description"
+            android:src="@drawable/ic_sort_products_up"
+            app:layout_constraintBottom_toBottomOf="@+id/sort_by_location"
+            app:layout_constraintEnd_toEndOf="@+id/sort_by_location"
+            app:layout_constraintStart_toStartOf="@+id/sort_by_location"
+            app:layout_constraintTop_toTopOf="@+id/sort_by_location"
+            app:tint="@color/white" />
+
+        <!-- sort by expiration date button -->
+        <View
+            android:id="@+id/sort_by_expiration_date"
+            android:layout_width="@dimen/expiration_date_width"
+            android:layout_height="@dimen/top_products_row"
+            android:layout_marginEnd="@dimen/large_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+        <ImageView
+            android:id="@+id/sort_by_expiration_date_arrow"
+            android:layout_width="@dimen/sort_arrow_dimens"
+            android:layout_height="@dimen/sort_arrow_dimens"
+            android:contentDescription="@string/sort_expiration_period_description"
+            android:src="@drawable/ic_sort_products_up"
+            app:layout_constraintBottom_toBottomOf="@+id/sort_by_expiration_date"
+            app:layout_constraintEnd_toEndOf="@+id/sort_by_expiration_date"
+            app:layout_constraintStart_toStartOf="@+id/sort_by_expiration_date"
+            app:layout_constraintTop_toTopOf="@+id/sort_by_expiration_date"
+            app:tint="@color/white" />
+
+        <!-- product table -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_page_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sort_by_location" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_add"
+            android:contentDescription="@string/add_product_description"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            app:backgroundTint="@color/dark_beige"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/really_dark_green" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

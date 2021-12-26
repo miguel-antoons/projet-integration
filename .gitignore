@@ -13,8 +13,9 @@ local.properties
 flask/__pycache__
 __pycache__
 venv
-env
+.env*
 .vscode
 
 .env
 .cfg
+hs_err_pid*

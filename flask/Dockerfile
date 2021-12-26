@@ -16,9 +16,9 @@ ADD . /app
 
 # Install the dependencies
 RUN pip install -r requirements.txt
+RUN ["chmod", "+x", "./wait-for-it.sh"]
 
 #EXPOSE PORT FLASK FLASK
 EXPOSE 587/tcp
 
-# run the command to start uWSGI
-CMD ["uwsgi", "app.ini"]
+CMD ["./wait-for-it.sh", "mongodb:27017", "--", "uwsgi", "app.ini"]

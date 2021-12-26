@@ -101,7 +101,7 @@ class FormsAddAliments: AppCompatActivity() {
                             date,
                             store,
                             categorie,
-                            ProductRepository.productList[productIndex].id
+                            ProductRepository.searchedProductList[productIndex].id
                         )
 
                         Toast.makeText(this ,
@@ -204,7 +204,7 @@ class FormsAddAliments: AppCompatActivity() {
         updateButton: Button
     ) {
         // create a copy of the product
-        val productCopy = ProductRepository.productList[productIndex]
+        val productCopy = ProductRepository.searchedProductList[productIndex]
 
         // pre-set the different product fields
         nameField.setText(productCopy.name)

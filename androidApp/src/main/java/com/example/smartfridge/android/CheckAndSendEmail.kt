@@ -69,7 +69,7 @@ class CheckAndSendEmail : AppCompatActivity() {
 
     private fun check_email_get(email: String?) {
 
-        val putUrl = "http://10.0.2.2:5000/api/users/reset-password/checkemail"
+        val putUrl = "https://smartfridge.online/api/users/reset-password/checkemail"
         val requestQueue = Volley.newRequestQueue(this)
 
         val putData = JSONObject()
@@ -103,7 +103,7 @@ class CheckAndSendEmail : AppCompatActivity() {
                     val i = Intent(this, CheckCodeMail::class.java).apply {
                         putExtra("Email", email_champ_full)
                     }
-
+                    Toast.makeText(this, "Voici l'email : $email_champ_full", Toast.LENGTH_SHORT).show()
                     startActivity(i)
 
 
@@ -113,7 +113,7 @@ class CheckAndSendEmail : AppCompatActivity() {
 
 
                 }
-                Toast.makeText(this, "$response", Toast.LENGTH_SHORT).show()
+
 
 
             }

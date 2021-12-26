@@ -1,217 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".SignUp">
 
-
-    <TextView
-        android:id="@+id/main_title"
-        style="@style/main_title_sign_up_page"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="44dp"
-        android:text="@string/main_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="@dimen/large_padding">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="148dp"
-        android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/ic_user_icon"
-        android:drawableLeft="@drawable/ic_user_icon"
-        android:drawablePadding="15dp"
-        android:inputType="textPersonName"
-        android:maxLength="30"
-        android:padding="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/password_title"
-        style="@style/subtitles_sign_up_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="268dp"
-        android:layout_marginLeft="268dp"
-        android:layout_marginTop="128dp"
-        android:text="@string/username"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/main_title"
+            style="@style/main_title_sign_up_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="44dp"
+            android:text="@string/main_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/subtitle_confirm_password"
-        style="@style/subtitles_sign_up_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="344dp"
-        android:text="@string/confirm_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="nom d'utilisateur"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/ic_user_icon"
+            android:drawablePadding="15dp"
+            android:inputType="textPersonName"
+            android:maxLength="30"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/sign_up_margin"
+            android:layout_marginEnd="@dimen/sign_up_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_title" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="290dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="260dp"
-        android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/ic_password_icon"
-        android:drawableLeft="@drawable/ic_password_icon"
-        android:drawablePadding="15dp"
-        android:inputType="textPassword"
-        android:maxLength="30"
-        android:padding="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/password_title"
+            style="@style/subtitles_sign_up_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:labelFor="@+id/username"
+            android:text="@string/username"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/label_right_margins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_title" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="480dp"
-        android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/ic_mail_icon"
-        android:drawableLeft="@drawable/ic_mail_icon"
-        android:drawablePadding="15dp"
-        android:inputType="textEmailAddress"
-        android:maxLength="30"
-        android:padding="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/subtitle_confirm_password"
+            style="@style/subtitles_sign_up_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/confirm_password"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/label_large_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
+        <EditText
+            android:id="@+id/password"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:autofillHints="mot de passe"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/ic_password_icon"
+            android:drawablePadding="15dp"
+            android:inputType="textPassword"
+            android:maxLength="30"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/sign_up_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle_password" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="adresse électronique"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/ic_mail_icon"
+            android:drawablePadding="15dp"
+            android:inputType="textEmailAddress"
+            android:maxLength="30"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/sign_up_margin"
+            android:layout_marginEnd="@dimen/sign_up_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_title" />
 
-    <TextView
-        android:id="@+id/email_title"
-        style="@style/subtitles_sign_up_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="456dp"
-        android:text="@string/email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:layout_constraintBottom_toBottomOf="@+id/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/sign_up_margin"
+            app:layout_constraintTop_toTopOf="@+id/password" />
 
-    <EditText
-        android:id="@+id/confirm_password"
-        android:layout_width="290dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="368dp"
-        android:autofillHints="aliment name"
-        android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/ic_password_icon"
-        android:drawableLeft="@drawable/ic_password_icon"
-        android:drawablePadding="15dp"
-        android:inputType="textPassword"
-        android:maxLength="30"
-        android:padding="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginEnd="@dimen/sign_up_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/confirm_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/confirm_password" />
 
-    <TextView
-        android:id="@+id/subtitle_password"
-        style="@style/subtitles_sign_up_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="204dp"
-        android:layout_marginLeft="204dp"
-        android:layout_marginTop="236dp"
-        android:text="@string/password_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/email_title"
+            style="@style/subtitles_sign_up_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/email"
+            android:layout_marginEnd="@dimen/label_right_margins"
+            android:layout_marginTop="@dimen/large_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirm_password" />
 
-    <CheckBox
-        android:id="@+id/Terms_checkbox"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/confirm_password"
+            app:layout_constraintWidth_default="spread"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:autofillHints="aliment name"
+            android:background="@drawable/rounded_edittext"
+            android:drawableStart="@drawable/ic_password_icon"
+            android:drawablePadding="15dp"
+            android:inputType="textPassword"
+            android:maxLength="30"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/sign_up_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle_confirm_password" />
 
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="560dp"
-        android:layout_weight="1"
-        android:text="J'accepte avoir lu et accepter les"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/subtitle_password"
+            style="@style/subtitles_sign_up_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/password_title"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/label_large_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <TextView
-        android:id="@+id/terms_link"
-        style="@style/terms_link_style"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="592dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:linksClickable="true"
-        android:radius="30dp"
-        android:text="termes d'utilisation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <CheckBox
+            android:id="@+id/Terms_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/j_accepte_avoir_lu_et_accepter_les"
+            android:layout_marginTop="@dimen/large_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="636dp"
-        android:background="@drawable/sign_up_inscription_button"
-        android:text="@string/inscription"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/terms_link"
+            style="@style/terms_link_style"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:linksClickable="true"
+            android:radius="30dp"
+            android:text="@string/termes_d_utilisation"
+            app:layout_constraintEnd_toEndOf="@+id/Terms_checkbox"
+            app:layout_constraintStart_toStartOf="@+id/Terms_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/Terms_checkbox" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sign_up_inscription_button"
+            android:text="@string/inscription"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/terms_link" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

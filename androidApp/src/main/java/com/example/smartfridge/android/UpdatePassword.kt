@@ -15,7 +15,7 @@ import org.json.JSONObject
 import java.util.regex.Pattern
 
 class UpdatePassword : AppCompatActivity() {
-    private val MIN_PASSWORD_LENGTH = 8
+    private val minPasswordLength = 8
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +23,8 @@ class UpdatePassword : AppCompatActivity() {
         setContentView(R.layout.activity_update_password)
 
         //get password editext
-        val firstpassword = findViewById<EditText>(R.id.new_mpd)
-        val secondepassword = findViewById<EditText>(R.id.confirm_new_mdp)
+        val firstPassword = findViewById<EditText>(R.id.new_mpd)
+        val secondPassword = findViewById<EditText>(R.id.confirm_new_mdp)
 
 
         //get email from previous activity
@@ -34,7 +34,7 @@ class UpdatePassword : AppCompatActivity() {
 
         //display email
 
-        val tv_email = findViewById<TextView>(R.id.textView_email).apply {
+        findViewById<TextView>(R.id.textView_email).apply {
             text = emailFromForgot
         }
 
@@ -51,14 +51,14 @@ class UpdatePassword : AppCompatActivity() {
             //check if checkbox is checked or not
             if (isChecked) {
 
-                firstpassword.transformationMethod =
+                firstPassword.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
 
                 //checkbox is checked
             } else {
                 //checkbox is not checked
 
-                firstpassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                firstPassword.transformationMethod = PasswordTransformationMethod.getInstance()
             }
         }
 
@@ -68,46 +68,46 @@ class UpdatePassword : AppCompatActivity() {
             //check if checkbox is checked or not
             if (isChecked) {
 
-                secondepassword.transformationMethod =
+                secondPassword.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
 
                 //checkbox is checked
             } else {
                 //checkbox is not checked
 
-                secondepassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                secondPassword.transformationMethod = PasswordTransformationMethod.getInstance()
             }
         }
 
         //Button Check strenght Password
-        val button_check_strenght_1 = findViewById<Button>(R.id.button_check_password1)
-        button_check_strenght_1.setOnClickListener {
+        val buttonCheckStrenght1 = findViewById<Button>(R.id.button_check_password1)
+        buttonCheckStrenght1.setOnClickListener {
 
             isValidPassword()
         }
 
 
-        val button_check_strenght_2 = findViewById<Button>(R.id.button_check_password2)
-        button_check_strenght_2.setOnClickListener {
+        val buttonCheckStrenght2 = findViewById<Button>(R.id.button_check_password2)
+        buttonCheckStrenght2.setOnClickListener {
 
             isValidPassword()
         }
 
 
         //Check if password 1 equals password 2
-        val button_confirm = findViewById<Button>(R.id.submit)
+        val buttonConfirm = findViewById<Button>(R.id.submit)
 
         //Check password 1 and 2 srenght
 
-        button_confirm.setOnClickListener {
+        buttonConfirm.setOnClickListener {
 
             isValidPassword()
 
 
         }
 
-        val button_return = findViewById<Button>(R.id.bouton_retour)
-        button_return.setOnClickListener {
+        val buttonReturn = findViewById<Button>(R.id.bouton_retour)
+        buttonReturn.setOnClickListener {
             val i = Intent(this, CheckCodeMail::class.java)
 
 
@@ -135,10 +135,10 @@ class UpdatePassword : AppCompatActivity() {
      *
      * @return - true if the password is valid as per the password policy.
      */
-    fun isValidPassword(): Boolean {
+    private fun isValidPassword(): Boolean {
 
-        val password_edittext1 = findViewById<EditText>(R.id.new_mpd)
-        val password_edittext2 = findViewById<EditText>(R.id.confirm_new_mdp)
+        val passwordEdittext1 = findViewById<EditText>(R.id.new_mpd)
+        val passwordEdittext2 = findViewById<EditText>(R.id.confirm_new_mdp)
 
         // check for pattern
         // check for pattern
@@ -147,46 +147,47 @@ class UpdatePassword : AppCompatActivity() {
         val digit = Pattern.compile("[0-9]")
 
         // Password
-        if (password_edittext1.text.toString() == "") {
-            password_edittext1.setError("Veuillez entrer un mot de passe !")
+        if (passwordEdittext1.text.toString() == "") {
+            passwordEdittext1.error = "Veuillez entrer un mot de passe !"
         }
         // Same password / verification
-        if (password_edittext2.text.toString() == "") {
-            password_edittext2.setError("Veuillez entrer un mot de passe !")
+        if (passwordEdittext2.text.toString() == "") {
+            passwordEdittext2.error = "Veuillez entrer un mot de passe !"
         }
 
         // Checking if the password contains or not at least one lowercase
-        if (!lowercase.matcher(password_edittext1.text.toString()).find()) {
-            password_edittext1.setError("Doit contenir au moins une minuscule !")
+        if (!lowercase.matcher(passwordEdittext1.text.toString()).find()) {
+            passwordEdittext1.error = "Doit contenir au moins une minuscule !"
             return false
         }
 
         // Checking if the password contains or not at least one uppercase
-        if (!uppercase.matcher(password_edittext1.text.toString()).find()) {
-            password_edittext1.setError("Doit contenir au moins une majuscule !")
+        if (!uppercase.matcher(passwordEdittext1.text.toString()).find()) {
+            passwordEdittext1.error = "Doit contenir au moins une majuscule !"
             return false
         }
 
         // Checking if the password contains or not at least one lowercase
-        if (!digit.matcher(password_edittext1.text.toString()).find()) {
-            password_edittext1.setError("Doit contenir au moins un chiffre !")
+        if (!digit.matcher(passwordEdittext1.text.toString()).find()) {
+            passwordEdittext1.error = "Doit contenir au moins un chiffre !"
             return false
         }
 
         // Checking minimum password length, in this case minimum of 8 characters
-        if (password_edittext1.text.length < MIN_PASSWORD_LENGTH) {
-            password_edittext1.setError("La longueur du mot de passe doit contenir au moins " + MIN_PASSWORD_LENGTH + " charactères")
+        if (passwordEdittext1.text.length < minPasswordLength) {
+            passwordEdittext1.error =
+                "La longueur du mot de passe doit contenir au moins $minPasswordLength charactères"
             return false
         }
 
         // Checking if repeat password is same
-        if (!password_edittext1.text.toString().equals(password_edittext2.text.toString())) {
-            password_edittext2.setError("La mot de passe ne correspond pas !")
+        if (passwordEdittext1.text.toString() != passwordEdittext2.text.toString()) {
+            passwordEdittext2.error = "La mot de passe ne correspond pas !"
             return false
         }
         val emailFromForgot = intent
             .getStringExtra("Email")
-        update_password(emailFromForgot, password_edittext2.text.toString())
+        updatePassword(emailFromForgot, passwordEdittext2.text.toString())
 
         return true
 
@@ -202,7 +203,7 @@ class UpdatePassword : AppCompatActivity() {
      * @return - close activity when password changed
      */
 
-    private fun update_password(email: String?, password: String?) {
+    private fun updatePassword(email: String?, password: String?) {
 
         val code = intent
             .getStringExtra("Code")
@@ -212,7 +213,7 @@ class UpdatePassword : AppCompatActivity() {
         //Log.d("MainActivity", "$password_hash")
         //Log.d("MainActivity", "$password_hash")
 
-        val putUrl = "http://10.0.2.2:5000/api/users/update-password"
+        val putUrl = "https://smartfridge.online/api/users/update-password"
         val requestQueue = Volley.newRequestQueue(this)
 
         val putData = JSONObject()

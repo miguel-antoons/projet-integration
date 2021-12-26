@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.smartfridge.android.BarcodeReader
-import com.example.smartfridge.android.HowToConnect
-import com.example.smartfridge.android.MainActivity
-import com.example.smartfridge.android.R
+import com.example.smartfridge.android.*
+import com.example.smartfridge.android.FridgesRepository.fridgesList
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.smartfridge.android.adapter.FridgesAdapter
 import com.example.smartfridge.android.adapter.FridgesItemDecoration
 
-class FragmentHome : Fragment() {
+class FragmentHome(
+    private val context: MainActivity
+
+) : Fragment() {
 
     // Function that displays the fragment 'fragment_button' on the screen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,13 +41,30 @@ class FragmentHome : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container : ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        val adapter = FridgesAdapter(context, fridgesList, R.layout.item_vertical_fridges)
+        FridgesRepository.addFridgesAdapter(adapter)
+
+        // load fridgesRepository
+        FridgesRepository.getFridges(context)
+
         // Get the vertical recyclerview and set the adapter on it
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = FridgesAdapter(R.layout.item_vertical_fridges)
+        verticalRecyclerView.adapter = adapter
 
         // Add decoration to the section item_vertical_fridges -> we can find this configuration of design in the FridgesItemDecoration file/class
         verticalRecyclerView.addItemDecoration(FridgesItemDecoration())
 
+        // setup the pull to refresh action
+        setupPullToRefresh(view)
+
         return view
+    }
+
+    private fun setupPullToRefresh(view: View) {
+        val pullToRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
+        pullToRefresh.setOnRefreshListener {
+            // get the new information from back-end
+            FridgesRepository.getFridges(context, pullToRefresh)
+        }
     }
 }
